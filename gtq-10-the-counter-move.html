@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="paper-slug" content="gtq-10">
+<title>Article 10: The Counter-Move — Genesis to Quantum</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<!-- MathJax -->
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+:root{
+  --primary:#1a1a1a;
+  --accent:#2c2c2c;
+  --text-primary:#e0e0e0;
+  --text-secondary:#a0a0a0;
+  --highlight:#d4af37;
+  --highlight-bright:#e8c84a;
+  --highlight-dim:#a08020;
+  --border:#333333;
+  --surface:#0a0a0a;
+  --surface-light:#1a1a1a;
+  --surface-hover:#2a2a2a;
+  --red:#ef4444;
+  --blue:#4a9eff;
+  --teal:#2dd4bf;
+  --purple:#a855f7;
+  --green:#22c55e;
+  --gold:#d4af37;
+}
+*{box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--surface);
+  color:var(--text-primary);
+  line-height:1.65;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+.serif{font-family:'Crimson Text',serif;}
+.display{font-family:'Oswald',sans-serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ─────────────── SIDEBAR NAV ─────────────── */
+.sidebar{
+  position:fixed;top:0;left:0;width:280px;height:100vh;
+  background:var(--surface);border-right:1px solid var(--border);
+  z-index:100;overflow-y:auto;transform:translateX(-100%);
+  transition:transform .3s ease;padding:1.5rem 1rem;
+}
+.sidebar.open{transform:translateX(0);}
+.sidebar-toggle{
+  position:fixed;top:1rem;left:1rem;z-index:101;
+  background:var(--surface-light);border:1px solid var(--border);
+  color:var(--highlight);width:40px;height:40px;border-radius:.375rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:1rem;transition:all .2s ease;
+}
+.sidebar-toggle:hover{border-color:var(--highlight);background:var(--surface-hover);}
+.sidebar-overlay{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.6);z-index:99;
+}
+.sidebar-overlay.show{display:block;}
+.sidebar .series-title{
+  font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--highlight);margin-bottom:1rem;
+  padding-bottom:.5rem;border-bottom:1px solid var(--border);
+}
+.sidebar a{
+  display:block;padding:.45rem .75rem;color:var(--text-secondary);
+  text-decoration:none;font-size:.8rem;border-radius:.3rem;
+  transition:all .15s ease;line-height:1.4;
+}
+.sidebar a:hover{color:var(--text-primary);background:var(--surface-hover);}
+.sidebar a.current{color:var(--highlight);background:rgba(212,175,55,.1);font-weight:600;}
+.sidebar a.tangent{padding-left:2rem;font-size:.75rem;color:var(--text-secondary);opacity:.8;}
+.sidebar a.tangent::before{content:"\2514\0020";color:var(--border);}
+
+/* ─────────────── HEADER ─────────────── */
+.site-header{border-bottom:1px solid var(--border);background:var(--surface);}
+.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;font-size:.8125rem;color:var(--text-secondary);margin-bottom:1rem;}
+.meta-row i{color:var(--highlight);margin-right:.4rem;}
+.status-pill{padding:.25rem .65rem;background:rgba(212,175,55,.12);color:var(--highlight);border-radius:.25rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.domain-tag{display:inline-block;padding:.2rem .65rem;border-radius:999px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.tag-physics{background:rgba(74,158,255,.15);color:#4a9eff;}
+.tag-theology{background:rgba(212,175,55,.15);color:#d4af37;}
+.tag-cross-domain{background:rgba(168,85,247,.15);color:#a855f7;}
+
+/* ─────────────── STICKY TAB BAR ─────────────── */
+.tab-shell{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.progress-track{height:3px;background:var(--border);width:100%;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--highlight),var(--highlight-bright));transition:width 0.1s ease;border-radius:0 2px 2px 0;}
+.tab-nav{display:flex;gap:.125rem;overflow-x:auto;scrollbar-width:none;}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-btn{padding:.85rem 1.1rem;background:transparent;border:none;color:var(--text-secondary);font-size:.825rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s ease;border-bottom:2px solid transparent;margin-bottom:-1px;letter-spacing:.02em;}
+.tab-btn:hover{color:var(--text-primary);background:var(--surface-light);}
+.tab-btn.active{color:var(--highlight);border-bottom-color:var(--highlight);background:var(--surface-light);}
+.tab-btn i{margin-right:.4rem;}
+
+/* ─────────────── TAB CONTENT ─────────────── */
+.tab-content{display:none;animation:fadeIn .3s ease;}
+.tab-content.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─────────────── STORY ARTICLE ─────────────── */
+.story{max-width:780px;margin:0 auto;}
+.story h2{font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:600;color:#fff;margin:3rem 0 1.25rem;letter-spacing:.03em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:.5rem;}
+.story h3{font-family:'Crimson Text',serif;font-size:1.3rem;font-weight:600;color:#fff;margin:2rem 0 .75rem;}
+.story h4{font-family:'Crimson Text',serif;font-size:1.1rem;font-weight:600;color:var(--highlight);margin:1.5rem 0 .5rem;}
+.story p{font-size:1.0625rem;color:#cfcfcf;margin:0 0 1.25rem;line-height:1.75;}
+.story p strong{color:#fff;}
+.story p em{color:var(--highlight);font-style:italic;}
+.story li{color:#cfcfcf;margin-bottom:.5rem;line-height:1.65;}
+.story li strong{color:#fff;}
+.story ul,.story ol{margin:0 0 1.25rem 1.5rem;}
+.story blockquote{border-left:4px solid var(--highlight);background:rgba(212,175,55,.05);padding:1rem 1.5rem;margin:1.5rem 0;border-radius:0 .5rem .5rem 0;font-family:'Crimson Text',serif;font-size:1.05rem;font-style:italic;color:#cfcfcf;}
+.story blockquote p{margin:0;font-size:1.05rem;}
+
+/* Drop cap */
+.drop-cap::first-letter{font-family:'Crimson Text',serif;font-size:4.5rem;float:left;line-height:.85;padding:.4rem .6rem 0 0;color:var(--highlight);font-weight:600;}
+
+/* Insight / pull quote */
+.insight{border-left:4px solid var(--highlight);background:rgba(212,175,55,.08);padding:1.25rem 1.5rem;margin:2rem 0;border-radius:0 .5rem .5rem 0;}
+.insight .label{font-family:'Crimson Text',serif;font-style:italic;color:var(--highlight);font-size:.85rem;letter-spacing:.05em;display:block;margin-bottom:.4rem;}
+.insight p{margin:0;color:#fff;font-size:1.05rem;}
+
+/* Axiom callout */
+.axiom-box{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.25);border-left:4px solid var(--highlight);padding:1rem 1.5rem;margin:1.5rem 0;border-radius:0 .5rem .5rem 0;font-family:'JetBrains Mono',monospace;font-size:.95rem;color:var(--highlight);}
+
+/* Equation display */
+.eq-block{background:var(--surface-light);border:1px solid var(--border);border-radius:.5rem;padding:1.5rem;margin:1.5rem 0;text-align:center;overflow-x:auto;}
+.eq-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--highlight);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:left;}
+
+/* Kill card */
+.kill-card{padding:1.25rem;margin-bottom:.75rem;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.2);border-radius:.5rem;}
+.kill-card .kill-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;}
+.kill-card p{margin:.25rem 0 0;color:#cfcfcf;font-size:.9rem;}
+
+/* Card */
+.card{background:var(--surface-light);border:1px solid var(--border);border-radius:.5rem;padding:1.5rem;transition:border-color .25s ease;}
+.card:hover{border-color:var(--highlight);}
+
+/* ─────────────── VISUAL VARIETY: STAT, TIMELINE, FULL-WIDTH TABLE, FINALE ─────────────── */
+.box-stat{background:#1f1f1f;text-align:center;padding:2rem;border-radius:.5rem;margin:1rem 0;}
+.box-stat .number{font-family:'Crimson Text',serif;font-size:3rem;font-weight:600;color:var(--highlight);line-height:1;}
+.box-stat .label{font-size:.75rem;color:var(--text-secondary);margin-top:.25rem;letter-spacing:.08em;text-transform:uppercase;}
+
+.box-timeline{border-left:2px solid var(--border);padding:.75rem 0 .75rem 1.5rem;position:relative;margin-left:.5rem;margin-bottom:.5rem;}
+.box-timeline::before{content:'';position:absolute;left:-5px;top:1rem;width:8px;height:8px;background:var(--highlight);border-radius:50%;}
+.box-timeline h4{font-family:'Crimson Text',serif;font-size:1.1rem;font-weight:600;color:var(--highlight);margin:0 0 .35rem;}
+.box-timeline p{font-size:.95rem;color:#cfcfcf;margin:0;line-height:1.65;}
+
+/* Full-width dramatic table */
+.table-dramatic{
+  width:100%;border-collapse:collapse;margin:2rem 0;font-size:.85rem;
+  border:2px solid var(--highlight-dim);border-radius:.5rem;overflow:hidden;
+}
+.table-dramatic thead{background:rgba(212,175,55,.2);color:var(--highlight-bright);text-transform:uppercase;font-size:.7rem;letter-spacing:.08em;}
+.table-dramatic th{padding:.85rem 1rem;text-align:left;border-bottom:2px solid var(--highlight-dim);}
+.table-dramatic td{padding:.85rem 1rem;text-align:left;border-bottom:1px solid var(--border);color:var(--text-secondary);}
+.table-dramatic tr:last-child td{border-bottom:none;}
+.table-dramatic tbody tr:nth-child(odd){background:rgba(212,175,55,.03);}
+.table-dramatic tbody tr:nth-child(even){background:rgba(212,175,55,.06);}
+.table-dramatic tbody tr:hover{background:rgba(212,175,55,.12);}
+.table-dramatic td strong{color:#fff;}
+.table-dramatic td em{color:var(--highlight);font-style:italic;}
+.table-dramatic .row-num{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:var(--highlight);text-align:center;width:40px;}
+
+/* Stat grid */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0;}
+
+/* Finale section */
+.finale-section{
+  background:linear-gradient(135deg,rgba(212,175,55,.06) 0%,rgba(212,175,55,.01) 100%);
+  border:1px solid rgba(212,175,55,.2);border-radius:.75rem;
+  padding:2.5rem 2rem;margin:3rem 0;
+}
+.finale-section .finale-label{
+  font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--highlight);margin-bottom:.75rem;
+}
+.finale-section h2{
+  font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:600;
+  color:#fff;text-transform:uppercase;letter-spacing:.04em;margin:0 0 1rem;
+  border:none;padding:0;
+}
+.finale-section p{font-size:1.0625rem;color:#cfcfcf;line-height:1.75;margin:0 0 1.25rem;}
+
+/* Player dock */
+.player-dock{background:rgba(15,15,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:.5rem 1.5rem;display:flex;align-items:center;gap:.75rem;}
+.player-dock .player-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--highlight);white-space:nowrap;}
+.player-dock audio{flex:1;height:32px;max-width:420px;filter:brightness(.85);}
+
+/* Media cards */
+.media-card{background:var(--surface-light);border:1px solid var(--border);border-radius:.6rem;padding:1.5rem;margin-bottom:1.5rem;transition:border-color .25s ease;}
+.media-card:hover{border-color:var(--highlight);}
+.media-card .media-label{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--highlight);font-weight:700;margin-bottom:.5rem;}
+.media-card h3{font-family:'Crimson Text',serif;font-size:1.5rem;font-weight:600;color:#fff;margin:0 0 .5rem;}
+.media-card p.media-desc{font-size:.9rem;color:var(--text-secondary);margin:0 0 1rem;}
+.media-card audio{width:100%;border-radius:.4rem;background:var(--surface);height:46px;}
+.media-meta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.85rem;font-size:.75rem;color:var(--text-secondary);}
+.media-meta span i{color:var(--highlight);margin-right:.35rem;}
+
+/* Disclaimer box */
+.disclaimer-box{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.2);border-radius:.5rem;padding:1.25rem 1.5rem;margin:2rem 0;}
+.disclaimer-box .disclaimer-label{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--highlight);margin-bottom:.5rem;}
+.disclaimer-box p{font-family:'Crimson Text',serif;font-size:1rem;font-style:italic;color:var(--text-secondary);margin:0;line-height:1.7;}
+
+/* Tables (standard) */
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.875rem;border:1px solid var(--border);border-radius:.5rem;overflow:hidden;}
+.data-table thead{background:var(--surface-light);text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;color:var(--highlight);}
+.data-table th,.data-table td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover{background:rgba(212,175,55,.04);}
+.data-table td{color:var(--text-secondary);}
+
+/* Horizontal rule */
+.story hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0;}
+
+/* Footer */
+footer{border-top:1px solid var(--border);margin-top:5rem;padding:2rem 0;text-align:center;color:var(--text-secondary);font-size:.85rem;}
+.footer-eq{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--highlight);margin-bottom:.75rem;}
+
+/* Series footer */
+.series-footer{
+  background:linear-gradient(135deg,rgba(212,175,55,.08) 0%,rgba(10,10,10,1) 100%);
+  border:1px solid rgba(212,175,55,.25);border-radius:.75rem;
+  padding:2.5rem 2rem;margin:4rem 0 2rem;text-align:center;
+}
+.series-footer .series-label{font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--highlight);margin-bottom:.75rem;}
+.series-footer h3{font-family:'Crimson Text',serif;font-size:1.6rem;font-weight:600;color:#fff;margin:0 0 1rem;}
+.series-footer p{font-size:.95rem;color:var(--text-secondary);line-height:1.7;max-width:600px;margin:0 auto;}
+
+@media (max-width:768px){
+  .story h2{font-size:1.3rem;}
+  .story p{font-size:1rem;}
+  .tab-btn{padding:.7rem .8rem;font-size:.75rem;}
+  .stat-grid{grid-template-columns:1fr;}
+  .table-dramatic{font-size:.75rem;}
+  .table-dramatic th,.table-dramatic td{padding:.6rem .5rem;}
+}
+
+@media print{
+  .tab-shell,.sidebar,.sidebar-toggle{display:none;}
+  .tab-content{display:block !important;}
+  body{background:#fff;color:#000;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ SIDEBAR NAV ════════════════ -->
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle series navigation">
+  <i class="fas fa-bars"></i>
+</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<nav class="sidebar" id="sidebar">
+  <div class="series-title"><i class="fas fa-atom" style="margin-right:.4rem;"></i> Genesis to Quantum</div>
+  <a href="#">00 Series Overview</a>
+  <a href="#">01 The Measurement That Collapsed Reality</a>
+  <a href="#" class="tangent">01-A Collapse Threshold</a>
+  <a href="#">02 The First Quantum State</a>
+  <a href="#">03 Free Will in Two Frames</a>
+  <a href="#" class="tangent">03-A MacArthur and the Equation</a>
+  <a href="#" class="tangent">03-B The Three Pathways</a>
+  <a href="#">04 The Day Time Began</a>
+  <a href="#" class="tangent">04-A The Decoherence Curve</a>
+  <a href="#">05 The Substrate Fractured</a>
+  <a href="#" class="tangent">05-A Trinity Mechanism</a>
+  <a href="#" class="tangent">05-B Trinity Timeline</a>
+  <a href="#" class="tangent">05-C Why Physics Is Broken In Two</a>
+  <a href="#">07 Why the Photon Isn't Watching You Back</a>
+  <a href="#">08 The Eraser and the Cross</a>
+  <a href="#" class="tangent">08-A The Temporal Trap</a>
+  <a href="#">09 The Same God in Both Testaments</a>
+  <a href="#" class="tangent">09-A Regime-Dependent Theology</a>
+  <a href="#" class="tangent">09-B Isomorphism of Civilizational Decay</a>
+  <a href="#" class="current">10 The Counter-Move</a>
+</nav>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header class="site-header">
+  <div class="container mx-auto px-6 py-8" style="padding-left:4.5rem;">
+    <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--highlight);margin-bottom:.75rem;font-weight:700;">
+      <i class="fas fa-atom"></i> Article 10 &middot; Genesis to Quantum &middot; The Finale
+    </div>
+
+    <h1 class="serif text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+      The Counter-Move
+    </h1>
+    <p class="text-lg md:text-xl text-[#a0a0a0] max-w-3xl leading-relaxed mb-4">
+      Seven Moves, Seven Counter-Moves &mdash; Why the Fix Must Go to the Same Depth as the Break
+    </p>
+
+    <div class="meta-row">
+      <span><i class="fas fa-user"></i>David Lowe</span>
+      <span><i class="fas fa-calendar-alt"></i>March 2026</span>
+      <span><i class="fas fa-layer-group"></i>Series: Genesis to Quantum</span>
+      <span><i class="fas fa-fingerprint"></i>Paper ID: GTQ-010</span>
+      <span class="status-pill">Draft</span>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <span class="domain-tag tag-physics">Physics</span>
+      <span class="domain-tag tag-theology">Theology</span>
+      <span class="domain-tag tag-cross-domain">Cross-Domain</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ STICKY TAB BAR ════════════════ -->
+<div class="tab-shell">
+  <div class="container mx-auto px-6">
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('paper',this)"><i class="fas fa-scroll"></i>The Paper</button>
+      <button class="tab-btn" onclick="switchTab('summary',this)"><i class="fas fa-compress-alt"></i>Executive Summary</button>
+      <button class="tab-btn" onclick="switchTab('rigor',this)"><i class="fas fa-crosshairs"></i>Rigor &amp; Kill Conditions</button>
+      <button class="tab-btn" onclick="switchTab('media',this)"><i class="fas fa-headphones"></i>Watch &amp; Listen</button>
+    </nav>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+</div>
+
+<!-- ════════════════ PLAYER DOCK ════════════════ -->
+<div class="player-dock">
+  <i class="fas fa-volume-up" style="color:var(--highlight);font-size:.8rem;"></i>
+  <span class="player-label">Listen</span>
+  <audio controls preload="metadata">
+    <source src="https://r2.faiththruphysics.com/audio/gtq-10/read.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main class="container mx-auto px-6 py-10">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: THE PAPER                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="paper" class="tab-content active">
+    <article class="story">
+
+      <!-- ═══ OPENING ═══ -->
+      <p class="drop-cap">My house settled. Not dramatically &mdash; no walls split, no floors buckled. Just a hairline crack in the foundation. A quarter-inch gap running through the concrete slab, barely visible unless you got on your hands and knees with a flashlight.</p>
+
+      <p>The contractor who came out did not suggest repainting the walls. He did not recommend new carpet. He looked at the crack and said: <em>"This is in the slab. Everything above this &mdash; the framing, the drywall, the fixtures &mdash; those are cosmetic. The problem is in the substrate. The fix has to go to the same depth as the break, or it's not a fix. It's a disguise."</em></p>
+
+      <p>That sentence has not left me.</p>
+
+      <div class="insight">
+        <span class="label">&mdash; The Symmetry Requirement</span>
+        <p>The Fall was not a moral lapse. It was a substrate-level fracture &mdash; a break in the physical foundation of reality itself. Article 01 showed this: the measurement event collapsed superposition, activated entropy, fractured the Logos coupling, and introduced time as a dimension of decay. The damage went all the way down. It was not behavioral. It was not attitudinal. It was <em>physical</em>.</p>
+      </div>
+
+      <p>Which means the fix cannot be behavioral. It cannot be attitudinal. It cannot be a new set of rules, a better moral framework, a more enlightened consciousness. If the break is in the substrate, the fix must be in the substrate. The repair must go to the same depth as the damage.</p>
+
+      <p>This is the symmetry requirement. And it governs every single thing that happens at the Cross.</p>
+
+      <hr>
+
+      <!-- ═══ THE PROBLEM ═══ -->
+      <h2>The Problem: Why Good Advice Cannot Save You</h2>
+
+      <p>Every religion, every philosophy, every self-help system on earth operates on the assumption that the problem with human beings is <em>above</em> the substrate. The problem is ignorance (fix: education). The problem is desire (fix: detachment). The problem is bad habits (fix: discipline). The problem is wrong beliefs (fix: correct doctrine). The problem is social injustice (fix: revolution). Each diagnosis assumes the foundation is sound and the issue is in the superstructure.</p>
+
+      <p>Christianity alone diagnoses the problem as <em>below</em> the superstructure. Below morality. Below psychology. Below culture. The substrate itself is fractured. "The whole creation groans" (Romans 8:22) &mdash; not metaphorically, not poetically, physically. The second law of thermodynamics is not a feature of a well-designed universe. It is the scar of the Fall.</p>
+
+      <div class="stat-grid">
+        <div class="box-stat">
+          <div class="number">7</div>
+          <div class="label">Adversary Moves in Genesis 3</div>
+        </div>
+        <div class="box-stat">
+          <div class="number">7</div>
+          <div class="label">Divine Counter-Moves at the Cross</div>
+        </div>
+        <div class="box-stat">
+          <div class="number">1:1</div>
+          <div class="label">Structural Symmetry Ratio</div>
+        </div>
+      </div>
+
+      <p>This is why good advice does not save. This is why moral improvement does not save. This is why therapy helps but does not save. These are all interventions above the substrate. They are the contractor repainting the walls while the slab is cracked.</p>
+
+      <div class="axiom-box">
+        The Cross is not God giving better advice. The Cross is God repairing the slab.
+      </div>
+
+      <hr>
+
+      <!-- ═══ THE PHYSICS ═══ -->
+      <h2>The Physics: Symmetry Requirements in Repair</h2>
+
+      <p>Physics has a deep principle that governs repair: the fix must be symmetric to the break. This shows up everywhere.</p>
+
+      <p><strong>Thermodynamics:</strong> If you want to reverse an entropy increase, you need an equal negentropic input from outside the system. A closed system cannot decrease its own entropy &mdash; that is the second law. The entropy activated at the Fall requires negentropy injected from outside the closed system to reverse it.</p>
+
+      <p><strong>Quantum mechanics:</strong> If a system has decohered, re-establishing coherence requires coupling the system to a coherence source that is itself uncorrupted. You cannot use a decohered system to re-cohere itself.</p>
+
+      <p><strong>Information theory:</strong> If a signal has been corrupted by noise, the receiver cannot reconstruct the original signal from the corrupted version alone &mdash; unless the original signal is re-injected into the channel at sufficient power to overwhelm the noise. Full restoration requires the sender.</p>
+
+      <p>Every framework says the same thing: <strong>the fix must come from outside the broken system, and it must operate at the same level where the break occurred.</strong></p>
+
+      <p>The Fall broke the substrate. The fix must:</p>
+
+      <ol>
+        <li>Come from outside the system (not a human solution)</li>
+        <li>Operate at the substrate level (not moral, not psychological &mdash; physical)</li>
+        <li>Match the depth and scope of the break (not partial, not approximate &mdash; exact)</li>
+      </ol>
+
+      <p>Now look at what happened.</p>
+
+      <hr>
+
+      <!-- ═══ THE MAPPING: SEVEN MOVES ═══ -->
+      <h2>The Mapping: Seven Moves, Seven Counter-Moves</h2>
+
+      <p>The adversary's strategy in Genesis 3 is not a single action. It is a sequence of structural attacks on the substrate of reality. And the divine response &mdash; spread across Incarnation, Cross, and Resurrection &mdash; matches each attack with an exact structural counter.</p>
+
+      <p>Not approximate. Not thematic. Row by row, move by move, the counter matches the depth of the break.</p>
+
+      <!-- DRAMATIC FULL-WIDTH TABLE -->
+      <table class="table-dramatic">
+        <thead>
+          <tr>
+            <th class="row-num">#</th>
+            <th>Satan's Move (Genesis 3)</th>
+            <th>Structural Effect</th>
+            <th>Jesus's Counter-Move</th>
+            <th>Structural Effect</th>
+            <th>Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-num">1</td>
+            <td><strong>Introduced measurement</strong> &mdash; provoked the observer to engage the measurement apparatus</td>
+            <td>Forced collapse from superposition to definite (fallen) eigenstate</td>
+            <td><strong>Became the measured</strong> &mdash; the Logos enters the system as the one measured, judged, tested</td>
+            <td>Submits to measurement voluntarily; absorbs collapse into himself rather than propagating it</td>
+            <td><em>Phil 2:6&ndash;8</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">2</td>
+            <td><strong>Collapsed one substrate into two</strong> &mdash; fractured the unified spiritual-physical reality</td>
+            <td>Created the spirit/matter divide; heaven and earth no longer fully coupled</td>
+            <td><strong>Absorbed both back into one</strong> &mdash; "God was in Christ, reconciling the world to himself"</td>
+            <td>Reunifies the substrate; the Incarnation is spirit-matter unity restored in a single person</td>
+            <td><em>2 Cor 5:19</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">3</td>
+            <td><strong>Activated the entropy term</strong> &mdash; switched on $dS/dt > 0$ in the human system</td>
+            <td>Death, decay, and the second law begin operating</td>
+            <td><strong>Injected negentropy from outside the closed system</strong> &mdash; Grace as anti-entropic force</td>
+            <td>Reverses the entropy trajectory; the only input that drives the system toward order</td>
+            <td><em>Rom 6:23; Rom 8:2</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">4</td>
+            <td><strong>Weaponized time</strong> &mdash; created the temporal frame as a dimension of decay and death</td>
+            <td>Time becomes the axis along which entropy accumulates; death is the end of every timeline</td>
+            <td><strong>Defeated time</strong> &mdash; "the Lamb slain from the foundation of the world"</td>
+            <td>Operates from the eternal frame; the Cross is retrocausal, covering past and future simultaneously</td>
+            <td><em>Rev 13:8</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">5</td>
+            <td><strong>Created noise in the channel</strong> &mdash; introduced the lie as a corrupting signal</td>
+            <td>The communication channel between God and humanity degrades; truth becomes difficult to receive</td>
+            <td><strong>Became the noiseless signal</strong> &mdash; "I am the way, the truth, and the life"</td>
+            <td>The Logos incarnates as a perfect, zero-noise transmission; the signal itself enters the channel</td>
+            <td><em>John 14:6</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">6</td>
+            <td><strong>Made death the default trajectory</strong> &mdash; mortality becomes the terminal state</td>
+            <td>Every physical body decays; entropy wins every biological contest</td>
+            <td><strong>Beat death physically</strong> &mdash; bodily resurrection</td>
+            <td>Demonstrates that the substrate can be repaired; death is not the final eigenstate</td>
+            <td><em>1 Cor 15:54&ndash;55</em></td>
+          </tr>
+          <tr>
+            <td class="row-num">7</td>
+            <td><strong>Fragmented consciousness</strong> &mdash; broke the unified awareness of the divine presence</td>
+            <td>Humans experience separation from God; presence becomes intermittent, effortful, uncertain</td>
+            <td><strong>Restored presence</strong> &mdash; "Today you will be with me in paradise"</td>
+            <td>Immediate, unmediated restoration of conscious communion with God</td>
+            <td><em>Luke 23:43</em></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Seven moves. Seven counters. Each one operates at the <em>same level</em> as the attack it answers. The adversary introduces measurement &mdash; the counter submits to measurement. The adversary fragments the substrate &mdash; the counter reunifies it. The adversary activates entropy &mdash; the counter injects negentropy. Move for move, the counter matches the depth of the break.</p>
+
+      <p>This is not theology decorated with physics language. This is the symmetry requirement of repair, expressed across seven dimensions simultaneously.</p>
+
+      <hr>
+
+      <!-- ═══ WHY THE RESURRECTION MUST BE PHYSICAL ═══ -->
+      <h2>Why the Resurrection Must Be Physical</h2>
+
+      <p>This is the row in the table that most modern theology wants to spiritualize. "The resurrection is a metaphor for new life." "The resurrection happens in the hearts of believers." "What matters is the spiritual truth, not the physical fact."</p>
+
+      <p>The framework cannot permit this, and here is why.</p>
+
+      <p>Row 6 of the table: the adversary's move was to make death the default trajectory of the <em>physical substrate</em>. Bodies decay. Cells degrade. Organs fail. The second law of thermodynamics operates at the level of molecules, proteins, tissue &mdash; matter itself is under the entropy curse. The break is physical.</p>
+
+      <p>The symmetry requirement demands that the fix be physical.</p>
+
+      <p>If the Resurrection is only spiritual &mdash; if Jesus' body stayed in the tomb while his "spirit" ascended &mdash; then the substrate-level damage remains unrepaired. The spirit may be restored, but the physical foundation is still cracked. The slab is still broken. The contractor repainted the walls and left.</p>
+
+      <div class="box-stat" style="max-width:500px;margin:2rem auto;">
+        <div class="number" style="font-size:2rem;">1 Cor 15:17</div>
+        <div class="label">"If Christ has not been raised, your faith is futile and you are still in your sins."</div>
+      </div>
+
+      <p>Paul does not say "if Christ has not been raised, you are missing an inspiring story." He says the entire error-correction protocol fails. You are <em>still in your sins</em> &mdash; still operating in the corrupted channel, still under the entropy term, still on the trajectory toward irreversible signal loss.</p>
+
+      <p>The empty tomb is not a nice addition to the Christian story. It is the load-bearing wall. Remove it and the entire structure of substrate-level repair collapses, because the damage was physical and the fix was not.</p>
+
+      <hr>
+
+      <!-- ═══ "TODAY" ═══ -->
+      <h2>"Today": The Word That Breaks Time</h2>
+
+      <p>One of the two criminals crucified alongside Jesus &mdash; a man with zero credentials, zero history of faithfulness, zero time remaining &mdash; says: "Jesus, remember me when you come into your kingdom" (Luke 23:42).</p>
+
+      <p>Jesus responds: "Truly I say to you, today (<em>semeron</em>) you will be with me in paradise" (Luke 23:43).</p>
+
+      <p>The word <em>semeron</em> is doing extraordinary work.</p>
+
+      <!-- TIMELINE: Today -->
+      <div class="box-timeline">
+        <h4>"Today" &mdash; Not "Eventually"</h4>
+        <p>Not "after a waiting period." Not "once you've been properly catechized." <em>Today.</em> The man is hours from death. He has no time to prove anything, earn anything, demonstrate anything.</p>
+      </div>
+
+      <div class="box-timeline">
+        <h4>Zero Credentials</h4>
+        <p>He has exactly one moment of coherent alignment with the Logos &mdash; one moment of honest recognition &mdash; and Jesus declares that this is sufficient. Not sufficient for a probationary period. Sufficient for <em>paradise. Today.</em></p>
+      </div>
+
+      <div class="box-timeline">
+        <h4>Eternal-Frame Operation</h4>
+        <p>"Today" is a word that belongs to the eternal frame. Article 07 showed that the Spirit actualizes without temporal constraint &mdash; the Cross reaches backward and forward because the Lamb was slain from the foundation of the world. When Jesus says "today," he is not marking a 24-hour period. He is declaring that the restoration is <em>immediate</em> because, from the eternal frame, there is no gap between the moment of coupling and the completion of repair.</p>
+      </div>
+
+      <div class="box-timeline">
+        <h4>The Extreme Test Case</h4>
+        <p>The thief on the cross is the framework's most extreme test case. If the error-correction protocol requires credentials, he breaks it. If it requires time, he breaks it. If it requires progressive sanctification before access is granted, he breaks it. He has nothing except one moment of honest signal through a maximally noisy channel &mdash; "remember me" &mdash; and the system designer declares the channel restored.</p>
+      </div>
+
+      <!-- STAT: The Thief as Proof -->
+      <div class="box-stat" style="max-width:500px;margin:2rem auto;">
+        <div class="number">0</div>
+        <div class="label">Credentials Required for Grace &mdash; The Thief Proves It</div>
+      </div>
+
+      <p>This is what grace looks like in the equations. The Grace term $G$ in the Master Equation is not earned. It is not proportional to the receiver's merit. It is injected by the system designer at full power, and the only requirement on the receiver's side is coupling &mdash; turning toward the signal source and allowing the connection. The thief coupled. The channel opened. The substrate-level repair applied.</p>
+
+      <p>Today.</p>
+
+      <hr>
+
+      <!-- ═══ WHAT THIS PREDICTS ═══ -->
+      <h2>What This Predicts</h2>
+
+      <p><strong>Prediction 1:</strong> The 7-row symmetry table should survive independent scrutiny. Each adversary move should map to its stated counter-move at the same structural level. If any row operates at a <em>different</em> level &mdash; if the counter is shallower than the attack &mdash; the symmetry claim fails for that row, and the entire thesis weakens proportionally.</p>
+
+      <p><strong>Prediction 2:</strong> The Resurrection must be physical, or the framework collapses. This is not a prediction so much as a load-bearing dependency. If historical evidence ever conclusively demonstrated that the Resurrection did not involve a physical body, the framework's substrate-repair model would be falsified &mdash; because the physical damage would remain unaddressed. The framework bets everything on the empty tomb. It cannot survive without it.</p>
+
+      <hr>
+
+      <!-- ═══ THE HONEST AUDIT ═══ -->
+      <h2>The Honest Audit</h2>
+      <p><em>What we got right, what we are less sure about, and where we got carried away.</em></p>
+
+      <h3>What is load-bearing &mdash; we would bet on this</h3>
+
+      <p><strong>The symmetry requirement is real physics.</strong> Entropy reversal requires external negentropy. Decoherence reversal requires external coherence. Signal restoration requires the original signal. These are not framework-specific claims &mdash; they are established principles across thermodynamics, quantum mechanics, and information theory.</p>
+
+      <p><strong>The Fall was substrate-level.</strong> Article 01 established this. Entropy activation, coherence fracture, time creation &mdash; these are not moral or psychological events. They are physical restructurings of reality.</p>
+
+      <p><strong>The 7-row table survives row-by-row testing.</strong> We have probed each row independently. The adversary's move and the divine counter-move operate at the same structural level in every case. The correspondence is not forced &mdash; the Genesis text specifies the attack, and the Gospel/Epistle texts specify the counter, and the structural symmetry is there in the source material before we touch it.</p>
+
+      <p><strong>The Resurrection must be physical, and Paul says so.</strong> 1 Corinthians 15:17 is not ambiguous. Paul stakes the entire Christian claim on a physical resurrection. Our framework agrees with Paul for the same reason.</p>
+
+      <p><strong>"Today" means today.</strong> The thief on the cross received immediate restoration with zero credentials and zero preparation time. This is a direct test of whether the error-correction protocol requires anything from the receiver beyond coupling with the source. Jesus says it does not.</p>
+
+      <h3>What is suggestive but needs more work</h3>
+
+      <p><strong>The adversary's "moves" as a deliberate sequence.</strong> We present the seven rows as if Satan executed a planned seven-step strategy. The Genesis text records a serpent having a conversation and provoking a single action. The seven "moves" are our decomposition of the <em>effects</em> of that action into distinct structural dimensions. Whether the adversary <em>intended</em> each dimension of damage, or whether these are consequences of a single substrate-level break, is a question the text does not resolve.</p>
+
+      <p><strong>The structural symmetry as "exact."</strong> We use the word "exact" throughout. The symmetry is genuine and survives scrutiny. But "exact" implies a mathematical precision we have not formalized. The table is a structural comparison, not a proof. Whether it is tight enough to be called "exact" depends on how much rigor you require from that word.</p>
+
+      <p><strong>The eternal-frame reading of "today."</strong> The interpretation that <em>semeron</em> operates from the eternal frame is the framework's reading. Traditional commentators read it as a promise for that literal day. Both readings are compatible with the text. Ours adds a physics layer that the text does not demand but does permit.</p>
+
+      <h3>Where we got carried away</h3>
+
+      <p><strong>"Christianity alone diagnoses the problem as below the superstructure."</strong> This is too strong. Buddhism's diagnosis of <em>dukkha</em> as a fundamental characteristic of conditioned existence operates at something close to substrate level. Islam's concept of <em>fitna</em> is not purely superstructural. We meant that Christianity alone identifies a <em>historical event</em> that broke the substrate. The comparative claim is narrower than the sentence we wrote.</p>
+
+      <p><strong>The contractor analogy.</strong> It is vivid. It works. But it implies that the substrate of reality is <em>simple</em> &mdash; a slab, a foundation, something a guy with a truck can assess. The actual substrate is the coherence structure of the entire universe, operating across ten super-factors and three irreducible operations. The analogy domesticates something that should remain staggering.</p>
+
+      <p><strong>The certainty of the seven-row format.</strong> Presenting the counter-moves as a table creates an impression of completeness that we have not earned. There may be adversary effects we have not identified. There may be divine counter-moves we have not mapped. Seven is the number that emerged from our analysis. The table is a snapshot, not a census.</p>
+
+      <p><em>The article above is what we believe. This audit is what we know we have not proven yet. Both matter.</em></p>
+
+      <hr>
+
+      <!-- ═══ FACTS CARD ═══ -->
+      <div class="card">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--highlight);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem;">FACTS Card</div>
+
+        <table class="data-table" style="margin:0 0 1rem;">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Q0 Posture</td><td>0.82</td></tr>
+            <tr><td>Q1 Identity</td><td>0.85</td></tr>
+            <tr><td>Q2 Domain</td><td>0.80</td></tr>
+            <tr><td>Q3 Assertion</td><td>0.88</td></tr>
+            <tr><td>Q4 Evidence</td><td>0.68</td></tr>
+            <tr><td>Q5 Dependencies</td><td>0.70</td></tr>
+            <tr><td>Q6 Consequences</td><td>0.82</td></tr>
+            <tr><td>Q7 Falsification</td><td>0.75</td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:.85rem;color:var(--text-secondary);margin:0;">
+          <strong style="color:#fff;">T-Score:</strong> 0.74 &nbsp;|&nbsp;
+          <strong style="color:#fff;">CKG:</strong> 7.3/10 &nbsp;|&nbsp;
+          <strong style="color:#fff;">Tier:</strong> Provisional &nbsp;|&nbsp;
+          <strong style="color:#fff;">Type:</strong> Bridge (Physics &harr; Theology)
+        </p>
+        <p style="font-size:.85rem;color:var(--text-secondary);margin:.5rem 0 0;">
+          <strong style="color:#fff;">F (Find):</strong> Every move the adversary makes in Genesis 3 has an exact structural counter in the Cross and Resurrection &mdash; not approximate, not thematic, exact.<br>
+          <strong style="color:#fff;">A (Admit):</strong> Christian theist; treating the Cross as physics, not just theology.<br>
+          <strong style="color:#fff;">C (Claim):</strong> The Cross operates at substrate level because the Fall broke reality at substrate level.<br>
+          <strong style="color:#fff;">T (Test):</strong> 7-row structural comparison; physical resurrection as substrate-level repair; "today" (<em>semeron</em>) as eternal-frame operation.<br>
+          <strong style="color:#fff;">S (Snap):</strong> Falsified if the Cross operates at a DIFFERENT level than the Fall, or if the resurrection is not physical.
+        </p>
+      </div>
+
+      <hr>
+
+      <!-- ═══ KILL CONDITIONS ═══ -->
+      <h2>Kill Conditions</h2>
+
+      <div class="kill-card">
+        <div class="kill-label">Kill Condition 1</div>
+        <p><strong style="color:#fff;">If the Cross operates at a different level than the Fall.</strong> If the Atonement is purely spiritual, purely moral, or purely psychological &mdash; if it does not address the physical substrate that the Fall damaged &mdash; then the symmetry requirement is violated and the seven-row table collapses.</p>
+      </div>
+
+      <div class="kill-card">
+        <div class="kill-label">Kill Condition 2</div>
+        <p><strong style="color:#fff;">If the Resurrection is not physical.</strong> This is the single most testable claim in the article. If Jesus' body remained in the tomb &mdash; if the Resurrection is metaphor, vision, or spiritual ascent without bodily transformation &mdash; then Row 6 fails, the substrate remains unrepaired, and Paul's warning in 1 Corinthians 15:17 applies: faith is futile and sin remains uncovered.</p>
+      </div>
+
+      <hr>
+
+      <div class="disclaimer-box">
+        <div class="disclaimer-label"><i class="fas fa-cross" style="margin-right:.4rem;"></i>The Disclaimer</div>
+        <p>We are finite minds reasoning about infinite God. Every model is a projection of higher-dimensional reality onto a lower-dimensional surface we can comprehend. We do not claim to have captured God in equations. We claim that when we look at His creation honestly &mdash; with the tools of physics and the revelation of Scripture &mdash; the same structure appears in both. Where our model limits what God can be, the limitation is ours, not His. We offer this work as worship, not as containment.</p>
+      </div>
+
+      <div class="axiom-box">
+        Framework Reference: Theophysics Master Equation &chi; = &iiint;(G&middot;M&middot;E&middot;S&middot;T&middot;K&middot;R&middot;Q&middot;F&middot;C) dx dy dt<br>
+        Paper ID: GTQ-010 &mdash; The Counter-Move<br>
+        Series: Genesis to Quantum, Article 10 of 10<br>
+        Status: DRAFT &mdash; 7-row symmetry table survives row-by-row scrutiny; physical resurrection is load-bearing dependency
+      </div>
+
+      <hr>
+
+      <!-- ═══ SERIES FINALE FOOTER ═══ -->
+      <div class="finale-section">
+        <div class="finale-label"><i class="fas fa-flag-checkered" style="margin-right:.4rem;"></i> Series Finale</div>
+        <h2>The Genesis to Quantum Series Is Complete</h2>
+        <p>Ten articles. From the measurement that collapsed reality to the counter-move that repairs it. From the first quantum state to the empty tomb. From the day time began to the word that breaks time.</p>
+        <p>The series has asked one question across all ten articles: <strong>what if the deepest structure of physics and the deepest structure of theology are the same structure, seen from two sides?</strong></p>
+        <p>If they are, then the Fall is not a myth that physics must ignore, and the Cross is not a doctrine that physics cannot reach. They are the two events that define the substrate &mdash; the break and the repair &mdash; and every equation in between is the scar or the stitch.</p>
+        <p>The framework is not finished. The honest audit sections throughout these articles have named every gap, every overreach, every place where the argument exceeds the evidence. What is finished is the <em>arc</em> &mdash; the structural argument from Genesis 3 to Luke 23:43, from measurement to counter-move, from entropy to grace.</p>
+        <p>The next step is yours. Read. Probe. Break what can be broken. Keep what survives.</p>
+      </div>
+
+      <div class="series-footer">
+        <div class="series-label">Genesis to Quantum</div>
+        <h3>The Full Series</h3>
+        <p>01 The Measurement That Collapsed Reality &middot; 02 The First Quantum State &middot; 03 Free Will in Two Frames &middot; 04 The Day Time Began &middot; 05 The Substrate Fractured &middot; 07 Why the Photon Isn't Watching You Back &middot; 08 The Eraser and the Cross &middot; 09 The Same God in Both Testaments &middot; <strong style="color:var(--highlight);">10 The Counter-Move</strong></p>
+      </div>
+
+    </article>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: EXECUTIVE SUMMARY                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="summary" class="tab-content">
+    <article class="story">
+      <h2>Executive Summary</h2>
+
+      <div class="insight">
+        <span class="label">&mdash; Core Thesis</span>
+        <p>Every adversary move in Genesis 3 has an exact structural counter in the Cross and Resurrection &mdash; not approximate, not thematic, exact. The symmetry requirement of physics demands that a substrate-level break receive a substrate-level fix. The seven-row table demonstrates this correspondence move by move.</p>
+      </div>
+
+      <h3>Key Findings</h3>
+
+      <ul>
+        <li><strong>The symmetry requirement is real physics:</strong> Entropy reversal requires external negentropy. Decoherence reversal requires external coherence. Signal restoration requires the original signal. The fix must come from outside and operate at the same depth as the break.</li>
+        <li><strong>Seven structural correspondences:</strong> Measurement &harr; Submission to measurement. Substrate fracture &harr; Substrate reunification. Entropy activation &harr; Negentropy injection. Time weaponized &harr; Retrocausal eternal-frame operation. Channel noise &harr; Noiseless signal incarnation. Death as default &harr; Physical resurrection. Consciousness fragmentation &harr; Immediate presence restoration.</li>
+        <li><strong>The Resurrection must be physical:</strong> If the damage was physical (Row 6), the repair must be physical. A spiritual-only resurrection leaves the substrate unrepaired. Paul agrees: "If Christ has not been raised, your faith is futile" (1 Cor 15:17).</li>
+        <li><strong>"Today" (<em>semeron</em>) as eternal-frame operation:</strong> The thief on the cross received immediate restoration with zero credentials. The Grace term $G$ is not earned, not proportional to merit. The only requirement is coupling.</li>
+        <li><strong>The thief as extreme test case:</strong> If the error-correction protocol requires credentials, time, or progressive sanctification, the thief falsifies it. Jesus says it requires only coupling.</li>
+      </ul>
+
+      <h3>Two Predictions</h3>
+
+      <ul>
+        <li><strong>P1:</strong> The 7-row symmetry table should survive independent scrutiny. If any counter-move operates at a different structural level than the attack, the symmetry claim fails for that row.</li>
+        <li><strong>P2:</strong> The Resurrection must be physical. If it was not, the framework's substrate-repair model is falsified.</li>
+      </ul>
+
+      <p><strong>Series Navigation:</strong> &larr; 09 The Same God in Both Testaments &middot; Series Overview &middot; <strong style="color:var(--highlight);">Series Complete</strong></p>
+    </article>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: RIGOR & KILL CONDITIONS              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="rigor" class="tab-content">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="serif text-3xl font-bold text-white mb-2">Rigor &amp; Kill Conditions</h2>
+      <p class="text-[#a0a0a0] mb-8">Extracted from the Honest Audit and Kill Conditions. The framework survives or falls on these.</p>
+
+      <h3 class="serif text-xl font-bold text-white mb-4" style="margin-top:2rem;">Kill Conditions</h3>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:80px;">ID</th>
+            <th>Kill Condition</th>
+            <th style="width:120px;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--highlight);font-weight:600;">KC-1</td>
+            <td><strong style="color:#fff;">If the Cross operates at a different level than the Fall.</strong> If the Atonement is purely spiritual, moral, or psychological and does not address the physical substrate, the symmetry requirement is violated and the 7-row table collapses.</td>
+            <td><span style="color:var(--green);font-size:.75rem;font-weight:600;">HOLDING</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--highlight);font-weight:600;">KC-2</td>
+            <td><strong style="color:#fff;">If the Resurrection is not physical.</strong> If Jesus' body remained in the tomb, Row 6 fails, the substrate remains unrepaired, and 1 Cor 15:17 applies: faith is futile and sin remains uncovered.</td>
+            <td><span style="color:var(--green);font-size:.75rem;font-weight:600;">HOLDING</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="serif text-xl font-bold text-white mb-4" style="margin-top:3rem;">The Audit: Confidence Tiers</h3>
+
+      <div class="kill-card" style="background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2);">
+        <div class="kill-label" style="color:var(--green);">Load-Bearing &mdash; We'd Bet On This</div>
+        <p><strong style="color:#fff;">The symmetry requirement is real physics.</strong> Entropy reversal, decoherence reversal, and signal restoration all require inputs from outside the broken system at the same level as the break. Established across thermodynamics, QM, and information theory.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2);">
+        <div class="kill-label" style="color:var(--green);">Load-Bearing</div>
+        <p><strong style="color:#fff;">The Fall was substrate-level.</strong> Entropy activation, coherence fracture, time creation &mdash; physical restructurings of reality, not moral or psychological events.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2);">
+        <div class="kill-label" style="color:var(--green);">Load-Bearing</div>
+        <p><strong style="color:#fff;">The 7-row table survives row-by-row testing.</strong> The adversary's move and the divine counter-move operate at the same structural level in every case. The correspondence is in the source material before we touch it.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2);">
+        <div class="kill-label" style="color:var(--green);">Load-Bearing</div>
+        <p><strong style="color:#fff;">The Resurrection must be physical, and Paul says so.</strong> 1 Corinthians 15:17 stakes the entire Christian claim on a physical resurrection.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(34,197,94,.04);border-color:rgba(34,197,94,.2);">
+        <div class="kill-label" style="color:var(--green);">Load-Bearing</div>
+        <p><strong style="color:#fff;">"Today" means today.</strong> The thief received immediate restoration with zero credentials. The Grace term is not earned, not proportional to merit. The only requirement is coupling.</p>
+      </div>
+
+      <div class="kill-card" style="background:rgba(212,175,55,.04);border-color:rgba(212,175,55,.2);margin-top:1.5rem;">
+        <div class="kill-label" style="color:var(--gold);">Suggestive &mdash; Needs More Work</div>
+        <p><strong style="color:#fff;">The adversary's "moves" as a deliberate sequence.</strong> The seven "moves" are our decomposition of the effects into structural dimensions. Whether the adversary intended each dimension of damage, or whether these are consequences of a single break, the text does not resolve.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(212,175,55,.04);border-color:rgba(212,175,55,.2);">
+        <div class="kill-label" style="color:var(--gold);">Suggestive</div>
+        <p><strong style="color:#fff;">The structural symmetry as "exact."</strong> The symmetry is genuine. But "exact" implies mathematical precision we have not formalized. The table is a structural comparison, not a proof.</p>
+      </div>
+      <div class="kill-card" style="background:rgba(212,175,55,.04);border-color:rgba(212,175,55,.2);">
+        <div class="kill-label" style="color:var(--gold);">Suggestive</div>
+        <p><strong style="color:#fff;">The eternal-frame reading of "today."</strong> Both the literal-day and eternal-frame readings are compatible with the text. Ours adds a physics layer the text does not demand but does permit.</p>
+      </div>
+
+      <div class="kill-card" style="margin-top:1.5rem;">
+        <div class="kill-label">Overextended &mdash; Acknowledged</div>
+        <p><strong style="color:#fff;">"Christianity alone diagnoses the problem as below the superstructure."</strong> Too strong. Buddhism's dukkha and Islam's fitna operate near substrate level. We meant Christianity alone identifies a historical event that broke the substrate. The comparative claim is narrower than the sentence.</p>
+      </div>
+      <div class="kill-card">
+        <div class="kill-label">Overextended</div>
+        <p><strong style="color:#fff;">The contractor analogy domesticates the staggering.</strong> The actual substrate is the coherence structure of the entire universe. The analogy works but should not make the reader think "slab" when they should think "everything."</p>
+      </div>
+      <div class="kill-card">
+        <div class="kill-label">Overextended</div>
+        <p><strong style="color:#fff;">The certainty of the seven-row format.</strong> The table creates an impression of completeness. There may be adversary effects we have not identified. Seven is what emerged. The table is a snapshot, not a census.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: WATCH & LISTEN                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="media" class="tab-content">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="serif text-3xl font-bold text-white mb-2">Watch &amp; Listen</h2>
+      <p class="text-[#a0a0a0] mb-8">Audio narration, podcast deep dives, and video content for Article 10 &mdash; the series finale.</p>
+
+      <div class="media-card">
+        <span class="media-label"><i class="fas fa-volume-up" style="margin-right:.3rem;"></i> Read Aloud &mdash; Full Article</span>
+        <h3>The Counter-Move</h3>
+        <p class="media-desc">AI-narrated read-through of the complete article, including the 7-row table, the thief on the cross, and the audit.</p>
+        <audio controls preload="metadata">
+          <source src="https://r2.faiththruphysics.com/audio/gtq-10/read.mp3" type="audio/mpeg">
+        </audio>
+        <div class="media-meta">
+          <span><i class="fas fa-clock"></i>~25 min (est.)</span>
+          <span><i class="fas fa-file-audio"></i>MP3</span>
+        </div>
+      </div>
+
+      <div class="media-card">
+        <span class="media-label" style="color:#4a9eff;"><i class="fas fa-podcast" style="margin-right:.3rem;"></i> Deep Dive Podcast</span>
+        <h3>Deep Dive: Seven Moves, Seven Counter-Moves</h3>
+        <p class="media-desc">Extended exploration of the symmetry requirement, the 7-row table, and why the Resurrection must be physical.</p>
+        <div style="background:var(--surface);border:1px dashed var(--border);border-radius:.5rem;padding:2rem;text-align:center;color:var(--text-secondary);font-size:.9rem;">
+          <i class="fas fa-podcast" style="font-size:2rem;color:#4a9eff;display:block;margin-bottom:.75rem;"></i>
+          Coming Soon &mdash; Deep Dive audio will be embedded here
+        </div>
+      </div>
+
+      <div class="media-card">
+        <span class="media-label" style="color:var(--purple);"><i class="fas fa-podcast" style="margin-right:.3rem;"></i> Both Sides Podcast</span>
+        <h3>Both Sides: Is the Cross Really Physics?</h3>
+        <p class="media-desc">Debate-format analysis. One voice steelmans the substrate-repair model; the other argues this is theology dressed as physics with no independent testability.</p>
+        <div style="background:var(--surface);border:1px dashed var(--border);border-radius:.5rem;padding:2rem;text-align:center;color:var(--text-secondary);font-size:.9rem;">
+          <i class="fas fa-podcast" style="font-size:2rem;color:var(--purple);display:block;margin-bottom:.75rem;"></i>
+          Coming Soon &mdash; Both Sides audio will be embedded here
+        </div>
+      </div>
+
+      <div class="media-card">
+        <span class="media-label" style="color:var(--red);"><i class="fas fa-video" style="margin-right:.3rem;"></i> Video</span>
+        <h3>Video Presentation</h3>
+        <p class="media-desc">Visual walkthrough of the 7-row symmetry table, the thief on the cross as extreme test case, and the series conclusion.</p>
+        <div style="background:var(--surface);border:1px dashed var(--border);border-radius:.5rem;padding:2rem;text-align:center;color:var(--text-secondary);font-size:.9rem;">
+          <i class="fas fa-video" style="font-size:2rem;color:var(--red);display:block;margin-bottom:.75rem;"></i>
+          Coming Soon &mdash; Video embed will go here
+        </div>
+      </div>
+
+      <div class="media-card">
+        <span class="media-label" style="color:var(--teal);"><i class="fas fa-brain" style="margin-right:.3rem;"></i> NotebookLM</span>
+        <h3>Interactive Notebook</h3>
+        <p class="media-desc">Google NotebookLM session pre-loaded with Article 10 for interactive Q&amp;A.</p>
+        <div style="background:var(--surface);border:1px dashed var(--border);border-radius:.5rem;padding:2rem;text-align:center;color:var(--text-secondary);font-size:.9rem;">
+          <i class="fas fa-brain" style="font-size:2rem;color:var(--teal);display:block;margin-bottom:.75rem;"></i>
+          Coming Soon &mdash; NotebookLM link will go here
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-eq">&chi; = &iiint;(G &middot; M &middot; E &middot; S &middot; T &middot; K &middot; R &middot; Q &middot; F &middot; C) dx dy dt</div>
+  <p>POF 2828 &middot; Theophysics Research Program &middot; David Lowe &middot; <span style="color:var(--highlight);">15 + 15 = 100</span></p>
+  <p style="font-family:'Crimson Text',serif;font-style:italic;color:var(--text-secondary);margin-top:.5rem;">"Truly I say to you, today you will be with me in paradise." &mdash; Luke 23:43</p>
+</footer>
+
+<script>
+/* ═══════════════ PROGRESS BAR ═══════════════ */
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const pct = height > 0 ? (winScroll / height) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+/* ═══════════════ TAB SWITCHING ═══════════════ */
+function switchTab(id, btn){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════ SIDEBAR ═══════════════ */
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+</script>
+</body>
+</html>
