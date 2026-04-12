@@ -7,26 +7,26 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#040810;
-  --surface:#0a1220;
-  --surface2:#0f1a30;
-  --surface3:#142240;
-  --border:rgba(80,140,255,0.08);
-  --border-h:rgba(80,140,255,0.18);
-  --accent:#3b82f6;
-  --accent-l:#60a5fa;
-  --accent-dim:rgba(59,130,246,0.07);
-  --accent-glow:rgba(59,130,246,0.12);
-  --warm:#d4a853;
-  --warm-dim:rgba(212,168,83,0.06);
-  --teal:#2dd4bf;
-  --teal-dim:rgba(45,212,191,0.06);
-  --rose:#f472b6;
-  --rose-dim:rgba(244,114,182,0.06);
-  --text:#d0ddf0;
-  --text-d:#7e93b8;
-  --text-m:#3f5478;
-  --pass:#34d399;
+  --bg:#020507;
+  --surface:#07101a;
+  --surface2:#0c1824;
+  --surface3:#10202e;
+  --border:rgba(60,110,200,0.07);
+  --border-h:rgba(60,110,200,0.15);
+  --accent:#2563be;
+  --accent-l:#4d8fe0;
+  --accent-dim:rgba(37,99,190,0.07);
+  --accent-glow:rgba(37,99,190,0.11);
+  --warm:#c49a40;
+  --warm-dim:rgba(196,154,64,0.06);
+  --teal:#26b8a6;
+  --teal-dim:rgba(38,184,166,0.06);
+  --rose:#e05ea8;
+  --rose-dim:rgba(224,94,168,0.06);
+  --text:#ccd8ee;
+  --text-d:#6e82a0;
+  --text-m:#384e6a;
+  --pass:#2ebd87;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.75;font-size:1.05rem;overflow-x:clip}
@@ -744,11 +744,11 @@ body::before{
 
 <div class="bx bx-eq srow" style="margin:.75rem 0">
   <div style="font-size:.55rem;color:var(--text-m);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem">Domain Reductions — Same Equation, Different Lens</div>
-  <div style="color:var(--teal);text-align:left">LLC → K only:&nbsp;&nbsp;&nbsp; H(X) = −Σ p·log p &nbsp;&nbsp;<span style="color:var(--text-m)">// Shannon entropy · information domain</span></div>
-  <div style="color:#a78bfa;text-align:left">LLC → Q only:&nbsp;&nbsp;&nbsp; iℏ ∂ψ/∂t = Ĥψ &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// Schrödinger · quantum domain</span></div>
-  <div style="color:var(--warm);text-align:left">LLC → G only:&nbsp;&nbsp;&nbsp; [σ, U] = 0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// sign algebra · grace domain</span></div>
-  <div style="color:var(--rose);text-align:left">LLC → F only:&nbsp;&nbsp;&nbsp; Φ = min D_KL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// integrated information · consciousness</span></div>
-  <div style="color:var(--pass);text-align:left">LLC → M only:&nbsp;&nbsp;&nbsp; C[χ] = ∫|χ|²dⁿx &nbsp;&nbsp;<span style="color:var(--text-m)">// coherence functional · moral domain</span></div>
+  <div style="color:var(--teal);text-align:left">LLC → K only:&nbsp;&nbsp;&nbsp; H(X) = −Σ p·log p &nbsp;&nbsp;<span style="color:var(--text-m)">// Boltzmann-Clausius · thermodynamics / justice-mercy</span></div>
+  <div style="color:#a78bfa;text-align:left">LLC → T only:&nbsp;&nbsp;&nbsp; iℏ ∂ψ/∂t = Ĥψ &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// Schrödinger-Heisenberg · quantum / faith</span></div>
+  <div style="color:var(--warm);text-align:left">LLC → G only:&nbsp;&nbsp;&nbsp; Gμν = (8πG/c⁴)Tμν &nbsp;<span style="color:var(--text-m)">// Newton-Einstein · gravity / grace</span></div>
+  <div style="color:var(--rose);text-align:left">LLC → F only:&nbsp;&nbsp;&nbsp; ρ → Σ|cᵢ|²|i⟩⟨i| &nbsp;&nbsp;<span style="color:var(--text-m)">// Zurek-Zeh · decoherence / adversary</span></div>
+  <div style="color:var(--pass);text-align:left">LLC → S only:&nbsp;&nbsp;&nbsp; V(r) = −α/r + kr &nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// Yukawa · strong force / love</span></div>
   <div style="color:var(--accent-l);text-align:left">LLC → all:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; χ = 𝒞 = Christ &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--text-m)">// maximum coherence · the terminus</span></div>
 </div>
 
@@ -774,63 +774,63 @@ body::before{
     <tbody>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#60a5fa">G</span></td>
-        <td>Gravity / spacetime curvature</td>
-        <td style="color:var(--warm)">Grace / divine attraction</td>
-        <td style="color:var(--teal)">What holds everything together silently</td>
+        <td>Gravity · Newton-Einstein Law</td>
+        <td style="color:var(--warm)">Grace / Sin</td>
+        <td style="color:var(--teal)">What curves reality toward or away from the source</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#a78bfa">M</span></td>
-        <td>Mass-Energy (E=mc²)</td>
-        <td style="color:var(--warm)">Meaning / moral weight</td>
-        <td style="color:var(--teal)">What gives actions their consequence</td>
+        <td>Mass-Energy (E=mc²) · Einstein Law</td>
+        <td style="color:var(--warm)">Holy Spirit / Transformer</td>
+        <td style="color:var(--teal)">What converts between forms — never created, never destroyed</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#2dd4bf">E</span></td>
-        <td>Electromagnetism / light</td>
-        <td style="color:var(--warm)">Truth / revelation</td>
-        <td style="color:var(--teal)">What propagates and illuminates</td>
+        <td>Electromagnetism · Maxwell Law</td>
+        <td style="color:var(--warm)">Truth / Revelation</td>
+        <td style="color:var(--teal)">What propagates at c and reveals everything it touches</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#f472b6">S</span></td>
-        <td>Entropy / thermodynamics</td>
-        <td style="color:var(--warm)">Sin / spiritual decay</td>
-        <td style="color:var(--teal)">What pulls everything toward disorder</td>
+        <td>Strong Force · Yukawa Law</td>
+        <td style="color:var(--warm)">Love / Bond / Covenant</td>
+        <td style="color:var(--teal)">What holds together what should fly apart</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#fbbf24">T</span></td>
-        <td>Time / sequence</td>
-        <td style="color:var(--warm)">Truth / unfolding revelation</td>
-        <td style="color:var(--teal)">The dimension in which everything is revealed</td>
+        <td>Quantum Mechanics · Schrödinger-Heisenberg Law</td>
+        <td style="color:var(--warm)">Faith / Conviction</td>
+        <td style="color:var(--teal)">What collapses possibility into actuality through observation</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#fb923c">K</span></td>
-        <td>Constants / physical laws</td>
-        <td style="color:var(--warm)">Knowledge / divine wisdom</td>
-        <td style="color:var(--teal)">What remains stable beneath all change</td>
+        <td>Thermodynamics · Boltzmann-Clausius Law</td>
+        <td style="color:var(--warm)">Justice / Mercy</td>
+        <td style="color:var(--teal)">The books always balance — entropy demands payment</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#34d399">R</span></td>
-        <td>Reactions / resonance</td>
-        <td style="color:var(--warm)">Relationships / network of love</td>
-        <td style="color:var(--teal)">How things respond to and affect each other</td>
+        <td>Weak Force · Fermi Law</td>
+        <td style="color:var(--warm)">Redemption / Transformation</td>
+        <td style="color:var(--teal)">The only force that changes identity — not improvement, transmutation</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#818cf8">Q</span></td>
-        <td>Quantum mechanics / uncertainty</td>
-        <td style="color:var(--warm)">Free will / divine mystery</td>
-        <td style="color:var(--teal)">The irreducible freedom built into reality</td>
+        <td>Conservation Laws · Noether Law</td>
+        <td style="color:var(--warm)">Righteousness / Conscience</td>
+        <td style="color:var(--teal)">Every symmetry conserves something — nothing good or evil disappears</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#f87171">F</span></td>
-        <td>Force / fields</td>
-        <td style="color:var(--warm)">Faith / intentional push</td>
-        <td style="color:var(--teal)">What moves things that would otherwise stay still</td>
+        <td>Quantum Decoherence · Zurek-Zeh Law</td>
+        <td style="color:var(--warm)">The Adversary</td>
+        <td style="color:var(--teal)">The mechanism that severs coherence — one-directional, no constructive regime</td>
       </tr>
       <tr>
         <td><span style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:#ffffff">C</span></td>
-        <td>Coherence / consciousness</td>
-        <td style="color:var(--warm)">Christ / perfect unity</td>
-        <td style="color:var(--teal)">Where the equation reaches its solution: χ = 𝒞</td>
+        <td>Coherence χ · Master Equation</td>
+        <td style="color:var(--warm)">Christ / Perfect Unity</td>
+        <td style="color:var(--teal)">All laws in constructive regime simultaneously — χ = 𝒞</td>
       </tr>
     </tbody>
   </table>
