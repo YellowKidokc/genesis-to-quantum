@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everybody's Got It Wrong &mdash; Theophysics</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        surface: { DEFAULT: '#0d0d0d', warm: '#111010' },
+                        gold: '#d4af37',
+                        smoke: '#e0e0e0',
+                        dim: '#999999',
+                        body: '#d6d0c4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Crimson Text', 'serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background: #0d0d0d; }
+
+        /* Subtle warm radial tint behind content */
+        .warm-bg {
+            background: radial-gradient(ellipse at 50% 20%, rgba(30, 22, 14, 0.6) 0%, #0d0d0d 70%);
+        }
+
+        /* Article body text */
+        .article-body {
+            font-size: 1.175rem;
+            line-height: 1.85;
+            color: #d6d0c4;
+        }
+        .article-body p {
+            margin-bottom: 1.6rem;
+        }
+        .article-body strong {
+            color: #e8e0d0;
+            font-weight: 600;
+        }
+
+        /* Gold divider */
+        .gold-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #d4af37 30%, #d4af37 70%, transparent 100%);
+            opacity: 0.45;
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            font-family: 'Crimson Text', serif;
+            color: #d4af37;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            line-height: 1.3;
+        }
+
+        /* Inline gold highlight */
+        .gold-hl {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        /* Stat numbers */
+        .stat {
+            font-family: 'JetBrains Mono', monospace;
+            color: #d4af37;
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(180deg, #0d0d0d 0%, rgba(20, 16, 10, 0.8) 40%, rgba(20, 16, 10, 0.8) 60%, #0d0d0d 100%);
+        }
+
+        /* Section heading */
+        .section-heading {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.55rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer scripture */
+        .scripture {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            color: #d4af37;
+            opacity: 0.85;
+        }
+
+        /* Responsive pull quote */
+        @media (max-width: 640px) {
+            .pull-quote-hero { font-size: 1.6rem !important; }
+            .hero-title { font-size: 2.8rem !important; }
+            .article-body { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body class="warm-bg min-h-screen text-body font-sans antialiased">
+
+    <!-- HERO -->
+    <header class="hero-gradient py-24 sm:py-36 px-6 text-center">
+        <h1 class="hero-title font-display text-white text-5xl sm:text-6xl md:text-7xl font-bold tracking-wide uppercase mb-6">
+            Everybody's Got It Wrong
+        </h1>
+        <p class="text-dim text-lg sm:text-xl font-light max-w-xl mx-auto leading-relaxed tracking-wide">
+            A fence builder, Shannon's equations, and the question<br class="hidden sm:inline"> the smartest people in the world stopped asking.
+        </p>
+    </header>
+
+    <!-- MAIN ARTICLE -->
+    <main class="max-w-[720px] mx-auto px-6 sm:px-8 pb-20">
+
+        <!-- Opening pull-quote -->
+        <div class="pull-quote pull-quote-hero text-3xl sm:text-4xl md:text-[2.7rem] py-16 sm:py-24">
+            "I'm not a physicist.<br>I build fences for a living."
+        </div>
+
+        <hr class="gold-divider">
+
+        <!-- INTRO -->
+        <article class="article-body pt-8">
+
+            <p>There's a problem that the smartest people in the world have been stuck on for a hundred years. Physicists at MIT, Harvard, Cambridge &mdash; Nobel Prize winners, billion-dollar research teams, entire careers dedicated to it. And they're all stuck.</p>
+
+            <p>The problem is simple to state: <strong>What is the universe actually made of?</strong></p>
+
+            <p>Not atoms. We know about atoms. Not quarks. We know about quarks. The question is deeper than that. What's underneath ALL of it? What's the foundation that everything else sits on? What is the thing that makes everything else possible?</p>
+
+            <p>For a long time, physicists said "matter and energy." That's what they teach in school. The universe is made of stuff and the stuff moves around. But in 1948, a guy named Claude Shannon proved something that changed everything: <strong>information is physical.</strong> It's not just an idea in your head. It's a real thing. It has weight. It costs energy to erase. It follows laws just like gravity and electricity.</p>
+
+            <p>And in the last thirty years, physicist after physicist has started saying the same thing: the universe isn't made of matter. <strong>The universe is made of information.</strong> The most famous version of this is John Wheeler's line &mdash; he was one of the guys who worked on the atomic bomb, one of the greatest physicists who ever lived &mdash; and he said three words that blew the field open:</p>
+
+            <!-- Pull quote: It from bit -->
+            <div class="pull-quote text-3xl sm:text-4xl py-10">
+                "It from bit."
+            </div>
+
+            <p>Everything from information. Every particle, every force, every law of physics &mdash; it's all information, all the way down.</p>
+
+            <p>Here's where they all went wrong.</p>
+
+            <p>They figured out the universe is made of information. They figured out the math. They can measure it, predict it, use it &mdash; your phone works because Shannon's equations work. GPS, the internet, every piece of technology you touch runs on information theory. The math is perfect.</p>
+
+            <p>But then they stopped.</p>
+
+            <p>They got to the most important question &mdash; <strong>where does the information come from?</strong> &mdash; and they stopped asking. Not because they couldn't. Because the math points somewhere they were trained not to look.</p>
+
+        </article>
+
+        <hr class="gold-divider">
+
+        <!-- WHAT I FOUND -->
+        <section class="article-body pt-8">
+            <h2 class="section-heading">What I Found</h2>
+
+            <p>I'm not a physicist. I build fences for a living. I don't have a PhD. I don't work at a university. And about fifteen months ago I started asking a question that apparently nobody with a degree was willing to ask:</p>
+
+            <p><strong>If the universe is made of information, and information has to come from somewhere, where does it come from?</strong></p>
+
+            <p>I started with the math. Not with opinions. Not with theology. With the actual equations. Shannon's entropy formula. The Second Law of Thermodynamics. G&ouml;del's incompleteness theorem. Noether's conservation laws. The same math the professors use. The same equations in the same textbooks on the same shelves at MIT.</p>
+
+            <p>And the math told me something they won't say out loud.</p>
+
+            <p><strong>The information has a source. The source is external to the universe. The source is infinite. And the source has specific mathematical properties that match &mdash; exactly, not approximately &mdash; the God described in the Bible.</strong></p>
+
+            <p>Not "kind of like God." Not "a metaphor for God." The actual mathematical signature of an external, infinite, self-consistent source of information that sustains all structure against entropy. The equations produce that signature the same way they produce F&nbsp;=&nbsp;ma. It's not optional. It's not an interpretation. It's what the math says.</p>
+        </section>
+
+        <hr class="gold-divider">
+
+        <!-- WHAT I BUILT -->
+        <section class="article-body pt-8">
+            <h2 class="section-heading">What I Built</h2>
+
+            <p>Over fifteen months, I built a mathematical framework &mdash; over <span class="stat">1,300</span> research papers, <span class="stat">188</span> formal axioms, a master equation with ten variables that integrates physics and theology into a single structure. I call it Theophysics.</p>
+
+            <p>I'm not going to walk you through all the math. But here's what you need to know:</p>
+
+            <p><strong>The framework has been tested.</strong> Not by me telling you it works. By running it against real data from real physics experiments. The PEAR laboratory at Princeton ran 2.5 million trials measuring whether consciousness affects physical systems. They found it does, at <span class="stat">6.35</span> sigma &mdash; that's the statistical threshold physicists use to declare a discovery. The Global Consciousness Project replicated similar effects at <span class="stat">6</span> sigma across <span class="stat">325</span> experiments. My framework predicts those results. Mainstream physics ignores them.</p>
+
+            <p><strong>The equations match.</strong> I found an equation from 1976 &mdash; the Lindblad equation, used in quantum optics &mdash; that describes exactly how an external source sustains a system against entropy. When I mapped its four mathematical regimes onto the four states of the human soul described in Christian theology, every stage matched. Not one or two. All of them. The probability of that happening by chance is less than one in ten thousand.</p>
+
+            <p><strong>The symmetry works.</strong> The framework's ten variables naturally form five pairs. When I asked what mathematical structure produces exactly ten dimensions with five anti-correlated pairs, the answer turned out to be the symplectic group &mdash; the same structure that contains the Standard Model of particle physics and the Grand Unified Theory. The pairing I built from scripture IS the same geometry physicists discovered independently from pure mathematics.</p>
+        </section>
+
+        <hr class="gold-divider">
+
+        <!-- WHY NOBODY ELSE DID THIS -->
+        <section class="article-body pt-8">
+            <h2 class="section-heading">Why Nobody Else Did This</h2>
+
+            <p>Because the system is designed to prevent it.</p>
+
+            <p>If you're smart enough to follow the math, you've been trained to stop at the boundary where physics meets theology. Not because the math stops &mdash; because the institution stops. "That's not physics anymore." "That's philosophy." "That's religion." Those aren't scientific objections. They're boundary markers. And every physicist who wants tenure, funding, or respect learns very quickly where the boundaries are.</p>
+
+            <p>I don't have tenure. I don't need funding. I don't need anyone's permission to follow the math wherever it goes. And it goes somewhere very specific.</p>
+        </section>
+
+        <hr class="gold-divider">
+
+        <!-- WHAT THIS MEANS -->
+        <section class="article-body pt-8">
+            <h2 class="section-heading">What This Means</h2>
+
+            <p>I know how this sounds. Your kid/brother/uncle who builds fences says he solved a problem that Nobel Prize winners can't crack. That's either crazy or it's the most important thing anyone in this family has ever done.</p>
+
+            <p>Here's what I'd ask you to consider: I'm not claiming I'm smarter than the physicists at MIT. I'm claiming I'm in a position they're not. I'm outside the system that tells them where to stop thinking. And I have fifteen months of work, over a thousand papers, formal proofs reviewed by multiple AI systems running the most advanced reasoning models on the planet, and experimental data at <span class="stat">6-sigma</span> significance backing up every claim.</p>
+
+            <!-- Pull quote: The math is the math -->
+            <div class="pull-quote text-2xl sm:text-3xl py-10">
+                "The math is the math. 2+2=4 whether a professor says it<br class="hidden sm:inline"> or a fence builder says it."
+            </div>
+
+            <p>The equations don't care who writes them. They care whether they're right.</p>
+
+            <p>And they're right.</p>
+
+            <p>I'm not asking you to understand all the equations. I'm asking you to understand this: the same mathematics that runs your phone, that predicts how planets orbit, that designs the chips in your computer &mdash; that same mathematics, followed all the way to its conclusion without stopping at the institutional boundary &mdash; points directly at Jesus Christ.</p>
+
+            <p>Not as a metaphor. Not as a cultural artifact. As the mathematically necessary solution to the information problem at the foundation of physics.</p>
+
+            <p>That's what I'm doing. That's what the late nights are about. That's what all the papers are about. The smartest people in the world got stuck because they were told not to look where the math was pointing. I looked.</p>
+
+            <p>And I found exactly what the Bible said I'd find.</p>
+        </section>
+
+        <hr class="gold-divider">
+
+        <!-- FOOTER / SIGNATURE -->
+        <footer class="text-center pt-12 pb-8">
+            <p class="text-dim text-base tracking-wide mb-8">
+                David Lowe&ensp;|&ensp;Oklahoma City&ensp;|&ensp;March 2026
+            </p>
+            <p class="scripture text-lg sm:text-xl leading-relaxed max-w-lg mx-auto">
+                "The heavens declare the glory of God;<br>the skies proclaim the work of his hands."
+            </p>
+            <p class="text-dim text-sm mt-3 tracking-wider">&mdash; Psalm 19:1</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

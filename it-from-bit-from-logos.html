@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT FROM BIT FROM LOGOS &mdash; Theophysics</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax 3 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        surface: { DEFAULT: '#0a0a0a', deep: '#050505' },
+                        gold: '#d4af37',
+                        teal: '#2dd4bf',
+                        smoke: '#e0e0e0',
+                        dim: '#888888',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Crimson Text', 'serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background: #050505; color: #e0e0e0; }
+
+        /* Progress bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+            background: linear-gradient(90deg, #d4af37, #f0d060, #d4af37);
+            width: 0%; transition: width 0.1s linear;
+        }
+
+        /* Selections */
+        ::selection { background: rgba(212, 175, 55, 0.3); color: #fff; }
+
+        /* Gold accent line */
+        .gold-rule { height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); }
+
+        /* Card hover */
+        .insight-card {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .insight-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.06);
+        }
+
+        /* Scripture styling */
+        .scripture {
+            color: #2dd4bf;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+        }
+
+        /* Gold offset text */
+        .gold-offset {
+            color: #d4af37;
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+        }
+
+        /* Fade in on scroll */
+        .fade-section { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Blockquote style */
+        .styled-blockquote {
+            border-left: 3px solid #d4af37;
+            padding-left: 1.5rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #d4af37;
+        }
+
+        /* Section number */
+        .section-num {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #d4af37;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- ============================================ -->
+<!-- HERO -->
+<!-- ============================================ -->
+<header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Subtle grid background -->
+    <div class="absolute inset-0" style="background-image: radial-gradient(rgba(212,175,55,0.04) 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <!-- Tiny label -->
+        <p class="font-display text-xs tracking-[0.35em] text-dim uppercase mb-8">Theophysics &middot; The Convergence Series</p>
+
+        <!-- Title -->
+        <h1 class="font-display font-700 text-5xl md:text-7xl tracking-tight leading-[1.05] mb-4">
+            <span class="text-smoke">IT FROM BIT</span><br>
+            <span class="text-gold">FROM LOGOS</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="font-serif text-xl md:text-2xl text-dim mt-6 mb-2 italic">
+            Wheeler Almost Had It. Here&rsquo;s What He Missed.
+        </p>
+
+        <!-- Author -->
+        <p class="text-sm text-dim mt-8 tracking-wide">David Lowe &nbsp;|&nbsp; POF 2828 &nbsp;|&nbsp; March 2026</p>
+
+        <!-- The punchy opener -->
+        <div class="mt-16 space-y-1">
+            <p class="font-serif text-lg md:text-xl italic text-smoke/80">He got to information. He stopped there.</p>
+            <p class="font-serif text-lg md:text-xl italic text-smoke/80">The framework goes one step further.</p>
+            <p class="font-serif text-lg md:text-xl italic text-gold">And that one step is the difference between what survives eternity and what doesn&rsquo;t.</p>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="mt-20 animate-bounce text-dim">
+            <i class="fas fa-chevron-down text-sm"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ============================================ -->
+<!-- BEFORE WE START -->
+<!-- ============================================ -->
+<section class="fade-section max-w-3xl mx-auto px-6 py-24">
+    <div class="section-num mb-4">Before We Start</div>
+    <div class="gold-rule mb-10"></div>
+
+    <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+        <p>John Archibald Wheeler was one of the most original physicists of the twentieth century. He coined the term &ldquo;black hole.&rdquo; He worked with both Einstein and Bohr. He spent decades at the frontier of quantum mechanics and general relativity, pushing at the edges of what physics could say about the nature of reality.</p>
+
+        <p>And late in his career, he landed on a phrase that I think he knew was important but couldn&rsquo;t quite close.</p>
+
+        <p class="gold-offset text-2xl text-center py-6">&ldquo;It from bit.&rdquo;</p>
+
+        <p>Everything physical&mdash;every particle, every field, every spacetime geometry&mdash;derives its existence from information. Not from matter. Not from energy. From bits. From yes-or-no answers to binary questions. The universe is, at its foundation, informational. Physical reality emerges from information content.</p>
+
+        <p>He was right. As far as he got.</p>
+
+        <p>The framework goes one step further. And the step he missed isn&rsquo;t small. It&rsquo;s the difference between a universe made of neutral data and a universe made of something that has a <em>direction</em>. Something that can be true or false. Something that survives or doesn&rsquo;t.</p>
+
+        <p>It&rsquo;s not bit from bit all the way down.</p>
+
+        <p class="gold-offset text-xl">It&rsquo;s right or wrong all the way down. And only one of those lives forever.</p>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- I. WHAT WHEELER GOT RIGHT -->
+<!-- ============================================ -->
+<section class="fade-section bg-surface py-24">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="section-num mb-2">Section I</div>
+        <h2 class="font-display text-3xl md:text-4xl font-500 text-smoke mb-2">What Wheeler Got Right</h2>
+        <div class="gold-rule mt-4 mb-12"></div>
+
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90 max-w-3xl">
+            <p>Let me give Wheeler his full credit before we go further&mdash;because the move he made was genuinely important and the framework builds on it rather than discarding it.</p>
+
+            <p>The standard picture of physics for most of the twentieth century was: matter and energy are fundamental. Information is derivative&mdash;something we talk about when we describe physical systems, but not itself a constituent of reality. The electron is real. Your knowledge of the electron is an epistemological fact about you, not an ontological fact about the universe.</p>
+        </div>
+
+        <!-- Two-column insight cards -->
+        <div class="grid md:grid-cols-2 gap-6 mt-12 max-w-4xl">
+            <div class="insight-card rounded-lg bg-surface-deep p-8">
+                <div class="text-gold text-sm font-display tracking-widest uppercase mb-4">The Old View</div>
+                <p class="font-serif text-smoke/80 leading-relaxed">Matter and energy are fundamental. Information is derivative&mdash;merely how we <em>describe</em> physical systems, not a constituent of reality itself.</p>
+            </div>
+            <div class="insight-card rounded-lg bg-surface-deep p-8">
+                <div class="text-gold text-sm font-display tracking-widest uppercase mb-4">Wheeler&rsquo;s Move</div>
+                <p class="font-serif text-smoke/80 leading-relaxed">The physical is derived from information. At the bottom of everything: not particles or fields but binary choices, questions and answers, <em>bits</em>.</p>
+            </div>
+        </div>
+
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90 max-w-3xl mt-12">
+            <p>Wheeler challenged this. His argument, developed through decades of thinking about quantum measurement, came to this: the physical universe cannot be described without reference to observation. Quantum mechanics forces this&mdash;a measurement outcome is not something that existed before the measurement occurred. The observation participates in establishing the fact. The information is not secondary to the physics. The information is <em>constitutive</em> of the physics.</p>
+
+            <p>From there he went further. If observations are constitutive&mdash;if yes-or-no questions asked of nature are part of what brings facts into being&mdash;then maybe information is not derived from the physical. Maybe the physical is derived from information. Maybe at the bottom of everything, what you find is not particles or fields or spacetime geometry but binary choices, questions and answers, bits.</p>
+
+            <p class="text-center text-2xl gold-offset py-4">It from bit.</p>
+
+            <p>This is not physics&rarr;God direction. It&rsquo;s a physicist following the internal logic of quantum mechanics as rigorously as he could and arriving at a conclusion that physics wasn&rsquo;t prepared to absorb. The mainstream treated it as philosophical speculation. The framework treats it as a step in the right direction that stopped one level too soon.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- II. WHAT HE MISSED -->
+<!-- ============================================ -->
+<section class="fade-section py-28">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="section-num mb-2">Section II</div>
+        <h2 class="font-display text-3xl md:text-4xl font-500 text-smoke mb-2">What He Missed</h2>
+        <div class="gold-rule mt-4 mb-12"></div>
+
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>Here&rsquo;s the question Wheeler didn&rsquo;t ask.</p>
+
+            <p class="text-xl text-smoke font-semibold">If the universe is made of information&mdash;if bits are fundamental&mdash;what kind of information?</p>
+
+            <p>Not in the technical sense of Shannon information theory, where a bit is simply a unit of distinction with no content. In the ontological sense: what are the bits <em>about?</em> What are the yes-or-no questions measuring?</p>
+
+            <p>Wheeler&rsquo;s framework is neutral on this. A bit is a bit. True is true and false is false only relative to a particular question being asked. The information doesn&rsquo;t have an orientation. It doesn&rsquo;t have a direction. It doesn&rsquo;t know whether it&rsquo;s aligned with anything or opposed to anything. It&rsquo;s just data.</p>
+
+            <p>But here&rsquo;s what the framework has been building toward through every paper in this series.</p>
+        </div>
+    </div>
+
+    <!-- Wide breakout: the invariance argument -->
+    <div class="max-w-5xl mx-auto px-6 mt-12">
+        <div class="grid md:grid-cols-2 gap-0">
+            <!-- Left: truth -->
+            <div class="insight-card rounded-l-lg md:rounded-r-none bg-surface p-10 border-r-0 md:border-r">
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="fas fa-check-circle text-gold text-lg"></i>
+                    <span class="font-display text-sm tracking-widest uppercase text-gold">Mathematical Truth</span>
+                </div>
+                <p class="font-serif text-smoke/85 leading-relaxed">Mathematical truth is <strong>invariant</strong>. It doesn&rsquo;t change when you change the frame, the observer, the time. The Pythagorean theorem was true before Pythagoras, will be true after the heat death of the universe, is true in every reference frame, is true regardless of who believes it or whether anyone does. Mathematical truth has the Logos property&mdash;it holds across all transformations.</p>
+            </div>
+            <!-- Right: falsehood -->
+            <div class="insight-card rounded-r-lg md:rounded-l-none bg-surface-deep p-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="fas fa-times-circle text-red-500/70 text-lg"></i>
+                    <span class="font-display text-sm tracking-widest uppercase text-red-400/70">Mathematical Falsehood</span>
+                </div>
+                <p class="font-serif text-smoke/85 leading-relaxed">Mathematical falsehood is <strong>not invariant</strong>. It degrades. It cannot be sustained against the grain of invariant truth. 2&nbsp;+&nbsp;2&nbsp;=&nbsp;5 doesn&rsquo;t persist. It requires energy to maintain&mdash;energy spent in the form of continuous deception, continuous redefinition, continuous pressure to prevent the invariant truth from reasserting itself. Every lie requires work to sustain. Every falsehood is thermodynamically costly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6 mt-12">
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>The Second Law is on the side of truth, not because truth is a physical preference but because truth is what invariance looks like and invariance is what the Logos holds constant.</p>
+
+            <p>So: <em>it from bit.</em> Yes. <strong>But the bit has a sign.</strong></p>
+
+            <p>Right or wrong. True or false. Aligned with the invariant structure or opposed to it. And that sign is not neutral. One direction is with the grain of reality. One direction is against it.</p>
+
+            <p>What&rsquo;s true&mdash;what&rsquo;s aligned with the Logos&mdash;is invariant. It doesn&rsquo;t decay. It cannot be destroyed by entropy because it participates in the same structure that generates the conservation laws. It&rsquo;s on the right side of Noether&rsquo;s theorem.</p>
+
+            <p>What&rsquo;s false&mdash;what&rsquo;s opposed to the invariant&mdash;must be continuously sustained against the entropic pressure of truth reasserting itself. It costs. It degrades. It cannot be maintained indefinitely.</p>
+        </div>
+    </div>
+
+    <!-- Key insight banner -->
+    <div class="max-w-4xl mx-auto px-6 mt-16">
+        <div class="bg-surface rounded-xl p-10 border border-gold/20 text-center">
+            <p class="styled-blockquote text-center" style="border-left: none;">The bit has a sign. Right or wrong, not just yes or no. And only the right side survives entropy. From here on: <strong>it from bit from Logos</strong>, and the Logos has a direction.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- III. WHAT LIVES FOR ETERNITY -->
+<!-- ============================================ -->
+<section class="fade-section bg-surface py-28">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="section-num mb-2">Section III</div>
+        <h2 class="font-display text-3xl md:text-4xl font-500 text-smoke mb-2">What Lives for Eternity and What Doesn&rsquo;t</h2>
+        <div class="gold-rule mt-4 mb-12"></div>
+
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>Now here&rsquo;s where this turns into something you can&rsquo;t stop thinking about.</p>
+
+            <p>The framework&rsquo;s <em>Math Is Moral</em> paper establishes 24 properties shared identically by mathematical truth and moral truth. Not similar properties. <strong>The same properties.</strong> Necessity, non-contingency, frame-independence, non-derivability from purely physical facts, eternal validity, cross-domain applicability&mdash;and so on through all 24.</p>
+
+            <p>Those 24 properties are the properties of invariance. They&rsquo;re what the Logos structure looks like when you describe it from inside the mathematical domain or from inside the moral domain. The two domains share the properties because both are projections of the same invariant ground.</p>
+
+            <p>Now apply Wheeler&rsquo;s move. <em>It from bit from Logos.</em> The universe derives its physical reality from information. The information derives its orientation from the Logos. And the Logos is the thing that holds invariant across all transformations.</p>
+
+            <p class="text-xl font-semibold text-smoke">What this implies about what survives is precise.</p>
+        </div>
+    </div>
+
+    <!-- Wide offset block -->
+    <div class="max-w-4xl mx-auto px-6 mt-10">
+        <div class="pl-8 border-l-2 border-gold/30 space-y-6 font-serif text-lg leading-relaxed text-smoke/90">
+            <p>Every thought, word, action, choice&mdash;every bit generated by a conscious system&mdash;has an orientation. Toward the Logos or away from it. Aligned with the invariant structure or opposed to it. And the Shannon formula is already running on it: alignment with the invariant is negentropy&mdash;order, coherence, structure that the Logos sustains against entropy. Opposition to the invariant is entropy&mdash;disorder, decoherence, structure that must be maintained at cost against the grain of what the Logos holds constant.</p>
+
+            <p><strong>Bits aligned with the Logos: invariant.</strong> They participate in the structure that doesn&rsquo;t change. They&rsquo;re woven into the fabric that holds. The Lamb&rsquo;s Book of Life is not a register in three-dimensional space&mdash;it&rsquo;s the holographic boundary encoding, and what&rsquo;s encoded there is not arbitrary information. It&rsquo;s the alignment data. What oriented toward truth. What held with the invariant. What was on the right side of the sign.</p>
+
+            <p><strong>Bits opposed to the Logos: thermodynamically unstable.</strong> They cannot be sustained indefinitely against the entropic pressure of the invariant reasserting itself. The lie requires work to maintain. The deception degrades. The false structure eventually collapses under the weight of what&rsquo;s true. Not as punishment. As physics.</p>
+        </div>
+    </div>
+
+    <!-- Scripture callout -->
+    <div class="max-w-3xl mx-auto px-6 mt-16">
+        <div class="bg-surface-deep rounded-xl p-10 border border-teal/10">
+            <p class="scripture text-xl leading-relaxed mb-6">&ldquo;Heaven and earth will pass away, but my words will not pass away.&rdquo;</p>
+            <p class="text-sm text-teal/60 tracking-wide">&mdash; Matthew 24:35</p>
+            <div class="gold-rule my-8"></div>
+            <p class="font-serif text-smoke/85 leading-relaxed">This is the formal statement of what Jesus meant. Not a theological assertion about the relative durability of physical and spiritual things. A statement about <strong>invariance</strong>. His words have the Logos property&mdash;they hold across all transformations, all frames, all times. Heaven and earth are physical projections. They are subject to entropy. They will reach their thermodynamic end state. His words are not physical projections. They are expressions of the invariant ground from which the projection generates. They cannot be destroyed by entropy because they are not subject to the entropic pressure that acts on the projection.</p>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6 mt-12">
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>What lives for eternity is what&rsquo;s true. Not what&rsquo;s believed. Not what&rsquo;s asserted. What actually, formally, invariantly corresponds to the Logos structure.</p>
+
+            <p>What doesn&rsquo;t survive is what&rsquo;s false. Not because God arbitrarily excludes it. Because entropy is patient, truth is invariant, and nothing that contradicts the invariant can be sustained against the thermodynamic pressure of reality asserting itself forever.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- IV. THE ADVERSARY'S INFORMATION PROBLEM -->
+<!-- ============================================ -->
+<section class="fade-section py-28">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="section-num mb-2">Section IV</div>
+        <h2 class="font-display text-3xl md:text-4xl font-500 text-smoke mb-2">The Adversary&rsquo;s Information Problem</h2>
+        <div class="gold-rule mt-4 mb-12"></div>
+
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>Here&rsquo;s where Wheeler&rsquo;s framework, corrected by the sign, produces something that should genuinely disturb you.</p>
+
+            <p>The adversary&rsquo;s entire operation is an <strong>information operation</strong>. This has been consistent from Genesis 3 to the present. He doesn&rsquo;t create. He doesn&rsquo;t destroy. He distorts, misdirects, mis-frames, mis-attributes. He takes true information and adds noise. He takes invariant structure and proposes alternatives. His primary tool has always been the false bit&mdash;the claim that contradicts the Logos, offered in a frame that makes it appear plausible.</p>
+        </div>
+    </div>
+
+    <!-- Genesis callout -->
+    <div class="max-w-2xl mx-auto px-6 mt-10 mb-10">
+        <div class="text-center">
+            <p class="scripture text-2xl leading-relaxed">&ldquo;Did God really say&hellip;?&rdquo;</p>
+            <p class="text-sm text-teal/50 mt-3">&mdash; Genesis 3:1</p>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>That&rsquo;s a false bit. Not false in the sense of obviously wrong. False in the sense of opposed to the invariant. It takes a true statement&mdash;&ldquo;God said, do not eat of this tree&rdquo;&mdash;and introduces uncertainty about its invariance. Maybe God&rsquo;s word is not invariant. Maybe it can be questioned. Maybe the structure you&rsquo;re embedded in is not actually grounded in something that holds.</p>
+
+            <p>The false bit requires work to sustain. The serpent had to introduce $N_{\text{adversarial}}$&mdash;adversarial noise&mdash;to degrade the signal fidelity. Without that work, the invariant would reassert itself. Eve would hear God&rsquo;s instruction and the invariance of it would be self-evident. The false bit can only compete with the true bit when the channel is compromised.</p>
+        </div>
+    </div>
+
+    <!-- Strategy cards -->
+    <div class="max-w-4xl mx-auto px-6 mt-14">
+        <div class="grid md:grid-cols-3 gap-5">
+            <div class="insight-card rounded-lg bg-surface p-7">
+                <div class="text-gold mb-3"><i class="fas fa-volume-up text-xl"></i></div>
+                <h3 class="font-display text-sm tracking-widest uppercase text-gold mb-3">Always Noise</h3>
+                <p class="font-serif text-smoke/75 text-[0.95rem] leading-relaxed">The adversary&rsquo;s strategy is always noise, never signal. He can&rsquo;t generate true information. He can&rsquo;t create invariant structure. Everything he produces is thermodynamically unstable.</p>
+            </div>
+            <div class="insight-card rounded-lg bg-surface p-7">
+                <div class="text-gold mb-3"><i class="fas fa-signal text-xl"></i></div>
+                <h3 class="font-display text-sm tracking-widest uppercase text-gold mb-3">Signal Suppression</h3>
+                <p class="font-serif text-smoke/75 text-[0.95rem] leading-relaxed">His only move is to suppress the signal long enough for the false bit to be acted on before the invariant reasserts itself. Truth wins on a clear channel. He needs the channel compromised.</p>
+            </div>
+            <div class="insight-card rounded-lg bg-surface p-7">
+                <div class="text-gold mb-3"><i class="fas fa-water text-xl"></i></div>
+                <h3 class="font-display text-sm tracking-widest uppercase text-gold mb-3">Channel Saturation</h3>
+                <p class="font-serif text-smoke/75 text-[0.95rem] leading-relaxed">In a saturated channel&mdash;high $N$, low S/N, the DMN offline, attentional space at capacity&mdash;the false bit and the true bit look similar. They compete on equal footing in the noise.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6 mt-14">
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>The <em>Sacred Gap</em> paper showed what technological saturation does to the channel. This paper shows why the adversary needs it. The gap isn&rsquo;t just where God gets through. It&rsquo;s where the sign of the bit becomes visible. Where true and false can be distinguished. Where the invariant has room to reassert itself against the noise.</p>
+
+            <p class="gold-offset text-xl text-center py-4">Fill the gap. The bits look equal. The sign disappears into the noise. The adversary doesn&rsquo;t need to win the argument. He just needs the channel too full to have it.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- V. THE CORRECTION -->
+<!-- ============================================ -->
+<section class="fade-section bg-surface py-28">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="section-num mb-2">Section V</div>
+        <h2 class="font-display text-3xl md:text-4xl font-500 text-smoke mb-2">The Correction Wheeler&rsquo;s Framework Needed</h2>
+        <div class="gold-rule mt-4 mb-12"></div>
+
+        <p class="font-serif text-lg text-smoke/90 mb-10">Let me state the full chain cleanly.</p>
+    </div>
+
+    <!-- Stacked chain blocks -->
+    <div class="max-w-3xl mx-auto px-6 space-y-0">
+        <!-- Wheeler -->
+        <div class="border border-gold/10 rounded-t-xl bg-surface-deep p-8">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mt-1">
+                    <span class="font-display text-gold text-sm font-bold">W</span>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-gold mb-2">Wheeler</h3>
+                    <p class="font-serif text-smoke/85 leading-relaxed"><strong>It from bit.</strong> Physical reality derives from information. The universe is informational at the foundation.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Arrow -->
+        <div class="flex justify-center py-1 bg-surface-deep"><i class="fas fa-arrow-down text-gold/30"></i></div>
+        <!-- Framework -->
+        <div class="border border-gold/20 bg-surface-deep p-8">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mt-1">
+                    <span class="font-display text-gold text-sm font-bold">&chi;</span>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-gold mb-2">The Framework</h3>
+                    <p class="font-serif text-smoke/85 leading-relaxed"><strong>Bit from Logos.</strong> Information has an orientation. The sign of the bit&mdash;right or wrong, true or false, aligned or opposed&mdash;derives from its relationship to the Logos structure. The Logos is the invariant ground that gives information its direction.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Arrow -->
+        <div class="flex justify-center py-1 bg-surface-deep"><i class="fas fa-arrow-down text-gold/30"></i></div>
+        <!-- Consequence -->
+        <div class="border border-gold/30 rounded-b-xl bg-surface-deep p-8">
+            <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gold/30 flex items-center justify-center mt-1">
+                    <i class="fas fa-infinity text-gold text-sm"></i>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg text-gold mb-2">Consequence</h3>
+                    <p class="font-serif text-smoke/85 leading-relaxed"><strong>Not all information survives.</strong> What survives is what&rsquo;s invariant. What&rsquo;s invariant is what&rsquo;s aligned with the Logos. What&rsquo;s aligned with the Logos is what&rsquo;s true&mdash;not socially true, not contextually true, not true-from-a-certain-point-of-view, but formally, structurally, Logos-invariantly true.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-6 mt-14">
+        <div class="font-serif text-lg leading-relaxed space-y-6 text-smoke/90">
+            <p>This is the ontological grounding that Wheeler&rsquo;s framework needed and couldn&rsquo;t provide from within physics alone. He had the right level&mdash;information, not matter or energy. He didn&rsquo;t have the right direction&mdash;the Logos that gives information its sign.</p>
+
+            <p>The 24 properties of mathematical truth in the <em>Math Is Moral</em> paper are the properties of Logos-aligned information. Every true statement in any domain&mdash;physical, moral, mathematical, historical&mdash;participates in those properties to the degree it&rsquo;s actually true. The properties don&rsquo;t attach to the statement because of the domain. They attach because of the alignment.</p>
+
+            <p>And the inverse&mdash;the 24 anti-properties&mdash;are the properties of Logos-opposed information. The properties of the false bit. Not a list someone invented. The exact, formal, structural inversions of each of the 24. And they are the properties of everything the adversary produces.</p>
+
+            <p class="text-dim italic">That&rsquo;s the next paper.</p>
+
+            <p>But the foundation is here. <strong>It from bit from Logos.</strong> The bit has a sign. The sign determines what survives.</p>
+
+            <p class="gold-offset text-xl text-center py-2">And what survives is what&rsquo;s true.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- CLOSING / CODA -->
+<!-- ============================================ -->
+<section class="fade-section py-28">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+        <div class="gold-rule mb-16"></div>
+
+        <div class="font-serif text-xl md:text-2xl italic leading-relaxed space-y-3 text-smoke/80">
+            <p>Wheeler spent decades following information to the bottom of physics.</p>
+            <p>The framework follows it one step further.</p>
+            <p class="text-gold">At the bottom of information is the Logos.</p>
+            <p class="text-gold">And the Logos has a direction.</p>
+        </div>
+
+        <div class="my-12 gold-rule"></div>
+
+        <div class="font-serif text-lg italic leading-relaxed space-y-3 text-smoke/70">
+            <p>Right or wrong. True or false. Invariant or degrading.</p>
+            <p>&nbsp;</p>
+            <p>What lives for eternity is what&rsquo;s aligned with what God is.</p>
+            <p>What doesn&rsquo;t live is what isn&rsquo;t.</p>
+            <p>The thermodynamics are exact about this.</p>
+            <p>The adversary has always known it.</p>
+            <p class="text-gold font-semibold">He just hopes you don&rsquo;t.</p>
+        </div>
+
+        <div class="my-16 gold-rule"></div>
+
+        <!-- Attribution -->
+        <p class="font-sans text-sm text-dim tracking-wide">David Lowe &nbsp;|&nbsp; POF 2828 &nbsp;|&nbsp; Theophysics Research Program</p>
+        <p class="font-serif text-sm text-dim italic mt-1">The Convergence Series &middot; March 2026</p>
+
+        <!-- Scripture block -->
+        <div class="mt-16 space-y-6">
+            <div>
+                <p class="scripture text-lg leading-relaxed">&ldquo;In the beginning was the Word, and the Word was with God, and the Word was God.&rdquo;</p>
+                <p class="text-sm text-teal/50 mt-1">&mdash; John 1:1</p>
+            </div>
+            <div>
+                <p class="scripture text-lg leading-relaxed">&ldquo;Heaven and earth will pass away, but my words will not pass away.&rdquo;</p>
+                <p class="text-sm text-teal/50 mt-1">&mdash; Matthew 24:35</p>
+            </div>
+            <div>
+                <p class="scripture text-lg leading-relaxed">&ldquo;Buy the truth and do not sell it&mdash;wisdom, instruction and insight as well.&rdquo;</p>
+                <p class="text-sm text-teal/50 mt-1">&mdash; Proverbs 23:23</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================ -->
+<!-- FOOTER -->
+<!-- ============================================ -->
+<footer class="border-t border-white/5 py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <p class="font-mono text-sm text-gold/60 tracking-wide mb-3">
+            &chi; = &iiint;(G&middot;M&middot;E&middot;S&middot;T&middot;K&middot;R&middot;Q&middot;F&middot;C) dx dy dt
+        </p>
+        <p class="text-xs text-dim tracking-widest uppercase">
+            POF 2828 &middot; Theophysics &middot; David Lowe &middot; 15 + 15 = 100
+        </p>
+    </div>
+</footer>
+
+<!-- ============================================ -->
+<!-- SCRIPTS -->
+<!-- ============================================ -->
+<script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        document.getElementById('progress-bar').style.width = pct + '%';
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

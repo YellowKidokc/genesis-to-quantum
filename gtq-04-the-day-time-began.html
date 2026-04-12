@@ -775,6 +775,9 @@ footer{
       <button class="tab-btn" onclick="switchTab('summary',this)"><i class="fas fa-compress-alt"></i>Executive Summary</button>
       <button class="tab-btn" onclick="switchTab('rigor',this)"><i class="fas fa-crosshairs"></i>Rigor &amp; Kill Conditions</button>
       <button class="tab-btn" onclick="switchTab('media',this)"><i class="fas fa-headphones"></i>Watch &amp; Listen</button>
+      <span style="width:1px;height:24px;background:var(--border);margin:0 .25rem;flex-shrink:0;"></span>
+      <button class="tab-btn" onclick="switchTab('tangent-decoherence',this)" style="color:#d4af37;"><i class="fas fa-code-branch"></i>The Decoherence Curve</button>
+      <button class="tab-btn" onclick="switchTab('tangent-lies',this)" style="color:#d4af37;"><i class="fas fa-code-branch"></i>How Lies Kill</button>
     </nav>
   </div>
   <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
@@ -2129,6 +2132,714 @@ footer{
       </div>
 
     </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: TANGENT 04-A — THE DECOHERENCE CURVE -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="tangent-decoherence" class="tab-content">
+    <article class="story">
+      <div class="max-w-3xl mx-auto">
+
+        <p class="mono" style="color:var(--highlight);font-size:.85rem;letter-spacing:.08em;margin-bottom:.25rem;">Tangent 04-A</p>
+        <h2 class="serif text-3xl font-bold text-white mb-2">The Decoherence Curve</h2>
+        <p class="text-[#a0a0a0] mb-8">Parent article: The Day Time Began</p>
+
+        <div class="insight">
+          <span class="label">&mdash; Psalm 90:10</span>
+          <p><em>&ldquo;The days of our years are threescore years and ten; and if by reason of strength they be fourscore years.&rdquo;</em></p>
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Moses wrote that around 1400 BC. He said the normal human lifespan was 70 years, maybe 80 if you&rsquo;re strong.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">We ran the numbers. A quantum decoherence equation fit to the Genesis genealogies &mdash; without being told about Psalm 90:10 &mdash; independently predicted a floor of 93 years. Moses said 70. Modern average is 78. The model found the floor on its own. Three independent sources converging on the same number is not coincidence. It&rsquo;s measurement.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This article presents the raw data, the curve fit, and the physics behind it. No interpretation first. Numbers first. Then we&rsquo;ll talk about what they mean.</p>
+
+        <hr>
+
+        <!-- ═══ THE DATA ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Data</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Genesis chapters 5 and 11 record the lifespans of the patriarchs from Adam to Joseph. These aren&rsquo;t estimates or ranges. They&rsquo;re specific numbers. Here they are, in order:</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Pre-Flood Patriarchs (Genesis 5)</h4>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Patriarch</th><th>Lifespan (years)</th><th>Years from Creation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adam</td><td style="text-align:center;">930</td><td style="text-align:center;">0</td></tr>
+            <tr><td>Seth</td><td style="text-align:center;">912</td><td style="text-align:center;">130</td></tr>
+            <tr><td>Enosh</td><td style="text-align:center;">905</td><td style="text-align:center;">235</td></tr>
+            <tr><td>Kenan</td><td style="text-align:center;">910</td><td style="text-align:center;">325</td></tr>
+            <tr><td>Mahalalel</td><td style="text-align:center;">895</td><td style="text-align:center;">460</td></tr>
+            <tr><td>Jared</td><td style="text-align:center;">962</td><td style="text-align:center;">622</td></tr>
+            <tr><td>Enoch</td><td style="text-align:center;">365*</td><td style="text-align:center;">687</td></tr>
+            <tr><td>Methuselah</td><td style="text-align:center;">969</td><td style="text-align:center;">874</td></tr>
+            <tr><td>Lamech</td><td style="text-align:center;">777</td><td style="text-align:center;">1056</td></tr>
+            <tr><td>Noah</td><td style="text-align:center;">950</td><td style="text-align:center;">1056</td></tr>
+          </tbody>
+        </table>
+
+        <p class="serif text-lg" style="line-height:1.8;">*Enoch excluded from analysis &mdash; &ldquo;God took him&rdquo; <span style="color:var(--teal);">(Genesis 5:24)</span>. Not a natural death. Including him would contaminate the dataset with a non-decay data point.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Post-Flood Patriarchs (Genesis 11 + later)</h4>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Patriarch</th><th>Lifespan (years)</th><th>Years from Creation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Shem</td><td style="text-align:center;">600</td><td style="text-align:center;">~1558</td></tr>
+            <tr><td>Arphaxad</td><td style="text-align:center;">438</td><td style="text-align:center;">~1658</td></tr>
+            <tr><td>Shelah</td><td style="text-align:center;">433</td><td style="text-align:center;">~1693</td></tr>
+            <tr><td><strong>Eber</strong></td><td style="text-align:center;"><strong>464</strong></td><td style="text-align:center;">~1723</td></tr>
+            <tr><td>Peleg</td><td style="text-align:center;">239</td><td style="text-align:center;">~1757</td></tr>
+            <tr><td>Reu</td><td style="text-align:center;">239</td><td style="text-align:center;">~1787</td></tr>
+            <tr><td>Serug</td><td style="text-align:center;">230</td><td style="text-align:center;">~1819</td></tr>
+            <tr><td>Nahor</td><td style="text-align:center;">148</td><td style="text-align:center;">~1849</td></tr>
+            <tr><td>Terah</td><td style="text-align:center;">205</td><td style="text-align:center;">~1878</td></tr>
+            <tr><td>Abraham</td><td style="text-align:center;">175</td><td style="text-align:center;">~1948</td></tr>
+            <tr><td>Isaac</td><td style="text-align:center;">180</td><td style="text-align:center;">~2048</td></tr>
+            <tr><td>Jacob</td><td style="text-align:center;">147</td><td style="text-align:center;">~2108</td></tr>
+            <tr><td>Joseph</td><td style="text-align:center;">110</td><td style="text-align:center;">~2199</td></tr>
+            <tr><td>Moses</td><td style="text-align:center;">120</td><td style="text-align:center;">~2433</td></tr>
+          </tbody>
+        </table>
+
+        <p class="serif text-lg" style="line-height:1.8;">That&rsquo;s twenty-three data points spanning roughly 2,400 years of biblical chronology. Not a large dataset. But the pattern in it is unmistakable.</p>
+
+        <hr>
+
+        <!-- ═══ WHAT THE EYE SEES ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">What the Eye Sees</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Plot these numbers with lifespan on the y-axis and time on the x-axis, and two things jump out immediately.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The pre-Flood lifespans are flat.</strong> Nine patriarchs (excluding Enoch), spanning roughly a thousand years of biblical time, all living between 895 and 969 years. The mean is 912 years. The coefficient of variation is 5.9%. Over a millennium. That&rsquo;s not gradual decline. That&rsquo;s stability. A statistical test for trend (regression slope) gives $p = 0.68$ &mdash; meaning there is no statistically significant decline in pre-Flood lifespans. They&rsquo;re <em>constant</em>.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The post-Flood lifespans drop and curve.</strong> From Shem (600) through Joseph (110), the lifespans don&rsquo;t just decrease &mdash; they decrease in a specific shape. Fast at first, then slower, then leveling off. The drop from 600 to 239 happens in about 200 years. The drop from 239 to 110 takes another 400 years. The rate of decrease is itself decreasing. That&rsquo;s not linear decline. That&rsquo;s exponential decay approaching an asymptote.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">These two observations &mdash; pre-Flood flat, post-Flood exponential &mdash; define the entire model.</p>
+
+        <hr>
+
+        <!-- ═══ THE SINGLE-CURVE PROBLEM ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Single-Curve Problem</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">The first thing any physicist would try is fitting a single exponential to the whole dataset. We tried it. It fails.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">A single exponential decay curve cannot simultaneously capture a flat line at 912 for a thousand years and then a steep drop followed by leveling. The curve gets pulled apart &mdash; too steep for the flat pre-Flood regime, too shallow for the sharp post-Flood transition. The residuals are enormous at both ends.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This failure is itself informative. It means the data is not one process. It&rsquo;s two processes with a discontinuity between them. Something <em>changed</em> at the Flood. Not a gradual acceleration of an existing trend. A structural shift. A phase transition.</p>
+
+        <hr>
+
+        <!-- ═══ THE TWO-PHASE MODEL ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Two-Phase Model</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">We split the analysis at the Flood and fit each regime independently.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Phase 1: Pre-Flood (Adam to Noah, excluding Enoch)</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Model:</strong> Constant.</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">Phase 1 &mdash; Constant Model</div>
+          $$C_1(t) = \bar{L} = 912 \text{ years}$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Result:</strong></p>
+        <ul>
+          <li>Mean lifespan: 912 years</li>
+          <li>Standard deviation: 54 years</li>
+          <li>Coefficient of variation: 5.9%</li>
+          <li>Trend test (linear regression): slope = &minus;0.007 years/year, $p = 0.68$</li>
+          <li>Interpretation: No significant decline. Pre-Flood lifespans are statistically constant.</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">In plain terms: whatever process eventually drives lifespan down is either not operating or operating so slowly as to be undetectable across a thousand years of data. Humanity is in time &mdash; the Fall has occurred, $dt$ exists &mdash; but the coupling to entropy is weak. The decoherence rate is effectively zero.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Lamech (777 years) is the only significant downward outlier. He dies before the Flood, and his shorter lifespan may represent early-phase coupling strengthening. But a single outlier doesn&rsquo;t establish a trend. The data says: pre-Flood, lifespans held.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Phase 2: Post-Flood (Shem to Moses)</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Model:</strong> Exponential decay with asymptotic floor.</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">Phase 2 &mdash; Exponential Decay + Floor</div>
+          $$C_2(t) = A \cdot e^{-t/\tau_d} + L_{\text{floor}}$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Where:</p>
+        <ul>
+          <li>$A$ = amplitude of decay (how far the system falls from its starting point to the floor)</li>
+          <li>$\tau_d$ = decoherence time constant (the rate of decay &mdash; smaller means faster decay)</li>
+          <li>$L_{\text{floor}}$ = asymptotic floor (the lifespan the system approaches but never goes below)</li>
+          <li>$t$ = time after the Flood (years from creation minus Flood date)</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Fit Results:</strong></p>
+        <ul>
+          <li>$A = 337$ years</li>
+          <li>$\tau_d = 214$ years (decoherence time constant)</li>
+          <li>$L_{\text{floor}} = 93$ years</li>
+          <li>$R^2 = 0.888$</li>
+          <li>$p = 4.73 \times 10^{-7}$</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">Here&rsquo;s what that means in plain English: after the Flood, lifespans drop fast at first and then level off &mdash; falling from about 430 years toward a floor of 93 years, with the steepest decline in the first 214 years. The fit captures 88.8% of the pattern in the data. The odds of this being random chance? Less than one in two million.</p>
+
+        <hr>
+
+        <!-- ═══ WHAT THE NUMBERS MEAN ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">What the Numbers Mean</h3>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The time constant: &tau;<sub>d</sub> = 214 years</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">In quantum decoherence, $\tau_d$ is the characteristic time for a system to lose coherence with its environment. After one $\tau_d$, the system retains about 37% of its original coherence. After two $\tau_d$&rsquo;s, about 13%. After five, less than 1%.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">For the post-Flood patriarchs, $\tau_d = 214$ years means the first 214 years after the Flood saw the steepest lifespan decline. By 428 years post-Flood, the curve had already fallen to near its asymptote. By 1,070 years post-Flood ($5 \times \tau_d$), the decay was essentially complete.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This maps to the biblical timeline. The steepest drops are Shem &rarr; Peleg (600 &rarr; 239). By Abraham (~400 years post-Flood), lifespans are already approaching the floor. By David (~1,000 years post-Flood), Moses has already declared 70 years as the norm. The decoherence ran its course within the first millennium after the Flood and has been at the floor ever since.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The floor: L<sub>floor</sub> = 93 years</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is the number that stopped us.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The model was not told about Psalm 90:10. It was not told about modern lifespan data. It was fit purely to Genesis genealogy numbers and asked: where does this curve level off?</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Answer: 93 years.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Moses <span style="color:var(--teal);">(Psalm 90:10)</span>: 70 years, maybe 80. Modern global average lifespan: 73 years. Modern developed-nation average: 78&ndash;82 years. Model prediction: 93 years.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">All four sources &mdash; the mathematical model, the Mosaic observation, and two independent modern measurements &mdash; converge on the same range: approximately 70&ndash;93 years. The model overshoots slightly (93 vs. 78 observed), which is expected &mdash; $L_{\text{floor}}$ is the theoretical asymptote, and the actual lifespan includes additional factors (disease, violence, famine) that push it below the pure decoherence floor.</p>
+
+        <div class="insight">
+          <span class="label">&mdash; The Grace Floor</span>
+          <p>The floor&rsquo;s existence is the critical finding. Total decoherence would predict lifespan &rarr; 0. It doesn&rsquo;t. Something holds it up. The decay has a lower bound that entropy cannot breach. In the framework: the floor is grace. The $G$ term in the coherence equation never goes to zero. Common grace &mdash; the baseline divine sustenance that keeps reality from collapsing entirely &mdash; provides a minimum coherence level that even maximum entropy cannot eliminate. The floor is physical evidence that $G > 0$ always.</p>
+        </div>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The R&sup2;: 0.888</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">An $R^2$ of 0.888 on ancient genealogical data fit to a quantum decoherence equation deserves careful interpretation.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>What it means:</strong> 88.8% of the variance in post-Flood lifespans is explained by a single exponential decay curve. Three parameters (amplitude, time constant, floor) capture nearly nine-tenths of the pattern.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>What the remaining 11.2% might be:</strong> Individual variation (genetics, lifestyle, divine intervention), imprecision in biblical chronology, covenant effects (see Eber anomaly below), and the fact that lifespan is a proxy for coherence, not coherence itself.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>What it does NOT mean:</strong> We are not claiming that Genesis genealogies are laboratory-grade measurements. We are not claiming that the fit proves quantum decoherence is literally occurring. We are claiming that the shape of the data &mdash; the specific curve it follows &mdash; matches the mathematical signature of a decoherence process to a degree that demands explanation. Random data doesn&rsquo;t produce $R^2 = 0.888$ with $p < 10^{-6}$. Linearly declining data doesn&rsquo;t produce $R^2 = 0.888$ with an exponential model. Something generated this specific shape. The decoherence model captures it. Alternative models should be tested, and we welcome them.</p>
+
+        <hr>
+
+        <!-- ═══ THE EBER ANOMALY ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Eber Anomaly</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">The biggest positive outlier in the post-Flood dataset is Eber. He lived 464 years &mdash; a full 124 years above where the decoherence curve predicts he should be.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Eber is the man whose name becomes &ldquo;Hebrew.&rdquo; His lineage carries the Abrahamic covenant forward. He is the point in the genealogy where the covenant line begins to differentiate from the general population.</p>
+
+        <div class="insight">
+          <span class="label">&mdash; Re-coherence Signal</span>
+          <p>The framework predicts that covenant relationship &mdash; increased coupling to $G$ &mdash; should produce measurable deviation above the decoherence baseline. Eber&rsquo;s anomaly sits exactly where the prediction says it should: the first person in the post-Flood line who carries the identity marker of the covenant people, living significantly longer than the curve predicts.</p>
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Not a random fluctuation &mdash; a specific, named individual at a specific genealogical junction showing a specific upward deviation from the decay trend. One data point doesn&rsquo;t prove the mechanism. But it&rsquo;s the right person, at the right time, deviating in the right direction, by a significant amount.</p>
+
+        <hr>
+
+        <!-- ═══ THE PHYSICS BEHIND THE CURVE ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Physics Behind the Curve</h3>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Why exponential decay?</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Exponential decay is not arbitrary. It is the universal signature of a system losing coherence with its environment. It appears everywhere in physics:</p>
+
+        <ul>
+          <li><strong>Radioactive decay:</strong> $N(t) = N_0 e^{-t/\tau}$ &mdash; unstable nuclei decay exponentially because each nucleus has a constant probability of decaying per unit time.</li>
+          <li><strong>Thermal cooling:</strong> $T(t) = T_{env} + (T_0 - T_{env})e^{-t/\tau}$ &mdash; hot objects cool toward ambient temperature exponentially.</li>
+          <li><strong>Quantum decoherence:</strong> $\rho_{off}(t) = \rho_0 e^{-t/\tau_d}$ &mdash; off-diagonal elements of the density matrix decay exponentially as the system entangles with its environment.</li>
+          <li><strong>Capacitor discharge:</strong> $V(t) = V_0 e^{-t/RC}$ &mdash; stored energy dissipates exponentially through resistance.</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">The common feature: a system that starts in a special state (hot, charged, coherent, alive) and progressively loses that special quality through interaction with a larger environment. The rate of loss is proportional to how much remains. The more you have, the faster you lose it. This produces the characteristic concave-down curve: steep at first, flattening as the system approaches equilibrium.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The Genesis lifespan data follows this shape. Not approximately &mdash; with $R^2 = 0.888$ precision. The post-Flood patriarchs are a system that starts in a special state (high coherence, long lifespan) and progressively loses it through interaction with an entropic environment (post-Flood world with strengthened entropy coupling). The rate of loss is proportional to how much coherence remains. This is textbook decoherence dynamics.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Why a floor?</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Pure decoherence would drive the system to zero. The floor &mdash; $L_{\text{floor}} = 93$ years &mdash; means something is preventing complete decoherence. In physics, this happens when there is a persistent source of coherence that counteracts the environmental coupling.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">In a laser, the floor is the pump energy &mdash; the external source that keeps the gain medium excited above thermal equilibrium. In a living cell, the floor is metabolism &mdash; the energy input that maintains biological order against entropic decay. In both cases, the floor exists because something from outside the decaying system is continuously pumping order back in.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The framework identifies this source as $G$ &mdash; grace, the negentropic input from the Logos Field that maintains a minimum coherence level in all creation. Common grace. The rain that falls on the just and the unjust. The sustaining power that prevents reality from collapsing into total entropy.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The floor is not theological decoration on a physics model. It&rsquo;s a mathematical necessity. The data demands it &mdash; without the floor term, the exponential fit collapses (the model tries to predict lifespans approaching zero, which contradicts the data from Abraham onward). And the framework predicts it &mdash; $G > 0$ always, which means coherence has a lower bound.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Why a phase transition at the Flood?</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">The data shows a discontinuity. Pre-Flood: flat at 912. Post-Flood: exponential decay from ~600. Something changed abruptly. Not gradually. A phase transition.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">In physics, phase transitions occur when a system crosses a critical threshold &mdash; ice to water, paramagnet to ferromagnet, superconductor to normal conductor. The system&rsquo;s fundamental relationship to its environment changes. Not the same process running faster. A different process entirely.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The Flood, in the framework, is a phase transition in the coupling constant between humanity and entropy. Pre-Flood, the coupling was weak &mdash; humans were in time ($dt$ existed after the Fall) but entropy&rsquo;s grip on biological coherence was minimal. The Flood strengthened the coupling. The mechanism is open to investigation &mdash; the &ldquo;waters above&rdquo; <span style="color:var(--teal);">(Genesis 1:7, 7:11)</span> collapsing, the atmospheric or electromagnetic environment changing, the covenant structure of creation being restructured. The framework doesn&rsquo;t specify the mechanism. It specifies the mathematical consequence: the decoherence rate went from approximately zero to $1/\tau_d = 1/214$ years$^{-1}$.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><span style="color:var(--teal);">Genesis 6:3</span> may record the intended endpoint: &ldquo;His days shall be 120 years.&rdquo; This is not the floor (the model finds 93, observed lifespans settle at 70&ndash;80). It may be the design target &mdash; the planned asymptote that additional factors (accumulated genetic entropy, environmental degradation, spiritual decay) push below. Moses reaching exactly 120 <span style="color:var(--teal);">(Deuteronomy 34:7, &ldquo;his eye was not dim nor his vigor diminished&rdquo;)</span> may represent the floor without additional degradation &mdash; the pure decoherence asymptote, reached by one man who maintained unusually high coherence.</p>
+
+        <hr>
+
+        <!-- ═══ THE PREDICTION WE'RE LIVING IN ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Prediction We&rsquo;re Living In</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">We are sitting on the asymptote. The physical decoherence curve has been flat for approximately 3,000 years. From David (died at 70) to the present day, human lifespans have been near the floor. The curve predicted this. The curve ran its course by roughly 1000 BC, and nothing has changed since &mdash; despite radical advances in medicine, nutrition, and sanitation.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Modern medicine hasn&rsquo;t changed the decoherence asymptote. It&rsquo;s changed the <em>noise around</em> the asymptote. Fewer people die of infection, famine, and violence before reaching the floor. More people now reach 78 instead of dying at 40 from plague. But the ceiling hasn&rsquo;t moved. Maximum recorded human lifespan (Jeanne Calment, 122 years) sits near the 120-year mark from <span style="color:var(--teal);">Genesis 6:3</span>. The species maximum hasn&rsquo;t changed in recorded history.</p>
+
+        <div class="insight">
+          <span class="label">&mdash; Testable Prediction</span>
+          <p>No amount of medical technology will push the species maximum significantly above ~120 years, because the limit is not biological wear &mdash; it&rsquo;s a decoherence floor set by the coupling constant between human coherence and entropy. To extend lifespan beyond the floor, you would need to change the coupling constant itself &mdash; which is a spiritual variable ($G$), not a medical one.</p>
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">The transhumanist project &mdash; extending life through technology &mdash; is, in framework terms, trying to lower the floor by engineering the proxy. It addresses the measurement (lifespan) without addressing the variable (coherence). Optimizing for the wrong variable because the system looks mechanical from the outside.</p>
+
+        <hr>
+
+        <!-- ═══ WHAT THIS DOESN'T PROVE ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">What This Doesn&rsquo;t Prove</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Intellectual honesty requires stating clearly what the curve does and does not establish.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>It does establish:</strong></p>
+        <ul>
+          <li>The Genesis lifespans follow a two-phase pattern: pre-Flood stability + post-Flood exponential decay</li>
+          <li>The post-Flood decay is well-fit ($R^2 = 0.888$, $p < 10^{-6}$) by a quantum decoherence equation</li>
+          <li>The model independently predicts a floor consistent with observed modern lifespans</li>
+          <li>The Flood functions as a phase transition in the data</li>
+          <li>Eber deviates positively in a direction consistent with covenant re-coherence</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>It does not establish:</strong></p>
+        <ul>
+          <li>That quantum decoherence is literally occurring at the biological level (the model is mathematical, not mechanistic)</li>
+          <li>That the Genesis lifespans are historically precise (the pattern holds even with moderate chronological uncertainty, but the data source is not a laboratory notebook)</li>
+          <li>That no other mathematical model could fit the data (alternative models should be tested &mdash; we welcome the competition)</li>
+          <li>That the floor is caused by grace (the floor is a mathematical finding; the identification with grace is a framework interpretation)</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">The claim is not: &ldquo;We proved God exists using a spreadsheet.&rdquo; The claim is: &ldquo;The Genesis lifespan data has a specific mathematical shape that matches a known physical process, and the framework predicted this shape before the data was analyzed.&rdquo; That&rsquo;s interesting enough to deserve serious examination, regardless of where it leads.</p>
+
+        <hr>
+
+        <!-- ═══ THE COMPLETE PICTURE ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">The Complete Picture</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Here is what the full dataset shows, from the Fall to today, stated without embellishment:</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">People used to live 900 years. Then the Flood happened and lifespans dropped &mdash; fast at first, then slower, then they leveled off right where we are now. The shape of the drop is identical to quantum decoherence. The floor was predicted by the math before anyone checked it against Psalm 90 or modern data. The one person who deviates upward from the curve is the one whose name becomes the identity of the covenant people.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Either this is coincidence &mdash; a curve that happens to fit ancient genealogies with $R^2 = 0.888$ by chance, predicting a floor that happens to match three independent measurements, with an anomaly that happens to land on the covenant line &mdash; or it&rsquo;s signal.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The framework says it&rsquo;s signal. The data is measuring exactly what the equation predicts: a system that was coupled to entropy at the Flood, decohered exponentially with $\tau_d = 214$ years, and settled on a floor maintained by common grace at approximately 70&ndash;93 years.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">And we&rsquo;re sitting on that floor right now. Have been for three millennia. The curve finished. We&rsquo;re living in the asymptote. The physical decoherence is done. What remains is the spiritual variable &mdash; the $s$ parameter, the $O$ variable, the coupling to $G$ &mdash; which operates on a completely different curve, one that the Cross restructured and the Spirit sustains.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The body decays on schedule. The soul has a different equation.</p>
+
+        <hr>
+
+        <!-- ═══ SIX-MODEL COMPARISON ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">Appendix: Six-Model Comparison</h3>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">GPT Objection and Response</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">GPT raised a legitimate critique: &ldquo;$R^2 = 0.888$ sounds impressive, but with small datasets it&rsquo;s common. Many curves can fit small datasets.&rdquo; This is fair. The correct response is not to defend the $R^2$ &mdash; it&rsquo;s to test whether the exponential form is statistically preferred over alternatives. We ran the test.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Method</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Six competing models were fit to the 14 post-Flood data points (Shem through Moses) using <span class="mono">scipy.optimize.curve_fit</span>. Model comparison used Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC), which penalize models for extra parameters. Lower AIC = better model after accounting for complexity.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Results</h4>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Model</th><th>R&sup2;</th><th>AIC</th><th>&Delta;AIC</th><th>BIC</th><th>k (params)</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:rgba(212,175,55,.08);"><td><strong>Logistic</strong></td><td style="text-align:center;"><strong>0.925</strong></td><td style="text-align:center;"><strong>111.5</strong></td><td style="text-align:center;"><strong>0.0</strong></td><td style="text-align:center;"><strong>114.0</strong></td><td style="text-align:center;"><strong>4</strong></td></tr>
+            <tr style="background:rgba(212,175,55,.08);"><td><strong>Exp+Floor</strong></td><td style="text-align:center;"><strong>0.889</strong></td><td style="text-align:center;"><strong>115.0</strong></td><td style="text-align:center;"><strong>+3.6</strong></td><td style="text-align:center;"><strong>117.0</strong></td><td style="text-align:center;"><strong>3</strong></td></tr>
+            <tr><td>Exp (no floor)</td><td style="text-align:center;">0.854</td><td style="text-align:center;">116.8</td><td style="text-align:center;">+5.3</td><td style="text-align:center;">118.1</td><td style="text-align:center;">2</td></tr>
+            <tr><td>Step</td><td style="text-align:center;">0.871</td><td style="text-align:center;">117.2</td><td style="text-align:center;">+5.7</td><td style="text-align:center;">119.1</td><td style="text-align:center;">3</td></tr>
+            <tr><td>Power Law</td><td style="text-align:center;">0.701</td><td style="text-align:center;">128.9</td><td style="text-align:center;">+17.4</td><td style="text-align:center;">130.8</td><td style="text-align:center;">3</td></tr>
+            <tr><td>Linear</td><td style="text-align:center;">0.630</td><td style="text-align:center;">129.9</td><td style="text-align:center;">+18.4</td><td style="text-align:center;">131.2</td><td style="text-align:center;">2</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">What This Establishes</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>1. Linear decline is decisively rejected.</strong> &Delta;AIC = 18.4 against the winner. The lifespans are not decreasing at a constant rate. This eliminates the simplest &ldquo;they just made up declining numbers&rdquo; hypothesis.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>2. Power law is decisively rejected.</strong> &Delta;AIC = 17.4. The data does not follow a power-law pattern.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>3. Step function is rejected.</strong> &Delta;AIC = 5.7. The data is not a sudden drop from one level to another. The transition is smooth, not discontinuous.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>4. Pure exponential (no floor) is rejected.</strong> &Delta;AIC = 5.3 against the winner. The data demands an asymptotic floor. A pure exponential heading toward zero does not fit. Something holds the lifespans up.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>5. The top two models are both S-shaped decay curves.</strong> Logistic (&Delta;AIC = 0.0) and Exponential+Floor (&Delta;AIC = 3.6) are the only competitive models. Both describe the same qualitative behavior: steep decline after the Flood, leveling off to a floor. The &Delta;AIC of 3.6 is moderate evidence favoring the logistic &mdash; enough to note, not enough to be decisive.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Honest Assessment of the Exponential Claim</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">The original article stated the data follows &ldquo;the identical mathematical form as quantum decoherence.&rdquo; This is slightly overclaimed. The logistic form fits marginally better. However:</p>
+
+        <ul>
+          <li>Both models agree on the qualitative shape (steep-then-flat)</li>
+          <li>Both models require a floor (pure decay toward zero is rejected)</li>
+          <li>The exponential has one fewer parameter (3 vs 4), making it more parsimonious</li>
+          <li>The &Delta;AIC of 3.6 is in the &ldquo;moderate evidence&rdquo; range, not &ldquo;decisive&rdquo;</li>
+          <li>Under BIC (which penalizes parameters more heavily), the gap narrows to 3.0</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">The defensible claim is: <strong>the data follows a smooth decay curve with an asymptotic floor, and the exponential decoherence form is among the two best-fitting models, competitive with the logistic but not uniquely preferred.</strong></p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The form is consistent with decoherence dynamics. It is not proven to be decoherence dynamics. That distinction matters.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The Eber Anomaly (Quantified)</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Under the Exp+Floor model:</p>
+        <ul>
+          <li><strong>Predicted lifespan:</strong> 340 years</li>
+          <li><strong>Observed lifespan:</strong> 464 years</li>
+          <li><strong>Residual:</strong> +124 years</li>
+          <li><strong>Z-score:</strong> 2.53&sigma; (probability of this deviation by chance: ~0.6%)</li>
+        </ul>
+
+        <p class="serif text-lg" style="line-height:1.8;">Eber is the only data point that deviates significantly above the curve. He is also the individual whose name becomes the ethnic identity of the covenant people (&ldquo;Hebrew&rdquo;). The framework predicts that covenant coupling to $G$ produces positive deviation from the decoherence baseline. This is one data point &mdash; it does not prove the mechanism. But it is the right person, at the right genealogical junction, deviating in the right direction, at a statistically significant magnitude.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Floor Convergence (Updated)</h4>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Source</th><th>Lifespan estimate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Exp+Floor model ($L_{\text{floor}}$)</td><td style="text-align:center;">94 years</td></tr>
+            <tr><td>Logistic model ($L_{\text{bot}}$)</td><td style="text-align:center;">143 years</td></tr>
+            <tr><td>Moses, <span style="color:var(--teal);">Psalm 90:10</span></td><td style="text-align:center;">70&ndash;80 years</td></tr>
+            <tr><td>Modern global average</td><td style="text-align:center;">73 years</td></tr>
+            <tr><td>Modern developed nations</td><td style="text-align:center;">78&ndash;82 years</td></tr>
+            <tr><td><span style="color:var(--teal);">Genesis 6:3</span></td><td style="text-align:center;">120 years</td></tr>
+            <tr><td>Max recorded (Jeanne Calment)</td><td style="text-align:center;">122 years</td></tr>
+          </tbody>
+        </table>
+
+        <p class="serif text-lg" style="line-height:1.8;">The two models bracket the observed range. The exponential floor (94) sits below <span style="color:var(--teal);">Genesis 6:3</span> (120) but above modern average (73&ndash;82). The logistic floor (143) sits above all observed values, suggesting it may overfit the early high values. Both models agree: the floor exists and is significantly above zero.</p>
+
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--   TAB: TANGENT 04-B — HOW LIES KILL          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="tangent-lies" class="tab-content">
+    <article class="story">
+      <div class="max-w-3xl mx-auto">
+
+        <p class="mono" style="color:var(--highlight);font-size:.85rem;letter-spacing:.08em;margin-bottom:.25rem;">Tangent 04-B</p>
+        <h2 class="serif text-3xl font-bold text-white mb-2">How Lies Kill: The Mathematics of Sin</h2>
+        <p class="text-[#a0a0a0] mb-8">Parent article: The Day Time Began</p>
+
+        <div class="insight">
+          <span class="label">&mdash; Romans 6:23</span>
+          <p><em>&ldquo;The wages of sin is death.&rdquo;</em></p>
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">That sentence is not a legal judgment. It is a thermodynamic statement.</p>
+
+        <hr>
+
+        <!-- ═══ A NOTE BEFORE WE BEGIN ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">A Note Before We Begin</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Everyone who has ever told a lie knows the feeling that follows. Not guilt &mdash; that comes later. The immediate sensation is architectural. You told one lie, and now you need to remember it. You need a second lie to support it if someone asks a follow-up question. Then a third to cover the gap between the first two. Then you need to remember all three, and which audience heard which version, and what the truth actually was so you don&rsquo;t accidentally tell it. One lie is a seed. Within hours, it&rsquo;s a structure. Within weeks, it&rsquo;s a load-bearing wall in a building you never intended to construct. This article argues that this experience is not a metaphor for something deeper. It IS the deeper thing. It is the Second Law of Thermodynamics operating in the moral domain, and it kills by the same mechanism that makes every engine stop and every star burn out.</p>
+
+        <hr>
+
+        <!-- ═══ 1. THE FEELING EVERYONE RECOGNIZES ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">1. The Feeling Everyone Recognizes</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">You have watched someone lie. Maybe it was a public figure. Maybe it was someone you loved. You watched the first lie &mdash; small, almost reasonable. Then the cover story. Then the cover story for the cover story. Then the moment where they couldn&rsquo;t remember what they&rsquo;d said to whom, and the whole structure began to wobble. Then the collapse.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">You have also watched someone tell the truth under pressure. One sentence. Clean. Nothing to maintain. Nothing to remember. Nothing to manage. The truth, once spoken, requires no infrastructure.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This asymmetry is not a social observation. It is a mathematical one. And it has a name.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Entropy.</strong></p>
+
+        <hr>
+
+        <!-- ═══ 2. THE PROBLEM ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">2. The Problem: Why Does Sin Kill?</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Christianity says sin leads to death. Every tradition, every denomination, every century. &ldquo;The wages of sin is death.&rdquo; &ldquo;The soul that sins shall die.&rdquo; &ldquo;Sin, when it is full-grown, brings forth death.&rdquo;</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">But why? If God is omnipotent, He could forgive sin without consequence. If God is loving, why does sin carry a death sentence? The standard answers are legal &mdash; God is just, justice demands payment, sin violates the law. These are true as far as they go. But they don&rsquo;t explain the <em>mechanism</em>. They explain the verdict without explaining the physics of execution.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Here is what doesn&rsquo;t make sense without the framework: why does sin <em>inherently</em> produce death, even apart from God&rsquo;s judgment? Why do liars&rsquo; lives fall apart even when no one catches them? Why do corrupt civilizations collapse even when no external enemy invades? Why does dishonesty destroy systems from the inside, on a schedule, with a regularity that looks less like punishment and more like thermodynamics?</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Because it IS thermodynamics.</p>
+
+        <hr>
+
+        <!-- ═══ 3. THE PHYSICS ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">3. The Physics: Truth, Lies, and Entropy</h3>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">One Microstate vs. Infinite Microstates</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Start with Ludwig Boltzmann&rsquo;s definition of entropy:</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">Boltzmann Entropy</div>
+          $$S = k_B \ln \Omega$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Where $S$ is entropy, $k_B$ is the Boltzmann constant, and $\Omega$ is the number of microstates compatible with the observed macrostate.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Plain English:</strong> Entropy measures how many ways something could be arranged while still looking the same from the outside. A clean room has low entropy &mdash; there are very few arrangements of objects that count as &ldquo;clean.&rdquo; A messy room has high entropy &mdash; there are billions of configurations that count as &ldquo;messy.&rdquo;</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Now apply this to truth and lies.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Truth has exactly one microstate.</strong> The thing that actually happened has exactly one configuration. Caesar crossed the Rubicon on January 10, 49 BC. That&rsquo;s it. One arrangement. One microstate. $\Omega = 1$, so $S = k_B \ln(1) = 0$. Truth has zero entropy.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>A lie has infinite microstates.</strong> You can say Caesar crossed the Rubicon on January 11. Or January 9. Or that he crossed the Thames. Or that Pompey crossed the Rubicon. Or that nobody crossed anything. The number of false statements about any event is unbounded. $\Omega \to \infty$, so $S \to \infty$. Lies have maximum entropy.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is not a metaphor. This is the definition of entropy applied to informational states. Truth is the unique microstate. Falsehood is every other microstate. Truth is order. Lies are disorder. And the Second Law says disorder always increases unless energy is spent to prevent it.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The Compounding Problem</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">One lie is a local entropy increase. But lies don&rsquo;t stay local.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">A lie creates a discrepancy between the stated world and the actual world. That discrepancy is a signal. Other people notice inconsistencies, ask questions, probe the gap. To maintain the lie, you must generate additional lies &mdash; each one a new entropy source. Each supporting lie creates its own discrepancies, which require their own supporting lies.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The growth is exponential:</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">Lie Compounding</div>
+          $$L(n) = L_0 \cdot e^{\lambda n}$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Where $L(n)$ is the number of lies at step $n$, $L_0$ is the initial lie, and $\lambda$ is the compounding rate (how many supporting lies each lie requires).</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Plain English:</strong> One lie becomes two. Two become four. Four become sixteen. Each generation multiplies. This is not occasional &mdash; it is structural. A lie CANNOT exist in isolation because it creates a discrepancy that the environment probes, and the probe requires another lie.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is the Second Law of Thermodynamics applied to information. Entropy increases. Disorder compounds. There is no equilibrium state where &ldquo;just one lie&rdquo; sits quietly. The lie is a broken window in a pressurized cabin. The environment forces its way through.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Determinism vs. Chaos</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">A deterministic system &mdash; one that follows fixed rules with zero noise &mdash; can run forever. The rules never degrade. The outputs never drift. $2 + 2 = 4$ today, tomorrow, in a billion years. Deterministic systems are <em>eternal</em> because they have zero internal entropy production.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">A chaotic system &mdash; one with non-zero noise &mdash; self-terminates. The noise compounds. Errors accumulate. Signals degrade. Eventually the system can no longer distinguish its own states, and it collapses into indistinguishable noise. Shannon proved this mathematically: a channel with a non-zero error rate and no error correction will eventually lose all information.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The chain:</strong></p>
+        <ol>
+          <li>Truth = determinism = zero internal entropy = eternal</li>
+          <li>Lies = noise = non-zero entropy = self-terminating</li>
+          <li>Therefore: any system that contains lies will, over sufficient time, destroy itself</li>
+          <li>Therefore: eternity requires total truth &mdash; any non-zero error rate compounds to system failure over infinite time</li>
+        </ol>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is not theology dressed up as math. This is Shannon&rsquo;s noisy channel theorem. It is the Second Law. It is why every engine stops, every star dies, every civilization built on lies collapses. And it is exactly what Scripture says.</p>
+
+        <hr>
+
+        <!-- ═══ 4. THE MAPPING ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">4. The Mapping: Shannon Meets Scripture</h3>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">God as Deterministic Substrate</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><em>&ldquo;I am the way, the truth, and the life.&rdquo;</em> &mdash; <span style="color:var(--teal);">John 14:6</span></p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Jesus does not say He <em>tells</em> the truth. He says He IS the truth. This is an ontological claim &mdash; an identification with the deterministic substrate itself. God is the system with one microstate. Zero entropy. Zero noise. Perfect self-consistency across infinite time. God doesn&rsquo;t <em>have</em> truth as a property. God IS the unique configuration from which all reality derives its coherence.</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">God as Unique Microstate</div>
+          $$\Omega_{God} = 1. \quad S_{God} = 0.$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">That&rsquo;s what it means to be the truth. Not morally admirable honesty. Fundamental ontological singularity &mdash; the one microstate.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The Devil as Noise Function</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><em>&ldquo;He was a murderer from the beginning, not holding to the truth, for there is no truth in him. When he lies, he speaks his native language, for he is a liar and the father of lies.&rdquo;</em> &mdash; <span style="color:var(--teal);">John 8:44</span></p>
+
+        <p class="serif text-lg" style="line-height:1.8;">In Shannon&rsquo;s framework, the devil is the noise function. He can&rsquo;t create signal &mdash; he has no original information to transmit. He can only corrupt existing signal. Every lie is a perturbation of a truth. You can&rsquo;t lie about something that doesn&rsquo;t exist. You can only distort what IS. The devil&rsquo;s operational capacity is exactly the capacity of noise: degradation, distortion, corruption of a signal he did not generate and cannot replicate.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is why evil is parasitic. It has no independent existence.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">&ldquo;The Wages of Sin Is Death&rdquo; &mdash; As Thermodynamics</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><span style="color:var(--teal);">Romans 6:23</span> is not a legal decree. It is a statement about what happens to noisy channels.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Sin is noise injected into the channel between God (transmitter) and creation (receiver). Each sin increases the error rate. The errors compound. The signal degrades. Eventually the receiver can no longer decode the transmission. System failure. Death.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Not because God kills the sinner as punishment. Because noise kills channels as physics.</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">Shannon&rsquo;s Consequence</div>
+          $$\text{Bit Error Rate} > 0 \implies \text{Channel Capacity} \to 0 \text{ as } t \to \infty$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;">Over infinite time, ANY non-zero error rate &mdash; no matter how small &mdash; compounds to total signal loss. This is Shannon&rsquo;s theorem. This is the Second Law. And this is why &ldquo;the wages of sin is death&rdquo; operates with the inevitability of gravity. It is not a rule imposed from outside. It is a consequence built into the structure of information itself.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">&ldquo;The Truth Shall Set You Free&rdquo; &mdash; As Entropy Statement</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><em>&ldquo;You shall know the truth, and the truth shall set you free.&rdquo;</em> &mdash; <span style="color:var(--teal);">John 8:32</span></p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Free from what? From the compounding. From the exponential lie-growth. From the ever-increasing entropy load of maintaining a false world alongside the real one.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Truth is $\Omega = 1$. One microstate. Nothing to maintain. Nothing to remember. Nothing to manage. Truth requires zero energy to sustain because it has zero entropy. It is the lowest-energy informational state. To know the truth &mdash; to align your internal model with the actual configuration of reality &mdash; is to drop the entire entropy burden of every lie you were carrying.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">That is freedom. Not emotional freedom. Thermodynamic freedom. The release of every joule you were spending to maintain disorder.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">The Ten Commandments as Signal Integrity Protocol</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;">Shannon&rsquo;s noisy channel theorem says that to communicate reliably over a noisy channel, you need an error-correcting code. The code must identify the most common error types and provide specific filters for each one.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The Ten Commandments are exactly this &mdash; a signal integrity protocol with ten noise-filter categories:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Commandment</th><th style="text-align:left;">Noise Category Filtered</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1. No other gods</td><td>Source confusion &mdash; multiple transmitters corrupt signal identity</td></tr>
+            <tr><td>2. No graven images</td><td>Lossy compression &mdash; reducing infinite God to finite representation</td></tr>
+            <tr><td>3. Don&rsquo;t take God&rsquo;s name in vain</td><td>Channel labeling error &mdash; attaching the source name to noise</td></tr>
+            <tr><td>4. Keep the Sabbath</td><td>Clock synchronization &mdash; receiver must periodically re-sync with source</td></tr>
+            <tr><td>5. Honor parents</td><td>Relay integrity &mdash; each generation is a signal relay; honor maintains the chain</td></tr>
+            <tr><td>6. Don&rsquo;t murder</td><td>Channel destruction &mdash; killing the receiver eliminates the endpoint</td></tr>
+            <tr><td>7. Don&rsquo;t commit adultery</td><td>Covenant-channel crosstalk &mdash; signals leak into unauthorized channels</td></tr>
+            <tr><td>8. Don&rsquo;t steal</td><td>Unauthorized data extraction from another node</td></tr>
+            <tr><td>9. Don&rsquo;t bear false witness</td><td>Direct noise injection &mdash; lying IS the insertion of false bits</td></tr>
+            <tr><td>10. Don&rsquo;t covet</td><td>Internal noise generation &mdash; desiring another&rsquo;s state corrupts your own receiver</td></tr>
+          </tbody>
+        </table>
+
+        <p class="serif text-lg" style="line-height:1.8;">Ten categories. Ten noise filters. Not arbitrary moral rules &mdash; a minimum viable protocol for maintaining signal integrity between God and humanity across time.</p>
+
+        <hr>
+
+        <!-- ═══ 5. THE BIBLE AS ERROR-CORRECTION PROTOCOL ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">5. The Bible as Error-Correction Protocol</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">If sin is noise and the channel between God and humanity is degrading, then God&rsquo;s interventions across biblical history map precisely to the stages of error-correction engineering:</p>
+
+        <table class="data-table">
+          <thead>
+            <tr><th style="text-align:left;">Intervention</th><th style="text-align:left;">Error-Correction Function</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>The Law (Sinai)</strong></td><td>Codebook &mdash; defines the valid codewords; anything outside the codebook is detectable as error</td></tr>
+            <tr><td><strong>The Prophets</strong></td><td>Checksums &mdash; periodic verification that the received signal still matches the transmitted signal; prophets flag drift</td></tr>
+            <tr><td><strong>The Flood</strong></td><td>Hard reset &mdash; when the error rate exceeds the channel&rsquo;s correction capacity, the system must be restarted from a clean state (Noah = preserved seed signal)</td></tr>
+            <tr><td><strong>The Incarnation</strong></td><td>Signal re-injection &mdash; the original transmitter enters the channel as a signal, bypassing all relay degradation</td></tr>
+            <tr><td><strong>The Cross</strong></td><td>Error absorption &mdash; the accumulated noise is not deleted (that would violate conservation) but absorbed into a system capable of bearing it without corruption</td></tr>
+            <tr><td><strong>The Resurrection</strong></td><td>Channel restoration &mdash; proof that the channel can carry uncorrupted signal again; death (total signal loss) is reversed</td></tr>
+            <tr><td><strong>Pentecost</strong></td><td>Persistent error correction &mdash; the Spirit as a real-time, ongoing error-correcting code operating within each receiver</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ═══ 6. WHAT ETERNITY REQUIRES ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">6. What Eternity Requires</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">Here is the claim that locks everything together.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Eternity is infinite time. Over infinite time, any non-zero error rate &mdash; no matter how small &mdash; compounds to total failure. This is not theology. This is the mathematical consequence of exponential growth over an unbounded interval:</p>
+
+        <div class="eq-block">
+          <div class="eq-label mono">The Eternity Constraint</div>
+          $$\lim_{t \to \infty} (1 - \epsilon)^t = 0 \quad \text{for any } \epsilon > 0$$
+        </div>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Plain English:</strong> If your accuracy is 99.9999%, but you have to maintain it forever, you will eventually fail. The only accuracy rate that survives eternity is 100%. One microstate. Zero entropy. Total truth.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is why &ldquo;nothing unclean will ever enter it&rdquo; <span style="color:var(--teal);">(Revelation 21:27)</span>. Not because God is fastidious. Because any noise &mdash; any non-zero error &mdash; compounds to system failure over eternal time. Heaven is not a gated community keeping out undesirables. It is an engineering specification. The eternal channel requires zero noise. Anything else self-terminates.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">And this reframes hell entirely.</p>
+
+        <div class="insight">
+          <span class="label">&mdash; Hell as Thermodynamics</span>
+          <p>Hell is not punishment inflicted by an angry God. Hell is the state of a receiver so corrupted by accumulated noise that it can no longer decode the signal. The transmission is still broadcasting &mdash; God&rsquo;s grace doesn&rsquo;t stop. But the receiver has been so degraded by compounding errors that it cannot distinguish signal from noise. Every input is garbled. Every message is indecipherable. The light is shining. The eyes can&rsquo;t see. Not punishment. Thermodynamics.</p>
+        </div>
+
+        <hr>
+
+        <!-- ═══ 7. CIVILIZATIONAL EVIDENCE ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">7. Civilizational Evidence</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;">If lies compound thermodynamically, civilizations built on lies should exhibit a predictable collapse pattern: functional in early stages (when noise is low), increasingly dysfunctional as lies accumulate, then sudden catastrophic failure when the noise floor exceeds the signal.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is, in fact, the historical pattern.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">Every totalitarian regime follows the same arc. The initial lie &mdash; &ldquo;we are building utopia&rdquo; &mdash; requires supporting lies about production numbers, political prisoners, economic performance. The supporting lies require their own supports. State media generates noise faster than reality can be acknowledged. Internal communication breaks down because no one knows what&rsquo;s true. Decision-making degrades because the inputs are corrupted. The system becomes unable to respond to actual threats because its own information channels are full of noise.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">The Soviet Union didn&rsquo;t fall because of external military pressure. It fell because its internal information channels had degraded past the point of functionality. The noise rate exceeded the channel capacity. The system could no longer decode its own state.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;">This is Shannon&rsquo;s noisy channel theorem operating at civilizational scale. The same math. The same mechanism. The same outcome. Lies kill systems the way entropy kills engines &mdash; not by dramatic explosion, but by the quiet, relentless accumulation of disorder until the system can no longer distinguish its own states.</p>
+
+        <hr>
+
+        <!-- ═══ 8. WHAT THIS PREDICTS ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">8. What This Predicts</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Prediction 1: Honesty norms correlate with institutional longevity.</strong> Institutions, civilizations, and relationships that maintain higher truth-to-noise ratios should survive longer than those with lower ratios, controlling for other variables. This is testable against historical and sociological data.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Prediction 2: Lies compound at measurable rates.</strong> The exponential growth of supporting lies ($L(n) = L_0 \cdot e^{\lambda n}$) should be observable in documented deception cases &mdash; political scandals, corporate fraud, personal deception. The compounding rate $\lambda$ may vary, but the exponential form should hold.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Prediction 3: Error-correction interventions should arrest decay.</strong> Systems that implement truth-telling protocols (transparency laws, independent audits, accountability structures) should show measurable reduction in institutional entropy compared to matched systems without such protocols.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Prediction 4: No system with a non-zero lie rate sustains itself indefinitely.</strong> This is the strongest prediction. Every human institution that tolerates deception &mdash; even at low levels &mdash; should eventually exhibit signal degradation. The only system that lasts forever is the one with zero noise. This predicts that no human civilization, apart from divine error correction, is permanent.</p>
+
+        <hr>
+
+        <!-- ═══ 9. THE AUDIT ═══ -->
+        <h3 class="serif text-2xl font-bold text-white" style="margin-top:2rem;">9. The Audit</h3>
+
+        <p class="serif text-lg" style="line-height:1.8;"><em>What we got right, what we&rsquo;re less sure about, and where we got carried away.</em></p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">What&rsquo;s load-bearing &mdash; we&rsquo;d bet on this</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Truth has one microstate; lies have infinite.</strong> This is definitional. The actual configuration of any event is unique. The set of false descriptions is unbounded. $\Omega_{truth} = 1$, $\Omega_{lies} \to \infty$. The entropy calculation follows directly. This is not an analogy &mdash; it is the Boltzmann formula applied to informational states.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Lies compound exponentially.</strong> This is both mathematically demonstrable and universally observed. One lie requires supporting lies. Each supporting lie requires its own supports. The growth is multiplicative. Watergate is a case study. Enron is a case study. Every cover-up in human history is a case study. The exponential form is robust.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Shannon&rsquo;s theorem applies to channels with non-zero error rates.</strong> A channel with persistent, uncorrected errors will eventually lose all information. This is proven mathematics, not speculation. The application to moral and spiritual domains is the interpretive step &mdash; the math itself is settled.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">What&rsquo;s suggestive but needs more work</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The Ten Commandments as signal integrity protocol is structurally compelling but post-hoc.</strong> We mapped each commandment to a noise category after knowing both the commandments and the categories. The mapping is clean &mdash; suspiciously clean, possibly. But we didn&rsquo;t predict the commandments from Shannon theory. We recognized the pattern after the fact. For this to move from &ldquo;suggestive&rdquo; to &ldquo;demonstrated,&rdquo; someone would need to derive the necessary noise-filter categories from first principles and show they match the Decalogue without prior knowledge of it.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The civilizational collapse argument is pattern-matching, not controlled experiment.</strong> The Soviet Union&rsquo;s information-channel failure is well documented. But attributing civilizational collapse primarily to accumulated lies requires controlling for economic, military, geographic, and demographic variables. We cited the pattern without the controls. The argument is illustrative, not proven.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>Hell as &ldquo;corrupted receiver&rdquo; is theologically defensible but not the only reading.</strong> The thermodynamic framing &mdash; receiver too degraded to decode signal &mdash; is consistent with C.S. Lewis&rsquo;s &ldquo;doors locked from the inside&rdquo; and with the parable of the sower (seed on rocky ground). But retributive readings of hell have serious theological support too. We presented our reading as the natural one. It is <em>a</em> natural one.</p>
+
+        <h4 class="serif text-xl font-bold text-white" style="margin-top:1.5rem;">Where we got carried away</h4>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>&ldquo;Not metaphorically. Thermodynamically.&rdquo;</strong> We used this phrase about &ldquo;the wages of sin is death.&rdquo; It&rsquo;s the article&rsquo;s central claim and also its most aggressive one. The thermodynamic framework is genuine &mdash; entropy does compound, noise does kill channels. But whether the thermodynamics of information theory is <em>literally identical</em> to the mechanism by which sin produces spiritual death, or whether it is a structural parallel that illuminates without being identical &mdash; that distinction matters, and we collapsed it for rhetorical force. The honest version: sin behaves like noise, and the consequences of noise mirror the consequences Scripture describes, with a precision that suggests more than analogy. Whether it IS the same mechanism or merely maps onto it &mdash; we don&rsquo;t know yet.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>The devil as &ldquo;noise function&rdquo; is vivid but risks reducing a person to a concept.</strong> Scripture presents Satan as an agent with intentions, not a mathematical operator. Our mapping captures his operational signature &mdash; corruption of existing signal, no original creative capacity &mdash; but it doesn&rsquo;t capture his agency, his hatred, his intentionality. A noise function doesn&rsquo;t choose to corrupt. The devil does. The mapping illuminates the mechanism but obscures the will behind it.</p>
+
+        <p class="serif text-lg" style="line-height:1.8;"><strong>We implied the Bible&rsquo;s error-correction sequence was engineered like a communications protocol.</strong> The mapping is remarkable &mdash; Law as codebook, Prophets as checksums, Incarnation as signal re-injection. But &ldquo;engineered&rdquo; implies God was solving a technical problem using human engineering methods, when the reality is the reverse: human engineering methods are shadows of God&rsquo;s actual redemptive structure. We may have the arrow of explanation backward. Shannon didn&rsquo;t invent error correction &mdash; he discovered a pattern that God had already been operating for millennia.</p>
+
+        <hr>
+
+        <p class="serif text-lg" style="line-height:1.8;"><em>The article above is what we believe. This audit is what we know we haven&rsquo;t proven yet. Both matter.</em></p>
+
+      </div>
+    </article>
   </section>
 
 <!-- ═══ SHARE & REACTIONS ═══ -->

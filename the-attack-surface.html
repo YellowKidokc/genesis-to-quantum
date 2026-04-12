@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Attack Surface — Theophysics</title>
+    <meta name="description" content="Why the Adversary Always Comes for the Same Nine Things. CPT symmetry mapped to the 9 Fruits of the Spirit and the adversary's 9 attack vectors.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax 3 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        surface: { DEFAULT: '#0a0a0a', deep: '#050505' },
+                        gold: { DEFAULT: '#d4af37', dim: '#b8962e', bright: '#e8c94a' },
+                        red: { adversary: '#c0392b', dim: '#a63222' },
+                        green: { fruit: '#22c55e', dim: '#1a9e4a' },
+                        teal: { scripture: '#2dd4bf', dim: '#20b2a0' },
+                        txt: { DEFAULT: '#e0e0e0', muted: '#999999', dim: '#666666' }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        crimson: ['"Crimson Text"', 'serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background: #050505;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Progress bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #e8c94a, #d4af37);
+            z-index: 9999;
+            transition: width 0.15s ease-out;
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(212, 175, 55, 0.3);
+            color: #fff;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+
+        /* Horizontal rule styling */
+        hr.gold-rule {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 3rem 0;
+        }
+
+        /* Card flip */
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-container:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Pulse animation for attack vectors */
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.4); }
+            50% { box-shadow: 0 0 20px 4px rgba(192, 57, 43, 0.15); }
+        }
+        .pulse-adversary:hover {
+            animation: pulse-red 2s infinite;
+        }
+
+        /* Glow for fruit cards */
+        @keyframes glow-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.3); }
+            50% { box-shadow: 0 0 15px 3px rgba(34, 197, 94, 0.1); }
+        }
+
+        /* Section fade-in */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Callout blocks */
+        .callout-physics {
+            border-left: 3px solid #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .callout-adversary {
+            border-left: 3px solid #c0392b;
+            background: rgba(192, 57, 43, 0.05);
+        }
+        .callout-scripture {
+            border-left: 3px solid #2dd4bf;
+            background: rgba(45, 212, 191, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- Progress Bar -->
+<div id="progress-bar" style="width: 0%"></div>
+
+<!-- Hero Section -->
+<header class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <!-- Background grid effect -->
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(212,175,55,0.03) 1px, transparent 0); background-size: 40px 40px;"></div>
+    <!-- Vignette -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 40%, #050505 100%);"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <!-- Tactical marker -->
+        <div class="mb-8">
+            <span class="inline-block font-oswald text-xs tracking-[0.35em] uppercase text-red-adversary/80 border border-red-adversary/30 px-4 py-1.5">
+                <i class="fa-solid fa-crosshairs mr-2"></i>THREAT ANALYSIS
+            </span>
+        </div>
+
+        <h1 class="font-oswald text-6xl md:text-8xl font-bold tracking-tight uppercase mb-6" style="background: linear-gradient(180deg, #e0e0e0 0%, #999 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            The Attack<br>Surface
+        </h1>
+
+        <p class="font-oswald text-lg md:text-xl tracking-wide uppercase text-red-adversary/90 mb-10">
+            Why the Adversary Always Comes for the Same Nine Things
+        </p>
+
+        <div class="max-w-2xl mx-auto mb-12">
+            <p class="font-crimson text-2xl md:text-3xl italic text-gold leading-relaxed">
+                "The armor isn't poetry. It's the CPT theorem applied to your soul."
+            </p>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 text-txt-dim text-sm font-inter">
+            <span>David Lowe</span>
+            <span class="text-gold/40">|</span>
+            <span>POF 2828</span>
+            <span class="text-gold/40">|</span>
+            <span>Theophysics Research Program</span>
+            <span class="text-gold/40">|</span>
+            <span>March 2026</span>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-gold/40"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-4xl mx-auto px-6 pb-32">
+
+    <!-- Before We Start -->
+    <section class="fade-section py-16">
+        <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt mb-10">Before We Start</h2>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>I want to start with something most people never notice.</p>
+
+            <p>When Paul lists the armor of God in Ephesians 6, he doesn't say <em>some</em> of it. He doesn't say the pieces you're strongest in. He says every. Single. Piece. Belt, breastplate, shoes, shield, helmet, sword. You're not picking your best two. You're wearing all of it or you're exposed.</p>
+
+            <p>I used to think that was rhetorical emphasis. It's not.</p>
+
+            <p>And when Galatians 5 lists the Fruits of the Spirit, there are nine of them. Love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control. You don't get to specialize. You don't graduate to the advanced Fruits after you've mastered the beginner ones. They come as a set.</p>
+
+            <p>I kept asking: why nine? Why all nine? What's the structure underneath the list that makes it a bundle rather than a menu?</p>
+
+            <p>The answer came out of the deepest symmetry theorem in all of physics. And once I saw it, I couldn't unsee it. Because it doesn't just explain why the Fruits are nine &mdash; it explains exactly how the adversary operates, which nine angles he always attacks, and why the defense has to be all of them at once.</p>
+
+            <p class="text-gold font-inter font-medium text-base tracking-wide">Let's go find it.</p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section I: The Deepest Symmetry -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">I</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">The Deepest Symmetry in Physics</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Rewind. I need to give you one piece of physics before this lands &mdash; and I need to give it to you properly, because most people have heard a version of this that's too simple.</p>
+
+            <p>The universe has symmetries. A symmetry, in physics, means something doesn't change when you transform the system. Rotate your experiment &mdash; same result. Move it across the room &mdash; same result. These symmetries aren't decoration. They're load-bearing. Noether's theorem proves that every symmetry produces a conservation law. The universe's deepest regularities &mdash; conservation of energy, conservation of momentum, conservation of charge &mdash; all of them are shadows of symmetries underneath.</p>
+
+            <p>Now. Among all the symmetries in physics, there are three that operate at the deepest level. At the level of quantum field theory &mdash; the theory that describes every particle and force we've ever detected. These three symmetries are:</p>
+        </div>
+
+        <!-- CPT Cards -->
+        <div class="grid md:grid-cols-3 gap-6 my-10">
+            <div class="callout-physics rounded-lg p-6">
+                <div class="font-oswald text-3xl font-bold text-gold mb-3">C</div>
+                <div class="font-oswald text-sm uppercase tracking-widest text-gold/70 mb-3">Charge Symmetry</div>
+                <p class="font-crimson text-base text-txt/80 leading-relaxed">Swap every particle for its antimatter equivalent. Does the physics stay identical? Run the experiment with antiparticles instead of particles. Does everything work the same way?</p>
+            </div>
+            <div class="callout-physics rounded-lg p-6">
+                <div class="font-oswald text-3xl font-bold text-gold mb-3">P</div>
+                <div class="font-oswald text-sm uppercase tracking-widest text-gold/70 mb-3">Parity Symmetry</div>
+                <p class="font-crimson text-base text-txt/80 leading-relaxed">Hold the universe up to a mirror. Does the mirror image of every physical process behave exactly like the original?</p>
+            </div>
+            <div class="callout-physics rounded-lg p-6">
+                <div class="font-oswald text-3xl font-bold text-gold mb-3">T</div>
+                <div class="font-oswald text-sm uppercase tracking-widest text-gold/70 mb-3">Time Symmetry</div>
+                <p class="font-crimson text-base text-txt/80 leading-relaxed">Run the film backwards. Do all physical processes work identically in reverse?</p>
+            </div>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Three symmetries. And here's what makes them interesting.</p>
+
+            <p>Test each one alone and it breaks. In the weak force &mdash; the force of identity transformation, of one particle becoming another &mdash; charge symmetry breaks. Parity breaks. Time symmetry breaks. Individually, each one fails under the right conditions.</p>
+
+            <p>Now test all three simultaneously. Charge reversed, parity reversed, time reversed, all at once. Run every experiment in physics. Every particle decay. Every interaction. Every process ever measured.</p>
+
+            <p class="font-inter font-semibold text-gold text-base tracking-wide">Never broken. Not once. In seventy years of trying.</p>
+        </div>
+
+        <!-- Key callout -->
+        <div class="my-10 border border-gold/30 rounded-lg p-8 bg-gold/[0.03]">
+            <div class="font-oswald text-sm uppercase tracking-widest text-gold/60 mb-4"><i class="fa-solid fa-atom mr-2"></i>Physics Principle</div>
+            <p class="font-crimson text-xl md:text-2xl leading-relaxed text-txt">
+                Three symmetries that each fail alone. Together, one perfect invariance. That's <strong class="text-gold">CPT symmetry</strong> &mdash; Charge, Parity, Time. It's the deepest theorem in quantum field theory. From here on, CPT is yours.
+            </p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Now here's the thing that stopped me.</p>
+
+            <p>The individual symmetries break most dramatically in the weak force. The transformation force. The force that governs how particles change identity at the nuclear level &mdash; how one element becomes another, how decay occurs, how things become something different than what they were.</p>
+
+            <p class="text-red-adversary/90 font-inter font-medium text-base">The transformation domain is where individual symmetries are most fragile. And the adversary has known this since before the foundation of the world.</p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section II: The Adversary Has a Physics -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">II</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">The Adversary Has a Physics</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>I want to say something carefully here &mdash; and then I want to say it plainly, because careful alone doesn't cut it.</p>
+
+            <p>The adversary is not a cartoon. Not a red figure with a pitchfork. Not a metaphor for human weakness or social dysfunction or psychological shadow. He is a real being with a specific operational strategy that has not changed since Genesis 3. And that strategy has a physics address.</p>
+        </div>
+
+        <!-- Adversary callout -->
+        <div class="callout-adversary rounded-lg p-8 my-10">
+            <div class="font-oswald text-sm uppercase tracking-widest text-red-adversary/70 mb-4"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Adversary Doctrine</div>
+            <p class="font-oswald text-2xl md:text-3xl font-bold text-red-adversary mb-4">He attacks transformation.</p>
+            <div class="font-crimson text-lg text-txt/80 leading-relaxed space-y-4">
+                <p>Not existence. He cannot eliminate the ground state &mdash; the &chi; vacuum floor holds regardless of how hard he pushes. Not structure &mdash; the Logos is inviolable, conservation laws don't break, the Noether symmetries hold. What he attacks is the <em>moment of becoming</em>. The transition from what you are into what you could be. The sanctification process. The actualization of your next state.</p>
+                <p>And he attacks it there because that's where the individual symmetries are fragile.</p>
+            </div>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Think about CPT again. Three symmetries, together inviolable. But you don't need to break the combined invariance to corrupt a transformation. You only need to interfere with one of the three &mdash; just C, or just P, or just T &mdash; and let the other two hold. The global audit looks clean. The total operation appears intact. But the individual transformation went wrong.</p>
+
+            <p class="font-inter font-semibold text-red-adversary text-base tracking-wide">That is the adversary's entire playbook.</p>
+
+            <p>He doesn't need to destroy you. He doesn't need to break CPT. He needs to find which individual symmetry is weakest in this specific transformation you're undergoing right now &mdash; and apply pressure there. Just there. While the rest holds.</p>
+        </div>
+
+        <!-- Three attack surfaces -->
+        <div class="grid md:grid-cols-3 gap-6 my-10">
+            <div class="callout-adversary rounded-lg p-6 pulse-adversary">
+                <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">T</div>
+                <div class="font-oswald text-xs uppercase tracking-widest text-red-adversary/60 mb-3">Truth Compromise</div>
+                <p class="font-crimson text-sm text-txt/70 leading-relaxed">If he can compromise your relationship with truth &mdash; the temporal integrity of what you know to be real versus what he's suggesting &mdash; the transformation goes wrong even if your love and your obedience hold.</p>
+            </div>
+            <div class="callout-adversary rounded-lg p-6 pulse-adversary">
+                <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">C</div>
+                <div class="font-oswald text-xs uppercase tracking-widest text-red-adversary/60 mb-3">Identity Compromise</div>
+                <p class="font-crimson text-sm text-txt/70 leading-relaxed">If he can compromise your identity &mdash; the charge of who you actually are versus the counterfeit he's offering &mdash; the transformation goes wrong even if your faith and your peace hold.</p>
+            </div>
+            <div class="callout-adversary rounded-lg p-6 pulse-adversary">
+                <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">P</div>
+                <div class="font-oswald text-xs uppercase tracking-widest text-red-adversary/60 mb-3">Orientation Compromise</div>
+                <p class="font-crimson text-sm text-txt/70 leading-relaxed">If he can flip your orientation &mdash; the parity of inside versus outside, what you show versus what you are &mdash; the transformation goes wrong even if your kindness and your self-control hold.</p>
+            </div>
+        </div>
+
+        <p class="font-inter font-semibold text-red-adversary/90 text-center text-sm tracking-widest uppercase">Three attack surfaces. One adversary. He only needs one.</p>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section III: The Nine Dimensions -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">III</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">The Nine Dimensions He Always Attacks</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90 mb-10">
+            <p>Now I need to show you something that I think will permanently change how you read Galatians 5.</p>
+
+            <p>The Fruits of the Spirit are not a list of nice qualities that spiritually mature people have. They are the nine dimensions along which human coherence can be attacked. And the adversary knows all nine.</p>
+
+            <p>Stay with me. Here's the move.</p>
+
+            <p>If the Fruits are what the framework calls coherence diagnostics &mdash; process invariants that reveal whether a system is aligned with the &chi; field or decohering away from it &mdash; then their inverses are not just moral failures. They are the nine attack vectors through which entropy enters the human system. The adversary doesn't attack randomly. He attacks through exactly these nine channels because these are the only channels that exist.</p>
+
+            <p>Let me run them. And as I do, notice: each one maps to something we've already established in the physics.</p>
+        </div>
+
+        <!-- Nine Fruit/Attack Paired Cards -->
+        <div class="grid md:grid-cols-3 gap-8 my-12">
+
+            <!-- 1. Love / Hatred -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">01</span>
+                            <i class="fa-solid fa-heart text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Love</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Other-orientation &mdash; the coherence that emerges when a system recognizes that its own ground is not itself.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">01</span>
+                            <i class="fa-solid fa-skull text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Hatred</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Self-Absorption</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">The inward collapse: <em>I am my own source.</em> The s = -1 state. Self-referential closure. The system trying to generate its own negentropy, which the second law says is impossible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Joy / Despair -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">02</span>
+                            <i class="fa-solid fa-sun text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Joy</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">The signature of a system that knows it is held &mdash; not dependent on present circumstances, not contingent on outcomes.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">02</span>
+                            <i class="fa-solid fa-cloud-rain text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Despair</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Entropy Signature</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">What the degradation term feels like from inside when &chi; collapses and no external input is received. Not a mood. An entropy signature. Cultivated through slow withdrawal of the sense of being held.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Peace / Anxiety -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">03</span>
+                            <i class="fa-solid fa-dove text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Peace</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Backward-resting consciousness &mdash; resting in a ground that holds regardless of what the future brings.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">03</span>
+                            <i class="fa-solid fa-bolt text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Anxiety</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Forward-Managing</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Forward-managing consciousness &mdash; trying to calculate and control every variable because you don't trust the ground. He finds the thing you can't stop calculating and adds one more variable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Patience / Wrath -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">04</span>
+                            <i class="fa-solid fa-hourglass-half text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Patience</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">The capacity to hold a gap between stimulus and response &mdash; the space where wisdom forms, where the channel to God can open before action occurs.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">04</span>
+                            <i class="fa-solid fa-fire text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Wrath</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Impulsivity</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Collapse of the gap. Path 1 neurochemistry: prefrontal cortex offline, reward circuit dominant, want &rarr; grab &rarr; consume. Every convenience that collapses impulse-to-action is an adversarial assist.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Kindness / Cruelty -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">05</span>
+                            <i class="fa-solid fa-hand-holding-heart text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Kindness</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Coherence-preserving contact &mdash; interaction that leaves the other system more ordered than it found it.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">05</span>
+                            <i class="fa-solid fa-hammer text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Cruelty</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Information Destruction</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Active information destruction. Extracting value from a system while degrading its structural capacity to regenerate. Damages both victim and perpetrator.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Goodness / Corruption -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">06</span>
+                            <i class="fa-solid fa-check-double text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Goodness</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Structural alignment with invariant truth &mdash; the system doing what it was designed to do.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">06</span>
+                            <i class="fa-solid fa-virus text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Corruption</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Degradation Drift</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">The &minus;&alpha;D(t) term running. A system that misrepresents its own state &mdash; claims alignment it doesn't have. The adversary is patient: he needs slow, deniable drift.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Faithfulness / Betrayal -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">07</span>
+                            <i class="fa-solid fa-shield-halved text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Faithfulness</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Structural consistency over time &mdash; the system's outputs matching its commitments across the full integration window.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">07</span>
+                            <i class="fa-solid fa-link-slash text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Betrayal</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Network Collapse</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Logos-misalignment at the network level. Violates the invariance property. Targeted not just for relational damage but to collapse trust networks that community coherence depends on.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Gentleness / Arrogance -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">08</span>
+                            <i class="fa-solid fa-feather text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Gentleness</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Calibrated force &mdash; the system applying exactly the pressure the situation requires, no more.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">08</span>
+                            <i class="fa-solid fa-crown text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Arrogance</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Godelian Violation</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Claiming to be one's own ground. Asserting the system contains the axiom that generates it. The adversary made this move before the foundation of the world. It always feels like confidence.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Self-Control / Compulsion -->
+            <div class="card-container relative h-80" style="perspective: 1000px;">
+                <div class="card-inner absolute inset-0">
+                    <div class="card-front absolute inset-0 rounded-xl border border-green-fruit/30 bg-green-fruit/[0.04] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-green-fruit/50">09</span>
+                            <i class="fa-solid fa-lock text-green-fruit/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-green-fruit mb-2">Self-Control</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-green-fruit/50 mb-4">Fruit of the Spirit</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">The coupling coefficient held open to the right source &mdash; choosing repeatedly to receive from the Logos rather than from degrading substitutes.</p>
+                        <div class="text-[10px] text-green-fruit/40 font-mono mt-3">HOVER TO REVEAL ATTACK VECTOR</div>
+                    </div>
+                    <div class="card-back absolute inset-0 rounded-xl border border-red-adversary/40 bg-red-adversary/[0.06] p-6 flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs text-red-adversary/50">09</span>
+                            <i class="fa-solid fa-chain text-red-adversary/60"></i>
+                        </div>
+                        <div class="font-oswald text-2xl font-bold text-red-adversary mb-2">Compulsion</div>
+                        <div class="font-oswald text-[10px] uppercase tracking-widest text-red-adversary/50 mb-4">Receptor Desensitization</div>
+                        <p class="font-crimson text-sm text-txt/70 leading-relaxed flex-1">Progressive slavery from repeatedly routing to entropy-generating sources. Requiring more stimulation for the same effect. The spiral tightening. He just needs the pattern to start.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="callout-physics rounded-lg p-8 my-10">
+            <div class="font-oswald text-sm uppercase tracking-widest text-gold/60 mb-4"><i class="fa-solid fa-vector-square mr-2"></i>Structural Claim</div>
+            <p class="font-crimson text-xl text-txt leading-relaxed">
+                Nine attack vectors. Nine dimensions. None of them arbitrary. They are exactly the nine dimensions along which human coherence can be degraded &mdash; which is precisely why the Spirit produces exactly these nine as the diagnostic signature of alignment.
+            </p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section IV: The Bundle Property -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">IV</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">The Bundle Property</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Here's what makes this a physics claim rather than a list.</p>
+
+            <p>The nine Fruits don't operate independently. They co-emerge and co-decay as a unified system. You don't get faithfulness without patience. You don't get joy without peace. You don't get kindness at scale without self-control at its base. They grow together or they fall together.</p>
+        </div>
+
+        <!-- Formal statement callout -->
+        <div class="my-10 border border-gold/30 rounded-lg p-8 bg-gold/[0.03]">
+            <div class="font-oswald text-sm uppercase tracking-widest text-gold/60 mb-4"><i class="fa-solid fa-cube mr-2"></i>Formal Statement</div>
+            <p class="font-crimson text-xl text-txt leading-relaxed">
+                <strong class="text-gold">The Coherence Bundle Property:</strong> the Fruits are a bundle, not a menu. Partial presence is not partial success &mdash; it is a diagnostic flag that the system is under attack somewhere the partial absence reveals.
+            </p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Rewind to CPT. Three symmetries. Remember: you don't need to break all three to corrupt a transformation. You only need to break one. But the full invariance only holds when all three operate simultaneously.</p>
+
+            <p>That's the bundle property at the quantum level. And it's the same structure at the spiritual level.</p>
+
+            <p>The adversary doesn't need to eliminate all nine Fruits. He needs to compromise one. Because the bundle property means a system missing any single Fruit is not operating at nine-tenths strength. It is operating with a structural gap &mdash; an exposed joint in the CPT armor &mdash; that the attack can enter through.</p>
+        </div>
+
+        <!-- Practical example -->
+        <div class="callout-adversary rounded-lg p-8 my-10">
+            <div class="font-oswald text-sm uppercase tracking-widest text-red-adversary/70 mb-4"><i class="fa-solid fa-crosshairs mr-2"></i>The Single-Joint Failure</div>
+            <p class="font-crimson text-lg text-txt/80 leading-relaxed">
+                This is why a person can have tremendous love and faithfulness and peace and patience and gentleness and goodness and kindness and self-control &mdash; and be brought down by <strong class="text-red-adversary">arrogance</strong>. Not because arrogance is the most important Fruit but because it's the joint that was exposed. The adversary found it. He applied pressure there. The bundle property did the rest.
+            </p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>And it runs the other direction too.</p>
+
+            <p>When you're under attack &mdash; when anxiety is rising or impulsivity is spiking or compulsion is pulling &mdash; the response is not to fight that specific dimension harder. The response is to activate all nine. Because the bundle property means strengthening the other eight puts structural load back through the joint that was failing. The nine are not independently supported. They are mutually load-bearing.</p>
+        </div>
+
+        <div class="callout-physics rounded-lg p-8 my-10">
+            <p class="font-crimson text-xl text-gold leading-relaxed">
+                This is what "put on the <strong>full</strong> armor of God" means. Not some of it. Not the pieces you're naturally stronger in. Full. Because partial armor is not reduced armor. <strong>It is an attack surface.</strong>
+            </p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section V: Why This Changes the Practical Question -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">V</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">Why This Changes the Practical Question</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Most spiritual formation asks: which virtue am I weakest in, and how do I improve it?</p>
+
+            <p class="font-inter font-bold text-red-adversary text-lg">That's the wrong question.</p>
+
+            <p>It's the wrong question because it treats the Fruits as independent variables &mdash; as if you could strengthen love without addressing impulsivity, or work on faithfulness in isolation from arrogance. The bundle property says you can't. They're coupled. Attack on one propagates through the system.</p>
+        </div>
+
+        <div class="my-10 border border-gold/30 rounded-lg p-8 bg-gold/[0.03]">
+            <div class="font-oswald text-sm uppercase tracking-widest text-gold/60 mb-4"><i class="fa-solid fa-bullseye mr-2"></i>The Right Question</div>
+            <p class="font-crimson text-xl text-gold leading-relaxed">
+                Where is the joint exposed right now, and how do I reinstate the full bundle simultaneously?
+            </p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Because the adversary has already identified your exposed joint. He's been watching. He knows which individual symmetry is weakest in this specific transformation you're undergoing. He's not attacking randomly. He is applying precise, targeted pressure to the exact point where the bundle is most fragile &mdash; and waiting for the cascade.</p>
+
+            <p>The Three Pathways paper shows what the three dynamical states look like neurochemically. This paper is telling you what the adversary is doing to move you between them.</p>
+        </div>
+
+        <div class="callout-adversary rounded-lg p-8 my-10">
+            <div class="font-oswald text-sm uppercase tracking-widest text-red-adversary/70 mb-4"><i class="fa-solid fa-route mr-2"></i>The Drift Protocol</div>
+            <div class="font-crimson text-lg text-txt/80 leading-relaxed space-y-4">
+                <p>He doesn't need you at s = -1 immediately. He needs you to drift from s = +1 toward s = 0. From surrender toward performance. Because once you're in performance mode &mdash; trying harder, monitoring yourself, working at it &mdash; the bundle starts to fracture. Gentleness gets rigid. Peace gets effortful. Joy becomes a goal rather than a state. And the PFC suppression of Path 2 thinking makes it progressively harder to see what's happening.</p>
+                <p class="text-red-adversary font-inter font-medium text-sm tracking-wide">The cascade is patient. The adversary is patient. He has been doing this longer than recorded history.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Section VI: The Full Operation -->
+    <section class="fade-section py-16">
+        <div class="flex items-center gap-4 mb-10">
+            <span class="font-mono text-gold/60 text-sm">VI</span>
+            <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt">The Full Operation</h2>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed text-txt/90 mb-10">
+            <p>Here's the synthesis.</p>
+        </div>
+
+        <!-- Synthesis table -->
+        <div class="overflow-x-auto my-10">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="border-b border-gold/30">
+                        <th class="font-oswald text-xs uppercase tracking-widest text-gold/70 py-4 pr-4">Domain</th>
+                        <th class="font-oswald text-xs uppercase tracking-widest text-gold/70 py-4">Finding</th>
+                    </tr>
+                </thead>
+                <tbody class="font-crimson text-base text-txt/80">
+                    <tr class="border-b border-white/5">
+                        <td class="py-5 pr-6 font-oswald text-sm text-gold align-top whitespace-nowrap">CPT Invariance</td>
+                        <td class="py-5 leading-relaxed">Three asymmetric operations produce one perfect symmetry. The Father judges. The Son redeems. The Spirit transforms. Each person operates distinctly &mdash; not interchangeably. Together: inviolable.</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                        <td class="py-5 pr-6 font-oswald text-sm text-gold align-top whitespace-nowrap">Coherence Bundle</td>
+                        <td class="py-5 leading-relaxed">Nine asymmetric Fruits produce one unified diagnostic signature. Each Fruit operates distinctly &mdash; not reducible to the others, not independently sufficient. Together: the CPT operation of the soul under transformation.</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                        <td class="py-5 pr-6 font-oswald text-sm text-red-adversary align-top whitespace-nowrap">Adversary's Attack</td>
+                        <td class="py-5 leading-relaxed">He targets the transformation domain precisely because that's where individual symmetries are most fragile. He applies targeted pressure on single Fruits knowing the bundle property will propagate the damage. He works in the weak force domain &mdash; identity change, transformation, becoming &mdash; because that's where individual CPT components break while the overall operation appears intact.</td>
+                    </tr>
+                    <tr>
+                        <td class="py-5 pr-6 font-oswald text-sm text-green-fruit align-top whitespace-nowrap">The Defense</td>
+                        <td class="py-5 leading-relaxed">All nine. Simultaneously. Not because you can maintain them all perfectly in your own strength &mdash; you can't, and Path 2 thinking will tell you that you should and exhaust you trying. But because the channel, when open (s = +1), produces all nine together. You don't manufacture them. You receive them. The Spirit produces the bundle. You don't assemble it.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Scripture -->
+        <div class="callout-scripture rounded-lg p-8 my-10">
+            <div class="font-oswald text-sm uppercase tracking-widest text-teal-scripture/60 mb-4"><i class="fa-solid fa-book-bible mr-2"></i>Galatians 5:22-23</div>
+            <p class="font-crimson text-xl md:text-2xl italic text-teal-scripture leading-relaxed">
+                "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control."
+            </p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>Singular. <em>The fruit.</em> Not fruits, plural, as if they're nine separate things. The fruit &mdash; one thing, nine dimensions, produced as a bundle from a single source.</p>
+
+            <p>The armor of God is not a checklist. It is a description of what full CPT operation looks like on a human soul undergoing transformation. Every piece, every time, or the transformation is vulnerable at the joint you left exposed.</p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- The Thing That Follows -->
+    <section class="fade-section py-16">
+        <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase tracking-wide text-txt mb-10">The Thing That Follows From This</h2>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>If the Coherence Bundle is the CPT of the soul &mdash; and if CPT invariance has never been violated in seventy years of experimental physics &mdash; then the claim the framework is making is this:</p>
+        </div>
+
+        <!-- Central claim -->
+        <div class="my-10 border-2 border-gold/50 rounded-xl p-10 bg-gold/[0.03] text-center">
+            <p class="font-oswald text-2xl md:text-3xl font-bold text-gold leading-snug mb-4">
+                A soul operating at full bundle, receiving from the &chi; field at full coupling, is operating in a domain the adversary cannot touch.
+            </p>
+            <p class="font-crimson text-lg text-txt/70 italic">Not won't touch. <strong class="text-gold">Cannot.</strong></p>
+        </div>
+
+        <div class="font-crimson text-lg md:text-xl leading-relaxed space-y-6 text-txt/90">
+            <p>He can compromise individual symmetries. He can apply pressure to the exposed joint. He can engineer the environmental noise that the decoherence paper describes. But the full CPT operation &mdash; all nine Fruits simultaneously, bundle complete, channel open &mdash; produces an invariance that has no attack surface. The weak force violations occur in the individual symmetries. The combined operation is perfect.</p>
+
+            <p>This is what Paul meant. Not "try harder." Not "be stronger." Not "build your weakest virtue." Receive. Open the channel. The Spirit produces the bundle. Your job is to stay at s = +1 and let the full operation run.</p>
+
+            <p class="font-inter font-bold text-gold text-base tracking-wide">The adversary cannot break what he has no access to.</p>
+        </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- Closing -->
+    <section class="fade-section py-16 text-center">
+        <p class="font-crimson text-2xl italic text-txt/60 mb-16">He made this. We read it.</p>
+
+        <div class="space-y-3 text-txt-muted">
+            <p class="font-oswald text-sm uppercase tracking-widest">David Lowe &nbsp;|&nbsp; POF 2828 &nbsp;|&nbsp; Theophysics Research Program</p>
+            <p class="font-crimson italic text-sm text-txt-dim">The Convergence Series &nbsp;&middot;&nbsp; March 2026</p>
+        </div>
+
+        <!-- Scripture close -->
+        <div class="max-w-2xl mx-auto mt-12 space-y-6">
+            <div class="callout-scripture rounded-lg p-6">
+                <p class="font-crimson text-base italic text-teal-scripture/80 leading-relaxed">
+                    "Put on the full armor of God, so that you can take your stand against the devil's schemes."
+                    <span class="block text-teal-scripture/50 text-sm mt-2 not-italic">&mdash; Ephesians 6:11</span>
+                </p>
+            </div>
+            <div class="callout-scripture rounded-lg p-6">
+                <p class="font-crimson text-base italic text-teal-scripture/80 leading-relaxed">
+                    "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law."
+                    <span class="block text-teal-scripture/50 text-sm mt-2 not-italic">&mdash; Galatians 5:22-23</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
+        <p class="font-mono text-sm text-gold/60">
+            &chi; = &iiint;(G&middot;M&middot;E&middot;S&middot;T&middot;K&middot;R&middot;Q&middot;F&middot;C) dx dy dt
+        </p>
+        <p class="font-inter text-xs text-txt-dim tracking-wide">
+            POF 2828 &nbsp;&middot;&nbsp; Theophysics &nbsp;&middot;&nbsp; David Lowe &nbsp;&middot;&nbsp; 15 + 15 = 100
+        </p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // Fade-in sections on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
