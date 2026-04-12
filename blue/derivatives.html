@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the Laws Produce | Fruits, Armor, Gifts & More · David Lowe</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020507;
+  --surface:#07101a;
+  --surface2:#0c1824;
+  --surface3:#10202e;
+  --border:rgba(60,110,200,0.07);
+  --border-h:rgba(60,110,200,0.15);
+  --accent:#2563be;
+  --accent-l:#4d8fe0;
+  --accent-dim:rgba(37,99,190,0.07);
+  --warm:#c49a40;
+  --warm-dim:rgba(196,154,64,0.06);
+  --teal:#26b8a6;
+  --teal-dim:rgba(38,184,166,0.06);
+  --text:#ccd8ee;
+  --text-d:#6e82a0;
+  --text-m:#384e6a;
+  --pass:#2ebd87;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.8;font-size:1.15rem;overflow-x:clip}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse at 18% 0%,rgba(37,99,190,0.05) 0%,transparent 50%),
+             radial-gradient(ellipse at 82% 100%,rgba(37,99,190,0.025) 0%,transparent 50%);
+  pointer-events:none}
+.page{max-width:1100px;margin:0 auto;padding:0 2rem}
+.top-bar{border-bottom:1px solid var(--border);padding:.9rem 0}
+.top-bar .inner{display:flex;align-items:center;justify-content:space-between}
+.mark{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-m);font-family:'JetBrains Mono',monospace}
+.mark span{color:var(--accent-l)}
+.top-nav{display:flex;gap:1.4rem}
+.top-nav a{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-m);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color .2s}
+.top-nav a:hover,.top-nav a.on{color:var(--accent-l)}
+.hero{padding:5rem 0 2.5rem;text-align:center}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.5rem;display:block}
+.hero h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2.4rem,5.5vw,3.6rem);font-weight:400;color:white;line-height:1.12;margin-bottom:1.2rem}
+.hero h1 strong{font-weight:700;color:var(--accent-l)}
+.hero .lead{font-size:1.15rem;color:var(--text-d);max-width:620px;margin:0 auto 2rem;line-height:1.9}
+.g{display:grid;gap:.8rem;margin-bottom:.8rem}
+.g12{grid-template-columns:repeat(12,1fr)}
+.s4{grid-column:span 4}.s8{grid-column:span 8}.srow{grid-column:1/-1}
+.bx-stat{background:var(--surface2);text-align:center;padding:1.6rem 1rem;border-radius:8px}
+.bx-stat .num{font-family:'Source Serif 4',serif;font-size:2.6rem;font-weight:600;color:var(--accent-l);line-height:1}
+.bx-stat .lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-m);margin-top:.35rem}
+.bx-hero{background:linear-gradient(135deg,var(--surface2) 0%,rgba(37,99,190,0.07) 100%);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;justify-content:center;border-radius:8px}
+.bx-hero h3{font-family:'Source Serif 4',serif;font-size:1.3rem;color:white;margin-bottom:.4rem}
+.bx-hero p{font-size:.98rem;color:var(--text-d);line-height:1.85}
+</style>
