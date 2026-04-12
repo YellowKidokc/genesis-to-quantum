@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Evidence — Theophysics Research Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        'dark-surface': '#0a0a0a',
+                        'dark-card': '#111111',
+                        'dark-border': '#1e1e1e',
+                        'text-primary': '#e0e0e0',
+                        'text-secondary': '#999999',
+                        'text-muted': '#666666',
+                        teal: '#14b8a6',
+                        'teal-dark': '#0d9488',
+                        'teal-light': '#2dd4bf',
+                        sky: '#38bdf8',
+                        amber: '#f59e0b',
+                        rose: '#f43f5e',
+                        emerald: '#10b981',
+                    },
+                    fontFamily: {
+                        'serif': ['Crimson Text', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Oswald', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #050505; color: #e0e0e0; }
+
+        /* Evidence dossier styling */
+        .dossier-tab {
+            position: relative;
+            background: #0a0a0a;
+            border: 1px solid #1e1e1e;
+        }
+        .dossier-tab::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: #14b8a6;
+        }
+
+        .evidence-card {
+            background: linear-gradient(145deg, #0f0f0f 0%, #0a0a0a 100%);
+            border: 1px solid #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+        .evidence-card:hover {
+            border-color: #14b8a633;
+            transform: translateY(-2px);
+        }
+        .evidence-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-top: 32px solid #14b8a615;
+            border-left: 32px solid transparent;
+        }
+
+        /* Sigma stat block */
+        .sigma-block {
+            background: linear-gradient(135deg, #14b8a610 0%, #0a0a0a 60%);
+            border: 2px solid #14b8a640;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .sigma-block::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, #14b8a608 0%, transparent 60%);
+            animation: sigma-pulse 4s ease-in-out infinite;
+        }
+        @keyframes sigma-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .sigma-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, #14b8a6 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        .sigma-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #14b8a6;
+            margin-top: 0.25rem;
+            position: relative;
+            z-index: 1;
+        }
+        .sigma-sublabel {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Exhibit label */
+        .exhibit-label {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #14b8a6;
+            background: #14b8a612;
+            border: 1px solid #14b8a630;
+            padding: 2px 12px;
+            border-radius: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Case file stamp */
+        .case-stamp {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #14b8a650;
+            border: 3px solid #14b8a630;
+            padding: 8px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #14b8a640, transparent);
+            margin: 3rem 0;
+        }
+
+        /* TOC sidebar */
+        .toc-sidebar {
+            position: sticky;
+            top: 2rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #14b8a6 transparent;
+        }
+        .toc-sidebar::-webkit-scrollbar { width: 3px; }
+        .toc-sidebar::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 2px; }
+        .toc-link {
+            display: block;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            color: #666;
+            border-left: 2px solid transparent;
+            transition: all 0.2s;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .toc-link:hover, .toc-link.active {
+            color: #14b8a6;
+            border-left-color: #14b8a6;
+            background: rgba(20, 184, 166, 0.06);
+        }
+        .toc-link.sub { padding-left: 22px; font-size: 0.7rem; }
+
+        /* Equation display */
+        .equation-display {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid #38bdf8;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 6px 6px 0;
+            overflow-x: auto;
+        }
+
+        /* Protocol box */
+        .protocol-box {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
+            border: 1px dashed #14b8a630;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        /* Hypothesis card */
+        .hypothesis-card {
+            background: #0a0a0a;
+            border: 1px solid #1e1e1e;
+            border-top: 3px solid;
+            border-radius: 0 0 8px 8px;
+            padding: 1.5rem;
+        }
+
+        /* Threshold timeline */
+        .threshold-node {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .threshold-node::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #14b8a6, #38bdf8);
+        }
+        .threshold-node:last-child::before {
+            bottom: 50%;
+        }
+        .threshold-dot {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            border: 2px solid #14b8a6;
+            background: #050505;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .threshold-dot-inner {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #14b8a6;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            position: relative;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+            background: linear-gradient(135deg, #0f0f0f 0%, #0a0a0a 100%);
+            border-left: 4px solid #14b8a6;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #ccc;
+        }
+        .pull-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -10px; left: 12px;
+            font-size: 4rem;
+            color: #14b8a620;
+            font-family: 'Crimson Text', serif;
+        }
+
+        /* Fade-in animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .toc-sidebar-container { display: none; }
+            .sigma-value { font-size: 2.5rem; }
+        }
+        @media (max-width: 640px) {
+            .sigma-value { font-size: 2rem; }
+        }
+
+        /* Research priority badges */
+        .priority-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 3px;
+            letter-spacing: 0.05em;
+        }
+        .priority-high {
+            background: #f43f5e15;
+            color: #f43f5e;
+            border: 1px solid #f43f5e30;
+        }
+        .priority-medium {
+            background: #f59e0b15;
+            color: #f59e0b;
+            border: 1px solid #f59e0b30;
+        }
+        .priority-active {
+            background: #10b98115;
+            color: #10b981;
+            border: 1px solid #10b98130;
+        }
+
+        /* File folder tab appearance */
+        .folder-tab {
+            background: #0f0f0f;
+            border: 1px solid #1e1e1e;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 20px;
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #14b8a6;
+            position: relative;
+            top: 1px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ============ HEADER ============ -->
+<header class="relative overflow-hidden" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(0deg, #14b8a6 0px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, #14b8a6 0px, transparent 1px, transparent 40px);"></div>
+
+    <div class="max-w-5xl mx-auto px-6 pt-10 pb-6 relative z-10">
+        <!-- Series nav -->
+        <div class="flex items-center gap-3 text-xs font-mono text-text-muted mb-8">
+            <a href="consciousness-coherence-bridge.html" class="hover:text-teal transition-colors"><i class="fas fa-arrow-left mr-1"></i> Paper 6</a>
+            <span class="text-dark-border">|</span>
+            <span class="text-text-secondary">Consciousness Series</span>
+            <span class="text-dark-border">|</span>
+            <span class="text-teal">Paper 7 of 11</span>
+            <span class="text-dark-border">|</span>
+            <a href="#" class="hover:text-teal transition-colors">Paper 8 <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- Case file header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="case-stamp">Case File Open</span>
+                    <span class="priority-badge priority-active"><i class="fas fa-circle text-[6px]"></i> Active Investigation</span>
+                </div>
+                <p class="font-mono text-xs text-text-muted tracking-widest uppercase mb-3">Theophysics Research Program &mdash; Evidence Dossier</p>
+                <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight text-white leading-none mb-3">
+                    The Evidence
+                </h1>
+                <p class="font-serif text-xl md:text-2xl text-text-secondary italic mt-2 max-w-2xl">
+                    Quantum Evidence, Testable Predictions, and the Empirical Case for &chi;
+                </p>
+            </div>
+            <div class="flex-shrink-0 text-right hidden md:block">
+                <div class="font-mono text-xs text-text-muted">
+                    <div>Author: David Lowe</div>
+                    <div class="mt-1">Classification: <span class="text-teal">Empirical</span></div>
+                    <div class="mt-1">Status: <span class="text-amber">Under Investigation</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-px bg-gradient-to-r from-transparent via-teal/30 to-transparent"></div>
+</header>
+
+
+<!-- ============ MAIN LAYOUT ============ -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex gap-8">
+
+    <!-- TOC Sidebar -->
+    <aside class="toc-sidebar-container hidden lg:block w-56 flex-shrink-0">
+        <nav class="toc-sidebar">
+            <p class="font-display text-xs tracking-widest uppercase text-text-muted mb-3 px-3">Evidence Index</p>
+            <a href="#overview" class="toc-link">I. Overview</a>
+            <a href="#sigma-evidence" class="toc-link">II. Sigma Evidence</a>
+            <a href="#pear" class="toc-link sub">PEAR Lab Data</a>
+            <a href="#gcp" class="toc-link sub">Global Consciousness</a>
+            <a href="#quantum-predictions" class="toc-link">III. Quantum Predictions</a>
+            <a href="#acceleration" class="toc-link">IV. Prophetic Acceleration</a>
+            <a href="#thresholds" class="toc-link sub">Critical Thresholds</a>
+            <a href="#prayer" class="toc-link">V. Prayer &amp; Physical Systems</a>
+            <a href="#hypotheses" class="toc-link">VI. Critical Hypotheses</a>
+            <a href="#bridge-predictions" class="toc-link">VII. Five Bridge Predictions</a>
+            <a href="#falsifiability" class="toc-link">VIII. Falsifiability</a>
+            <a href="#research-agenda" class="toc-link">IX. Research Agenda</a>
+            <a href="#summary" class="toc-link">X. Summary</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-3xl">
+
+        <!-- ====== SECTION I: OVERVIEW ====== -->
+        <section id="overview" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit A &mdash; Overview</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
+                The Framework Demands Empirical Validation
+            </h2>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed space-y-5">
+                <p>A distinguishing feature of the quantum-spiritual framework is that it isn't merely philosophical speculation&mdash;it generates specific, testable, falsifiable predictions. This section presents the empirical grounding of the framework and outlines how these predictions can be validated through rigorous experimentation.</p>
+
+                <p>The framework makes predictions at multiple levels:</p>
+            </div>
+
+            <!-- Four prediction levels as evidence cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                <div class="evidence-card rounded-lg p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-teal/10 flex items-center justify-center">
+                            <i class="fas fa-atom text-teal text-sm"></i>
+                        </div>
+                        <h3 class="font-display text-sm font-semibold tracking-wider uppercase text-teal">Quantum Level</h3>
+                    </div>
+                    <p class="font-sans text-sm text-text-secondary">Measurable variations in quantum uncertainty correlated with consciousness states, geography, and temporal factors.</p>
+                </div>
+                <div class="evidence-card rounded-lg p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-sky/10 flex items-center justify-center">
+                            <i class="fas fa-brain text-sky text-sm"></i>
+                        </div>
+                        <h3 class="font-display text-sm font-semibold tracking-wider uppercase text-sky">Consciousness Level</h3>
+                    </div>
+                    <p class="font-sans text-sm text-text-secondary">Detectable effects of prayer and intention on physical systems governed by quantum probability.</p>
+                </div>
+                <div class="evidence-card rounded-lg p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-amber/10 flex items-center justify-center">
+                            <i class="fas fa-clock text-amber text-sm"></i>
+                        </div>
+                        <h3 class="font-display text-sm font-semibold tracking-wider uppercase text-amber">Temporal Level</h3>
+                    </div>
+                    <p class="font-sans text-sm text-text-secondary">Prophetic acceleration patterns that can be quantified and projected to critical threshold dates.</p>
+                </div>
+                <div class="evidence-card rounded-lg p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald/10 flex items-center justify-center">
+                            <i class="fas fa-globe text-emerald text-sm"></i>
+                        </div>
+                        <h3 class="font-display text-sm font-semibold tracking-wider uppercase text-emerald">Global Level</h3>
+                    </div>
+                    <p class="font-sans text-sm text-text-secondary">Critical thresholds projected at specific dates, testable against real-world events at civilizational scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION II: SIGMA EVIDENCE ====== -->
+        <section id="sigma-evidence" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit B &mdash; Signal Strength</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                The Sigma Evidence
+            </h2>
+            <p class="font-serif text-lg text-text-secondary italic mb-8">Four independent lines of evidence. Each exceeding the discovery threshold.</p>
+
+            <!-- Sigma stat blocks - the main visual feature -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="sigma-block">
+                    <div class="sigma-value">6.35&sigma;</div>
+                    <div class="sigma-label">PEAR Lab</div>
+                    <div class="sigma-sublabel">Consciousness&ndash;RNG<br/>correlation</div>
+                </div>
+                <div class="sigma-block" style="border-color: #38bdf840; background: linear-gradient(135deg, #38bdf810 0%, #0a0a0a 60%);">
+                    <div class="sigma-value" style="background: linear-gradient(135deg, #38bdf8 0%, #14b8a6 100%); -webkit-background-clip: text; background-clip: text;">7&sigma;</div>
+                    <div class="sigma-label" style="color: #38bdf8;">GCP Network</div>
+                    <div class="sigma-sublabel">Global consciousness<br/>correlation</div>
+                </div>
+                <div class="sigma-block" style="border-color: #f59e0b40; background: linear-gradient(135deg, #f59e0b10 0%, #0a0a0a 60%);">
+                    <div class="sigma-value" style="background: linear-gradient(135deg, #f59e0b 0%, #f43f5e 100%); -webkit-background-clip: text; background-clip: text;">4.2&sigma;</div>
+                    <div class="sigma-label" style="color: #f59e0b;">DESI</div>
+                    <div class="sigma-sublabel">Dark energy<br/>evolution</div>
+                </div>
+                <div class="sigma-block" style="border-color: #10b98140; background: linear-gradient(135deg, #10b98110 0%, #0a0a0a 60%);">
+                    <div class="sigma-value" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); -webkit-background-clip: text; background-clip: text;">5.7&sigma;</div>
+                    <div class="sigma-label" style="color: #10b981;">PROP-COSMOS</div>
+                    <div class="sigma-sublabel">Prophetic pattern<br/>fit</div>
+                </div>
+            </div>
+
+            <div class="font-sans text-sm text-text-muted text-center mb-12">
+                <i class="fas fa-info-circle mr-1"></i> In particle physics, 5&sigma; (1 in 3.5 million chance of a fluke) is the gold standard for discovery. Three of four signals exceed it.
+            </div>
+
+            <!-- PEAR Evidence Card -->
+            <div id="pear" class="dossier-tab rounded-r-lg p-6 mb-8 fade-up">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="folder-tab">Evidence File: PEAR</div>
+                    <span class="priority-badge priority-high"><i class="fas fa-fire text-[6px]"></i> Key Evidence</span>
+                </div>
+                <h3 class="font-display text-2xl font-bold text-white mb-4">
+                    <i class="fas fa-university text-teal mr-2 text-lg"></i>Princeton Engineering Anomalies Research
+                </h3>
+                <div class="font-serif text-lg text-text-primary leading-relaxed space-y-4">
+                    <p>The Princeton Engineering Anomalies Research (PEAR) laboratory operated from 1979 to 2007, conducting rigorous experiments on consciousness-physical system interaction. Their methodology:</p>
+                    <ul class="space-y-2 ml-6">
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Random Event Generators (REGs) producing quantum-random binary outputs</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Human operators attempting to influence outputs through intention alone</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Over 2.5 million trials across multiple operators</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Strict protocols, blind conditions, replicated results</span></li>
+                    </ul>
+                </div>
+
+                <!-- PEAR results highlight -->
+                <div class="mt-6 p-5 rounded-lg" style="background: linear-gradient(135deg, #14b8a608 0%, #050505 100%); border: 1px solid #14b8a620;">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div class="text-center flex-shrink-0">
+                            <div class="font-display text-4xl font-bold text-teal">6.35&sigma;</div>
+                            <div class="font-mono text-xs text-text-muted mt-1">Statistical Significance</div>
+                        </div>
+                        <div class="font-serif text-text-primary leading-relaxed">
+                            <p>The probability of their results occurring by chance: <span class="font-mono text-teal">less than 1 in 10<sup>9</sup></span>.</p>
+                            <p class="mt-2">Operators showed small but consistent ability to shift random outputs in intended directions. Effect size was tiny (~0.02%) but statistically undeniable across the massive dataset.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-serif text-lg text-text-primary leading-relaxed mt-5 space-y-4">
+                    <p>Key findings from the PEAR data:</p>
+                    <ul class="space-y-2 ml-6">
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Conscious intention affects quantum random events:</strong> Operators could bias random number generators beyond statistical chance</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Effect sizes were small but consistent:</strong> Typically 0.5&ndash;2% deviation from random</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Coherence increased effects:</strong> Group intention produced stronger effects</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Faith and alignment mattered:</strong> Intention quality affected magnitude</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Prayer-like states enhanced effects:</strong> Focused, aligned states produced measurably larger deviations</span></li>
+                    </ul>
+                    <p>Standard physics has no explanation for this. If consciousness is merely emergent from physics&mdash;if C isn't a real variable&mdash;these results should be impossible.</p>
+                    <p>Our framework predicts them.</p>
+                </div>
+            </div>
+
+            <!-- GCP Evidence Card -->
+            <div id="gcp" class="dossier-tab rounded-r-lg p-6 fade-up">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="folder-tab">Evidence File: GCP</div>
+                    <span class="priority-badge priority-high"><i class="fas fa-fire text-[6px]"></i> Key Evidence</span>
+                </div>
+                <h3 class="font-display text-2xl font-bold text-white mb-4">
+                    <i class="fas fa-globe-americas text-sky mr-2 text-lg"></i>The Global Consciousness Project
+                </h3>
+                <div class="font-serif text-lg text-text-primary leading-relaxed space-y-4">
+                    <p>The PEAR work extended into the Global Consciousness Project (GCP), running continuously since 1998. The setup:</p>
+                    <ul class="space-y-2 ml-6">
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Network of 70+ REGs distributed worldwide</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Continuous data collection, 24/7</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-chevron-right text-xs"></i></span><span>Analysis of correlations during major global events</span></li>
+                    </ul>
+                </div>
+
+                <!-- GCP results highlight -->
+                <div class="mt-6 p-5 rounded-lg" style="background: linear-gradient(135deg, #38bdf808 0%, #050505 100%); border: 1px solid #38bdf820;">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div class="text-center flex-shrink-0">
+                            <div class="font-display text-4xl font-bold text-sky">7&sigma;</div>
+                            <div class="font-mono text-xs text-text-muted mt-1">Deviation from Chance</div>
+                        </div>
+                        <div class="font-serif text-text-primary leading-relaxed">
+                            <p>During events of mass attention&mdash;9/11, Princess Diana's funeral, New Year's moments, major disasters&mdash;the network shows statistically significant departures from randomness. The random number generators become slightly <em>less random</em> when millions of minds focus on the same event.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-serif text-lg text-text-primary leading-relaxed mt-5 space-y-4">
+                    <p>The GCP data reveals:</p>
+                    <ul class="space-y-2 ml-6">
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Major events produce correlation:</strong> Events of global significance show correlation in otherwise independent random generators</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Anticipatory effects observed:</strong> Generators show anomalies <em>before</em> major events</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Synchronized attention amplifies effects:</strong> Coordinated focus produces stronger signals</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1"><i class="fas fa-check text-xs"></i></span><span><strong class="text-white">Prayer and intention scale effects:</strong> Periods of focused prayer show measurable impacts</span></li>
+                    </ul>
+                    <p>The GCP interprets this cautiously. We interpret it directly: <strong class="text-white">collective coherence affects physical systems.</strong></p>
+                    <p>When millions of conscious observers synchronize attention, collective C increases, and this registers in quantum-random systems.</p>
+                </div>
+
+                <!-- Collective coherence equation -->
+                <div class="equation-display mt-6">
+                    <div class="font-mono text-xs text-sky uppercase tracking-wider mb-2">Collective Coherence Amplification</div>
+                    <div class="text-center py-2">
+                        $$C_{\text{collective}} = \sum_{i=1}^{n} \alpha_i C_i + \beta \prod_{i=1}^{n} C_i$$
+                    </div>
+                    <p class="font-sans text-sm text-text-secondary mt-3">The first term is linear: <em>n</em> people contribute <em>n</em> times the effect. The second term is multiplicative: synchronized consciousness produces <strong class="text-white">non-linear amplification</strong>. Coherence doesn't just add&mdash;it multiplies when aligned.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION III: QUANTUM PREDICTIONS ====== -->
+        <section id="quantum-predictions" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit C &mdash; Predictions</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                Quantum Uncertainty Pattern Predictions
+            </h2>
+            <h3 class="font-sans text-lg text-teal font-semibold mb-6">Prediction 1: Systematic Variation in Quantum Uncertainty</h3>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed mb-6">
+                <p>The framework predicts that quantum uncertainty measurements should show systematic variation correlating with temporal, spatial, and consciousness factors.</p>
+            </div>
+
+            <!-- Three factor categories -->
+            <div class="space-y-5">
+                <!-- Temporal -->
+                <div class="evidence-card rounded-lg p-5">
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-amber mb-3">
+                        <i class="fas fa-clock mr-2"></i>Temporal Factors
+                    </h4>
+                    <ul class="font-serif text-text-primary space-y-2">
+                        <li class="flex gap-2"><span class="text-amber mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Quantum uncertainty should increase over time (showing prophetic acceleration)</span></li>
+                        <li class="flex gap-2"><span class="text-amber mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Seasonal variations may correlate with spiritual calendars</span></li>
+                        <li class="flex gap-2"><span class="text-amber mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Day-of-week effects may show systematic patterns</span></li>
+                        <li class="flex gap-2"><span class="text-amber mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Historical acceleration toward critical dates</span></li>
+                    </ul>
+                </div>
+
+                <!-- Spatial -->
+                <div class="evidence-card rounded-lg p-5">
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-sky mb-3">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Spatial Factors
+                    </h4>
+                    <ul class="font-serif text-text-primary space-y-2">
+                        <li class="flex gap-2"><span class="text-sky mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Quantum uncertainty varies by geographic location</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Sacred sites should show measurably lower quantum uncertainty</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Sites of significant spiritual events should show historical traces</span></li>
+                        <li class="flex gap-2"><span class="text-sky mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Locations of focused prayer should exhibit anomalies</span></li>
+                    </ul>
+                </div>
+
+                <!-- Consciousness -->
+                <div class="evidence-card rounded-lg p-5">
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-teal mb-3">
+                        <i class="fas fa-brain mr-2"></i>Consciousness Factors
+                    </h4>
+                    <ul class="font-serif text-text-primary space-y-2">
+                        <li class="flex gap-2"><span class="text-teal mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Quantum uncertainty should decrease in presence of high consciousness coherence</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Meditation practices should produce local quantum coherence effects</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Groups engaged in synchronized prayer should show enhanced effects</span></li>
+                        <li class="flex gap-2"><span class="text-teal mt-1 text-xs"><i class="fas fa-caret-right"></i></span><span>Consciousness field strength should correlate with measurement outcomes</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Testing Protocol -->
+            <div class="protocol-box mt-8">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fas fa-flask text-teal"></i>
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-teal">Testing Protocol for Quantum Uncertainty</h4>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-sm text-text-secondary">
+                    <div>
+                        <div class="font-mono text-xs text-teal mb-1">01 / EQUIPMENT</div>
+                        <p>Quantum random number generators (RNG) sensitive to quantum uncertainty</p>
+                    </div>
+                    <div>
+                        <div class="font-mono text-xs text-teal mb-1">02 / BASELINE</div>
+                        <p>Establish control measurements over extended period</p>
+                    </div>
+                    <div>
+                        <div class="font-mono text-xs text-teal mb-1">03 / VARIABLES</div>
+                        <p>Temporal baselines (hourly, daily, seasonal), geographic locations (sacred and non-sacred), consciousness states (meditation, prayer, normal, distress)</p>
+                    </div>
+                    <div>
+                        <div class="font-mono text-xs text-teal mb-1">04 / ANALYSIS</div>
+                        <p>Spectral analysis to identify systematic patterns; compare observed to theoretical projections</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION IV: PROPHETIC ACCELERATION ====== -->
+        <section id="acceleration" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit D &mdash; Temporal Dynamics</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                Prophetic Acceleration and Quantum Uncertainty
+            </h2>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed space-y-5 mb-8">
+                <p>Our analysis suggests a correlation between prophetic fulfillment rates and quantum uncertainty. We propose this acceleration model:</p>
+            </div>
+
+            <!-- Acceleration Equation -->
+            <div class="equation-display">
+                <div class="font-mono text-xs text-amber uppercase tracking-wider mb-2">The Acceleration Equation</div>
+                <div class="text-center py-3">
+                    $$U(t) = U_0 \cdot 2^{(t-t_0)/7}$$
+                </div>
+                <div class="font-sans text-sm text-text-secondary mt-3 space-y-1">
+                    <p>Where:</p>
+                    <ul class="ml-4 space-y-1">
+                        <li>$U(t)$ &mdash; quantum uncertainty at time $t$</li>
+                        <li>$U_0$ &mdash; baseline quantum uncertainty</li>
+                        <li>$t_0$ &mdash; reference point (January 1, 2000)</li>
+                        <li>The exponent indicates <strong class="text-white">doubling approximately every 7 years</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed mt-8 mb-6">
+                <p>This equation suggests both historical validation points and future projections:</p>
+            </div>
+
+            <!-- Historical validation table -->
+            <div class="evidence-card rounded-lg overflow-hidden mb-8">
+                <div class="p-4 border-b border-dark-border">
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-teal">
+                        <i class="fas fa-history mr-2"></i>Historical Validation
+                    </h4>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full font-sans text-sm">
+                        <thead>
+                            <tr class="text-text-muted text-xs uppercase tracking-wider">
+                                <th class="px-4 py-3 text-left">Year</th>
+                                <th class="px-4 py-3 text-left">Uncertainty (U)</th>
+                                <th class="px-4 py-3 text-left">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-text-primary">
+                            <tr class="border-t border-dark-border/50">
+                                <td class="px-4 py-3 font-mono text-teal">2000</td>
+                                <td class="px-4 py-3">Baseline = 1.0</td>
+                                <td class="px-4 py-3"><span class="text-emerald text-xs font-mono">REFERENCE</span></td>
+                            </tr>
+                            <tr class="border-t border-dark-border/50">
+                                <td class="px-4 py-3 font-mono text-teal">2007</td>
+                                <td class="px-4 py-3">&asymp; 2.0 (doubling)</td>
+                                <td class="px-4 py-3"><span class="text-amber text-xs font-mono">CONFIRMED?</span></td>
+                            </tr>
+                            <tr class="border-t border-dark-border/50">
+                                <td class="px-4 py-3 font-mono text-teal">2014</td>
+                                <td class="px-4 py-3">&asymp; 4.0 (quadrupling)</td>
+                                <td class="px-4 py-3"><span class="text-amber text-xs font-mono">CONFIRMED?</span></td>
+                            </tr>
+                            <tr class="border-t border-dark-border/50">
+                                <td class="px-4 py-3 font-mono text-teal">2021</td>
+                                <td class="px-4 py-3">&asymp; 8.0</td>
+                                <td class="px-4 py-3"><span class="text-amber text-xs font-mono">ACCELERATION OBSERVED?</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Critical Thresholds Timeline -->
+            <div id="thresholds" class="mb-8">
+                <h3 class="font-display text-xl font-bold text-white mb-6">
+                    <i class="fas fa-exclamation-triangle text-amber mr-2"></i>Critical Thresholds &amp; Timeline Projections
+                </h3>
+
+                <div class="space-y-8 ml-2">
+                    <!-- 2030 -->
+                    <div class="threshold-node fade-up">
+                        <div class="threshold-dot"><div class="threshold-dot-inner"></div></div>
+                        <div class="evidence-card rounded-lg p-5">
+                            <div class="flex items-baseline gap-3 mb-2">
+                                <span class="font-display text-2xl font-bold text-amber">2030</span>
+                                <span class="font-mono text-xs text-text-muted">U &asymp; 16.0 (16&times; baseline)</span>
+                            </div>
+                            <ul class="font-serif text-text-primary space-y-1.5 text-base">
+                                <li>May correlate with prophetic events of major consequence</li>
+                                <li>Potential inflection point in quantum coherence</li>
+                                <li>Decision point for humanity's spiritual trajectory</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2039 -->
+                    <div class="threshold-node fade-up">
+                        <div class="threshold-dot"><div class="threshold-dot-inner" style="background: #f59e0b;"></div></div>
+                        <div class="evidence-card rounded-lg p-5">
+                            <div class="flex items-baseline gap-3 mb-2">
+                                <span class="font-display text-2xl font-bold" style="color: #f59e0b;">2039</span>
+                                <span class="font-mono text-xs text-text-muted">U &asymp; 64.0 (64&times; baseline)</span>
+                            </div>
+                            <ul class="font-serif text-text-primary space-y-1.5 text-base">
+                                <li>Suggests maximal instability in probability space</li>
+                                <li>May correlate with convergence of multiple prophecies</li>
+                                <li>Critical juncture for civilization-scale transformation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2046-2047 -->
+                    <div class="threshold-node fade-up">
+                        <div class="threshold-dot"><div class="threshold-dot-inner" style="background: #f43f5e;"></div></div>
+                        <div class="evidence-card rounded-lg p-5" style="border-top: 2px solid #f43f5e40;">
+                            <div class="flex items-baseline gap-3 mb-2">
+                                <span class="font-display text-2xl font-bold" style="color: #f43f5e;">2046&ndash;2047</span>
+                                <span class="font-mono text-xs text-text-muted">U &asymp; 512.0 (512&times; baseline)</span>
+                            </div>
+                            <ul class="font-serif text-text-primary space-y-1.5 text-base">
+                                <li>May represent point of maximal prophetic fulfillment</li>
+                                <li>Potential singularity in temporal dynamics</li>
+                                <li>Possible beginning of new age or phase transition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION V: PRAYER IMPACT ====== -->
+        <section id="prayer" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit E &mdash; Intervention Studies</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                Prayer Impact on Physical Systems
+            </h2>
+            <h3 class="font-sans text-lg text-teal font-semibold mb-6">Prediction 2: Prayer Affects Quantum Probability</h3>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed space-y-5">
+                <p>The framework predicts that focused prayer produces measurable effects on systems governed by quantum probability.</p>
+            </div>
+
+            <!-- Proposed study protocol -->
+            <div class="protocol-box mt-8 mb-8">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fas fa-clipboard-list text-teal"></i>
+                    <h4 class="font-display text-sm font-semibold tracking-wider uppercase text-teal">Proposed Prayer Effect Study</h4>
+                </div>
+                <div class="space-y-4">
+                    <div class="font-sans text-sm text-text-secondary">
+                        <div class="font-mono text-xs text-sky mb-2 tracking-wider">PROTOCOL DESIGN</div>
+                        <ol class="list-decimal ml-5 space-y-2">
+                            <li>Measure baseline quantum uncertainty in target system</li>
+                            <li>Have group engage in synchronized prayer for specific outcome</li>
+                            <li>Measure quantum state immediately after prayer</li>
+                            <li>Compare to control group without prayer</li>
+                            <li>Track actual outcomes and compare to predicted probabilities</li>
+                        </ol>
+                    </div>
+                    <div class="font-sans text-sm text-text-secondary">
+                        <div class="font-mono text-xs text-emerald mb-2 tracking-wider">EXPECTED RESULTS</div>
+                        <ul class="space-y-2">
+                            <li class="flex gap-2"><span class="text-emerald mt-0.5"><i class="fas fa-arrow-right text-xs"></i></span><span>Prayer group should show measurable coherence increase</span></li>
+                            <li class="flex gap-2"><span class="text-emerald mt-0.5"><i class="fas fa-arrow-right text-xs"></i></span><span>Probability for prayed-for outcome should increase significantly</span></li>
+                            <li class="flex gap-2"><span class="text-emerald mt-0.5"><i class="fas fa-arrow-right text-xs"></i></span><span>Effect size should correlate with prayer group alignment</span></li>
+                            <li class="flex gap-2"><span class="text-emerald mt-0.5"><i class="fas fa-arrow-right text-xs"></i></span><span>Results should show statistical significance at <span class="font-mono text-teal">p &lt; 0.05</span></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION VI: CRITICAL HYPOTHESES ====== -->
+        <section id="hypotheses" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit F &mdash; Hypotheses</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-8">
+                Critical Hypotheses for Testing
+            </h2>
+
+            <div class="space-y-6">
+                <!-- H1 -->
+                <div class="hypothesis-card" style="border-top-color: #14b8a6;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-mono text-xs text-dark bg-teal rounded px-2 py-0.5 font-bold">H1</span>
+                        <h3 class="font-display text-lg font-bold text-white">Consciousness Coherence Reduces Uncertainty</h3>
+                    </div>
+                    <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                        <p><strong class="text-teal">Prediction:</strong> High consciousness coherence (meditation, prayer, flow states) decreases local quantum uncertainty measurably.</p>
+                        <p><strong class="text-sky">Test:</strong> Compare quantum RNG output during baseline (neutral consciousness), meditation (coherent consciousness), and deep prayer (aligned consciousness).</p>
+                        <p><strong class="text-amber">Expected:</strong> <span class="font-mono">10&ndash;30%</span> reduction in uncertainty during coherent consciousness states.</p>
+                    </div>
+                </div>
+
+                <!-- H2 -->
+                <div class="hypothesis-card" style="border-top-color: #38bdf8;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-mono text-xs text-dark bg-sky rounded px-2 py-0.5 font-bold">H2</span>
+                        <h3 class="font-display text-lg font-bold text-white">Aligned Prayer Increases Event Probability</h3>
+                    </div>
+                    <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                        <p><strong class="text-teal">Prediction:</strong> Prayer aligned with higher spiritual purposes increases probability of corresponding outcomes.</p>
+                        <p><strong class="text-sky">Test:</strong> Conduct prayer intervention studies with clearly defined outcomes, measuring both subjective prayer quality (intention clarity, faith strength, alignment) and actual outcome probability changes.</p>
+                        <p><strong class="text-amber">Expected:</strong> <span class="font-mono">5&ndash;50%</span> increase in target outcome probability, scaling with alignment quality.</p>
+                    </div>
+                </div>
+
+                <!-- H3 -->
+                <div class="hypothesis-card" style="border-top-color: #f59e0b;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-mono text-xs text-dark bg-amber rounded px-2 py-0.5 font-bold">H3</span>
+                        <h3 class="font-display text-lg font-bold text-white">Collective Prayer Creates Non-Linear Effects</h3>
+                    </div>
+                    <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                        <p><strong class="text-teal">Prediction:</strong> Multiple people praying creates exponential amplification, not linear addition.</p>
+                        <p><strong class="text-sky">Test:</strong> Compare single-person prayer effect with 5 people, 25 people, and 100+ people praying same intent.</p>
+                        <p><strong class="text-amber">Expected:</strong> Effectiveness increases non-linearly (<span class="font-mono">n&sup2;</span> or greater) rather than linearly.</p>
+                    </div>
+                </div>
+
+                <!-- H4 -->
+                <div class="hypothesis-card" style="border-top-color: #10b981;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="font-mono text-xs text-dark bg-emerald rounded px-2 py-0.5 font-bold">H4</span>
+                        <h3 class="font-display text-lg font-bold text-white">Prophetic Timeline Follows Exponential Acceleration</h3>
+                    </div>
+                    <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                        <p><strong class="text-teal">Prediction:</strong> Quantum uncertainty and prophetic events accelerate exponentially, doubling every ~7 years.</p>
+                        <p><strong class="text-sky">Test:</strong> Analyze historical databases of significant historical events, prophetic fulfillments, quantum anomaly reports, and Global Consciousness Project correlations.</p>
+                        <p><strong class="text-amber">Expected:</strong> Clear exponential pattern confirming doubling rate <span class="font-mono">&plusmn;20%</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION VII: FIVE BRIDGE PREDICTIONS ====== -->
+        <section id="bridge-predictions" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit G &mdash; Bridge Predictions</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                Five Testable Predictions from the Consciousness Bridge
+            </h2>
+            <p class="font-serif text-lg text-text-secondary italic mb-8">Derived from the coherence parameter framework. Each prediction is independently falsifiable.</p>
+
+            <!-- Bridge Prediction 1: Meditation REG Studies -->
+            <div class="evidence-card rounded-lg p-6 mb-5 fade-up">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center">
+                        <span class="font-display text-xl font-bold text-teal">1</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">Meditation REG Studies</h3>
+                        <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                            <p>Experienced meditators in deep states should show measurable effects on nearby quantum systems.</p>
+                            <p><strong class="text-sky">Protocol:</strong> REG devices in meditation halls vs. control locations.</p>
+                            <p><strong class="text-teal">Prediction:</strong> Statistically significant deviation during group meditation sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridge Prediction 2: Gamma Synchronization -->
+            <div class="evidence-card rounded-lg p-6 mb-5 fade-up">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-sky/10 flex items-center justify-center">
+                        <span class="font-display text-xl font-bold text-sky">2</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">Coherence Correlates &mdash; Gamma Synchronization</h3>
+                        <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                            <p>If C is real, it should correlate with measurable brain states.</p>
+                            <p><strong class="text-teal">Prediction:</strong> High gamma synchronization (associated with integrated conscious states) should correlate with increased influence on REG outputs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridge Prediction 3: Temporal GCP Patterns -->
+            <div class="evidence-card rounded-lg p-6 mb-5 fade-up">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center">
+                        <span class="font-display text-xl font-bold text-amber">3</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">Temporal GCP Patterns</h3>
+                        <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                            <p>The GCP data should show systematic patterns correlating with:</p>
+                            <ul class="ml-4 space-y-1">
+                                <li class="flex gap-2"><span class="text-amber text-xs mt-1.5"><i class="fas fa-caret-right"></i></span><span><strong class="text-white">Time of day</strong> &mdash; more waking consciousness = higher collective C</span></li>
+                                <li class="flex gap-2"><span class="text-amber text-xs mt-1.5"><i class="fas fa-caret-right"></i></span><span><strong class="text-white">Day of week</strong> &mdash; synchronized rest days = coherence spikes</span></li>
+                                <li class="flex gap-2"><span class="text-amber text-xs mt-1.5"><i class="fas fa-caret-right"></i></span><span><strong class="text-white">Global events</strong> &mdash; mass attention = measurable network response</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridge Prediction 4: Distance Independence -->
+            <div class="evidence-card rounded-lg p-6 mb-5 fade-up">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-emerald/10 flex items-center justify-center">
+                        <span class="font-display text-xl font-bold text-emerald">4</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">Distance Independence</h3>
+                        <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                            <p>If consciousness operates through coherence rather than physical proximity, distance shouldn't matter.</p>
+                            <p><strong class="text-teal">Prediction:</strong> Intention effects on REGs should be independent of operator distance.</p>
+                            <p class="text-text-secondary">(PEAR data supports this&mdash;remote operators showed equivalent effects.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridge Prediction 5: Decoherence Asymmetry -->
+            <div class="evidence-card rounded-lg p-6 fade-up">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-rose/10 flex items-center justify-center">
+                        <span class="font-display text-xl font-bold" style="color: #f43f5e;">5</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white mb-2">Decoherence Asymmetry</h3>
+                        <div class="font-serif text-text-primary leading-relaxed space-y-3">
+                            <p>Standard decoherence theory predicts symmetric decay of quantum superpositions. If C matters, we should see subtle asymmetries correlated with observer presence.</p>
+                            <p><strong class="text-teal">Prediction:</strong> Testable in precision quantum optics experiments. Observer-correlated asymmetry in decoherence rates would confirm that coherence is not merely environmental but consciousness-linked.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION VIII: FALSIFIABILITY ====== -->
+        <section id="falsifiability" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit H &mdash; Falsifiability</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
+                Falsifiability and Risk Assessment
+            </h2>
+
+            <div class="pull-quote">
+                Genuine science requires falsifiability. A non-falsifiable framework isn't scientific. The framework explicitly welcomes these tests because truth doesn't fear investigation.
+            </div>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed mb-8">
+                <p>The framework is genuinely falsifiable. It would be disproven by:</p>
+            </div>
+
+            <div class="space-y-3 mb-10">
+                <div class="flex gap-4 items-start p-4 rounded-lg" style="background: #f43f5e08; border: 1px solid #f43f5e15;">
+                    <span class="font-mono text-sm font-bold text-rose mt-0.5">01</span>
+                    <p class="font-serif text-text-primary"><strong class="text-white">No measurable prayer effects:</strong> If rigorous, properly controlled studies show no correlation between prayer and quantum probability, the framework fails.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg" style="background: #f43f5e08; border: 1px solid #f43f5e15;">
+                    <span class="font-mono text-sm font-bold text-rose mt-0.5">02</span>
+                    <p class="font-serif text-text-primary"><strong class="text-white">Linear rather than exponential pattern:</strong> If prophetic timing follows linear patterns instead of exponential doubling.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg" style="background: #f43f5e08; border: 1px solid #f43f5e15;">
+                    <span class="font-mono text-sm font-bold text-rose mt-0.5">03</span>
+                    <p class="font-serif text-text-primary"><strong class="text-white">No geographic variations in quantum uncertainty:</strong> If quantum measurements show no correlation with location or consciousness.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg" style="background: #f43f5e08; border: 1px solid #f43f5e15;">
+                    <span class="font-mono text-sm font-bold text-rose mt-0.5">04</span>
+                    <p class="font-serif text-text-primary"><strong class="text-white">Negative results on coherence effects:</strong> If consciousness coherence shows no measurable correlation with quantum effects.</p>
+                </div>
+                <div class="flex gap-4 items-start p-4 rounded-lg" style="background: #f43f5e08; border: 1px solid #f43f5e15;">
+                    <span class="font-mono text-sm font-bold text-rose mt-0.5">05</span>
+                    <p class="font-serif text-text-primary"><strong class="text-white">Failed temporal predictions:</strong> If projected thresholds (2030, 2039, 2046&ndash;2047) pass without corresponding events.</p>
+                </div>
+            </div>
+
+            <div class="font-serif text-lg text-text-primary leading-relaxed space-y-4">
+                <p>These risks are acceptable because:</p>
+                <ul class="space-y-2 ml-6">
+                    <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-shield-alt text-xs"></i></span><span><strong class="text-white">Genuine science requires falsifiability</strong>&mdash;A non-falsifiable framework isn't scientific</span></li>
+                    <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-shield-alt text-xs"></i></span><span><strong class="text-white">Confidence requires challenge</strong>&mdash;The framework gains strength through rigorous testing</span></li>
+                    <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-shield-alt text-xs"></i></span><span><strong class="text-white">Truth doesn't fear investigation</strong>&mdash;If the framework reflects reality, evidence will support it</span></li>
+                    <li class="flex gap-2"><span class="text-teal mt-1"><i class="fas fa-shield-alt text-xs"></i></span><span><strong class="text-white">Current evidence is suggestive but incomplete</strong>&mdash;More rigorous testing is needed</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION IX: RESEARCH AGENDA ====== -->
+        <section id="research-agenda" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit I &mdash; Research Agenda</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-8">
+                Experimental Recommendations
+            </h2>
+
+            <!-- Immediate Priority -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="priority-badge priority-high"><i class="fas fa-bolt text-[6px]"></i> Immediate Priority</span>
+                    <span class="font-mono text-xs text-text-muted">1&ndash;2 years</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-teal mb-2">STUDY 01</div>
+                        <p class="font-sans text-sm text-text-primary">Detailed PEAR-style replication with modern quantum sensors</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-teal mb-2">STUDY 02</div>
+                        <p class="font-sans text-sm text-text-primary">Prayer effect studies on quantum RNG with proper controls</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-teal mb-2">STUDY 03</div>
+                        <p class="font-sans text-sm text-text-primary">Historical analysis of prophetic patterns for exponential fit</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-teal mb-2">STUDY 04</div>
+                        <p class="font-sans text-sm text-text-primary">Geographic mapping of quantum anomalies</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medium-Term -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="priority-badge priority-medium"><i class="fas fa-clock text-[6px]"></i> Medium-Term</span>
+                    <span class="font-mono text-xs text-text-muted">3&ndash;5 years</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-amber mb-2">STUDY 05</div>
+                        <p class="font-sans text-sm text-text-primary">Multi-site coordinated prayer experiments</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-amber mb-2">STUDY 06</div>
+                        <p class="font-sans text-sm text-text-primary">Consciousness-coherence measurement correlations</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-amber mb-2">STUDY 07</div>
+                        <p class="font-sans text-sm text-text-primary">Prophetic event prediction based on quantum models</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-amber mb-2">STUDY 08</div>
+                        <p class="font-sans text-sm text-text-primary">Replication of Global Consciousness Project findings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Long-Term -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="priority-badge priority-active"><i class="fas fa-rocket text-[6px]"></i> Long-Term</span>
+                    <span class="font-mono text-xs text-text-muted">5+ years</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-emerald mb-2">STUDY 09</div>
+                        <p class="font-sans text-sm text-text-primary">Validation of 2030 threshold predictions</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-emerald mb-2">STUDY 10</div>
+                        <p class="font-sans text-sm text-text-primary">Development of quantum-spiritual measurement standards</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-emerald mb-2">STUDY 11</div>
+                        <p class="font-sans text-sm text-text-primary">Integration with mainstream consciousness studies</p>
+                    </div>
+                    <div class="evidence-card rounded-lg p-4">
+                        <div class="font-mono text-xs text-emerald mb-2">STUDY 12</div>
+                        <p class="font-sans text-sm text-text-primary">Pilot applications in healing and intervention</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ====== SECTION X: SUMMARY ====== -->
+        <section id="summary" class="fade-up mb-16">
+            <div class="exhibit-label">Exhibit J &mdash; Summary</div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
+                The Empirical Case
+            </h2>
+
+            <div class="pull-quote">
+                The framework is genuinely falsifiable, generates specific predictions at four independent levels, and is supported by decades of anomalous data that standard physics cannot explain.
+            </div>
+
+            <!-- Key equations recap -->
+            <div class="evidence-card rounded-lg p-6 mb-8">
+                <h3 class="font-display text-sm font-semibold tracking-wider uppercase text-teal mb-4">Core Equations Under Test</h3>
+                <div class="space-y-4">
+                    <div class="equation-display" style="margin: 0;">
+                        <div class="font-mono text-xs text-text-muted mb-1">Modified Uncertainty Principle</div>
+                        <div class="text-center">$$\Delta x \cdot \Delta p \geq \frac{\hbar(1-C)}{2}$$</div>
+                    </div>
+                    <div class="equation-display" style="margin: 0;">
+                        <div class="font-mono text-xs text-text-muted mb-1">Prophetic Acceleration</div>
+                        <div class="text-center">$$U(t) = U_0 \cdot 2^{(t-t_0)/7}$$</div>
+                    </div>
+                    <div class="equation-display" style="margin: 0;">
+                        <div class="font-mono text-xs text-text-muted mb-1">Collective Coherence</div>
+                        <div class="text-center">$$C_{\text{collective}} = \sum_{i=1}^{n} \alpha_i C_i + \beta \prod_{i=1}^{n} C_i$$</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary points -->
+            <div class="font-serif text-lg text-text-primary leading-relaxed space-y-4">
+                <p>The evidence presented in this dossier establishes:</p>
+                <ol class="list-decimal ml-6 space-y-3">
+                    <li><strong class="text-white">The PEAR laboratory data</strong> (6.35&sigma;) demonstrates that conscious intention affects quantum random events across 2.5 million trials with probability of chance occurrence less than 1 in 10<sup>9</sup>.</li>
+                    <li><strong class="text-white">The Global Consciousness Project</strong> (7&sigma;) shows that collective coherence during mass events produces measurable departures from randomness in a worldwide network of quantum detectors.</li>
+                    <li><strong class="text-white">The DESI observations</strong> (4.2&sigma;) of dark energy evolution are consistent with the framework's prediction of changing cosmological parameters.</li>
+                    <li><strong class="text-white">The PROP-COSMOS analysis</strong> (5.7&sigma;) demonstrates that prophetic pattern fits exceed discovery-threshold significance.</li>
+                    <li><strong class="text-white">The framework generates nine specific hypotheses</strong> (four critical, five bridge predictions) that are independently testable and falsifiable.</li>
+                    <li><strong class="text-white">A 12-study research agenda</strong> provides a concrete path from immediate replication through long-term validation.</li>
+                </ol>
+            </div>
+
+            <div class="pull-quote mt-8">
+                Current evidence is suggestive but incomplete. More rigorous testing is needed. The framework invites that testing&mdash;because if it reflects reality, evidence will support it. And if it doesn't, we need to know that too.
+            </div>
+
+            <div class="font-serif text-base text-text-muted italic mt-8 text-center">
+                Paper Status: Testable hypotheses established. Ready for rigorous experimental investigation.
+            </div>
+        </section>
+
+        <!-- ====== SERIES NAVIGATION ====== -->
+        <div class="section-divider"></div>
+        <section class="mb-16">
+            <h3 class="font-display text-sm tracking-widest uppercase text-text-muted mb-6">Consciousness Series Navigation</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="consciousness-coherence-bridge.html" class="evidence-card rounded-lg p-4 block no-underline group">
+                    <div class="font-mono text-xs text-text-muted mb-1"><i class="fas fa-arrow-left mr-1"></i> Previous &mdash; Paper 6</div>
+                    <div class="font-display text-white group-hover:text-teal transition-colors">The Coherence Bridge</div>
+                </a>
+                <a href="#" class="evidence-card rounded-lg p-4 block no-underline group text-right">
+                    <div class="font-mono text-xs text-text-muted mb-1">Next &mdash; Paper 8 <i class="fas fa-arrow-right ml-1"></i></div>
+                    <div class="font-display text-white group-hover:text-teal transition-colors">Coming Soon</div>
+                </a>
+            </div>
+
+            <div class="mt-8 font-sans text-xs text-text-muted">
+                <p><strong>Cross-References:</strong></p>
+                <ul class="mt-2 space-y-1 ml-4">
+                    <li>Paper 1: The Coherence Bridge &mdash; Theoretical foundations of these predictions</li>
+                    <li>Paper 2: Parallel Laws &mdash; Mechanisms underlying prayer effects</li>
+                    <li>Paper 3: Time and Miracles &mdash; Temporal dynamics and prophecy</li>
+                    <li>Paper 5: Philosophical Synthesis &mdash; Implications of confirmed predictions</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-dark-border" style="background: #0a0a0a;">
+    <div class="max-w-5xl mx-auto px-6 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <p class="font-display text-sm tracking-wider text-text-muted uppercase">Theophysics Research Program</p>
+                <p class="font-sans text-xs text-text-muted mt-1">David Lowe + Claude (Opus 4.6)</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="case-stamp text-xs" style="transform: rotate(0deg);">Case File 7 / 11</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// TOC active state tracking
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = [];
+tocLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+        const section = document.querySelector(href);
+        if (section) sections.push({ el: section, link: link });
+    }
+});
+
+window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + 120;
+    let current = null;
+    sections.forEach(s => {
+        if (s.el.offsetTop <= scrollPos) current = s;
+    });
+    tocLinks.forEach(l => l.classList.remove('active'));
+    if (current) current.link.classList.add('active');
+}, { passive: true });
+</script>
+
+</body>
+</html>
