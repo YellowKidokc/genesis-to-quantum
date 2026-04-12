@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>No-Drift Law Synthesis — Theophysics Master Equation</title>
+<title>No-Drift Law Synthesis â€” Theophysics Master Equation</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -271,7 +271,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
 
 <div class="progress-bar" id="progress" style="width:0%"></div>
 
-<!-- ══════════ TOP NAV ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• TOP NAV â•â•â•â•â•â•â•â•â•â• -->
 <nav class="top-nav">
   <div style="display:flex;align-items:center;gap:.75rem;">
     <span class="mono text-xs font-bold" style="color:var(--gold);">NDLS</span>
@@ -290,7 +290,15 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </nav>
 
-<!-- ══════════ TOC SIDEBAR ══════════ -->
+<!-- AUDIO PLAYER DOCK -->
+<div class="player-dock">
+  <i class="fas fa-volume-up" style="color:var(--gold);font-size:.8rem;"></i>
+  <span class="player-label">Listen</span>
+  <audio controls preload="metadata">
+    <source src="https://pub-5b15c954dc1642f18573a365cf6dc2c5.r2.dev/audio/No_Drift_Law_Synthesis.mp3" type="audio/mpeg">
+  </audio>
+</div>
+<!-- â•â•â•â•â•â•â•â•â•â• TOC SIDEBAR â•â•â•â•â•â•â•â•â•â• -->
 <button class="toc-toggle" id="tocToggle" title="Table of Contents">
   <i class="fas fa-bars"></i>
 </button>
@@ -315,7 +323,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   <a href="#open-questions"><i class="fas fa-question-circle mr-1"></i> Open Questions</a>
 </aside>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â• -->
 <header style="background:linear-gradient(180deg,rgba(212,175,55,.06) 0%,var(--surface) 100%);border-bottom:1px solid var(--border);padding-top:70px;">
   <div class="max-w-5xl mx-auto px-6 py-12 md:py-20">
     <div class="flex flex-wrap gap-2 mb-6">
@@ -347,7 +355,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </header>
 
-<!-- ══════════ SECTION 1: ARCHITECTURE ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 1: ARCHITECTURE â•â•â•â•â•â•â•â•â•â• -->
 <section id="architecture" class="max-w-5xl mx-auto px-6 py-16" style="scroll-margin-top:90px;">
   <div class="text-center mb-12">
     <p class="mono text-sm font-semibold tracking-widest uppercase mb-2" style="color:var(--gold);">Foundation</p>
@@ -404,7 +412,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION 2: THREE-TIER HIERARCHY ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 2: THREE-TIER HIERARCHY â•â•â•â•â•â•â•â•â•â• -->
 <section id="hierarchy" class="max-w-4xl mx-auto px-6 py-16" style="scroll-margin-top:90px;">
   <div class="text-center mb-8">
     <p class="mono text-sm font-semibold tracking-widest uppercase mb-2" style="color:var(--teal);">Framework</p>
@@ -447,7 +455,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </table>
 </section>
 
-<!-- ══════════ SECTION 3: THE 10 LAWS ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 3: THE 10 LAWS â•â•â•â•â•â•â•â•â•â• -->
 <section id="laws" style="background:linear-gradient(180deg,var(--surface) 0%,rgba(212,175,55,.02) 50%,var(--surface) 100%);scroll-margin-top:90px;">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <div class="text-center mb-16">
@@ -460,7 +468,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
 
     <div class="space-y-10">
 
-      <!-- ═══ LAW 1 ═══ -->
+      <!-- â•â•â• LAW 1 â•â•â• -->
       <div class="law-card" id="law1">
         <div class="law-header">
           <div class="law-number">01</div>
@@ -506,7 +514,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 2 ═══ -->
+      <!-- â•â•â• LAW 2 â•â•â• -->
       <div class="law-card" id="law2">
         <div class="law-header">
           <div class="law-number">02</div>
@@ -565,7 +573,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 3 ═══ -->
+      <!-- â•â•â• LAW 3 â•â•â• -->
       <div class="law-card" id="law3">
         <div class="law-header">
           <div class="law-number">03</div>
@@ -616,7 +624,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 4 ═══ -->
+      <!-- â•â•â• LAW 4 â•â•â• -->
       <div class="law-card" id="law4">
         <div class="law-header">
           <div class="law-number">04</div>
@@ -663,7 +671,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 5 ═══ -->
+      <!-- â•â•â• LAW 5 â•â•â• -->
       <div class="law-card" id="law5">
         <div class="law-header">
           <div class="law-number">05</div>
@@ -708,7 +716,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 6 ═══ -->
+      <!-- â•â•â• LAW 6 â•â•â• -->
       <div class="law-card" id="law6">
         <div class="law-header">
           <div class="law-number">06</div>
@@ -767,7 +775,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 7 ═══ -->
+      <!-- â•â•â• LAW 7 â•â•â• -->
       <div class="law-card" id="law7">
         <div class="law-header">
           <div class="law-number">07</div>
@@ -812,7 +820,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 8 ═══ -->
+      <!-- â•â•â• LAW 8 â•â•â• -->
       <div class="law-card" id="law8">
         <div class="law-header">
           <div class="law-number">08</div>
@@ -864,7 +872,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 9 ═══ -->
+      <!-- â•â•â• LAW 9 â•â•â• -->
       <div class="law-card" id="law9" style="border-color:var(--red);border-width:2px;">
         <div class="law-header" style="background:rgba(239,68,68,.04);">
           <div class="law-number" style="color:rgba(239,68,68,.12);">09</div>
@@ -907,7 +915,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
         </div>
       </div>
 
-      <!-- ═══ LAW 10 ═══ -->
+      <!-- â•â•â• LAW 10 â•â•â• -->
       <div class="law-card" id="law10" style="border-color:var(--gold);border-width:2px;box-shadow:0 0 80px rgba(212,175,55,.06);">
         <div class="law-header" style="background:rgba(212,175,55,.04);">
           <div class="law-number" style="color:rgba(212,175,55,.15);">10</div>
@@ -951,7 +959,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION 4: SALVATION ALGORITHM ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 4: SALVATION ALGORITHM â•â•â•â•â•â•â•â•â•â• -->
 <section id="salvation-algo" style="scroll-margin-top:90px;">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <div class="text-center mb-12">
@@ -1033,7 +1041,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION 5: SALVATION SEQUENCE ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 5: SALVATION SEQUENCE â•â•â•â•â•â•â•â•â•â• -->
 <section id="salvation-seq" style="background:linear-gradient(180deg,var(--surface) 0%,rgba(74,158,255,.03) 50%,var(--surface) 100%);scroll-margin-top:90px;">
   <div class="max-w-4xl mx-auto px-6 py-16">
     <div class="text-center mb-12">
@@ -1081,7 +1089,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION 6: CONVERGENCE DATA ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 6: CONVERGENCE DATA â•â•â•â•â•â•â•â•â•â• -->
 <section id="convergence" class="max-w-4xl mx-auto px-6 py-16" style="scroll-margin-top:90px;">
   <div class="convergence-box">
     <p class="mono text-sm font-semibold tracking-widest uppercase mb-3" style="color:var(--gold);">Verification</p>
@@ -1139,7 +1147,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
     <!-- Shannon calculation -->
     <div style="background:var(--surface-card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;margin-top:1rem;">
       <h4 class="serif text-lg font-bold text-white mb-3 text-center">Shannon Information Content of the Three-Way Mapping</h4>
-      <p class="text-xs text-center mb-4" style="color:var(--text-secondary);">Ten Commandments ↔ Ten Physics Laws ↔ Salvation Narrative</p>
+      <p class="text-xs text-center mb-4" style="color:var(--text-secondary);">Ten Commandments â†” Ten Physics Laws â†” Salvation Narrative</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
         <div>
           <p class="mono text-2xl font-bold" style="color:var(--gold);">10! &times; 10!</p>
@@ -1159,7 +1167,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION 7: OPEN QUESTIONS ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION 7: OPEN QUESTIONS â•â•â•â•â•â•â•â•â•â• -->
 <section id="open-questions" class="max-w-4xl mx-auto px-6 py-16" style="scroll-margin-top:90px;">
   <div class="text-center mb-12">
     <p class="mono text-sm font-semibold tracking-widest uppercase mb-2" style="color:var(--purple);">Unresolved</p>
@@ -1202,7 +1210,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â• -->
 <footer>
   <div class="max-w-4xl mx-auto px-6">
     <p class="serif text-lg italic mb-3" style="color:var(--text-secondary);">

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The 24 Anti-Properties — What the Adversary Is Made Of</title>
+<title>The 24 Anti-Properties â€” What the Adversary Is Made Of</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -181,10 +181,19 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
 </style>
 </head>
 <body>
+<!-- AUDIO PLAYER DOCK -->
+<div class="player-dock" style="display:flex;align-items:center;gap:1rem;padding:.7rem 1.5rem;background:#1a1a1a;border-bottom:1px solid #2a2a2a;position:sticky;top:0;z-index:90">
+  <i class="fas fa-volume-up" style="color:#d4af37;font-size:.8rem"></i>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#d4af37;white-space:nowrap">Listen</span>
+  <audio controls preload="metadata" style="flex:1;height:34px">
+    <source src="https://pub-5b15c954dc1642f18573a365cf6dc2c5.r2.dev/audio/The_24_Anti_Properties.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
 
 <div class="progress-bar" id="progress" style="width:0%"></div>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â• -->
 <header style="background:linear-gradient(180deg,rgba(239,68,68,.06) 0%,rgba(212,175,55,.03) 40%,var(--surface) 100%);border-bottom:1px solid var(--border);">
   <div class="max-w-5xl mx-auto px-6 py-12 md:py-20">
     <div class="flex flex-wrap gap-2 mb-6">
@@ -215,7 +224,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </header>
 
-<!-- ══════════ BEFORE WE START ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• BEFORE WE START â•â•â•â•â•â•â•â•â•â• -->
 <section class="max-w-3xl mx-auto px-6 py-16">
   <p class="drop-cap text-lg leading-relaxed" style="color:#cfcfcf;">
     The Math Is Moral paper establishes something that doesn&rsquo;t let you go once you&rsquo;ve seen it.
@@ -254,7 +263,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </p>
 </section>
 
-<!-- ══════════ SECTION I: THE 24 PROPERTIES ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION I: THE 24 PROPERTIES â•â•â•â•â•â•â•â•â•â• -->
 <section style="background:linear-gradient(180deg,var(--surface) 0%,rgba(212,175,55,.03) 50%,var(--surface) 100%);">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <div class="text-center mb-10">
@@ -301,7 +310,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION II: THE 24 ANTI-PROPERTIES ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION II: THE 24 ANTI-PROPERTIES â•â•â•â•â•â•â•â•â•â• -->
 <section style="background:linear-gradient(180deg,var(--surface) 0%,rgba(239,68,68,.03) 50%,var(--surface) 100%);">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <div class="text-center mb-6">
@@ -699,7 +708,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION III: WHY A TAXONOMY ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION III: WHY A TAXONOMY â•â•â•â•â•â•â•â•â•â• -->
 <section class="max-w-3xl mx-auto px-6 py-16">
   <div class="text-center mb-10">
     <p class="section-label mb-2" style="color:var(--gold);">Section III</p>
@@ -767,7 +776,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION IV: THE FRUITS ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION IV: THE FRUITS â•â•â•â•â•â•â•â•â•â• -->
 <section style="background:linear-gradient(180deg,var(--surface) 0%,rgba(45,212,191,.03) 50%,var(--surface) 100%);">
   <div class="max-w-4xl mx-auto px-6 py-16">
     <div class="text-center mb-10">
@@ -875,7 +884,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION V: THE FORMAL DEFINITION ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION V: THE FORMAL DEFINITION â•â•â•â•â•â•â•â•â•â• -->
 <section class="max-w-3xl mx-auto px-6 py-16">
   <div class="text-center mb-10">
     <p class="section-label mb-2" style="color:var(--red);">Section V</p>
@@ -918,7 +927,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ SECTION VI: WHAT THIS CHANGES ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• SECTION VI: WHAT THIS CHANGES â•â•â•â•â•â•â•â•â•â• -->
 <section style="background:linear-gradient(180deg,var(--surface) 0%,rgba(212,175,55,.03) 50%,var(--surface) 100%);">
   <div class="max-w-3xl mx-auto px-6 py-16">
     <div class="text-center mb-10">
@@ -987,7 +996,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ CLOSING ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• CLOSING â•â•â•â•â•â•â•â•â•â• -->
 <section class="max-w-3xl mx-auto px-6 py-16">
   <div class="text-center mb-10">
     <p class="serif text-2xl md:text-3xl italic leading-relaxed" style="color:var(--text-secondary);">
@@ -1009,7 +1018,7 @@ footer{border-top:1px solid var(--border);margin-top:5rem;padding:2.5rem 0;text-
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â• -->
 <footer>
   <div class="max-w-4xl mx-auto px-6">
     <p class="text-sm font-semibold" style="color:var(--text-secondary);">
