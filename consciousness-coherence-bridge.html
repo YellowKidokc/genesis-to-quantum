@@ -406,6 +406,7 @@
 <!-- Progress Navigation Dots -->
 <nav class="progress-nav" id="progressNav">
     <div class="progress-dot active" data-target="hero"><span class="dot-label">Top</span></div>
+    <div class="progress-dot" data-target="sec-intro"><span class="dot-label">Introduction</span></div>
     <div class="progress-dot" data-target="sec-puzzle"><span class="dot-label">The Puzzle</span></div>
     <div class="progress-dot" data-target="sec-observer"><span class="dot-label">Observer Problem</span></div>
     <div class="progress-dot" data-target="sec-coherence"><span class="dot-label">Coherence Parameter</span></div>
@@ -419,6 +420,7 @@
     <div class="progress-dot" data-target="sec-predictions"><span class="dot-label">Predictions</span></div>
     <div class="progress-dot" data-target="sec-implications"><span class="dot-label">Implications</span></div>
     <div class="progress-dot" data-target="sec-perfect"><span class="dot-label">Perfect Coherence</span></div>
+    <div class="progress-dot" data-target="sec-summary"><span class="dot-label">Summary</span></div>
 </nav>
 
 <!-- ============================================ -->
@@ -428,7 +430,7 @@
     <!-- Series badge -->
     <div class="mb-8 text-center">
         <span class="inline-block font-sans text-xs tracking-[0.25em] uppercase text-teal/60 border border-teal/20 rounded-full px-4 py-1.5">
-            Consciousness Series &mdash; Paper 2 of 12
+            Consciousness Series &mdash; Paper 2
         </span>
     </div>
 
@@ -439,7 +441,7 @@
     </h1>
 
     <p class="font-sans text-lg sm:text-xl text-text-secondary text-center max-w-2xl mb-4 leading-relaxed">
-        A Quantum-Spiritual Framework Foundation
+        Quantum-Spiritual Framework Foundation
     </p>
 
     <!-- Visual bridge element -->
@@ -480,9 +482,9 @@
 <main class="max-w-4xl mx-auto px-6 py-16">
 
     <!-- =============================== -->
-    <!-- INTRODUCTION -->
+    <!-- INTRODUCTION: BRIDGING TWO WORLDS -->
     <!-- =============================== -->
-    <section class="fade-section mb-20">
+    <section id="sec-intro" class="fade-section mb-20">
         <div class="section-marker">
             <span class="marker-line right"></span>
             <span class="marker-icon"><i class="fas fa-compass"></i></span>
@@ -523,7 +525,7 @@
         <p class="font-sans text-sm text-teal text-center tracking-[0.2em] uppercase mb-12">The Great Divide: Quantum Mechanics vs. General Relativity</p>
 
         <p class="text-lg leading-relaxed text-text-secondary mb-6">
-            Here's the dirty secret of modern physics: we have two theories that both work perfectly&mdash;and completely contradict each other.
+            Modern physics faces a profound challenge: our two most successful theories don't work together. General relativity beautifully explains gravity and the large-scale structure of the universe, while quantum mechanics perfectly describes the behavior of particles at the smallest scales. Yet when we try to combine them, they generate contradictory predictions.
         </p>
 
         <!-- Split Panel: QM vs GR -->
@@ -534,14 +536,14 @@
                     <h3 class="font-display text-xl font-semibold text-text-primary">The Smooth Universe</h3>
                 </div>
                 <p class="text-base leading-relaxed text-text-secondary mb-4">
-                    General Relativity describes gravity, spacetime, and the large-scale cosmos. Einstein's field equations are elegant, deterministic, continuous:
+                    The equations of general relativity describe a smooth, continuous universe:
                 </p>
                 <div class="equation-box">
                     <div class="equation-label">Einstein Field Equations</div>
                     $$G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}$$
                 </div>
                 <p class="text-base leading-relaxed text-text-secondary">
-                    Mass-energy on the right curves spacetime on the left. It predicts black holes, gravitational waves, GPS timing corrections. It works.
+                    This elegant equation shows how mass and energy (right side) curve spacetime (left side). It's deterministic and precisely predictable.
                 </p>
             </div>
             <div class="panel-right">
@@ -550,54 +552,48 @@
                     <h3 class="font-display text-xl font-semibold text-text-primary">The Probabilistic Universe</h3>
                 </div>
                 <p class="text-base leading-relaxed text-text-secondary mb-4">
-                    Quantum Mechanics describes particles, atoms, and subatomic behavior. Schr&ouml;dinger's equation governs a probabilistic, discrete, deeply strange world:
+                    Quantum mechanics, however, describes a probabilistic universe where particles exist in multiple states simultaneously until measured:
                 </p>
                 <div class="equation-box">
-                    <div class="equation-label">Schr&ouml;dinger Equation</div>
-                    $$i\hbar\frac{\partial\Psi}{\partial t} = \hat{H}\Psi$$
+                    <div class="equation-label">Uncertainty Principle</div>
+                    $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$
                 </div>
                 <p class="text-base leading-relaxed text-text-secondary">
-                    It predicts electron orbitals, chemical bonds, semiconductor behavior. It works.
+                    This uncertainty principle means we can never simultaneously know a particle's exact position and momentum&mdash;not because of measurement limitations, but because reality itself has fundamental uncertainty built in.
                 </p>
             </div>
         </div>
 
-        <div class="callout warning">
-            <p class="text-base leading-relaxed text-text-secondary">
-                But when you try to combine them? Mathematical chaos. Infinities that can't be renormalized. Predictions that contradict at the Planck scale (10<sup>&minus;35</sup> meters).
-            </p>
-        </div>
-
         <!-- Contradiction comparison table -->
-        <h3 class="font-display text-xl font-semibold text-text-primary mt-10 mb-4">Where They Contradict</h3>
+        <h3 class="font-display text-xl font-semibold text-text-primary mt-10 mb-4">These frameworks contradict each other in several ways:</h3>
         <table class="comparison-table">
             <thead>
                 <tr>
-                    <th>Dimension</th>
+                    <th>#</th>
                     <th>General Relativity</th>
                     <th>Quantum Mechanics</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Structure</td><td>Continuity</td><td>Discreteness</td></tr>
-                <tr><td>Causality</td><td>Determinism</td><td>Probability</td></tr>
-                <tr><td>Interaction</td><td>Locality</td><td>Non-locality</td></tr>
-                <tr><td>Information</td><td>Preservation</td><td>Loss</td></tr>
+                <tr><td>1</td><td>Continuity</td><td>Discreteness</td></tr>
+                <tr><td>2</td><td>Determinism</td><td>Probability</td></tr>
+                <tr><td>3</td><td>Locality</td><td>Non-locality</td></tr>
+                <tr><td>4</td><td>Information preservation</td><td>Loss</td></tr>
             </tbody>
         </table>
 
         <p class="text-lg leading-relaxed text-text-secondary mt-8">
-            For a century, physicists have searched for a "Theory of Everything" to reconcile these frameworks. String theory requires 11 dimensions we can't detect. Loop quantum gravity quantizes spacetime itself. Neither has produced testable predictions. Neither has succeeded.
+            For decades, physicists have sought a "Theory of Everything" to reconcile these differences&mdash;without success.
         </p>
 
         <div class="pull-quote">
-            What if they're missing a variable?
+            What if the solution requires looking beyond conventional physical parameters?
         </div>
     </section>
 
 
     <!-- =============================== -->
-    <!-- THE OBSERVER PROBLEM -->
+    <!-- THE OBSERVER PROBLEM (from expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-observer" class="fade-section mb-20">
         <div class="section-marker">
@@ -671,7 +667,7 @@
 
 
     <!-- =============================== -->
-    <!-- THE COHERENCE PARAMETER -->
+    <!-- PART II: THE MISSING COMPONENT — THE SPIRITUAL COHERENCE PARAMETER -->
     <!-- =============================== -->
     <section id="sec-coherence" class="fade-section mb-20">
         <div class="section-marker">
@@ -681,68 +677,50 @@
         </div>
 
         <h2 class="font-display text-4xl sm:text-5xl font-bold text-text-primary mb-4 text-center tracking-wide uppercase">
-            The Coherence Parameter
+            The Spiritual Coherence Parameter
         </h2>
-        <p class="font-sans text-sm text-teal text-center tracking-[0.2em] uppercase mb-12">The Missing Variable</p>
+        <p class="font-sans text-sm text-teal text-center tracking-[0.2em] uppercase mb-12">The Missing Component</p>
 
         <p class="text-lg leading-relaxed text-text-secondary mb-8">
-            We propose a simple modification to Heisenberg's uncertainty principle.
+            Our framework introduces a groundbreaking concept: a spiritual coherence parameter (C) that modifies quantum uncertainty based on the degree of alignment with fundamental cosmic principles:
         </p>
 
-        <!-- Split: Standard vs Modified -->
-        <div class="split-panel my-10">
-            <div class="panel-left">
-                <span class="inline-block font-sans text-xs tracking-[0.2em] uppercase text-text-muted font-semibold mb-4">Standard Form</span>
-                <div class="equation-box">
-                    <div class="equation-label">Heisenberg Uncertainty</div>
-                    $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2}$$
-                </div>
-                <p class="text-base leading-relaxed text-text-secondary">
-                    This says you cannot simultaneously know a particle's exact position (&Delta;x) and momentum (&Delta;p). The product of their uncertainties must exceed &#8463;/2. This isn't measurement limitation&mdash;it's ontological. Reality itself is fuzzy at small scales.
-                </p>
-            </div>
-            <div class="panel-right">
-                <span class="inline-block font-sans text-xs tracking-[0.2em] uppercase text-teal font-semibold mb-4">Modified Form</span>
-                <div class="equation-box" style="border-color: rgba(20, 184, 166, 0.5); background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);">
-                    <div class="equation-label">Coherence-Modified Uncertainty</div>
-                    $$\Delta x \cdot \Delta p \geq \frac{\hbar(1-C)}{2}$$
-                </div>
-                <p class="text-base leading-relaxed text-text-secondary">
-                    Where C is a <strong class="text-teal">coherence parameter</strong> ranging from 0 to 1.
-                </p>
-            </div>
+        <!-- Featured modified equation -->
+        <div class="equation-box my-10" style="padding: 2rem 2.5rem; border-color: rgba(20, 184, 166, 0.5); background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);">
+            <div class="equation-label" style="font-size: 0.8rem;">Coherence-Modified Uncertainty</div>
+            $$\Delta x \cdot \Delta p \geq \frac{\hbar(1-C)}{2}$$
         </div>
 
-        <!-- C value table -->
-        <table class="comparison-table my-8">
-            <thead>
-                <tr>
-                    <th>Coherence Level</th>
-                    <th>Effect on Uncertainty</th>
-                    <th>Physical Behavior</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>C = 0</td><td>Standard quantum uncertainty applies in full</td><td>Full quantum behavior</td></tr>
-                <tr><td>C = 0.5</td><td>Uncertainty is halved</td><td>Mixed regime</td></tr>
-                <tr><td>C &rarr; 1</td><td>Quantum uncertainty vanishes</td><td>Classical determinism emerges</td></tr>
-            </tbody>
-        </table>
+        <p class="text-lg leading-relaxed text-text-secondary mb-4">Where:</p>
+        <ul class="space-y-2 text-lg text-text-secondary mb-8 ml-4">
+            <li class="flex items-start gap-2"><i class="fas fa-minus text-teal/40 mt-1.5 text-xs"></i>C is the spiritual coherence parameter (0 &le; C &le; 1)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-minus text-teal/40 mt-1.5 text-xs"></i>When C = 0, standard quantum uncertainty applies</li>
+            <li class="flex items-start gap-2"><i class="fas fa-minus text-teal/40 mt-1.5 text-xs"></i>As C approaches 1, quantum uncertainty diminishes</li>
+        </ul>
 
         <div class="callout">
             <p class="text-lg leading-relaxed text-text-primary">
-                This single modification does something remarkable: it provides a <em>mathematical bridge</em> between quantum and classical behavior.
+                This modification provides a mathematical bridge between quantum and classical behavior. When coherence is low, quantum effects dominate; when coherence is high, classical behavior emerges.
             </p>
         </div>
 
-        <p class="text-lg leading-relaxed text-text-secondary mt-6">
-            We don't need two incompatible theories. We need one theory with a variable that interpolates between them.
+        <p class="text-lg leading-relaxed text-text-secondary mt-8 mb-6">
+            The coherence parameter represents consciousness alignment with underlying reality&mdash;not just human consciousness, but a fundamental property that permeates existence. This is mathematically expressed through the bridge equation:
+        </p>
+
+        <div class="equation-box my-10" style="padding: 2rem 2.5rem; border-color: rgba(20, 184, 166, 0.4); background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);">
+            <div class="equation-label" style="font-size: 0.8rem;">The Bridge Equation</div>
+            $$\Omega = \int_{V}\left( \frac{\hbar(1-C)}{2} \cdot \frac{G}{c^4} \cdot T_{\mu\nu} \right) dV$$
+        </div>
+
+        <p class="text-lg leading-relaxed text-text-secondary">
+            This equation integrates across spacetime to show how coherence creates a natural transition from quantum behavior to classical behavior at larger scales.
         </p>
     </section>
 
 
     <!-- =============================== -->
-    <!-- WHAT IS COHERENCE? -->
+    <!-- WHAT IS COHERENCE? (from expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-what-is" class="fade-section mb-20">
         <div class="section-marker">
@@ -818,7 +796,7 @@
 
 
     <!-- =============================== -->
-    <!-- THE BRIDGE EQUATION -->
+    <!-- THE BRIDGE EQUATION (expanded version — unique detail) -->
     <!-- =============================== -->
     <section id="sec-bridge" class="fade-section mb-20">
         <div class="section-marker">
@@ -849,15 +827,15 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
             <div class="evidence-card">
                 <span class="font-mono text-sm text-teal">&#8463;(1&minus;C)/2</span>
-                <p class="font-sans text-sm text-text-secondary mt-2">Quantum uncertainty &mdash; modulated by coherence</p>
+                <p class="font-sans text-sm text-text-secondary mt-2">Quantum uncertainty &mdash; the &#8463;(1-C)/2 term</p>
             </div>
             <div class="evidence-card">
                 <span class="font-mono text-sm text-sky">G/c&#8308;</span>
-                <p class="font-sans text-sm text-text-secondary mt-2">Gravitational coupling &mdash; from general relativity</p>
+                <p class="font-sans text-sm text-text-secondary mt-2">Gravitational coupling &mdash; the G/c&#8308; term from general relativity</p>
             </div>
             <div class="evidence-card">
                 <span class="font-mono text-sm text-teal">T<sub>&mu;&nu;</sub></span>
-                <p class="font-sans text-sm text-text-secondary mt-2">Energy-matter distribution &mdash; the stress-energy tensor</p>
+                <p class="font-sans text-sm text-text-secondary mt-2">Energy-matter distribution &mdash; the stress-energy tensor T<sub>&mu;&nu;</sub></p>
             </div>
             <div class="evidence-card">
                 <span class="font-mono text-sm text-sky">dV</span>
@@ -898,7 +876,7 @@
 
 
     <!-- =============================== -->
-    <!-- CONSCIOUSNESS AS COLLAPSE MECHANISM -->
+    <!-- CONSCIOUSNESS AS COLLAPSE MECHANISM (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-collapse" class="fade-section mb-20">
         <div class="section-marker">
@@ -963,7 +941,7 @@
 
 
     <!-- =============================== -->
-    <!-- EXPERIMENTAL EVIDENCE -->
+    <!-- EXPERIMENTAL EVIDENCE (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-evidence" class="fade-section mb-20">
         <div class="section-marker">
@@ -1060,7 +1038,7 @@
 
 
     <!-- =============================== -->
-    <!-- COLLECTIVE COHERENCE -->
+    <!-- COLLECTIVE COHERENCE (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-collective" class="fade-section mb-20">
         <div class="section-marker">
@@ -1091,7 +1069,7 @@
                     $$\sum_{i=1}^{n} \alpha_i C_i$$
                 </div>
                 <p class="text-base leading-relaxed text-text-secondary mt-4">
-                    The first term is linear: n people contribute n times the effect. Simple addition of individual coherences.
+                    The first term is linear: n people contribute n times the effect.
                 </p>
             </div>
             <div class="panel-right">
@@ -1135,7 +1113,7 @@
 
 
     <!-- =============================== -->
-    <!-- THE MASTER EQUATION -->
+    <!-- THE MASTER EQUATION (from source markdown) -->
     <!-- =============================== -->
     <section id="sec-master" class="fade-section mb-20">
         <div class="section-marker">
@@ -1158,7 +1136,7 @@
             $$\chi = \iiint(G \cdot M \cdot E \cdot S \cdot T \cdot K \cdot R \cdot Q \cdot F \cdot C) \, dx \, dy \, dt$$
         </div>
 
-        <h3 class="font-display text-xl font-semibold text-text-primary mt-10 mb-6">Parameter Definitions</h3>
+        <h3 class="font-display text-xl font-semibold text-text-primary mt-10 mb-6">Where:</h3>
 
         <div class="param-grid">
             <div class="param-item">
@@ -1171,7 +1149,7 @@
             </div>
             <div class="param-item">
                 <span class="param-symbol">E</span>
-                <span class="param-meaning">Energy (physical & spiritual)</span>
+                <span class="param-meaning">Energy (physical and spiritual)</span>
             </div>
             <div class="param-item">
                 <span class="param-symbol">S</span>
@@ -1210,7 +1188,7 @@
 
 
     <!-- =============================== -->
-    <!-- THE HARD PROBLEM, DISSOLVED -->
+    <!-- THE HARD PROBLEM, DISSOLVED (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-hard" class="fade-section mb-20">
         <div class="section-marker">
@@ -1230,6 +1208,10 @@
 
         <p class="text-lg leading-relaxed text-text-secondary mb-8">
             Every attempt to derive consciousness from physics fails. You can explain neural correlates, information processing, behavioral outputs&mdash;but the <em>felt quality</em> of experience never appears in the equations.
+        </p>
+
+        <p class="text-lg leading-relaxed text-text-secondary mb-8">
+            Our framework dissolves this problem by inverting the assumption.
         </p>
 
         <!-- Comparison: Standard vs Our View -->
@@ -1266,7 +1248,7 @@
 
 
     <!-- =============================== -->
-    <!-- PREDICTIONS AND TESTS -->
+    <!-- PREDICTIONS AND TESTS (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-predictions" class="fade-section mb-20">
         <div class="section-marker">
@@ -1278,7 +1260,7 @@
         <h2 class="font-display text-4xl sm:text-5xl font-bold text-text-primary mb-4 text-center tracking-wide uppercase">
             Predictions &amp; Tests
         </h2>
-        <p class="font-sans text-sm text-teal text-center tracking-[0.2em] uppercase mb-12">Five Specific, Testable Predictions</p>
+        <p class="font-sans text-sm text-teal text-center tracking-[0.2em] uppercase mb-12">Specific, Testable Predictions</p>
 
         <p class="text-lg leading-relaxed text-text-secondary mb-10">
             This framework generates specific, testable predictions:
@@ -1289,7 +1271,7 @@
             <!-- Prediction 1 -->
             <div class="prediction-card">
                 <span class="pred-number">01</span>
-                <h3 class="font-display text-xl font-semibold text-teal mb-3">Meditation REG Studies</h3>
+                <h3 class="font-display text-xl font-semibold text-teal mb-3">Meditation Studies</h3>
                 <p class="text-base leading-relaxed text-text-secondary mb-3">
                     Experienced meditators in deep states should show measurable effects on nearby quantum systems.
                 </p>
@@ -1304,7 +1286,7 @@
             <!-- Prediction 2 -->
             <div class="prediction-card">
                 <span class="pred-number">02</span>
-                <h3 class="font-display text-xl font-semibold text-teal mb-3">Gamma Synchronization Correlates</h3>
+                <h3 class="font-display text-xl font-semibold text-teal mb-3">Coherence Correlates</h3>
                 <p class="text-base leading-relaxed text-text-secondary mb-3">
                     If C is real, it should correlate with measurable brain states.
                 </p>
@@ -1318,7 +1300,7 @@
             <!-- Prediction 3 -->
             <div class="prediction-card">
                 <span class="pred-number">03</span>
-                <h3 class="font-display text-xl font-semibold text-teal mb-3">Temporal GCP Patterns</h3>
+                <h3 class="font-display text-xl font-semibold text-teal mb-3">Temporal Patterns</h3>
                 <p class="text-base leading-relaxed text-text-secondary mb-3">
                     The GCP data should show systematic patterns correlating with:
                 </p>
@@ -1364,7 +1346,7 @@
 
 
     <!-- =============================== -->
-    <!-- WHAT THIS MEANS -->
+    <!-- WHAT THIS MEANS (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-implications" class="fade-section mb-20">
         <div class="section-marker">
@@ -1406,7 +1388,7 @@
 
 
     <!-- =============================== -->
-    <!-- PERFECT COHERENCE -->
+    <!-- THE QUESTION WE HAVEN'T ANSWERED (expanded version — unique content) -->
     <!-- =============================== -->
     <section id="sec-perfect" class="fade-section mb-20">
         <div class="section-marker">
@@ -1476,9 +1458,9 @@
 
 
     <!-- =============================== -->
-    <!-- SUMMARY -->
+    <!-- SUMMARY (expanded version — unique content) -->
     <!-- =============================== -->
-    <section class="fade-section mb-20">
+    <section id="sec-summary" class="fade-section mb-20">
         <div class="section-marker">
             <span class="marker-line right"></span>
             <span class="marker-icon"><i class="fas fa-list-ol"></i></span>
@@ -1538,6 +1520,47 @@
 
 
     <!-- =============================== -->
+    <!-- CROSS-REFERENCES (from source markdown) -->
+    <!-- =============================== -->
+    <section class="fade-section mb-20">
+        <div class="section-marker">
+            <span class="marker-line right"></span>
+            <span class="marker-icon"><i class="fas fa-link"></i></span>
+            <span class="marker-line"></span>
+        </div>
+
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-text-primary mb-8 text-center tracking-wide uppercase">
+            Cross-References
+        </h2>
+
+        <div class="space-y-3">
+            <div class="flex items-start gap-3 p-4 bg-dark-surface rounded-lg border border-dark-border">
+                <i class="fas fa-arrow-right text-teal/40 mt-1 text-xs"></i>
+                <p class="text-base text-text-secondary">See <strong class="text-text-primary">Paper 2: Parallel Laws of Physics and Spirit</strong> for structural analogies</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-dark-surface rounded-lg border border-dark-border">
+                <i class="fas fa-arrow-right text-teal/40 mt-1 text-xs"></i>
+                <p class="text-base text-text-secondary">See <strong class="text-text-primary">Paper 3: Time, Miracles, and Quantum Mechanics</strong> for temporal applications</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-dark-surface rounded-lg border border-dark-border">
+                <i class="fas fa-arrow-right text-teal/40 mt-1 text-xs"></i>
+                <p class="text-base text-text-secondary">See <strong class="text-text-primary">Paper 4: Experimental Evidence and Predictions</strong> for empirical grounding</p>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-dark-surface rounded-lg border border-dark-border">
+                <i class="fas fa-arrow-right text-teal/40 mt-1 text-xs"></i>
+                <p class="text-base text-text-secondary">See <strong class="text-text-primary">Paper 5: Philosophical Synthesis</strong> for implications</p>
+            </div>
+        </div>
+
+        <div class="callout mt-8">
+            <p class="text-base leading-relaxed text-text-secondary">
+                <strong class="text-text-primary">Paper Status:</strong> Core theoretical foundation established. Mathematical framework complete and ready for application domains.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- =============================== -->
     <!-- NAVIGATION FOOTER -->
     <!-- =============================== -->
     <footer class="border-t border-dark-border pt-12 pb-20">
@@ -1551,7 +1574,7 @@
             </a>
             <div class="text-center">
                 <div class="font-sans text-xs text-text-muted">Consciousness Series</div>
-                <div class="font-display text-sm text-text-secondary tracking-wider">2 / 12</div>
+                <div class="font-display text-sm text-text-secondary tracking-wider">Paper 2</div>
             </div>
             <a href="#" class="group flex items-center gap-3 text-text-muted hover:text-teal transition-colors">
                 <div class="text-right">
