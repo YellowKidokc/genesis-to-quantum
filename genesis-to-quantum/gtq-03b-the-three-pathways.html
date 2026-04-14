@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="paper-slug" content="gtq-03b">
+<title>The Three Pathways — Genesis to Quantum</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;--surface3:#222;
+  --border:#2a2a2a;--border-h:#3a3a3a;
+  --text:#e0e0e0;--text-d:#a0a0a0;--text-m:#555;
+  --gold:#d4af37;--gold-dim:rgba(212,175,55,0.08);--gold-b:rgba(212,175,55,0.2);
+  --blue:#4a9eff;--blue-dim:rgba(74,158,255,0.07);--blue-b:rgba(74,158,255,0.2);
+  --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.07);
+  --red:#ef4444;--red-dim:rgba(239,68,68,0.08);
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.07);
+  --purple:#a855f7;--purple-dim:rgba(168,85,247,0.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.78;overflow-x:hidden}
+.serif{font-family:'Crimson Text',serif}
+.mono{font-family:'JetBrains Mono',monospace}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--gold));z-index:100;transition:width .15s}.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--bg);border-right:1px solid var(--border);z-index:90;overflow-y:auto;transform:translateX(-100%);transition:transform .3s ease;padding:1.5rem 1rem}
+.sidebar.open{transform:translateX(0)}
+.sidebar-toggle{position:fixed;top:1rem;left:1rem;z-index:91;background:var(--surface2);border:1px solid var(--border);border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-d);font-size:.9rem;transition:all .2s}
+.sidebar-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.nav-section{margin-bottom:1.5rem}
+.nav-section-title{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-m);margin-bottom:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
+.nav-link{display:block;padding:.45rem .6rem;font-size:.82rem;color:var(--text-d);text-decoration:none;border-radius:4px;margin-bottom:2px;transition:all .2s;line-height:1.4}
+.nav-link:hover{background:var(--surface2);color:var(--text)}
+.nav-link.active{background:var(--gold-dim);color:var(--gold);border-left:2px solid var(--gold);padding-left:.8rem}
+.nav-link.tangent{color:var(--purple);font-size:.78rem}
+.nav-link.tangent:hover{background:var(--purple-dim)}
+.nav-link.tangent.active{background:var(--purple-dim);color:var(--purple);border-left:2px solid var(--purple)}
+.player-dock{display:flex;align-items:center;gap:1rem;padding:.7rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:80}
+.player-dock audio{flex:1;height:34px}
+.player-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--surface);overflow-x:auto;position:sticky;top:51px;z-index:79}
+.tab-btn{padding:.7rem 1.4rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.tab-btn:hover{color:var(--text-d)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(212,175,55,0.04)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.hero{padding:4rem 2rem 2.5rem;max-width:800px;margin:0 auto;text-align:center}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--purple);margin-bottom:1.5rem;display:block}
+.hero h1{font-family:'Crimson Text',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:400;color:white;line-height:1.12;margin-bottom:.8rem}
+.hero .sub{font-family:'Crimson Text',serif;font-size:1.15rem;color:var(--text-d);font-style:italic;margin-bottom:1.2rem}
+.hero .byline{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-m)}
+.story{max-width:720px;margin:0 auto;padding:2rem 2rem 5rem}
+.story p{font-size:1.05rem;color:var(--text-d);line-height:1.9;margin-bottom:1.4rem}.story h2{font-family:'Crimson Text',serif;font-size:1.75rem;color:white;margin:3rem 0 1rem;line-height:1.2}
+.story h2 .sec-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);display:block;margin-bottom:.3rem}
+.drop-cap::first-letter{font-family:'Crimson Text',serif;font-size:4.2rem;float:left;line-height:.82;padding:.3rem .55rem 0 0;color:var(--purple);font-weight:600}
+.insight{border-left:4px solid var(--gold);background:var(--gold-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.insight .ilabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:block}
+.insight p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.insight p:last-child{margin-bottom:0}
+.insight strong{color:var(--gold)}
+.blue-box{border-left:4px solid var(--blue);background:var(--blue-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.blue-box .blabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;display:block}
+.blue-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.blue-box p:last-child{margin-bottom:0}
+.blue-box strong{color:var(--blue)}
+.purple-box{border-left:4px solid var(--purple);background:var(--purple-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.purple-box .plabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:.4rem;display:block}
+.purple-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.purple-box p:last-child{margin-bottom:0}
+.purple-box strong{color:var(--purple)}
+.math-box{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;margin:1.5rem 0}
+.math-box .mlabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-bottom:.8rem;display:block}
+.math-box .mnote{font-size:.88rem;color:var(--text-d);margin-top:.8rem;line-height:1.75}
+.math-box .mnote strong{color:var(--gold)}
+.marker-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0}
+.marker{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1.2rem}
+.marker .mtag{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.4rem;display:block}
+.marker h4{font-family:'Crimson Text',serif;font-size:1.05rem;color:white;margin-bottom:.5rem}
+.marker p{font-size:.88rem;color:var(--text-d);line-height:1.75}
+.sec-rule{display:flex;align-items:center;gap:1rem;margin:3rem 0}.sec-rule::before,.sec-rule::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-rule span{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-m);white-space:nowrap}
+.closing{max-width:720px;margin:3rem auto;padding:2.5rem;background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--purple);border-radius:0 0 10px 10px;text-align:center}
+.closing .verdict{font-family:'Crimson Text',serif;font-size:1.4rem;color:white;font-style:italic;line-height:1.65;margin-bottom:1.5rem}
+.closing .verdict em{color:var(--purple);font-style:normal}
+.falsification{max-width:720px;margin:2rem auto;padding:1.5rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.falsification .ftitle{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:block}
+.falsification ul{list-style:none;padding:0}
+.falsification li{font-size:.9rem;color:var(--text-d);line-height:1.8;padding:.4rem 0 .4rem 1.2rem;border-bottom:1px solid var(--border);position:relative}
+.falsification li:last-child{border-bottom:none}
+.falsification li::before{content:'×';position:absolute;left:0;color:var(--red);font-family:'JetBrains Mono',monospace}
+.bottom-nav{border-top:1px solid var(--border);padding:2rem}
+.nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:8px;overflow:hidden;max-width:800px;margin:0 auto}
+.nav-card{background:var(--surface);padding:1rem 1.2rem;text-decoration:none;display:flex;flex-direction:column;gap:.2rem;transition:background .2s}
+.nav-card:hover{background:var(--surface2)}
+.nav-card .nt{font-family:'JetBrains Mono',monospace;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m)}
+.nav-card .nn{font-size:.88rem;color:var(--text);line-height:1.3}
+.nav-card.cur{background:var(--purple-dim)}
+.nav-card.cur .nt{color:var(--purple)}
+.foot{text-align:center;padding:2rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-m);letter-spacing:.1em}
+@media(max-width:640px){
+  .marker-grid{grid-template-columns:1fr}
+  .nav-grid{grid-template-columns:1fr}
+  .hero{padding:3rem 1.5rem 2rem}
+  .story{padding:1rem 1.5rem 4rem}
+}
+</style>
+</head><body>
+<nav style="position:sticky;top:0;z-index:1000;background:#0a0a0a;border-bottom:1px solid #222;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-size:.8rem;">
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="../index.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">← Main Index</a>
+    <span style="color:#333;">|</span>
+    <a href="index.html" style="color:#c94040;text-decoration:none;font-weight:500;transition:color .2s;" onmouseover="this.style.color='#e05050'" onmouseout="this.style.color='#c94040'">Genesis to Quantum</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="gtq-03a-macarthur-and-the-equation.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">← Prev</a>
+    <a href="gtq-03c-why-god-drowned-everybody.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">Next →</a>
+  </div>
+</nav>
+<div class="prog" id="prog"></div>
+
+<div class="sidebar" id="sidebar">
+  <div class="nav-section">
+    <div class="nav-section-title">Genesis to Quantum</div>
+    <a class="nav-link" href="gtq-01-measurement-collapsed-reality.html">01 · The Measurement That Collapsed Reality</a>
+    <a class="nav-link" href="gtq-02-the-first-quantum-state.html">02 · The First Quantum State</a>
+    <a class="nav-link" href="gtq-03-free-will-two-frames.html">03 · Free Will in Two Frames</a>
+    <a class="nav-link" href="gtq-04-the-day-time-began.html">04 · The Day Time Began</a>
+    <a class="nav-link" href="gtq-05-the-substrate-fractured.html">05 · The Substrate Fractured</a>
+    <a class="nav-link" href="gtq-07-the-photon-isnt-watching.html">07 · The Photon Isn't Watching</a>
+    <a class="nav-link" href="gtq-08-god-doesnt-need-a-clock.html">08 · God Doesn't Need a Clock</a>
+    <a class="nav-link" href="gtq-09-same-god-both-testaments.html">09 · Same God, Both Testaments</a>
+    <a class="nav-link" href="gtq-10-the-counter-move.html">10 · The Counter-Move</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-title">Tangent · Article 03</div>
+    <a class="nav-link tangent" href="gtq-03a-macarthur-and-the-equation.html">03A · MacArthur and the Equation</a>
+    <a class="nav-link tangent active" href="#">03B · The Three Pathways</a>
+    <a class="nav-link tangent" href="gtq-03c-why-god-drowned-everybody.html">03C · Why God Drowned Everybody</a>
+  </div>
+</div>
+
+<div class="sidebar-toggle" id="sidebarToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+  <i class="fas fa-bars"></i>
+</div><div class="player-dock">
+  <i class="fas fa-volume-up" style="color:var(--gold);font-size:.8rem"></i>
+  <span class="player-label">Listen</span>
+  <audio controls preload="metadata">
+    <source src="https://pub-5b15c954dc1642f18573a365cf6dc2c5.r2.dev/audio/GTQ_03B_The_Three_Pathways.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('paper',this)">The Argument</button>
+  <button class="tab-btn" onclick="switchTab('math',this)">The Math</button>
+  <button class="tab-btn" onclick="switchTab('markers',this)">Evidence Markers</button>
+  <button class="tab-btn" onclick="switchTab('falsification',this)">Kill Conditions</button>
+</div>
+
+<!-- TAB: THE ARGUMENT -->
+<div id="paper" class="tab-content active">
+<div class="hero">
+  <span class="hero-tag">Genesis to Quantum · Tangent 03B</span>
+  <h1>The Three<br>Pathways</h1>
+  <p class="sub">What Your Brain Does at s = −1, s = 0, and s = +1</p>
+  <div class="byline">David Lowe · POF 2828 · April 2026 · Parent: Free Will in Two Frames</div>
+</div>
+
+<div class="story">
+
+<p class="drop-cap">Your brain has three modes. Not metaphorically. Neurochemically. The surrender parameter $s$ from the coherence equation — the variable that determines whether you're autonomous ($s = -1$), performing ($s = 0$), or surrendered ($s = +1$) — isn't a mathematical abstraction. Each value produces a distinct neurochemical signature. Different neurotransmitters. Different brain regions activated. Different downstream behaviors. And the transitions between them follow predictable patterns that neuroscience has mapped without knowing it was mapping a spiritual reality.</p><div class="sec-rule"><span>Path 1 · Autonomy</span></div>
+
+<h2><span class="sec-tag">s = −1 · Coupling = Zero</span>The Neurochemistry of "I Got This"</h2>
+
+<p>At $s = -1$, the system is fully decoupled from the Logos Field. The coupling function $\alpha(s) = 0$. Grace ($G$) is available but unreceived. The equation reduces to pure decay: $\frac{dC}{dt} = -S \cdot C$.</p>
+
+<div class="blue-box">
+  <span class="blabel">Dopamine Dominance</span>
+  <p>The autonomous brain runs on the reward circuit — nucleus accumbens, ventral tegmental area, mesolimbic pathway. Every decision is evaluated by: <strong>does this feel good now?</strong> Dopamine spikes with novelty, risk, acquisition, substances. The system is self-referential: I want, I get, I consume, I want more.</p>
+  <p>The problem is tolerance. Repeated dopamine spikes cause receptor downregulation — the brain produces fewer D2 receptors, requiring more stimulation for the same effect. This is the neurological equivalent of $S \cdot C$ — the entropy term accelerating over time.</p>
+</div>
+
+<p>The prefrontal cortex dims. The PFC — executive control, long-term planning, impulse regulation — progressively loses influence as the reward circuit dominates. Imaging studies of addiction show precisely this: PFC activity decreases as addiction progresses. The part of the brain capable of perspective, of recognizing "this isn't working," gets quieter.</p>
+
+<p>This is Gödel's incompleteness at the system level. The system at $s = -1$ cannot recognize its own incoherence because the part of the brain responsible for recognition is being suppressed by the part generating the incoherence. You can't see the problem from inside the problem.</p>
+
+<div class="insight">
+  <span class="ilabel">The Spiral</span>
+  <p>Dopamine tolerance → need more stimulation → PFC suppression → less capacity for self-regulation → more impulsive behavior → more dopamine tolerance. This is $\frac{dC}{dt} = -S \cdot C$ expressed as neurochemistry. <strong>Exponential decay with no internal brake.</strong></p>
+</div>
+
+<p>Cortisol rises chronically. The autonomous system is anxious because it knows — at some level below conscious awareness — that it's decaying. Sleep disrupts. Inflammation increases. The stress response becomes permanent.</p>
+
+<p>This is what Paul describes in Romans 1:24-28. "God gave them over in the sinful desires of their hearts." The "giving over" isn't punishment — it's the removal of resistance. God stops suppressing the natural trajectory. The system at $s = -1$ does what the equation says it will do: decay.</p>
+
+<div class="sec-rule"><span>Path 2 · Performance</span></div>
+
+<h2><span class="sec-tag">s ≈ 0 · Channel Cracked Open</span>The Neurochemistry of "I'm Trying Really Hard"</h2><p>At $s \approx 0$, the channel is cracked open. Grace is partially received. The system is neither fully autonomous nor fully surrendered. This is the most exhausting position — and the most common one in church pews on Sunday morning.</p>
+
+<div class="blue-box">
+  <span class="blabel">The Pharisee Brain</span>
+  <p>Moderate dopamine + high cortisol. The performer gets enough reward from religious behavior (social approval, sense of virtue, completed rituals) to keep dopamine functional but not enough to create genuine satisfaction. Meanwhile, the constant effort of maintaining performance generates chronic cortisol. <strong>The system is working hard and getting diminishing returns.</strong></p>
+  <p>The equation explains why: at $s \approx 0$, both the growth term and the decay term are active but roughly balanced. $\frac{dC}{dt} \approx 0$. No net growth. Just maintenance at high metabolic cost.</p>
+</div>
+
+<p>The anterior cingulate cortex is overactive. The ACC is the brain's conflict monitor — the region that detects discrepancy between where you are and where you think you should be. In the performer's brain, the ACC is running hot. There's always a gap. Always something more to do. Always a standard not quite met. This is "works righteousness" as neuroscience: the brain region that detects failure is perpetually active.</p>
+
+<p>Oxytocin is suppressed. The bonding, trust, and connection hormone requires relational safety to release. The performer's brain is too busy monitoring compliance to relax into connection. Worship feels like evaluation. Prayer feels like performance review.</p>
+
+<div class="purple-box">
+  <span class="plabel">The Cruel Irony</span>
+  <p>The performer often looks <strong>more put-together</strong> than both the autonomous person and the surrendered person. Regular attendance, moral behavior, religious vocabulary — all pass inspection. But the internal dynamics are stagnant. $\frac{dC}{dt} \approx 0$ at maximum metabolic cost. <strong>Treading water, burning fuel, going nowhere.</strong></p>
+  <p>Jesus identified this precisely: "You are like whitewashed tombs — beautiful on the outside but full of dead bones on the inside" (Matthew 23:27).</p>
+</div>
+
+<div class="sec-rule"><span>Path 3 · Surrender</span></div>
+
+<h2><span class="sec-tag">s = +1 · Full Coupling</span>The Neurochemistry of "Not My Will, but Yours"</h2>
+
+<p>At $s = +1$, the coupling function $\alpha(s) = 1$. Full permeability. Grace flows without resistance. The equation operates at maximum growth rate: $\frac{dC}{dt} = G(1-C) - S \cdot C$, where the $G$ term dominates $S$. The neurochemistry is strikingly different from both autonomy and performance.</p>
+
+<div class="blue-box">
+  <span class="blabel">Ventromedial PFC Activates</span>
+  <p>Not the dorsolateral PFC of executive control (which the performer uses), but the <strong>ventromedial</strong> — the part that processes identity, meaning, and relational connection. This is the brain region that activates during contemplative prayer, experiences of awe, genuine gratitude.</p>  <p>The difference from Path 2 is critical. The performer activates the <strong>dorsolateral PFC</strong> — the taskmaster. The surrendered person activates the <strong>ventromedial PFC</strong> — the connector. Same frontal lobe. Different circuit. The performer feels like they're working. The surrendered person feels like they're <strong>home</strong>.</p>
+</div>
+
+<p>Oxytocin rises. Relational safety engages. Prayer becomes conversation rather than performance. Worship becomes response rather than obligation. The system relaxes into connection — not passive relaxation, but active receptivity.</p>
+
+<p>The parasympathetic nervous system engages. Heart rate variability increases. Breathing deepens. The vagal tone that represents the body's capacity for calm-under-awareness improves. Studies of long-term contemplatives consistently show elevated parasympathetic function.</p>
+
+<div class="insight">
+  <span class="ilabel">The Clinical Bombshell</span>
+  <p>Studies of faith-based addiction recovery show that sustained spiritual practice — prayer, community, service — gradually <strong>restores D2 receptor density</strong>. The receptor downregulation from Path 1 <em>reverses</em>. Not immediately. Not completely. But measurably. Over weeks to months, the brain at $s = +1$ begins to heal the damage done by the brain at $s = -1$.</p>
+  <p>The Cochrane review (2020, N = 10,565) confirmed what the equation predicts: faith-based recovery programs (AA) perform as well as or better than CBT for alcohol dependence. CBT operates on $O$ alone — teaching self-regulation without changing the coupling coefficient. AA operates on $s$ — teaching surrender, which opens the channel to $G$. <strong>"Apart from me you can do nothing" (John 15:5) is not hyperbole. It is the mathematical statement that $G = 0$ produces $\frac{dC}{dt} = -S \cdot C$ regardless of $O$.</strong></p>
+</div>
+
+<div class="sec-rule"><span>The Transitions</span></div>
+
+<h2><span class="sec-tag">Movement Between States</span>How People Change Pathways</h2>
+
+<p><strong>Path 1 → Path 2</strong> ($s: -1 \to 0$). Typically a crisis. The autonomous system hits a wall — addiction bottoms out, relationships collapse, health fails. The entropy term becomes so large and so painful that it breaks through the PFC suppression momentarily. AA calls it "hitting bottom." The crisis doesn't generate $G$. It generates a <em>crack</em> — a momentary openness through which $G$ can begin to act.</p>
+
+<p><strong>Path 2 → Path 3</strong> ($s: 0 \to +1$). The harder transition for most churchgoers. The performer is already "doing everything right." What needs to change isn't behavior — it's the source of the behavior. The shift typically requires the performer to <em>fail</em>. To discover that their effort-based system cannot sustain coherence. Paul: "When I am weak, then I am strong" (2 Corinthians 12:10). Weakness = the performer's strategies failing. Strong = $G$ flowing through the channel that performance was blocking.</p>
+
+<p><strong>Path 3 → Path 2</strong> ($s: +1 \to 0$). Regression. The surrendered person begins to take credit. The vmPFC circuit gives way to the dorsolateral PFC. Oxytocin drops. Cortisol rises. This is Galatians 3:3: "Having begun by the Spirit, are you now being perfected by the flesh?"</p>
+
+<p><strong>Path 2 → Path 1</strong> ($s: 0 \to -1$). Burnout apostasy. The performer's exhaustion becomes intolerable. The system shuts down. This is the most dangerous transition because it often produces the most vocal opponents of faith — people who "tried Christianity" and found it wanting. What they tried was Path 2. They never found Path 3.</p>
+
+<div class="sec-rule"><span>What This Means</span></div>
+
+<h2><span class="sec-tag">The Equation in Your Body</span>Right Now, at 3 AM</h2><p>The three pathways aren't three psychological types. They are three dynamical states of a conscious system interacting with a field. The field ($G$) is always present. The coupling coefficient ($\alpha(s)$) is the only thing that changes. And the coupling coefficient is determined by one thing: the surrender parameter.</p>
+
+<div class="insight">
+  <span class="ilabel">The Point</span>
+  <p>Every brain scan of an addict in withdrawal. Every cortisol panel of a burned-out pastor. Every oxytocin measurement of a contemplative in prayer. Every D2 receptor density reading in a person recovering through faith-based programs. <strong>All of it is measuring the same variable from different angles.</strong></p>
+  <p>The coherence equation doesn't just describe theology. It describes what happens in your hypothalamus at 3 AM when you can't sleep. It describes what happens in your nucleus accumbens when the craving hits. It describes what happens in your vmPFC when you finally stop performing and start receiving. <strong>The equation is not metaphor. Your brain is running it right now.</strong></p>
+</div>
+
+</div><!-- /story -->
+</div><!-- /paper tab -->
+
+<!-- TAB: THE MATH -->
+<div id="math" class="tab-content">
+<div class="story">
+
+<h2 style="margin-top:2rem"><span class="sec-tag">The Core Equation</span>Three States, One Formula</h2>
+
+<div class="math-box">
+  <span class="mlabel">The Coherence Equation</span>
+  $$\frac{dC}{dt} = O \cdot G(1-C) - S \cdot C$$
+  <div class="mnote">
+    <strong>C</strong> = coherence with God (0 to 1) ·
+    <strong>O</strong> = openness (human reception, modulated by $\alpha(s)$) ·
+    <strong>G</strong> = grace (God's input, always present) ·
+    <strong>S</strong> = entropy/sin (decay pressure)
+  </div>
+</div><div class="math-box">
+  <span class="mlabel">The Coupling Function</span>
+  $$\alpha(s) = \frac{1 + s}{2}$$
+  <div class="mnote">
+    At <strong>s = −1</strong>: $\alpha = 0$ (fully closed) ·
+    At <strong>s = 0</strong>: $\alpha = 0.5$ (half-open) ·
+    At <strong>s = +1</strong>: $\alpha = 1$ (fully open)
+  </div>
+</div>
+
+<h2><span class="sec-tag">Path 1</span>s = −1 · Pure Decay</h2>
+
+<div class="math-box">
+  <span class="mlabel">Autonomous State</span>
+  $$\alpha(-1) = 0 \implies O_{\text{eff}} = 0 \implies \frac{dC}{dt} = -S \cdot C$$
+  <div class="mnote">
+    Grace is available but the channel is shut. The equation becomes pure exponential decay. <strong>Solution: $C(t) = C_0 \cdot e^{-St}$.</strong> Coherence halves every $\frac{\ln 2}{S}$ time units. This is the dopamine tolerance curve. This is the PFC suppression trajectory. This is Romans 1 as a differential equation.
+  </div>
+</div>
+
+<h2><span class="sec-tag">Path 2</span>s ≈ 0 · Stagnation</h2>
+
+<div class="math-box">
+  <span class="mlabel">Performance State</span>
+  $$\alpha(0) = 0.5 \implies \frac{dC}{dt} = 0.5 \cdot G(1-C) - S \cdot C$$
+  <div class="mnote">
+    At steady state ($\frac{dC}{dt} = 0$): $C^* = \frac{0.5G}{0.5G + S}$. For typical values where $S \approx 0.5G$, this gives $C^* \approx 0.33$. <strong>One-third coherence at maximum effort.</strong> The ACC registers the perpetual gap between $C^*$ and $C = 1$. The cortisol is the metabolic cost of maintaining this equilibrium against constant entropy pressure.  </div>
+</div>
+
+<h2><span class="sec-tag">Path 3</span>s = +1 · Net Growth</h2>
+
+<div class="math-box">
+  <span class="mlabel">Surrender State</span>
+  $$\alpha(+1) = 1 \implies \frac{dC}{dt} = G(1-C) - S \cdot C$$
+  <div class="mnote">
+    Steady state: $C^* = \frac{G}{G + S}$. When $G \gg S$ (which the framework predicts for a fully surrendered system): $C^* \to 1$. The growth term dominates. <strong>D2 receptors restore because the negentropic input ($G$) is actively reversing the entropic damage ($S$).</strong> The parasympathetic engagement is the body's response to net-positive coherence dynamics.
+  </div>
+</div>
+
+<div class="insight">
+  <span class="ilabel">The Clinical Prediction</span>
+  <p>The equation predicts that <strong>changing $s$ is categorically different from optimizing $O$ at fixed $s$.</strong> CBT optimizes $O$ — it teaches better self-regulation within the same coupling state. AA changes $s$ — it teaches surrender, which changes the coupling coefficient itself. The Cochrane data (2020, N = 10,565) confirms the prediction: AA ≥ CBT for sustained recovery. The coupling coefficient matters more than the optimization of internal dynamics.</p>
+</div>
+
+</div>
+</div><!-- /math tab -->
+
+<!-- TAB: EVIDENCE MARKERS -->
+<div id="markers" class="tab-content">
+<div class="story">
+
+<h2 style="margin-top:2rem"><span class="sec-tag">Empirical Support</span>What the Data Shows</h2>
+
+<div class="marker-grid">  <div class="marker">
+    <span class="mtag">Marker 01 · Neuroimaging</span>
+    <h4>Dopamine Receptor Downregulation</h4>
+    <p>PET scans of chronic substance users consistently show reduced D2 receptor density in the striatum — 15-20% below baseline for alcohol, 20-30% for stimulants. The receptor loss correlates with PFC hypoactivity. This is the $S \cdot C$ term measured directly: the entropy of autonomous operation degrading the hardware that could recognize the degradation. The system at $s = -1$ cannot diagnose itself.</p>
+  </div>
+  <div class="marker">
+    <span class="mtag">Marker 02 · fMRI Studies</span>
+    <h4>ACC Hyperactivity in Perfectionism</h4>
+    <p>Functional imaging of individuals scoring high on perfectionism and scrupulosity scales shows chronically elevated ACC activation — the error-monitoring circuit running hot. This maps to Path 2: the performer whose brain is perpetually registering the gap between current state and perceived standard. The metabolic cost is measurable in glucose consumption. The burnout is predictable from the math: $\frac{dC}{dt} \approx 0$ at maximum energy expenditure is unsustainable.</p>
+  </div>
+  <div class="marker">
+    <span class="mtag">Marker 03 · Contemplative Neuroscience</span>
+    <h4>vmPFC in Contemplative Prayer</h4>
+    <p>Newberg's imaging studies of long-term contemplatives (monks, nuns, experienced meditators) consistently show elevated vmPFC activity, reduced dorsolateral PFC dominance, and increased parietal lobe deactivation (the "selflessness" signature). This is Path 3 neuroanatomy: the relational circuit displacing the control circuit. The subjects report experiences consistent with $\alpha(s) = 1$ — connection, receptivity, presence without effort.</p>
+  </div>
+  <div class="marker">
+    <span class="mtag">Marker 04 · Clinical Trial Data</span>
+    <h4>Cochrane Review 2020: AA ≥ CBT</h4>
+    <p>The Cochrane Collaboration's systematic review (N = 10,565 across 27 studies) found that Alcoholics Anonymous and related 12-step facilitation perform at least as well as CBT for alcohol use disorder, with superior results for continuous abstinence. The framework predicts this: CBT operates within a fixed coupling state ($s$ unchanged), while AA explicitly changes $s$ through its surrender-based program. Changing the coupling coefficient is categorically more powerful than optimizing internal dynamics.</p>
+  </div>
+</div>
+
+</div>
+</div><!-- /markers tab -->
+
+<!-- TAB: FALSIFICATION -->
+<div id="falsification" class="tab-content">
+<div class="story"><h2 style="margin-top:2rem"><span class="sec-tag">Intellectual Honesty</span>What Would Break This Argument</h2>
+
+<div class="falsification">
+  <span class="ftitle">Kill Conditions — This Argument Breaks If:</span>
+  <ul>
+    <li>The three neurochemical profiles (dopamine-dominant, cortisol-stagnant, oxytocin-parasympathetic) can be shown to not correspond to the three behavioral states described — if the mapping between $s$ values and brain states is arbitrary rather than predictive.</li>
+    <li>D2 receptor density does NOT restore with sustained spiritual practice — if the "clinical bombshell" reversal is an artifact of general lifestyle improvement rather than coupling-coefficient change, the specificity of the Path 3 claim weakens.</li>
+    <li>The Cochrane AA ≥ CBT finding is overturned by larger or better-controlled studies showing CBT clearly outperforms surrender-based programs — this would undermine the claim that changing $s$ is categorically different from optimizing $O$.</li>
+    <li>Contemplative neuroimaging is confounded by simple relaxation — if vmPFC activation in prayer is indistinguishable from vmPFC activation during any relaxation state, the specificity of Path 3 dissolves into generic parasympathetic engagement.</li>
+    <li>A purely materialist model can produce the same three-state dynamics without the coupling function $\alpha(s)$ — if a simpler model explains the clinical data without reference to an external field, the framework loses parsimony.</li>
+    <li>The transition architecture fails predictively — if Path 2 → Path 1 burnout does NOT produce vocal faith critics, or Path 1 → Path 2 crisis is NOT the dominant entry mechanism, the model's transition predictions are wrong.</li>
+  </ul>
+</div>
+
+<div class="closing">
+  <div class="verdict">Three modes. One equation.<br>Autonomy decays. Performance stagnates.<br><em>Surrender heals.</em></div>
+  <p style="font-size:.9rem;color:var(--text-d);font-family:'Crimson Text',serif;font-style:italic;line-height:1.7">The coherence equation is not a metaphor running on theological hardware. It is a dynamical system running on neurochemical hardware. Your D2 receptors, your cortisol levels, your vagal tone, your vmPFC activation — they are all measuring the same variable. And the variable has a name: the surrender parameter.</p>
+</div>
+
+</div>
+</div><!-- /falsification tab -->
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-grid">
+    <a class="nav-card" href="gtq-03-free-will-two-frames.html"><span class="nt">Parent Article</span><span class="nn">Free Will in Two Frames</span></a>
+    <a class="nav-card cur" href="#"><span class="nt">Tangent 03B</span><span class="nn">The Three Pathways</span></a>    <a class="nav-card" href="index.html"><span class="nt">Series Home</span><span class="nn">Genesis to Quantum</span></a>
+    <a class="nav-card" href="gtq-03a-macarthur-and-the-equation.html"><span class="nt">Tangent 03A</span><span class="nn">MacArthur and the Equation</span></a>
+    <a class="nav-card" href="gtq-03c-why-god-drowned-everybody.html"><span class="nt">Tangent 03C</span><span class="nn">Why God Drowned Everybody</span></a>
+    <a class="nav-card" href="gtq-04a-the-decoherence-curve.html"><span class="nt">Tangent 04A</span><span class="nn">The Decoherence Curve</span></a>
+  </div>
+</div>
+
+<div class="foot">David Lowe · theophysics.pro · April 2026 · POF 2828 · Genesis to Quantum · Tangent 03B</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('prog').style.width=((d.scrollTop/(d.scrollHeight-d.clientHeight))*100)+'%';
+});
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(window.MathJax&&window.MathJax.typeset)window.MathJax.typeset();
+}
+</script>
+</body>
+</html>

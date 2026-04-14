@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="paper-slug" content="gtq-04b">
+<title>How Lies Kill — Genesis to Quantum</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;--surface3:#222;
+  --border:#2a2a2a;--border-h:#3a3a3a;
+  --text:#e0e0e0;--text-d:#a0a0a0;--text-m:#555;
+  --gold:#d4af37;--gold-dim:rgba(212,175,55,0.08);--gold-b:rgba(212,175,55,0.2);
+  --blue:#4a9eff;--blue-dim:rgba(74,158,255,0.07);--blue-b:rgba(74,158,255,0.2);
+  --teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.07);
+  --red:#ef4444;--red-dim:rgba(239,68,68,0.08);
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.07);
+  --purple:#a855f7;--purple-dim:rgba(168,85,247,0.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.78;overflow-x:hidden}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--gold));z-index:100;transition:width .15s}
+.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--bg);border-right:1px solid var(--border);z-index:90;overflow-y:auto;transform:translateX(-100%);transition:transform .3s ease;padding:1.5rem 1rem}
+.sidebar.open{transform:translateX(0)}
+.sidebar-toggle{position:fixed;top:1rem;left:1rem;z-index:91;background:var(--surface2);border:1px solid var(--border);border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-d);font-size:.9rem;transition:all .2s}
+.sidebar-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.nav-section{margin-bottom:1.5rem}
+.nav-section-title{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-m);margin-bottom:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
+.nav-link{display:block;padding:.45rem .6rem;font-size:.82rem;color:var(--text-d);text-decoration:none;border-radius:4px;margin-bottom:2px;transition:all .2s;line-height:1.4}
+.nav-link:hover{background:var(--surface2);color:var(--text)}
+.nav-link.active{background:var(--gold-dim);color:var(--gold);border-left:2px solid var(--gold);padding-left:.8rem}
+.nav-link.tangent{color:var(--purple);font-size:.78rem}
+.nav-link.tangent:hover{background:var(--purple-dim)}
+.nav-link.tangent.active{background:var(--purple-dim);color:var(--purple);border-left:2px solid var(--purple)}
+.player-dock{display:flex;align-items:center;gap:1rem;padding:.7rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:80}
+.player-dock audio{flex:1;height:34px}
+.player-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--surface);overflow-x:auto;position:sticky;top:51px;z-index:79}
+.tab-btn{padding:.7rem 1.4rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.tab-btn:hover{color:var(--text-d)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(212,175,55,0.04)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.hero{padding:4rem 2rem 2.5rem;max-width:800px;margin:0 auto;text-align:center}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--purple);margin-bottom:1.5rem;display:block}
+.hero h1{font-family:'Crimson Text',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:400;color:white;line-height:1.12;margin-bottom:.8rem}
+.hero .sub{font-family:'Crimson Text',serif;font-size:1.15rem;color:var(--text-d);font-style:italic;margin-bottom:1.2rem}
+.hero .byline{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-m)}
+.story{max-width:720px;margin:0 auto;padding:2rem 2rem 5rem}
+.story p{font-size:1.05rem;color:var(--text-d);line-height:1.9;margin-bottom:1.4rem}
+.story h2{font-family:'Crimson Text',serif;font-size:1.75rem;color:white;margin:3rem 0 1rem;line-height:1.2}
+.story h2 .sec-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);display:block;margin-bottom:.3rem}
+.drop-cap::first-letter{font-family:'Crimson Text',serif;font-size:4.2rem;float:left;line-height:.82;padding:.3rem .55rem 0 0;color:var(--purple);font-weight:600}
+.insight{border-left:4px solid var(--gold);background:var(--gold-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.insight .ilabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:block}
+.insight p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.insight p:last-child{margin-bottom:0}
+.insight strong{color:var(--gold)}
+.blue-box{border-left:4px solid var(--blue);background:var(--blue-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.blue-box .blabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;display:block}
+.blue-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.blue-box p:last-child{margin-bottom:0}
+.blue-box strong{color:var(--blue)}
+.purple-box{border-left:4px solid var(--purple);background:var(--purple-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}
+.purple-box .plabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:.4rem;display:block}
+.purple-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}
+.purple-box p:last-child{margin-bottom:0}
+.purple-box strong{color:var(--purple)}
+.math-box{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;margin:1.5rem 0}
+.math-box .mlabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-bottom:.8rem;display:block}
+.math-box .mnote{font-size:.88rem;color:var(--text-d);margin-top:.8rem;line-height:1.75}
+.math-box .mnote strong{color:var(--gold)}
+.marker-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0}
+.marker{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1.2rem}
+.marker .mtag{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.4rem;display:block}
+.marker h4{font-family:'Crimson Text',serif;font-size:1.05rem;color:white;margin-bottom:.5rem}
+.marker p{font-size:.88rem;color:var(--text-d);line-height:1.75}
+.sec-rule{display:flex;align-items:center;gap:1rem;margin:3rem 0}
+.sec-rule::before,.sec-rule::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-rule span{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-m);white-space:nowrap}
+.closing{max-width:720px;margin:3rem auto;padding:2.5rem;background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--purple);border-radius:0 0 10px 10px;text-align:center}
+.closing .verdict{font-family:'Crimson Text',serif;font-size:1.4rem;color:white;font-style:italic;line-height:1.65;margin-bottom:1.5rem}
+.closing .verdict em{color:var(--purple);font-style:normal}
+.falsification{max-width:720px;margin:2rem auto;padding:1.5rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.falsification .ftitle{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:block}
+.falsification ul{list-style:none;padding:0}
+.falsification li{font-size:.9rem;color:var(--text-d);line-height:1.8;padding:.4rem 0 .4rem 1.2rem;border-bottom:1px solid var(--border);position:relative}
+.falsification li:last-child{border-bottom:none}
+.falsification li::before{content:'×';position:absolute;left:0;color:var(--red);font-family:'JetBrains Mono',monospace}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
+table.data th{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--border)}
+table.data td{padding:.6rem .8rem;border-bottom:1px solid var(--border);color:var(--text-d);line-height:1.6}
+table.data tr:hover{background:var(--surface2)}
+.bottom-nav{border-top:1px solid var(--border);padding:2rem}
+.nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:8px;overflow:hidden;max-width:800px;margin:0 auto}
+.nav-card{background:var(--surface);padding:1rem 1.2rem;text-decoration:none;display:flex;flex-direction:column;gap:.2rem;transition:background .2s}
+.nav-card:hover{background:var(--surface2)}
+.nav-card .nt{font-family:'JetBrains Mono',monospace;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m)}
+.nav-card .nn{font-size:.88rem;color:var(--text);line-height:1.3}
+.nav-card.cur{background:var(--purple-dim)}
+@media(max-width:700px){.marker-grid{grid-template-columns:1fr}.nav-grid{grid-template-columns:1fr}.story{padding:1.5rem 1rem 4rem}}
+</style>
+</head>
+<body>
+<nav style="position:sticky;top:0;z-index:1000;background:#0a0a0a;border-bottom:1px solid #222;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-size:.8rem;">
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="../index.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">← Main Index</a>
+    <span style="color:#333;">|</span>
+    <a href="index.html" style="color:#c94040;text-decoration:none;font-weight:500;transition:color .2s;" onmouseover="this.style.color='#e05050'" onmouseout="this.style.color='#c94040'">Genesis to Quantum</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="gtq-04a-the-decoherence-curve.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">← Prev</a>
+    <a href="gtq-05-the-substrate-fractured.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">Next →</a>
+  </div>
+</nav>
+<div class="prog" id="prog"></div>
+<button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+
+<nav class="sidebar">
+<div class="nav-section">
+<div class="nav-section-title">Genesis to Quantum</div>
+<a class="nav-link" href="gtq-01-measurement-collapsed-reality.html">01 &middot; The Measurement That Collapsed Reality</a>
+<a class="nav-link tangent" href="gtq-01a-collapse-threshold.html">01A &middot; The Collapse Threshold</a>
+<a class="nav-link" href="gtq-02-the-first-quantum-state.html">02 &middot; The First Quantum State</a>
+<a class="nav-link" href="gtq-03-free-will-two-frames.html">03 &middot; Free Will in Two Frames</a>
+<a class="nav-link tangent" href="gtq-03a-macarthur-and-the-equation.html">03A &middot; MacArthur and the Equation</a>
+<a class="nav-link tangent" href="gtq-03b-the-three-pathways.html">03B &middot; The Three Pathways</a>
+<a class="nav-link tangent" href="gtq-03c-why-god-drowned-everybody.html">03C &middot; Why God Drowned Everybody</a>
+<a class="nav-link" href="gtq-04-the-day-time-began.html">04 &middot; The Day Time Began</a>
+<a class="nav-link tangent" href="gtq-04a-the-decoherence-curve.html">04A &middot; The Decoherence Curve</a>
+<a class="nav-link tangent active" href="gtq-04b-how-lies-kill.html">04B &middot; How Lies Kill</a>
+<a class="nav-link" href="gtq-05-the-substrate-fractured.html">05 &middot; The Substrate Fractured</a>
+<a class="nav-link tangent" href="gtq-05a-trinity-mechanism.html">05A &middot; The Trinity Mechanism</a>
+<a class="nav-link tangent" href="gtq-05b-trinity-timeline.html">05B &middot; The Trinity Timeline</a>
+<a class="nav-link tangent" href="gtq-05c-why-physics-is-broken-in-two.html">05C &middot; Why Physics Is Broken In Two</a>
+<a class="nav-link" href="gtq-07-the-photon-isnt-watching.html">07 &middot; The Photon Isn&rsquo;t Watching</a>
+<a class="nav-link" href="gtq-08-god-doesnt-need-a-clock.html">08 &middot; The Eraser and the Cross</a>
+<a class="nav-link tangent" href="gtq-08a-the-temporal-trap.html">08A &middot; The Temporal Trap</a>
+<a class="nav-link" href="gtq-09-same-god-both-testaments.html">09 &middot; Same God Both Testaments</a>
+<a class="nav-link" href="gtq-10-the-counter-move.html">10 &middot; The Counter-Move</a>
+<a class="nav-link tangent" href="gtq-10a-why-the-pattern-is-the-signal.html">10A &middot; Why the Pattern Is the Signal</a>
+</div>
+<div class="nav-section">
+<div class="nav-section-title">Framework</div>
+<a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="the-same-equation.html">The Same Equation</a>
+<a class="nav-link" href="ten-laws-full-treatment.html">The Ten Laws</a>
+</div>
+</nav>
+
+<div class="player-dock">
+<span class="player-label">GTQ Tangent 04B &middot; How Lies Kill</span>
+<audio controls preload="none"><source src="" type="audio/mpeg"/></audio>
+</div>
+
+<div class="tab-bar">
+<button class="tab-btn active" data-tab="argument">Argument</button>
+<button class="tab-btn" data-tab="math">Math</button>
+<button class="tab-btn" data-tab="evidence">Evidence</button>
+<button class="tab-btn" data-tab="kill">Kill Conditions</button>
+</div>
+
+<!-- ═══════════════════ ARGUMENT TAB ═══════════════════ -->
+<div class="tab-content active" id="argument">
+<div class="hero">
+<span class="hero-tag">Genesis to Quantum &middot; Tangent 04B</span>
+<h1>How Lies Kill</h1>
+<div class="sub">The Mathematics of Sin</div>
+<div class="byline">David Lowe &middot; POF 2828 &middot; Theophysics Framework</div>
+</div>
+
+<div class="story">
+<p class="drop-cap">Everyone who has ever told a lie knows the feeling that follows. Not guilt &mdash; that comes later. The immediate sensation is architectural. You told one lie, and now you need to remember it. You need a second lie to support it if someone asks a follow-up question. Then a third to cover the gap between the first two. Then you need to remember all three, and which audience heard which version, and what the truth actually was so you don&rsquo;t accidentally tell it.</p>
+
+<p>One lie is a seed. Within hours, it&rsquo;s a structure. Within weeks, it&rsquo;s a load-bearing wall in a building you never intended to construct.</p>
+<p>This article argues that this experience is not a metaphor for something deeper. It <em>is</em> the deeper thing. It is the Second Law of Thermodynamics operating in the moral domain, and it kills by the same mechanism that makes every engine stop and every star burn out.</p>
+
+<div class="insight">
+<span class="ilabel">The Claim</span>
+<p><strong>&ldquo;The wages of sin is death&rdquo;</strong> (Romans 6:23) is not a legal judgment. It is a thermodynamic statement.</p>
+</div>
+
+<h2><span class="sec-tag">Section 1</span>The Feeling Everyone Recognizes</h2>
+
+<p>You have watched someone lie. Maybe it was a public figure. Maybe it was someone you loved. You watched the first lie &mdash; small, almost reasonable. Then the cover story. Then the cover story for the cover story. Then the moment where they couldn&rsquo;t remember what they&rsquo;d said to whom, and the whole structure began to wobble. Then the collapse.</p>
+
+<p>You have also watched someone tell the truth under pressure. One sentence. Clean. Nothing to maintain. Nothing to remember. Nothing to manage. The truth, once spoken, requires no infrastructure.</p>
+
+<p>This asymmetry is not a social observation. It is a mathematical one. And it has a name: <strong>Entropy.</strong></p>
+
+<h2><span class="sec-tag">Section 2</span>Why Does Sin Kill?</h2>
+
+<p>Christianity says sin leads to death. Every tradition, every denomination, every century. But <em>why?</em> If God is omnipotent, He could forgive sin without consequence. If God is loving, why does sin carry a death sentence?</p>
+
+<p>The standard answers are legal &mdash; God is just, justice demands payment, sin violates the law. These are true as far as they go. But they don&rsquo;t explain the <em>mechanism</em>. They explain the verdict without explaining the physics of execution.</p>
+
+<p>Here is what doesn&rsquo;t make sense without the framework: why does sin <em>inherently</em> produce death, even apart from God&rsquo;s judgment? Why do liars&rsquo; lives fall apart even when no one catches them? Why do corrupt civilizations collapse even when no external enemy invades?</p>
+
+<p>Because it <strong>is</strong> thermodynamics.</p>
+
+<h2><span class="sec-tag">Section 3</span>Truth, Lies, and Entropy</h2>
+<p><strong>Truth has exactly one microstate.</strong> The thing that actually happened has exactly one configuration. Caesar crossed the Rubicon on January 10, 49 BC. That&rsquo;s it. One arrangement. One microstate. $\Omega = 1$, so $S = k_B \ln(1) = 0$. Truth has zero entropy.</p>
+
+<p><strong>A lie has infinite microstates.</strong> You can say Caesar crossed the Rubicon on January 11. Or January 9. Or that he crossed the Thames. Or that Pompey crossed the Rubicon. The number of false statements about any event is unbounded. $\Omega \to \infty$, so $S \to \infty$. Lies have maximum entropy.</p>
+
+<div class="insight">
+<span class="ilabel">Core Principle</span>
+<p>This is not a metaphor. This is the definition of entropy applied to informational states. <strong>Truth is the unique microstate. Falsehood is every other microstate.</strong> Truth is order. Lies are disorder. And the Second Law says disorder always increases unless energy is spent to prevent it.</p>
+</div>
+
+<p>One lie creates a discrepancy between the stated world and the actual world. That discrepancy is a signal. Other people notice inconsistencies, ask questions, probe the gap. To maintain the lie, you must generate additional lies &mdash; each one a new entropy source. Each supporting lie creates its own discrepancies, which require their own supporting lies. The growth is exponential.</p>
+
+<p>A lie <em>cannot</em> exist in isolation because it creates a discrepancy that the environment probes, and the probe requires another lie. This is the Second Law of Thermodynamics applied to information. Entropy increases. Disorder compounds. There is no equilibrium state where &ldquo;just one lie&rdquo; sits quietly.</p>
+
+<h2><span class="sec-tag">Section 4</span>Shannon Meets Scripture</h2>
+
+<p><strong>God as Deterministic Substrate.</strong> Jesus does not say He <em>tells</em> the truth. He says He <em>is</em> the truth (John 14:6). This is an ontological claim &mdash; an identification with the deterministic substrate itself. God is the system with one microstate. Zero entropy. Zero noise. Perfect self-consistency across infinite time.</p>
+
+<p>$\Omega_{God} = 1. \quad S_{God} = 0.$</p>
+
+<p>That&rsquo;s what it means to be the truth. Not morally admirable honesty. Fundamental ontological singularity &mdash; the one microstate.</p>
+
+<p><strong>The Devil as Noise Function.</strong> In Shannon&rsquo;s framework, the devil is the noise function. He can&rsquo;t create signal &mdash; he has no original information to transmit. He can only corrupt existing signal. Every lie is a perturbation of a truth. You can&rsquo;t lie about something that doesn&rsquo;t exist. You can only distort what <em>is</em>. The devil&rsquo;s operational capacity is exactly the capacity of noise: degradation, distortion, corruption of a signal he did not generate and cannot replicate.</p>
+
+<div class="purple-box">
+<span class="plabel">Connection &mdash; Where Evil Comes From</span>
+<p>Evil is not a substance or a force. It is the $G \to 0$ field state &mdash; what remains when the Grace field withdraws. The devil doesn&rsquo;t create darkness. He obstructs light. He doesn&rsquo;t generate chaos. He corrupts order. This is structurally identical to noise in a communication channel.</p>
+</div>
+<p><strong>&ldquo;The wages of sin is death&rdquo; &mdash; as thermodynamics.</strong> Sin is noise injected into the channel between God (transmitter) and creation (receiver). Each sin increases the error rate. The errors compound. The signal degrades. Eventually the receiver can no longer decode the transmission. System failure. Death.</p>
+
+<p>Not because God kills the sinner as punishment. Because noise kills channels as physics.</p>
+
+<p><strong>&ldquo;The truth shall set you free&rdquo;</strong> &mdash; free from the compounding. From the exponential lie-growth. From the ever-increasing entropy load. Truth is $\Omega = 1$. One microstate. Nothing to maintain. Nothing to remember. To align your internal model with the actual configuration of reality is to drop the entire entropy burden of every lie you were carrying. That is freedom. Not emotional freedom. <em>Thermodynamic</em> freedom.</p>
+
+<h2><span class="sec-tag">Section 5</span>The Ten Commandments as Signal Integrity Protocol</h2>
+
+<p>Shannon&rsquo;s noisy channel theorem says that to communicate reliably over a noisy channel, you need an error-correcting code. The code must identify the most common error types and provide specific filters for each one.</p>
+
+<table class="data">
+<thead><tr><th>Commandment</th><th>Noise Category Filtered</th></tr></thead>
+<tbody>
+<tr><td>1. No other gods</td><td>Source confusion &mdash; multiple transmitters corrupt signal identity</td></tr>
+<tr><td>2. No graven images</td><td>Lossy compression &mdash; reducing infinite God to finite representation</td></tr>
+<tr><td>3. Don&rsquo;t take God&rsquo;s name in vain</td><td>Channel labeling error &mdash; attaching the source name to noise</td></tr>
+<tr><td>4. Keep the Sabbath</td><td>Clock synchronization &mdash; receiver must periodically re-sync with source</td></tr>
+<tr><td>5. Honor parents</td><td>Relay integrity &mdash; each generation is a signal relay; honor maintains the chain</td></tr>
+<tr><td>6. Don&rsquo;t murder</td><td>Channel destruction &mdash; killing the receiver eliminates the endpoint</td></tr>
+<tr><td>7. Don&rsquo;t commit adultery</td><td>Covenant-channel crosstalk &mdash; signals leak into unauthorized channels</td></tr>
+<tr><td>8. Don&rsquo;t steal</td><td>Unauthorized data extraction from another node</td></tr>
+<tr><td>9. Don&rsquo;t bear false witness</td><td>Direct noise injection &mdash; lying <em>is</em> the insertion of false bits</td></tr>
+<tr><td>10. Don&rsquo;t covet</td><td>Internal noise generation &mdash; desiring another&rsquo;s state corrupts your own receiver</td></tr>
+</tbody>
+</table>
+
+<p>Ten categories. Ten noise filters. Not arbitrary moral rules &mdash; a minimum viable protocol for maintaining signal integrity between God and humanity across time.</p>
+<h2><span class="sec-tag">Section 6</span>The Bible as Error-Correction Protocol</h2>
+
+<p>If sin is noise and the channel between God and humanity is degrading, then God&rsquo;s interventions across biblical history map precisely to the stages of error-correction engineering:</p>
+
+<table class="data">
+<thead><tr><th>Intervention</th><th>Error-Correction Function</th></tr></thead>
+<tbody>
+<tr><td>The Law (Sinai)</td><td>Codebook &mdash; defines the valid codewords; anything outside is detectable as error</td></tr>
+<tr><td>The Prophets</td><td>Checksums &mdash; periodic verification that received signal still matches transmitted signal</td></tr>
+<tr><td>The Flood</td><td>Hard reset &mdash; error rate exceeded correction capacity; restart from clean state</td></tr>
+<tr><td>The Incarnation</td><td>Signal re-injection &mdash; original transmitter enters the channel as a signal</td></tr>
+<tr><td>The Cross</td><td>Error absorption &mdash; accumulated noise absorbed into a system that bears it without corruption</td></tr>
+<tr><td>The Resurrection</td><td>Channel restoration &mdash; proof that the channel can carry uncorrupted signal again</td></tr>
+<tr><td>Pentecost</td><td>Persistent error correction &mdash; the Spirit as real-time, ongoing error-correcting code</td></tr>
+</tbody>
+</table>
+
+<h2><span class="sec-tag">Section 7</span>What Eternity Requires</h2>
+
+<p>Eternity is infinite time. Over infinite time, any non-zero error rate &mdash; no matter how small &mdash; compounds to total failure. This is the mathematical consequence of exponential growth over an unbounded interval.</p>
+
+<p>If your accuracy is 99.9999%, but you have to maintain it forever, you will eventually fail. The only accuracy rate that survives eternity is 100%. One microstate. Zero entropy. Total truth.</p>
+
+<p>This is why &ldquo;nothing unclean will ever enter it&rdquo; (Revelation 21:27). Not because God is fastidious. Because any noise &mdash; any non-zero error &mdash; compounds to system failure over eternal time. Heaven is not a gated community keeping out undesirables. It is an engineering specification.</p>
+
+<div class="insight">
+<span class="ilabel">Reframe</span>
+<p><strong>Hell is not punishment inflicted by an angry God.</strong> Hell is the state of a receiver so corrupted by accumulated noise that it can no longer decode the signal. The transmission is still broadcasting &mdash; God&rsquo;s grace doesn&rsquo;t stop. But the receiver has been so degraded by compounding errors that it cannot distinguish signal from noise. The light is shining. The eyes can&rsquo;t see. Not punishment. Thermodynamics.</p>
+</div>
+
+<h2><span class="sec-tag">Section 8</span>Civilizational Evidence</h2>
+
+<p>If lies compound thermodynamically, civilizations built on lies should exhibit a predictable collapse pattern: functional in early stages (when noise is low), increasingly dysfunctional as lies accumulate, then sudden catastrophic failure when the noise floor exceeds the signal.</p>
+
+<p>Every totalitarian regime follows the same arc. The initial lie requires supporting lies about production numbers, political prisoners, economic performance. The supporting lies require their own supports. State media generates noise faster than reality can be acknowledged. Internal communication breaks down because no one knows what&rsquo;s true. The system becomes unable to respond to actual threats because its own information channels are full of noise.</p>
+
+<p>This is Shannon&rsquo;s noisy channel theorem operating at civilizational scale. The same math. The same mechanism. The same outcome. Lies kill systems the way entropy kills engines &mdash; not by dramatic explosion, but by the quiet, relentless accumulation of disorder.</p>
+
+<div class="sec-rule"><span>The Audit</span></div>
+
+<h2><span class="sec-tag">What We Got Right</span>Load-Bearing Claims</h2>
+
+<p><strong>Truth has one microstate; lies have infinite.</strong> This is definitional. The actual configuration of any event is unique. The set of false descriptions is unbounded. The entropy calculation follows directly.</p>
+
+<p><strong>Lies compound exponentially.</strong> Mathematically demonstrable and universally observed. Watergate. Enron. Every cover-up in human history is a case study. The exponential form is robust.</p>
+
+<p><strong>Shannon&rsquo;s theorem applies to channels with non-zero error rates.</strong> Proven mathematics, not speculation.</p>
+
+<h2><span class="sec-tag">What Needs Work</span>Honest Gaps</h2>
+
+<p><strong>The Ten Commandments as signal integrity protocol is structurally compelling but post-hoc.</strong> We mapped each commandment to a noise category after knowing both. For this to move from &ldquo;suggestive&rdquo; to &ldquo;demonstrated,&rdquo; someone would need to derive the necessary noise-filter categories from first principles and show they match the Decalogue without prior knowledge of it.</p>
+
+<p><strong>Hell as &ldquo;corrupted receiver&rdquo; is theologically defensible but not the only reading.</strong> The thermodynamic framing is consistent with C.S. Lewis&rsquo;s &ldquo;doors locked from the inside.&rdquo; But retributive readings have serious theological support too.</p>
+
+<p><strong>&ldquo;Not metaphorically. Thermodynamically.&rdquo;</strong> This is the article&rsquo;s most aggressive claim. Whether the thermodynamics of information theory is <em>literally identical</em> to the mechanism by which sin produces spiritual death, or whether it is a structural parallel that illuminates without being identical &mdash; that distinction matters, and we collapsed it for rhetorical force.</p>
+</div><!-- /story -->
+</div><!-- /argument tab -->
+
+<!-- ═══════════════════ MATH TAB ═══════════════════ -->
+<div class="tab-content" id="math">
+<div class="story">
+<h2><span class="sec-tag">Equation 1</span>Boltzmann Entropy</h2>
+<div class="math-box">
+<span class="mlabel">The Entropy Definition</span>
+$$S = k_B \ln \Omega$$
+<div class="mnote"><strong>$S$</strong> = entropy. <strong>$k_B$</strong> = Boltzmann constant. <strong>$\Omega$</strong> = number of microstates compatible with the observed macrostate.</div>
+<div class="mnote"><strong>Plain English:</strong> Entropy measures how many ways something could be arranged while still looking the same from the outside. A clean room has low entropy &mdash; few arrangements count as &ldquo;clean.&rdquo; A messy room has high entropy &mdash; billions of configurations count as &ldquo;messy.&rdquo;</div>
+</div>
+
+<div class="marker-grid">
+<div class="marker"><span class="mtag">Truth</span><h4>$\Omega = 1 \implies S = 0$</h4><p>Truth has exactly one microstate. Zero entropy. Zero information cost to maintain.</p></div>
+<div class="marker"><span class="mtag">Lies</span><h4>$\Omega \to \infty \implies S \to \infty$</h4><p>Lies have unbounded microstates. Maximum entropy. Infinite maintenance cost.</p></div>
+</div>
+
+<h2><span class="sec-tag">Equation 2</span>Exponential Lie Growth</h2>
+<div class="math-box">
+<span class="mlabel">Compounding Rate</span>
+$$L(n) = L_0 \cdot e^{\lambda n}$$
+<div class="mnote"><strong>$L(n)$</strong> = number of lies at step $n$. <strong>$L_0$</strong> = initial lie. <strong>$\lambda$</strong> = compounding rate (how many supporting lies each lie requires).</div>
+<div class="mnote"><strong>Plain English:</strong> One lie becomes two. Two become four. Four become sixteen. Each generation multiplies. A lie <em>cannot</em> exist in isolation because it creates a discrepancy that the environment probes.</div>
+</div>
+
+<h2><span class="sec-tag">Equation 3</span>Channel Capacity Collapse</h2>
+<div class="math-box">
+<span class="mlabel">Shannon&rsquo;s Noisy Channel Consequence</span>
+$$\text{Bit Error Rate} > 0 \implies \text{Channel Capacity} \to 0 \text{ as } t \to \infty$$
+<div class="mnote"><strong>Plain English:</strong> Over infinite time, any non-zero error rate compounds to total signal loss. This is Shannon&rsquo;s theorem. This is the Second Law. This is why &ldquo;the wages of sin is death&rdquo; operates with the inevitability of gravity.</div>
+</div>
+
+<h2><span class="sec-tag">Equation 4</span>Eternity Requires Total Truth</h2>
+<div class="math-box">
+<span class="mlabel">The Limit</span>
+$$\lim_{t \to \infty} (1 - \epsilon)^t = 0 \quad \text{for any } \epsilon > 0$$
+<div class="mnote"><strong>Plain English:</strong> If your accuracy is 99.9999% but you have to maintain it forever, you will eventually fail. The only accuracy rate that survives eternity is 100%. This is why &ldquo;nothing unclean will ever enter it&rdquo; (Revelation 21:27) is an engineering specification, not a moral preference.</div>
+</div>
+
+<h2><span class="sec-tag">Equation 5</span>God as Zero-Entropy System</h2>
+<div class="math-box">
+<span class="mlabel">Ontological Singularity</span>
+$$\Omega_{God} = 1 \quad \implies \quad S_{God} = 0$$
+<div class="mnote">&ldquo;I am the way, the truth, and the life&rdquo; (John 14:6). Not morally admirable honesty. <strong>Fundamental ontological singularity</strong> &mdash; the one microstate from which all coherent structure derives.</div>
+</div>
+
+<h2><span class="sec-tag">Framework Link</span>Master Equation Connection</h2>
+<div class="math-box">
+<span class="mlabel">Coherence Equilibrium</span>
+$$C_{eq} = \frac{O \cdot G}{O \cdot G + S}$$
+<div class="mnote">The balance between grace (error correction) and sin (noise injection). When $S$ dominates, $C_{eq} \to 0$ &mdash; the channel degrades. When $G$ dominates through the cross, $C_{eq} \to 1$ &mdash; the channel is restored. The entire arc of salvation history is contained in this equation.</div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════ EVIDENCE TAB ═══════════════════ -->
+<div class="tab-content" id="evidence">
+<div class="story">
+<h2><span class="sec-tag">Evidence Class</span>Mathematical Foundation</h2>
+
+<div class="blue-box">
+<span class="blabel">Shannon&rsquo;s Noisy Channel Theorem (1948)</span>
+<p><strong>Status: Proven mathematics.</strong> A channel with persistent, uncorrected errors will eventually lose all information. Not speculation &mdash; formally proven. The application to moral and spiritual domains is the interpretive step; the math itself is settled.</p>
+</div>
+
+<div class="blue-box">
+<span class="blabel">Second Law of Thermodynamics</span>
+<p><strong>Status: Universal physical law.</strong> Entropy increases in closed systems. Disorder compounds. The framework applies this to informational states where truth = order and lies = disorder. The application is novel; the law is not.</p>
+</div>
+
+<div class="blue-box">
+<span class="blabel">Boltzmann Entropy Formula</span>
+<p><strong>Status: Standard statistical mechanics.</strong> $S = k_B \ln \Omega$ is the foundational equation. The framework&rsquo;s application &mdash; $\Omega_{truth} = 1$ therefore $S_{truth} = 0$ &mdash; follows directly from the definition.</p>
+</div>
+
+<h2><span class="sec-tag">Evidence Class</span>Observational Pattern</h2>
+
+<div class="blue-box">
+<span class="blabel">Civilizational Collapse Pattern</span>
+<p>Every totalitarian regime follows the same information-theoretic arc: initial lie &rarr; supporting lies &rarr; internal communication breakdown &rarr; inability to respond to actual threats &rarr; collapse. The Soviet Union didn&rsquo;t fall to external military pressure. Its internal information channels degraded past the point of functionality.</p>
+</div>
+<div class="blue-box">
+<span class="blabel">Individual Deception Studies</span>
+<p>The exponential growth of supporting lies ($L(n) = L_0 \cdot e^{\lambda n}$) is observable in documented deception cases &mdash; political scandals, corporate fraud, personal deception. The compounding rate $\lambda$ varies, but the exponential form holds.</p>
+</div>
+
+<h2><span class="sec-tag">Evidence Class</span>Predictions</h2>
+
+<div class="marker-grid">
+<div class="marker"><span class="mtag">Prediction 1</span><h4>Honesty &harr; Longevity</h4><p>Institutions with higher truth-to-noise ratios should survive longer than those with lower ratios, controlling for other variables.</p></div>
+<div class="marker"><span class="mtag">Prediction 2</span><h4>Measurable Compounding</h4><p>The exponential growth of supporting lies should be observable and quantifiable in documented deception cases.</p></div>
+<div class="marker"><span class="mtag">Prediction 3</span><h4>Error-Correction Arrests Decay</h4><p>Systems with transparency laws and accountability structures should show measurable reduction in institutional entropy.</p></div>
+<div class="marker"><span class="mtag">Prediction 4</span><h4>No Permanent Lie-Tolerant System</h4><p>Every institution that tolerates deception &mdash; even at low levels &mdash; should eventually exhibit signal degradation. The only system that lasts forever is the one with zero noise.</p></div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════ KILL CONDITIONS TAB ═══════════════════ -->
+<div class="tab-content" id="kill">
+<div class="story">
+<h2><span class="sec-tag">Kill Conditions</span>What Would Break This</h2>
+
+<div class="falsification">
+<span class="ftitle">Falsification Criteria</span>
+<ul>
+<li>If lies can be shown <em>not</em> to compound &mdash; if a system with a non-zero deception rate can sustain itself indefinitely without degradation &mdash; the core mechanism is falsified.</li>
+<li>If a channel with persistent, uncorrected noise is shown to maintain information integrity indefinitely, Shannon&rsquo;s theorem is violated and the entire mapping collapses.</li>
+<li>If the Ten Commandments can be derived from first-principles noise-filter theory and the mapping fails to match, the signal-integrity interpretation is falsified.</li>
+<li>If civilizations built on systematic deception are shown to be as durable as those built on transparency (controlling for other variables), the prediction fails.</li>
+<li>If the thermodynamic framing of &ldquo;wages of sin is death&rdquo; can be shown to be merely metaphorical with no structural correspondence, the article&rsquo;s central claim is reduced to analogy.</li>
+</ul>
+</div>
+
+<h2><span class="sec-tag">Honest Gaps</span>Where the Mapping Stretches</h2>
+
+<div class="purple-box">
+<span class="plabel">Post-Hoc Mapping Risk</span>
+<p>The Ten Commandments&ndash;to&ndash;noise-filter mapping was constructed <em>after</em> knowing both the commandments and the categories. The mapping is clean &mdash; suspiciously clean. But we didn&rsquo;t <em>predict</em> the commandments from Shannon theory. We recognized the pattern after the fact.</p>
+</div>
+
+<div class="purple-box">
+<span class="plabel">Devil as Noise Function</span>
+<p>Scripture presents Satan as an agent with intentions, not a mathematical operator. The mapping captures his operational signature &mdash; corruption of existing signal, no original creative capacity &mdash; but it doesn&rsquo;t capture his agency, his hatred, his intentionality. A noise function doesn&rsquo;t <em>choose</em> to corrupt. The devil does.</p>
+</div>
+
+<div class="purple-box">
+<span class="plabel">Arrow of Explanation</span>
+<p>We implied the Bible&rsquo;s error-correction sequence was engineered like a communications protocol. But &ldquo;engineered&rdquo; implies God was solving a technical problem using human engineering methods, when the reality is the reverse: human engineering methods are shadows of God&rsquo;s actual redemptive structure. Shannon didn&rsquo;t invent error correction &mdash; he discovered a pattern God had already been operating for millennia.</p>
+</div>
+
+<div class="closing">
+<div class="verdict">&ldquo;The wages of sin is death&rdquo; is not a rule imposed from outside.<br/>It is a consequence built into the structure of <em>information itself</em>.</div>
+<p style="font-size:.85rem;color:var(--text-m);">Framework: Theophysics &middot; Domain Bridge: Information Theory &harr; Moral Theology</p>
+</div>
+</div>
+</div>
+<!-- ═══════════════════ BOTTOM NAV ═══════════════════ -->
+<div class="bottom-nav">
+<div class="nav-grid">
+<a class="nav-card" href="gtq-04a-the-decoherence-curve.html"><span class="nt">&larr; Previous Tangent</span><span class="nn">04A &middot; The Decoherence Curve</span></a>
+<a class="nav-card cur" href="gtq-04b-how-lies-kill.html"><span class="nt">Current</span><span class="nn">04B &middot; How Lies Kill</span></a>
+<a class="nav-card" href="gtq-05a-trinity-mechanism.html"><span class="nt">Next Tangent &rarr;</span><span class="nn">05A &middot; The Trinity Mechanism</span></a>
+</div>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{const s=document.documentElement,p=(s.scrollTop)/(s.scrollHeight-s.clientHeight)*100;document.getElementById('prog').style.width=p+'%'});
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo(0,0)}));
+// Sidebar auto-close on link click
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>document.querySelector('.sidebar').classList.remove('open')));
+</script>
+</body>
+</html>

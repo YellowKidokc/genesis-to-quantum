@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Genesis to Quantum — The Core Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root{
+  --bg:#050505;
+  --surface:#0a0a0a;
+  --surface2:#111;
+  --surface3:#1a1a1a;
+  --border:#222;
+  --border-hover:#333;
+  --text:#e0e0e0;
+  --text-dim:#999;
+  --text-muted:#555;
+  --gold:#d4af37;
+  --red:#c94040;
+  --red-dim:rgba(201,64,64,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+
+/* Back link */
+.back-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:1.25rem 2rem;
+  font-family:'Inter',sans-serif;font-size:.8rem;
+  color:var(--text-dim);text-decoration:none;
+  transition:color .2s;
+}
+.back-link:hover{color:var(--red);}
+
+/* Hero */
+.hero{
+  min-height:50vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:3rem 2rem 4rem;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,64,64,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-tag{
+  font-family:'Oswald',sans-serif;font-size:.65rem;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;
+}
+.hero h1{
+  font-family:'Crimson Text',serif;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  color:white;font-weight:400;margin-bottom:.5rem;
+}
+.hero .subtitle{
+  font-size:1rem;color:var(--text-dim);
+  max-width:620px;margin:0 auto 1.5rem;line-height:1.7;
+}
+.hero .series-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4rem 1rem;border-radius:2rem;
+  border:1px solid rgba(201,64,64,.25);
+  background:rgba(201,64,64,.05);
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--red);letter-spacing:.05em;
+}
+
+/* Section */
+.section{max-width:900px;margin:0 auto;padding:2rem 2rem 3rem;}
+.section-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;}
+.section-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;}
+.section-header h2{font-family:'Crimson Text',serif;font-size:1.5rem;color:white;}
+.section-desc{font-size:.85rem;color:var(--text-dim);margin-bottom:2rem;max-width:650px;}
+
+/* Article group */
+.article-group{margin-bottom:1.5rem;}
+
+/* Main article card */
+.article-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:var(--surface2);border:1px solid var(--border);
+  border-left:3px solid var(--red);border-radius:.6rem;
+  padding:1.25rem 1.5rem;text-decoration:none;color:var(--text);
+  transition:all .25s ease;position:relative;
+}
+.article-card:hover{
+  border-color:var(--red);background:rgba(201,64,64,.03);
+  transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.article-num{
+  font-family:'Oswald',sans-serif;font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--red);min-width:2.5rem;flex-shrink:0;padding-top:.15rem;
+}
+.article-body{flex:1;min-width:0;}
+.article-card h3{
+  font-family:'Crimson Text',serif;font-size:1.15rem;
+  color:white;margin-bottom:.3rem;line-height:1.3;
+}
+.article-card .desc{font-size:.8rem;color:var(--text-dim);line-height:1.5;}
+
+/* Sub-articles (tangents/capstones) */
+.sub-articles{
+  margin-left:2.5rem;padding-left:1rem;
+  border-left:1px solid rgba(201,64,64,.15);
+}
+.sub-article{
+  display:flex;align-items:baseline;gap:.6rem;
+  padding:.55rem .75rem;border-radius:.4rem;
+  text-decoration:none;color:var(--text);transition:background .2s;
+}
+.sub-article:hover{background:var(--surface2);}
+.sub-num{
+  font-family:'Oswald',sans-serif;font-size:.55rem;
+  letter-spacing:.1em;color:rgba(201,64,64,.6);
+  min-width:2.5rem;flex-shrink:0;
+}
+.sub-title{font-family:'Crimson Text',serif;font-size:.95rem;color:rgba(255,255,255,.8);}
+.sub-tag{
+  font-family:'Inter',sans-serif;font-size:.6rem;
+  color:var(--text-muted);margin-left:.3rem;
+}
+
+/* Divider */
+.divider{max-width:900px;margin:0 auto;border:none;border-top:1px solid var(--border);}
+
+/* Footer */
+footer{text-align:center;padding:3rem 2rem;color:var(--text-muted);font-size:.8rem;}
+footer .eq{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--red);opacity:.5;margin-bottom:.5rem;
+  word-break:break-all;
+}
+footer a{color:var(--red);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+@media(max-width:640px){
+  .hero{min-height:40vh;padding:2rem 1.5rem 3rem;}
+  .article-card{flex-direction:column;gap:.4rem;padding:1rem 1.25rem;}
+  .article-num{min-width:auto;}
+  .sub-articles{margin-left:1.5rem;}
+  .section{padding:1.5rem 1.5rem 2rem;}
+}
+</style>
+</head>
+<body>
+
+<a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Main Index</a>
+
+<section class="hero">
+  <div class="hero-tag">The Core Series</div>
+  <h1 style="font-family:'Crimson Text',serif;">Genesis to Quantum</h1>
+  <p class="subtitle">The foundational series that reads the Fall as wavefunction collapse, Eden as superposition, and the Cross as retrocausal repair &mdash; building the coherence equation one article at a time.</p>
+  <div class="series-badge"><i class="fas fa-atom"></i> 20 Articles &bull; Core Sequence</div>
+</section>
+
+<hr class="divider"/>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <h2>Reading Order</h2>
+  </div>
+  <p class="section-desc">Main articles are shown as cards; tangent and capstone pieces are listed beneath their parent. Read in sequence for the full argument.</p>
+
+  <!-- GTQ-01 -->
+  <div class="article-group">
+    <a href="gtq-01-measurement-collapsed-reality.html" class="article-card">
+      <span class="article-num">GTQ-01</span>
+      <div class="article-body">
+        <h3>The Measurement That Collapsed Reality</h3>
+        <div class="desc">Why the Fall is a wavefunction collapse</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-01a-collapse-threshold.html" class="sub-article">
+        <span class="sub-num">01a</span>
+        <span class="sub-title">The Collapse Threshold</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- GTQ-02 -->
+  <div class="article-group">
+    <a href="gtq-02-the-first-quantum-state.html" class="article-card">
+      <span class="article-num">GTQ-02</span>
+      <div class="article-body">
+        <h3>The First Quantum State</h3>
+        <div class="desc">Eden as superposition</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- GTQ-03 -->
+  <div class="article-group">
+    <a href="gtq-03-free-will-two-frames.html" class="article-card">
+      <span class="article-num">GTQ-03</span>
+      <div class="article-body">
+        <h3>Free Will in Two Frames</h3>
+        <div class="desc">The coherence equation dissolves the Calvinist-Arminian debate</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-03a-macarthur-and-the-equation.html" class="sub-article">
+        <span class="sub-num">03a</span>
+        <span class="sub-title">MacArthur and the Equation</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+      <a href="gtq-03b-the-three-pathways.html" class="sub-article">
+        <span class="sub-num">03b</span>
+        <span class="sub-title">The Three Pathways</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+      <a href="gtq-03c-why-god-drowned-everybody.html" class="sub-article">
+        <span class="sub-num">03c</span>
+        <span class="sub-title">Why God Drowned Everybody</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- GTQ-04 -->
+  <div class="article-group">
+    <a href="gtq-04-the-day-time-began.html" class="article-card">
+      <span class="article-num">GTQ-04</span>
+      <div class="article-body">
+        <h3>The Day Time Began</h3>
+        <div class="desc">The Fall created time</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-04a-the-decoherence-curve.html" class="sub-article">
+        <span class="sub-num">04a</span>
+        <span class="sub-title">The Decoherence Curve</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+      <a href="gtq-04b-how-lies-kill.html" class="sub-article">
+        <span class="sub-num">04b</span>
+        <span class="sub-title">How Lies Kill</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- GTQ-05 -->
+  <div class="article-group">
+    <a href="gtq-05-the-substrate-fractured.html" class="article-card">
+      <span class="article-num">GTQ-05</span>
+      <div class="article-body">
+        <h3>The Substrate Fractured</h3>
+        <div class="desc">Why there are two physics</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-05a-trinity-mechanism.html" class="sub-article">
+        <span class="sub-num">05a</span>
+        <span class="sub-title">The Trinity Mechanism</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+      <a href="gtq-05b-trinity-timeline.html" class="sub-article">
+        <span class="sub-num">05b</span>
+        <span class="sub-title">The Trinity Timeline</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+      <a href="gtq-05c-why-physics-is-broken-in-two.html" class="sub-article">
+        <span class="sub-num">05c</span>
+        <span class="sub-title">Why Physics Is Broken in Two</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- GTQ-07 -->
+  <div class="article-group">
+    <a href="gtq-07-the-photon-isnt-watching.html" class="article-card">
+      <span class="article-num">GTQ-07</span>
+      <div class="article-body">
+        <h3>Why the Photon Isn't Watching You Back</h3>
+        <div class="desc">Consciousness and observation</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- GTQ-08 -->
+  <div class="article-group">
+    <a href="gtq-08-god-doesnt-need-a-clock.html" class="article-card">
+      <span class="article-num">GTQ-08</span>
+      <div class="article-body">
+        <h3>The Eraser and the Cross</h3>
+        <div class="desc">Retrocausal atonement</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-08a-the-temporal-trap.html" class="sub-article">
+        <span class="sub-num">08a</span>
+        <span class="sub-title">The Temporal Trap</span>
+        <span class="sub-tag">tangent</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- GTQ-09 -->
+  <div class="article-group">
+    <a href="gtq-09-same-god-both-testaments.html" class="article-card">
+      <span class="article-num">GTQ-09</span>
+      <div class="article-body">
+        <h3>The Same God in Both Testaments</h3>
+        <div class="desc">Coherence across the biblical narrative</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- GTQ-10 -->
+  <div class="article-group">
+    <a href="gtq-10-the-counter-move.html" class="article-card">
+      <span class="article-num">GTQ-10</span>
+      <div class="article-body">
+        <h3>The Counter-Move</h3>
+        <div class="desc">Seven moves by Satan, seven counter-moves</div>
+      </div>
+    </a>
+    <div class="sub-articles">
+      <a href="gtq-10a-why-the-pattern-is-the-signal.html" class="sub-article">
+        <span class="sub-num">10a</span>
+        <span class="sub-title">Why the Pattern Is the Signal</span>
+        <span class="sub-tag">capstone</span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<hr class="divider"/>
+
+<footer>
+  <div class="eq">&chi; = &int;&int;&int;(G&middot;M&middot;E&middot;S&middot;T&middot;K&middot;R&middot;Q&middot;F&middot;C) dx dy dt</div>
+  <p><a href="../index.html">Theophysics</a> &mdash; David Lowe</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="paper-slug" content="gtq-05c">
+<title>Why Physics Is Broken in Two — Genesis to Quantum</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;--surface3:#222;--border:#2a2a2a;--border-h:#3a3a3a;--text:#e0e0e0;--text-d:#a0a0a0;--text-m:#555;--gold:#d4af37;--gold-dim:rgba(212,175,55,0.08);--gold-b:rgba(212,175,55,0.2);--blue:#4a9eff;--blue-dim:rgba(74,158,255,0.07);--blue-b:rgba(74,158,255,0.2);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.07);--red:#ef4444;--red-dim:rgba(239,68,68,0.08);--green:#22c55e;--green-dim:rgba(34,197,94,0.07);--purple:#a855f7;--purple-dim:rgba(168,85,247,0.07)}
+html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.78;overflow-x:hidden}
+.prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--gold));z-index:100;transition:width .15s}
+.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--bg);border-right:1px solid var(--border);z-index:90;overflow-y:auto;transform:translateX(-100%);transition:transform .3s ease;padding:1.5rem 1rem}.sidebar.open{transform:translateX(0)}
+.sidebar-toggle{position:fixed;top:1rem;left:1rem;z-index:91;background:var(--surface2);border:1px solid var(--border);border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-d);font-size:.9rem;transition:all .2s}.sidebar-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.nav-section{margin-bottom:1.5rem}.nav-section-title{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-m);margin-bottom:.6rem;padding:.3rem 0;border-bottom:1px solid var(--border)}
+.nav-link{display:block;padding:.45rem .6rem;font-size:.82rem;color:var(--text-d);text-decoration:none;border-radius:4px;margin-bottom:2px;transition:all .2s;line-height:1.4}.nav-link:hover{background:var(--surface2);color:var(--text)}.nav-link.active{background:var(--gold-dim);color:var(--gold);border-left:2px solid var(--gold);padding-left:.8rem}
+.nav-link.tangent{color:var(--purple);font-size:.78rem}.nav-link.tangent:hover{background:var(--purple-dim)}.nav-link.tangent.active{background:var(--purple-dim);color:var(--purple);border-left:2px solid var(--purple)}
+.player-dock{display:flex;align-items:center;gap:1rem;padding:.7rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:80}.player-dock audio{flex:1;height:34px}.player-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--surface);overflow-x:auto;position:sticky;top:51px;z-index:79}.tab-btn{padding:.7rem 1.4rem;font-size:.75rem;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}.tab-btn:hover{color:var(--text-d)}.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(212,175,55,0.04)}
+.tab-content{display:none}.tab-content.active{display:block}
+.hero{padding:4rem 2rem 2.5rem;max-width:800px;margin:0 auto;text-align:center}.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--purple);margin-bottom:1.5rem;display:block}.hero h1{font-family:'Crimson Text',serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:400;color:white;line-height:1.12;margin-bottom:.8rem}.hero .sub{font-family:'Crimson Text',serif;font-size:1.15rem;color:var(--text-d);font-style:italic;margin-bottom:1.2rem}.hero .byline{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-m)}
+.story{max-width:720px;margin:0 auto;padding:2rem 2rem 5rem}.story p{font-size:1.05rem;color:var(--text-d);line-height:1.9;margin-bottom:1.4rem}.story h2{font-family:'Crimson Text',serif;font-size:1.75rem;color:white;margin:3rem 0 1rem;line-height:1.2}.story h2 .sec-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);display:block;margin-bottom:.3rem}
+.drop-cap::first-letter{font-family:'Crimson Text',serif;font-size:4.2rem;float:left;line-height:.82;padding:.3rem .55rem 0 0;color:var(--purple);font-weight:600}
+.insight{border-left:4px solid var(--gold);background:var(--gold-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}.insight .ilabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:block}.insight p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}.insight p:last-child{margin-bottom:0}.insight strong{color:var(--gold)}
+.blue-box{border-left:4px solid var(--blue);background:var(--blue-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}.blue-box .blabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;display:block}.blue-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}.blue-box p:last-child{margin-bottom:0}.blue-box strong{color:var(--blue)}.purple-box{border-left:4px solid var(--purple);background:var(--purple-dim);padding:1.2rem 1.5rem;margin:1.5rem 0;border-radius:0 6px 6px 0}.purple-box .plabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:.4rem;display:block}.purple-box p{font-size:.95rem;color:var(--text-d);line-height:1.82;margin-bottom:.5rem}.purple-box p:last-child{margin-bottom:0}.purple-box strong{color:var(--purple)}
+.math-box{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;margin:1.5rem 0}.math-box .mlabel{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-bottom:.8rem;display:block}.math-box .mnote{font-size:.88rem;color:var(--text-d);margin-top:.8rem;line-height:1.75}.math-box .mnote strong{color:var(--gold)}
+.marker-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0}.marker{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1.2rem}.marker .mtag{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:.4rem;display:block}.marker h4{font-family:'Crimson Text',serif;font-size:1.05rem;color:white;margin-bottom:.5rem}.marker p{font-size:.88rem;color:var(--text-d);line-height:1.75}
+.sec-rule{display:flex;align-items:center;gap:1rem;margin:3rem 0}.sec-rule::before,.sec-rule::after{content:'';flex:1;height:1px;background:var(--border)}.sec-rule span{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-m);white-space:nowrap}
+.closing{max-width:720px;margin:3rem auto;padding:2.5rem;background:var(--surface2);border:1px solid var(--border);border-top:3px solid var(--purple);border-radius:0 0 10px 10px;text-align:center}.closing .verdict{font-family:'Crimson Text',serif;font-size:1.4rem;color:white;font-style:italic;line-height:1.65;margin-bottom:1.5rem}.closing .verdict em{color:var(--purple);font-style:normal}
+.falsification{max-width:720px;margin:2rem auto;padding:1.5rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:8px}.falsification .ftitle{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;display:block}.falsification ul{list-style:none;padding:0}.falsification li{font-size:.9rem;color:var(--text-d);line-height:1.8;padding:.4rem 0 .4rem 1.2rem;border-bottom:1px solid var(--border);position:relative}.falsification li:last-child{border-bottom:none}.falsification li::before{content:'×';position:absolute;left:0;color:var(--red);font-family:'JetBrains Mono',monospace}
+table.data{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}table.data th{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-align:left;padding:.6rem .8rem;border-bottom:2px solid var(--border)}table.data td{padding:.6rem .8rem;border-bottom:1px solid var(--border);color:var(--text-d);line-height:1.6}table.data tr:hover{background:var(--surface2)}
+.bottom-nav{border-top:1px solid var(--border);padding:2rem}.nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:8px;overflow:hidden;max-width:800px;margin:0 auto}.nav-card{background:var(--surface);padding:1rem 1.2rem;text-decoration:none;display:flex;flex-direction:column;gap:.2rem;transition:background .2s}.nav-card:hover{background:var(--surface2)}.nav-card .nt{font-family:'JetBrains Mono',monospace;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m)}.nav-card .nn{font-size:.88rem;color:var(--text);line-height:1.3}.nav-card.cur{background:var(--purple-dim)}
+@media(max-width:700px){.marker-grid{grid-template-columns:1fr}.nav-grid{grid-template-columns:1fr}.story{padding:1.5rem 1rem 4rem}}
+</style>
+</head>
+<body>
+<nav style="position:sticky;top:0;z-index:1000;background:#0a0a0a;border-bottom:1px solid #222;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-size:.8rem;">
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="../index.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">← Main Index</a>
+    <span style="color:#333;">|</span>
+    <a href="index.html" style="color:#c94040;text-decoration:none;font-weight:500;transition:color .2s;" onmouseover="this.style.color='#e05050'" onmouseout="this.style.color='#c94040'">Genesis to Quantum</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="gtq-05b-trinity-timeline.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">← Prev</a>
+    <a href="gtq-07-the-photon-isnt-watching.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">Next →</a>
+  </div>
+</nav>
+<div class="prog" id="prog"></div>
+<button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+<nav class="sidebar"><div class="nav-section"><div class="nav-section-title">Genesis to Quantum</div>
+<a class="nav-link" href="gtq-01-measurement-collapsed-reality.html">01 &middot; The Measurement That Collapsed Reality</a>
+<a class="nav-link" href="gtq-03-free-will-two-frames.html">03 &middot; Free Will in Two Frames</a>
+<a class="nav-link" href="gtq-04-the-day-time-began.html">04 &middot; The Day Time Began</a>
+<a class="nav-link" href="gtq-05-the-substrate-fractured.html">05 &middot; The Substrate Fractured</a>
+<a class="nav-link tangent" href="gtq-05a-trinity-mechanism.html">05A &middot; The Trinity Mechanism</a>
+<a class="nav-link tangent" href="gtq-05b-trinity-timeline.html">05B &middot; The Trinity Timeline</a>
+<a class="nav-link tangent active" href="gtq-05c-why-physics-is-broken-in-two.html">05C &middot; Why Physics Is Broken In Two</a>
+<a class="nav-link" href="gtq-07-the-photon-isnt-watching.html">07 &middot; The Photon Isn&rsquo;t Watching</a>
+<a class="nav-link" href="gtq-08-god-doesnt-need-a-clock.html">08 &middot; The Eraser and the Cross</a>
+<a class="nav-link tangent" href="gtq-08a-the-temporal-trap.html">08A &middot; The Temporal Trap</a>
+<a class="nav-link" href="gtq-09-same-god-both-testaments.html">09 &middot; Same God Both Testaments</a>
+<a class="nav-link" href="gtq-10-the-counter-move.html">10 &middot; The Counter-Move</a>
+<a class="nav-link tangent" href="gtq-10a-why-the-pattern-is-the-signal.html">10A &middot; Why the Pattern Is the Signal</a></div><div class="nav-section"><div class="nav-section-title">Framework</div><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="the-same-equation.html">The Same Equation</a></div></nav>
+
+<div class="player-dock"><span class="player-label">GTQ Tangent 05C &middot; Why Physics Is Broken In Two</span><audio controls preload="none"><source src="" type="audio/mpeg"/></audio></div>
+
+<div class="tab-bar">
+<button class="tab-btn active" data-tab="argument">Argument</button>
+<button class="tab-btn" data-tab="math">Math</button>
+<button class="tab-btn" data-tab="evidence">Evidence</button>
+<button class="tab-btn" data-tab="kill">Kill Conditions</button>
+</div>
+
+<!-- ═══════════════════ ARGUMENT TAB ═══════════════════ -->
+<div class="tab-content active" id="argument">
+<div class="hero">
+<span class="hero-tag">Genesis to Quantum &middot; Tangent 05C</span>
+<h1>Why Physics Is Broken in Two</h1>
+<div class="sub">And Why That&rsquo;s the Point</div>
+<div class="byline">David Lowe &middot; POF 2828 &middot; Theophysics Framework</div>
+</div>
+
+<div class="story">
+<p class="drop-cap">If everything that exists was made through the Logos, and the Logos is perfectly coherent &mdash; no lies, no noise, no internal contradiction &mdash; then what comes out the other side of that creation should carry the same signature. Ordered. Lawful. Coherent. Deterministic. And for a while, it was. Then something broke. And the fracture is still visible. You can find it in any university physics department, sitting right there between two whiteboards, in the gap between the two greatest theories of the twentieth century &mdash; neither of which can talk to the other.</p>
+
+<h2><span class="sec-tag">Section 1</span>The Most Embarrassing Problem in Physics</h2>
+
+<p><strong>General Relativity and Quantum Mechanics are mathematically incompatible.</strong> Not slightly off. Not in need of minor adjustments. Structurally, fundamentally, irreducibly incompatible. When you try to apply both theories at the same time &mdash; at the Planck scale &mdash; they give contradictory answers. The math breaks down. Infinities appear. The equations stop working.</p>
+
+<p>Physicists have been trying to unify these two theories for a hundred years. String theory tried &mdash; produced $10^{500}$ possible universes and no testable predictions after fifty years of effort. Loop quantum gravity tried &mdash; produced mathematically elegant structures with no experimental confirmation. None of them solved it. The gap remains.</p>
+
+<div class="insight">
+<span class="ilabel">The Framework&rsquo;s Interpretation</span>
+<p><strong>A unified substrate does not produce two incompatible theories.</strong> One theory, yes. Two theories that each work perfectly at their own scale but refuse to reconcile &mdash; that is exactly what you&rsquo;d expect from a substrate that used to be unified and got broken.</p>
+</div>
+
+<h2><span class="sec-tag">Section 2</span>What Each Theory Carries</h2>
+
+<p><strong>General Relativity: The Part That Remembers.</strong> GR is smooth. Continuous. Exact. Deterministic. If you know the initial conditions, you can calculate the future state with perfect precision. No probability. No uncertainty. No observer effect. GR has no observer problem &mdash; the moon is exactly where GR says it is, regardless of whether anyone is looking.</p>
+
+<p>This is the physics of <strong>structure, law, and coherence</strong>. These are the properties of the Logos. What God makes carries what God is &mdash; and what God is cannot include randomness, noise, or internal contradiction. GR is the remnant of that nature, still visible at the large scale.</p>
+
+<p><strong>Quantum Mechanics: The Part That Shows the Break.</strong> QM is noisy. Discontinuous. Probabilistic. Observer-dependent. Particles don&rsquo;t have definite positions &mdash; they have probability distributions that only resolve into definite values when measured. The act of measurement <em>changes the system</em>. The observer is not external and neutral. The observer is entangled with what they observe.</p>
+
+<p>This is the physics of <strong>noise, probability, and observer-dependence</strong>. These are not properties of the Logos. These are what a receiver produces when it has been decoupled from a perfectly ordered source &mdash; when you are trying to read a clean signal through a broken instrument.</p>
+
+<table class="data">
+<thead><tr><th>Property</th><th>General Relativity</th><th>Quantum Mechanics</th></tr></thead>
+<tbody>
+<tr><td>Deterministic?</td><td>Yes &mdash; exact answers</td><td>No &mdash; probability distributions</td></tr>
+<tr><td>Observer effect?</td><td>None &mdash; moon exists independent of observation</td><td>Yes &mdash; measurement changes the system</td></tr>
+<tr><td>Continuous?</td><td>Yes &mdash; smooth spacetime</td><td>No &mdash; discrete, discontinuous transitions</td></tr>
+<tr><td>Scale</td><td>Large: galaxies, planets, curvature</td><td>Small: particles, atoms, subatomic</td></tr>
+<tr><td>Reconcilable?</td><td colspan="2" style="text-align:center">No &mdash; incompatible at Planck scale</td></tr>
+<tr><td>Spiritual signature</td><td>Logos: order, law, coherence</td><td>Fallen substrate: noise, probability, observer-coupling</td></tr>
+</tbody>
+</table>
+
+<h2><span class="sec-tag">Section 3</span>The Spiritual Projects Into the Physical</h2>
+
+<p><strong>The spiritual is not metaphor for the physical. The physical is projection of the spiritual.</strong> When John says &ldquo;all things were made through him,&rdquo; he is making a structural claim: the Logos is the generative source from which physical reality derives its properties. The physical world is downstream. The Logos is upstream.</p>
+
+<p>This means physical laws are not arbitrary. They have the shape they have because the reality they describe was made by something with a specific nature. That nature is rational (therefore physics is mathematical), consistent (therefore the same laws hold everywhere), ordered (therefore entropy exists as departure from a baseline), relational (therefore fundamental forces involve coupling and bonding), and triune (therefore every measurement requires three irreducible operations).</p>
+
+<p>The Fall broke the coupling between the created substrate and the Logos. Not metaphorically. Structurally. Quantum indeterminacy is not a feature of pre-Fall reality &mdash; it is the signature of post-Fall physics. The Born Rule is what you get when you try to read a Logos-structured reality through a decoupled receiver.</p>
+
+<h2><span class="sec-tag">Section 4</span>Why They Can&rsquo;t Be Reconciled (From Inside)</h2>
+
+<p>GR and QM cannot be unified from inside the fallen substrate because they are not two theories of the same thing. They are <em>two fragments of a broken whole</em>, and the break runs between them.</p>
+
+<p>String theory tries to make QM primary and derive geometry from it &mdash; gets $10^{500}$ possible universes, no selection principle, indeterminacy multiplied. Loop quantum gravity tries to make geometry primary and quantize it &mdash; gets discrete spacetime, loses smooth GR at large scales. Neither approach produces a unique, deterministic, testable theory because neither recognizes what the two fragments actually are.</p>
+
+<div class="purple-box">
+<span class="plabel">The Unification Principle</span>
+<p>The unification, when it comes, will not be purely mathematical. It will require understanding what the substrate is <em>for</em> &mdash; and the framework holds that you cannot understand that without knowing who made it and why. <strong>The Logos is the unifying principle.</strong> Physics has been looking for it everywhere except the most obvious place.</p>
+</div>
+
+<h2><span class="sec-tag">Section 5</span>The Cross as the Only Event in Both</h2>
+
+<p>If GR and QM represent two different physical regimes, you would expect every historical event to sit primarily in one or the other. Large-scale events are GR. Small-scale quantum events are QM.</p>
+
+<p><strong>The Cross is the only event in history that sits in both frames simultaneously.</strong></p>
+
+<p>In the GR frame: a man dies at a specific location in spacetime. Specific coordinates. Historical moment. Deterministic. The cause-and-effect chain is traceable.</p>
+
+<p>In the QM frame: &ldquo;the Lamb slain from the foundation of the world&rdquo; (Revelation 13:8). Retrocausal. Outside temporal ordering. Operating from the eternal frame &mdash; the frame in which the Logos-field is not constrained by the temporal sequence the Fall introduced.</p>
+
+<p>The Resurrection confirms this. In the GR frame, bodies don&rsquo;t come back from the dead. Entropy is irreversible. The Resurrection is a demonstration that the substrate-level repair is real &mdash; that the Logos can override the fallen physics within the fallen frame.</p>
+
+<div class="insight">
+<span class="ilabel">The Structural Signature</span>
+<p>The Cross and Resurrection are the <strong>only events in history that require both physics frames to describe</strong>. That is not a coincidence. It is a structural signature of what those events actually are.</p>
+</div>
+
+<h2><span class="sec-tag">Section 6</span>The Article You&rsquo;re Really Reading</h2>
+
+<p>This article is not primarily about physics. It&rsquo;s about where to look for evidence.</p>
+
+<p>If God made the physical world through the Logos, those properties should be visible in physics. They are &mdash; the mathematical structure of GR, the triadic necessity of the Born Rule, the conservation laws.</p>
+
+<p>If the Fall fractured the substrate, that fracture should be visible. It is &mdash; the GR/QM incompatibility, the measurement problem, the observer effect.</p>
+
+<p>If the Cross performed a substrate-level repair, that operation should leave a signature. It does &mdash; the retrocausal reach of the Lamb slain before the foundation of the world, the Resurrection as entropy reversal.</p>
+
+<p>The spiritual truth projected into the physical world when the physical world was made. It&rsquo;s been there the whole time. Physics just needed long enough to develop the instruments to measure the shape of the shadow.</p>
+
+</div><!-- /story -->
+</div><!-- /argument tab -->
+
+<!-- ═══════════════════ MATH TAB ═══════════════════ -->
+<div class="tab-content" id="math">
+<div class="story">
+<h2><span class="sec-tag">GR</span>Einstein&rsquo;s Field Equations</h2>
+<div class="math-box"><span class="mlabel">The Deterministic Substrate</span>
+$$G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$$
+<div class="mnote">Smooth. Continuous. Exact. Deterministic. Given initial conditions, the future is calculable with perfect precision. <strong>No probability. No observer effect.</strong> This is the Logos-imprint still legible at the large scale.</div></div>
+
+<h2><span class="sec-tag">QM</span>Born Rule</h2>
+<div class="math-box"><span class="mlabel">The Fallen Substrate</span>
+$$P(a) = |\langle a|\psi\rangle|^2$$
+<div class="mnote">Probabilistic. Observer-dependent. The best you can ever do is a probability. <strong>Not ignorance &mdash; the actual structure of quantum reality.</strong> This is what a receiver produces when decoupled from a perfectly ordered source.</div></div>
+
+<h2><span class="sec-tag">The Gap</span>Planck-Scale Incompatibility</h2>
+<div class="math-box"><span class="mlabel">Where Both Break</span>
+$$\ell_P = \sqrt{\frac{\hbar G}{c^3}} \approx 1.616 \times 10^{-35} \text{ m}$$
+<div class="mnote">At the Planck length, both GR and QM apply &mdash; and give contradictory answers. Infinities appear. Equations stop working. <strong>This is the fracture line</strong> &mdash; the exact scale where the break between the two substrates becomes visible.</div></div>
+
+<h2><span class="sec-tag">String Theory</span>The Failed Unification</h2>
+<div class="math-box"><span class="mlabel">Landscape Problem</span>
+$$N_{\text{vacua}} \sim 10^{500}$$
+<div class="mnote">String theory&rsquo;s landscape produces $10^{500}$ possible universes with no selection principle. <strong>The indeterminacy doesn&rsquo;t resolve &mdash; it multiplies.</strong> The framework predicts this: you cannot unify two fragments of a broken whole by rearranging the pieces from inside.</div></div>
+
+<h2><span class="sec-tag">Framework</span>Coherence Condition</h2>
+<div class="math-box"><span class="mlabel">Logos-Structured Substrate</span>
+$$\nabla \cdot \chi = 0$$
+<div class="mnote">Zero divergence. No entropy leak. Pre-Fall physics: the original unified substrate satisfying the Logos coherence condition. Post-Fall: the condition is violated at the quantum scale, producing the probabilistic behavior we observe. GR preserves it at the large scale.</div></div>
+</div>
+</div>
+
+<!-- ═══════════════════ EVIDENCE TAB ═══════════════════ -->
+<div class="tab-content" id="evidence">
+<div class="story">
+<h2><span class="sec-tag">Evidence Class</span>Documented Facts</h2>
+<div class="blue-box"><span class="blabel">GR/QM Incompatibility &mdash; 100 Years Unresolved</span>
+<p>The mathematical incompatibility between General Relativity and Quantum Mechanics is a <strong>documented fact</strong>, not a framework claim. The failure of every unification attempt is documented. The qualitative characterization of GR as deterministic and QM as probabilistic is standard textbook physics.</p></div>
+
+<div class="blue-box"><span class="blabel">String Theory Landscape</span>
+<p>50 years of effort. $10^{500}$ possible universes. Zero testable predictions. The indeterminacy multiplied rather than resolving &mdash; exactly what the framework predicts when you try to unify fragments from inside the broken system.</p></div>
+
+<div class="blue-box"><span class="blabel">Bell&rsquo;s Theorem (1964)</span>
+<p>Rules out <em>local</em> hidden variables. Does <strong>not</strong> rule out a non-local Logos-coupled ground state. The framework is not a hidden-variable theory in Bell&rsquo;s sense &mdash; the coherence source is non-local and external to the fallen substrate.</p></div>
+
+<h2><span class="sec-tag">Evidence Class</span>Predictions</h2>
+<div class="marker-grid">
+<div class="marker"><span class="mtag">Prediction 1</span><h4>No Internal Unification</h4><p>No unification purely within fallen physics should succeed. The GR/QM incompatibility should persist until a framework incorporating an external coherence source is developed.</p></div>
+<div class="marker"><span class="mtag">Prediction 2</span><h4>Consciousness-Coupling Effects</h4><p>If QM indeterminacy is post-Fall, consciousness-coupling should measurably affect quantum outcomes in proportion to Logos-field coherence. PEAR-LAB (6.35&sigma;) and GCP (6&sigma;) are consistent.</p></div>
+<div class="marker"><span class="mtag">Prediction 3</span><h4>Classical Convergence</h4><p>The further from quantum noise toward classical coherence, the more physics should exhibit Logos properties: determinism, symmetry, conservation, mathematical elegance. GR already confirms this.</p></div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════ KILL CONDITIONS TAB ═══════════════════ -->
+<div class="tab-content" id="kill">
+<div class="story">
+<h2><span class="sec-tag">Kill Conditions</span>What Would Break This</h2>
+<div class="falsification"><span class="ftitle">Falsification Criteria</span>
+<ul>
+<li>Successful GR/QM unification that does <em>not</em> require an external coherence source would significantly weaken the argument that the incompatibility is a fracture signature.</li>
+<li>A decisive null result from well-powered consciousness-coupling experiments (contradicting PEAR-LAB and GCP) would weaken the claim that QM indeterminacy involves observer-dependent components.</li>
+<li>Demonstration that quantum probability is fundamental to ultimate reality (not a degraded version of something deeper) would remove the framework&rsquo;s interpretive layer entirely.</li>
+<li>Discovery that GR is <em>also</em> probabilistic at some scale would break the deterministic/probabilistic split that anchors the two-substrate interpretation.</li>
+</ul></div>
+
+<h2><span class="sec-tag">Honest Gaps</span>Where the Interpretation Stretches</h2>
+<div class="purple-box"><span class="plabel">Copenhagen vs Framework</span>
+<p>The claim that QM&rsquo;s probability is &ldquo;receiver noise from a decoupled source&rdquo; must be carefully distinguished from the Copenhagen interpretation (probability is fundamental, nothing underneath). Bell&rsquo;s theorem rules out <em>local</em> hidden variables &mdash; it does not rule out a non-local Logos-coupled ground state. This distinction needs to be explicit in any academic presentation.</p></div>
+
+<div class="purple-box"><span class="plabel">Systematic Mapping Needed</span>
+<p>The claim that spiritual truths project into physical laws deserves its own paper &mdash; a systematic mapping of each moral/spiritual law to its physical analogue, with the direction of derivation made explicit. This article gestures at that mapping; a full treatment would be the framework&rsquo;s most powerful academic contribution.</p></div>
+
+<div class="closing">
+<div class="verdict">The spiritual truth projected into the physical world when the physical world was made.<br/>It&rsquo;s been there the whole time. Physics just needed long enough to measure the shape of the <em>shadow</em>.</div>
+<p style="font-size:.85rem;color:var(--text-m);">Framework: Theophysics &middot; Parent: Art 2 &mdash; The Substrate Fractured</p>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════ BOTTOM NAV ═══════════════════ -->
+<div class="bottom-nav"><div class="nav-grid">
+<a class="nav-card" href="gtq-05b-trinity-timeline.html"><span class="nt">&larr; Previous Tangent</span><span class="nn">05B &middot; The Trinity Timeline</span></a>
+<a class="nav-card cur" href="gtq-05c-why-physics-is-broken-in-two.html"><span class="nt">Current</span><span class="nn">05C &middot; Why Physics Is Broken In Two</span></a>
+<a class="nav-card" href="gtq-08a-the-temporal-trap.html"><span class="nt">Next Tangent &rarr;</span><span class="nn">08A &middot; The Temporal Trap</span></a>
+</div></div>
+
+<script>
+window.addEventListener('scroll',()=>{const s=document.documentElement,p=(s.scrollTop)/(s.scrollHeight-s.clientHeight)*100;document.getElementById('prog').style.width=p+'%'});
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo(0,0)}));
+document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',()=>document.querySelector('.sidebar').classList.remove('open')));
+</script>
+</body>
+</html>
