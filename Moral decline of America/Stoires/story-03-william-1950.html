@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part III: William Lowe (1950) — Peak Coherence | Genesis to Quantum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    tailwind.config = {
+        theme: { 
+            extend: {
+                colors: { 
+                    dark: '#050505', 
+                    card: '#0a0a0a', 
+                    cardHover: '#111111', 
+                    accent: '#dc2626', 
+                    accentDim: '#991b1b', 
+                    amber: '#f59e0b', 
+                    amberDim: '#b45309' 
+                },
+                fontFamily: { 
+                    serif: ['Crimson Text', 'Georgia', 'serif'], 
+                    sans: ['Inter', 'system-ui', 'sans-serif'], 
+                    display: ['Oswald', 'Impact', 'sans-serif'], 
+                    mono: ['JetBrains Mono', 'monospace'] 
+                }
+            }
+        }
+    }
+    </script>
+    <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #050505; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 4px; }
+    .gradient-line { height: 3px; background: linear-gradient(90deg, #991b1b, #dc2626, #f59e0b, #dc2626, #991b1b); }
+    .hero-gradient { background: radial-gradient(ellipse at 50% 0%, rgba(220,38,38,0.08) 0%, transparent 60%); }
+    .pullquote { border-left: 3px solid #dc2626; background: linear-gradient(90deg, rgba(220,38,38,0.05), transparent); }
+    .data-callout { border: 1px solid rgba(245,158,11,0.2); background: linear-gradient(135deg, rgba(245,158,11,0.03), transparent); }
+    .stat-glow { box-shadow: 0 0 20px rgba(220,38,38,0.1), inset 0 1px 0 rgba(245,158,11,0.1); }
+    .prose-body p { font-family: 'Crimson Text', Georgia, serif; font-size: 1.2rem; line-height: 1.85; color: #d1d5db; margin-bottom: 1.5rem; }
+    .prose-body strong { color: #f9fafb; font-weight: 600; }
+    .section-divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(220,38,38,0.3), rgba(245,158,11,0.2), rgba(220,38,38,0.3), transparent); margin: 3rem 0; }
+    </style>
+</head>
+<body class="text-gray-300 font-serif">
+
+    <!-- FIXED TOP NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark border-b border-accentDim/20">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-amber text-sm font-mono font-bold">PART 3 OF 6</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="story-00-introduction.html" class="text-gray-400 hover:text-amber transition text-sm">Index</a>
+                <a href="story-02-henry-1926.html" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-1">
+                    <i class="fas fa-chevron-left"></i> Prev
+                </a>
+                <a href="story-04-thomas-1974.html" class="text-gray-400 hover:text-accent transition text-sm flex items-center gap-1">
+                    Next <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="gradient-line"></div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-gradient pt-32 pb-16 px-6 mt-12">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="font-display text-6xl font-bold text-gray-100 mb-4">Part III: William</h1>
+            <p class="text-accent font-bold text-2xl mb-4">Peak Coherence</p>
+            <p class="text-amber text-lg">Ohio, 1950</p>
+        </div>
+    </header>
+
+    <div class="gradient-line"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 py-12">
+
+        <!-- WORLD OF 1950 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="fas fa-globe text-amber text-2xl"></i>
+                <h2 class="font-display text-3xl font-bold text-gray-100">The World of 1950</h2>
+            </div>
+            
+            <div class="data-callout p-8 rounded-lg stat-glow mb-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">MEDIAN INCOME</p>
+                        <p class="text-2xl font-bold text-gray-100">$3,300</p>
+                        <p class="text-xs text-gray-500 mt-1">~$42K today</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">HOMEOWNERSHIP</p>
+                        <p class="text-2xl font-bold text-gray-100">55%</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">DIVORCE RATE</p>
+                        <p class="text-2xl font-bold text-gray-100">2.6 / 1K</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">FERTILITY</p>
+                        <p class="text-2xl font-bold text-gray-100">3.0</p>
+                        <p class="text-xs text-gray-500 mt-1">→ 3.7 by 1960</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">MARRIAGE AGE</p>
+                        <p class="text-2xl font-bold text-gray-100">22.8M / 20.3F</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">CHURCH WEEKLY</p>
+                        <p class="text-2xl font-bold text-gray-100">55%</p>
+                        <p class="text-xs text-gray-500 mt-1">HIGHEST EVER</p>
+                    </div>
+                    <div>
+                        <p class="text-amber font-mono text-sm font-bold mb-2">TV OWNERSHIP</p>
+                        <p class="text-2xl font-bold text-gray-100">9%</p>
+                        <p class="text-xs text-gray-500 mt-1">→ 87% by 1960</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE STORY -->
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-12">
+                <i class="fas fa-book-open text-amber text-2xl"></i>
+                <h2 class="font-display text-3xl font-bold text-gray-100">The Story</h2>
+            </div>
+
+            <div class="prose-body">
+                <!-- Scene 1: Ohio, 1950 -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">Ohio, 1950</h3>
+                    <p>Bill Lowe is eighteen years old, the first in his family to go to college. He drives the family's 1949 Ford Custom—two-tone green with that new leather smell—to Ohio State to study business. His father Henry had said it simply: "You should go. Get an education. The world's changing." It was both permission and blessing. The first Lowe to step outside the circle.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 2: Mary -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">Mary</h3>
+                    <p>Mary Hendricks is seventeen, brown-haired, serious in a way that matters. He met her at church. She asks questions—real questions—and actually listens to the answers. They've kissed twice. Behind the church after Christmas, his hands on her coat. And in his car for ninety seconds before she said, "Not yet," and meant it. He understood. This was not rejection. This was architecture.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 3: The Parlor -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">The Parlor</h3>
+                    <p>The Hendricks' parlor smells like lemon oil and wool. There's a dark Philco television in the corner, turned off—you don't watch television when company visits. That would be rude. Bill wears brown trousers and Brylcreem. Mary wears a blue dress with white flowers; she made it herself. Mrs. Hendricks sits knitting something that never seems to get longer, her needles clicking in the silence.</p>
+                    <p>The conversation is excruciatingly formal. The weather. The church social. Bill's studies. Mary's mother's sister's daughter in Cincinnati. But there's a current running underneath—their eyes meeting for a fraction of a second, amusement at the theater they're both performing. They both know the script. There is no other way to do this. This is 1950. This is how the world works.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 4: The Television -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">The Television</h3>
+                    <p>At a dinner party, Bill overhears a man make a joke about "the old ball and chain." Marriage as prison. He notices he doesn't laugh. The joke bothers him for days—follows him back to Columbus, sits with him in the library. His father never called Dorothy anything but her name. Henry spoke about their life together the way a man speaks about a house he's built, about land he owns: with attention, with care, with the weight of something real.</p>
+                    <p>Bill doesn't know it yet, but California is already drafting the first no-fault divorce statute. He doesn't know that the language is already shifting, that the frame is already cracking. The television will show him everything he could have. It will never show him how to keep it.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 5: Henry Speaks -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">Henry Speaks</h3>
+                    <p>Henry is fifty-two when he finds Bill packing for OSU with Samuel's old suitcase. He sits on the edge of the bed and says: "Find a good woman. Work. Stay." Bill knows these words. They've been said a thousand times before—by his father, his grandfather, in the church, in every story about every life. But then Henry adds something new, something Bill will remember for the rest of his life:</p>
+                    
+                    <div class="pullquote p-6 rounded-lg my-8">
+                        <p class="text-lg text-gray-100 italic font-serif">"The TV, the radio, the cities—they show you everything you could have. They don't show you how to keep it."</p>
+                    </div>
+
+                    <p>Bill doesn't understand what his father means. Not yet.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 6: The Choice -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">The Choice (1952)</h3>
+                    <p>Bill is home from OSU, and he has a choice. Patricia in Columbus—modern, city, with dreams of New York and a career in publishing. Exciting. New. Everything the radio says a young man should want. And Mary, writing him every week, her letters careful and unhurried, asking about his classes, telling him about the church potluck and the new hymnal.</p>
+                    <p>For the first time in his life, a Lowe has options. Real options. He breaks up with Patricia by phone. She asks, "Is there someone else?" and he says yes, there is. Someone from back home. He chooses Mary. Not excitement. This. Coherence. Stability. The thing his father's father had built.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 7: 1954 -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">1954</h3>
+                    <p>Bill graduates from Ohio State. He has a job offer in Columbus: $4,800 a year, good position, the right trajectory. He turns it down. Instead, he takes a job at the Richland bank for $3,600 a year. He marries Mary at the Methodist church where three generations of Lowes have been baptized. The whole town comes. His father cries quietly during the vows. The whole world feels right.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 8: The Peak Years -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">The Peak Years (1956-1968)</h3>
+                    <p>Their son Thomas is born in 1956. Bill is branch manager by 1959. They get a color television in 1965. Sunday church. Saturday Little League. The neighborhood is good. The schools are good. Mary gardens. Bill coaches. There is a rhythm to it, a pattern that feels sustainable, that feels like it could go on forever.</p>
+                    <p>But the television is on four hours a night now. Kennedy is shot on television. The Beatles. Vietnam every evening. The center is not holding—but Bill's world is good. His house is solid. His wife is faithful. His son is happy. "We're lucky," he tells Mary. She doesn't answer. She's watching the screen. The blue glow illuminates her face, and he doesn't see the worry there, or he chooses not to see it.</p>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Scene 9: What Bill Doesn't Know -->
+                <div class="mb-12">
+                    <h3 class="text-amber font-display text-2xl font-bold mb-6">What Bill Doesn't Know</h3>
+                    <p>Bill doesn't know about no-fault divorce. He doesn't know about the Pill, already reshaping everything. He doesn't know about Watergate, which will come soon. He doesn't know that church attendance is dropping by a third. He doesn't know that his son Tommy will turn eighteen in 1974 in a world that looks nothing like this one.</p>
+                    <p>He is in the moment of peak coherence, and he cannot see that the moment is ending.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ANALYSIS -->
+        <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+                <i class="fas fa-microscope text-amber text-2xl"></i>
+                <h2 class="font-display text-3xl font-bold text-gray-100">Analysis</h2>
+            </div>
+
+            <div class="bg-card border border-accentDim/30 rounded-lg p-8 mb-8">
+                <div class="prose-body">
+                    <p>All nine constraint domains are near local maxima in 1950. Religious adherence, family structure, economic stability, social cohesion, sexual restraint, generational continuity—all operating at their highest efficacy. The system is internally coherent. The center is holding.</p>
+                    <p>But the system is critically poised. The parameter <strong>P</strong> (permeability—the ease with which information and alternative values enter the system) is approaching its critical threshold <strong>P_c</strong>. Small perturbations will have outsized effects.</p>
+                    <p>William's generation—and this is the crucial insight—mistook <em>inherited</em> coherence for proof that the <em>constraints</em> themselves were unnecessary. Because the system felt safe, they concluded virtue was self-sustaining and freedom was costless. But they are living on momentum. On the cultural capital built by Henry and Samuel. On institutions still strong enough to carry the weight.</p>
+                    <p>The television in the parlor is off. But it is there. And by 1960, it will be on. And once it is on, the circle breaks.</p>
+                </div>
+            </div>
+
+            <div class="pullquote p-6 rounded-lg my-8">
+                <p class="text-lg text-gray-100 italic font-serif font-bold">William's generation mistook inherited coherence for proof that constraints were unnecessary. Because the system felt safe, they concluded virtue was self-sustaining and freedom was costless.</p>
+            </div>
+        </section>
+
+        <!-- CHARTS -->
+        <section class="mb-16">
+            <h3 class="font-display text-2xl font-bold text-gray-100 mb-8">The Constraint Profile & The Signal</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Radar Chart -->
+                <div class="bg-card border border-accentDim/30 rounded-lg p-6">
+                    <h4 class="text-amber font-display font-bold mb-4 text-center">1950 Constraint Profile</h4>
+                    <canvas id="constraintRadar"></canvas>
+                </div>
+
+                <!-- Line Chart -->
+                <div class="bg-card border border-accentDim/30 rounded-lg p-6">
+                    <h4 class="text-amber font-display font-bold mb-4 text-center">TV Adoption 1950-1960</h4>
+                    <canvas id="tvAdoption"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER NAV -->
+    <footer class="border-t border-accentDim/20 mt-16">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between mb-6">
+                <a href="story-02-henry-1926.html" class="text-gray-400 hover:text-accent transition flex items-center gap-2">
+                    <i class="fas fa-chevron-left"></i> Henry (1926)
+                </a>
+                <a href="story-00-introduction.html" class="text-amber hover:text-accent transition font-mono text-sm font-bold">
+                    INTRODUCTION
+                </a>
+                <a href="story-04-thomas-1974.html" class="text-gray-400 hover:text-accent transition flex items-center gap-2">
+                    Thomas (1974) <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            <div class="gradient-line mb-6"></div>
+            <div class="text-center text-gray-500 text-sm">
+                <p>Part III: William "Bill" Lowe (1950) — Peak Coherence</p>
+                <p class="mt-2">The Lowe Family Stories | The Moral Decline of America | Genesis to Quantum</p>
+                <p class="mt-3 text-xs text-gray-600">Publication Quality • 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+    // Constraint Profile Radar Chart
+    const constraintCtx = document.getElementById('constraintRadar').getContext('2d');
+    new Chart(constraintCtx, {
+        type: 'radar',
+        data: {
+            labels: ['Religious\nAdherence', 'Family\nStructure', 'Economic\nStability', 'Social\nCohesion', 'Sexual\nRestraint', 'Generational\nContinuity', 'Educational\nPathways', 'Community\nTrust', 'Institutional\nStrength'],
+            datasets: [{
+                label: '1950 Constraint Levels',
+                data: [90, 92, 88, 91, 89, 93, 85, 90, 89],
+                borderColor: '#dc2626',
+                backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                borderWidth: 2,
+                pointRadius: 4,
+                pointBackgroundColor: '#f59e0b',
+                pointBorderColor: '#dc2626'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: { color: '#d1d5db' }
+                }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: 'rgba(220, 38, 38, 0.1)' },
+                    ticks: { color: '#9ca3af' }
+                }
+            }
+        }
+    });
+
+    // TV Adoption Line Chart
+    const tvCtx = document.getElementById('tvAdoption').getContext('2d');
+    new Chart(tvCtx, {
+        type: 'line',
+        data: {
+            labels: ['1950', '1952', '1954', '1956', '1958', '1960'],
+            datasets: [{
+                label: 'TV Ownership %',
+                data: [9, 23, 45, 67, 78, 87],
+                borderColor: '#f59e0b',
+                backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 6,
+                pointBackgroundColor: '#dc2626',
+                pointBorderColor: '#f59e0b',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: { color: '#d1d5db' }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: 'rgba(220, 38, 38, 0.1)' },
+                    ticks: { color: '#9ca3af', callback: function(value) { return value + '%'; } }
+                },
+                x: {
+                    grid: { color: 'rgba(220, 38, 38, 0.1)' },
+                    ticks: { color: '#9ca3af' }
+                }
+            }
+        }
+    });
+    </script>
+
+</body>
+</html>

@@ -2,15 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "genesis-to-quantum",
   "compatibility_date": "2026-04-10",
-  "observability": {
-    "enabled": true
-  },
   "pages_build_output_dir": ".",
-  "assets": {
-    "directory": "."
-  },
   "compatibility_flags": [
     "nodejs_compat"
   ]
 }
-
