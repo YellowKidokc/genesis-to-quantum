@@ -1,0 +1,423 @@
+# Part V: Jacob "Jake" Lowe (1998) — The Aftermath | The Lowe Family Stories
+
+Part V: Jacob "Jake" Lowe (1998) — The Aftermath | The Lowe Family Stories
+
+tailwind.config = {
+
+theme: {
+
+extend: {
+
+colors: {
+
+dark: '#050505',
+
+card: '#0a0a0a',
+
+cardHover: '#111111',
+
+accent: '#dc2626',
+
+accentDim: '#991b1b',
+
+amber: '#f59e0b',
+
+amberDim: '#b45309'
+
+},
+
+fontFamily: {
+
+serif: ['Crimson Text', 'Georgia', 'serif'],
+
+sans: ['Inter', 'system-ui', 'sans-serif'],
+
+display: ['Oswald', 'Impact', 'sans-serif'],
+
+mono: ['JetBrains Mono', 'monospace']
+
+}
+
+}
+
+}
+
+}
+
+html { scroll-behavior: smooth; }
+
+body { background-color: #050505; }
+
+::-webkit-scrollbar { width: 8px; }
+
+::-webkit-scrollbar-track { background: #050505; }
+
+::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 4px; }
+
+.gradient-line { height: 3px; background: linear-gradient(90deg, #991b1b, #dc2626, #f59e0b, #dc2626, #991b1b); }
+
+.hero-gradient { background: radial-gradient(ellipse at 50% 0%, rgba(220,38,38,0.08) 0%, transparent 60%); }
+
+.pullquote { border-left: 3px solid #dc2626; background: linear-gradient(90deg, rgba(220,38,38,0.05), transparent); }
+
+.data-callout { border: 1px solid rgba(245,158,11,0.2); background: linear-gradient(135deg, rgba(245,158,11,0.03), transparent); }
+
+.stat-glow { box-shadow: 0 0 20px rgba(220,38,38,0.1), inset 0 1px 0 rgba(245,158,11,0.1); }
+
+.prose-body p { font-family: 'Crimson Text', Georgia, serif; font-size: 1.2rem; line-height: 1.85; color: #d1d5db; margin-bottom: 1.5rem; }
+
+.prose-body strong { color: #f9fafb; font-weight: 600; }
+
+.section-divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(220,38,38,0.3), rgba(245,158,11,0.2), rgba(220,38,38,0.3), transparent); margin: 3rem 0; }
+
+PART 5 OF 6
+
+PREV
+
+INDEX
+
+NEXT
+
+Part V: Jacob
+
+"The Aftermath"
+
+Ohio & Beyond, 1998
+
+The World of 1998
+
+Divorce Rate
+
+4.0
+
+per 1,000
+
+Marriage Age
+
+26.7M / 25.0F
+
+median
+
+Cohabitation
+
+5.5M
+
+couples (10x since 1970)
+
+Non-Marital Births
+
+32.8%
+
+of all births
+
+Church Attendance
+
+35%
+
+weekly
+
+No Religion
+
+14%
+
+of population
+
+Living Alone
+
+25M
+
+adults
+
+Internet Access
+
+26%
+
+of households
+
+The Story
+
+Ohio (and Elsewhere), 1998
+
+Jake is 18. Doesn't know where he's from. Born Cincinnati. Parents divorced at 5. Shuttled between mom in Indiana, dad in Ohio/Kentucky/Ohio. "Where are you from?" "Ohio, I guess." Ohio State freshman. Undeclared. Everyone says "find yourself" but nobody says what it looks like.
+
+The Noise (Total)
+
+Cannot remember silence. TV, Discman, now the INTERNET. AOL chat rooms. Hours vanish clicking links to nowhere. His great-great-grandfather watched stars; Jake can't focus for ten minutes. More information than any human in history. Can't think straight.
+
+The Girls (Plural)
+
+Sex with four girls by 18. First: Brittany, drunk at party, 4 minutes, never spoke again. Second: Michelle, 3-month girlfriend. Third: a party — doesn't remember her name (this bothers him sometimes). Fourth: Ashley, "talking" — means everything and nothing.
+
+The Screen's Promise
+
+Infinite entertainment = boredom obsolete. Infinite information = ignorance optional. Infinite connection = loneliness impossible. Infinite options = commitment irrational. But boredom was where creativity came from. No single connection has to be deep.
+
+"If options are infinite, commitment is irrational. Why choose when you can browse forever?"
+
+The Conversation That Can't Happen
+
+Christmas 1998, Richland. Bill is 86, Mary 84, married 64 years. No computer, TV one hour/night. Jake finds them alien. Bill takes him to the garage:
+
+"Find a good woman. Work. Stay."
+
+Jake doesn't laugh like Tommy did. He looks confused. "What does that mean? Find a good woman how? On what? Stay where?" The words have lost their meaning — not because wrong, but because the world they described no longer exists.
+
+The Virtues Evaporated
+
+Patience (internet trained instant results, 2 seconds too long). Faithfulness (everything temporary). Self-control (no consequences, no feedback loops, porn at 3am and nobody knows). Gentleness (screen models snark). Peace (always another notification).
+
+2003–2024: The Aftermath
+
+Graduates OSU marketing. Grandparents pay tuition (Bill dies 2004, Mary 2006). Columbus apartment, ad firm. Dates: Ashley gone, Lindsay 6 months, Megan 3 months, one-night blur. Then: iPhone (2007). Dating apps (2012). Tinder, Bumble, Hinge. Meets Rachel at conference. Married 2015. Divorced 2018. Three years. He's 38. Apps waiting.
+
+Generational Comparison
+
+Samuel
+
+Married 1×, 53 years (until death)
+
+Henry
+
+Married 1×, 59 years (until death)
+
+Bill
+
+Married 1×, 64 years (until death)
+
+Tommy
+
+Married 2×, divorced 2× (~10 yrs total)
+
+Jake
+
+Married 1×, divorced 1× (3 years)
+
+Data & Trends
+
+Marriage Duration by Generation (Years)
+
+Technology Saturation Timeline
+
+Analysis
+
+Collapse already occurred. Jake experiences ambiguity, not shock. The scaffolding has been gone long enough that he doesn't remember it existed.
+
+Chi doesn't collapse further — levels out low. Stable disordered phase. This is the dangerous equilibrium: not bad enough to force correction, not good enough to sustain meaning.
+
+Technology locks in the collapse: fragments attention, replaces presence with simulation, makes commitment economically irrational when alternatives are endless.
+
+Jake's traits (indecision, rootlessness, chronic distraction) = signature of gone external constraints + unformed internal ones. He was born into a world that had already dismantled the structures that used to do the forming.
+
+"Normalization is the most dangerous phase, because nothing forces change."
+
+PREVIOUS
+
+Part IV: Thomas (1974)
+
+↑ BACK TO INDEX ↑
+
+NEXT
+
+Part VI: Jacob (2025)
+
+The Lowe Family Stories — An examination of decline, technology, and meaning across six generations
+
+Part V: Jacob "Jake" Lowe (1998) — The Aftermath
+
+// Marriage Duration Chart
+
+const marriageCtx = document.getElementById('marriageChart').getContext('2d');
+
+new Chart(marriageCtx, {
+
+type: 'barh',
+
+data: {
+
+labels: ['Samuel', 'Henry', 'Bill', 'Tommy', 'Jake'],
+
+datasets: [{
+
+label: 'Years Married',
+
+data: [53, 59, 64, 10, 3],
+
+backgroundColor: [
+
+'#991b1b',
+
+'#991b1b',
+
+'#dc2626',
+
+'#f59e0b',
+
+'#f59e0b'
+
+],
+
+borderColor: '#111111',
+
+borderWidth: 1
+
+}]
+
+},
+
+options: {
+
+indexAxis: 'y',
+
+responsive: true,
+
+maintainAspectRatio: true,
+
+plugins: {
+
+legend: { display: false },
+
+tooltip: {
+
+backgroundColor: '#0a0a0a',
+
+titleColor: '#f9fafb',
+
+bodyColor: '#d1d5db',
+
+borderColor: '#dc2626',
+
+borderWidth: 1,
+
+padding: 12
+
+}
+
+},
+
+scales: {
+
+x: {
+
+beginAtZero: true,
+
+max: 70,
+
+grid: { color: 'rgba(220,38,38,0.1)', drawBorder: false },
+
+ticks: { color: '#9ca3af', font: { family: "'JetBrains Mono'" } }
+
+},
+
+y: {
+
+grid: { display: false },
+
+ticks: { color: '#f9fafb', font: { weight: 600, family: "'Inter'" } }
+
+}
+
+}
+
+}
+
+});
+
+// Technology Saturation Timeline
+
+const techCtx = document.getElementById('techChart').getContext('2d');
+
+new Chart(techCtx, {
+
+type: 'line',
+
+data: {
+
+labels: ['1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2007', '2010', '2015', '2020', '2025'],
+
+datasets: [{
+
+label: 'Technology Saturation (%)',
+
+data: [2, 5, 15, 35, 55, 70, 80, 85, 40, 60, 75, 85, 92, 98],
+
+borderColor: '#dc2626',
+
+backgroundColor: 'rgba(220,38,38,0.1)',
+
+fill: true,
+
+tension: 0.4,
+
+pointBackgroundColor: '#f59e0b',
+
+pointBorderColor: '#991b1b',
+
+pointBorderWidth: 2,
+
+pointRadius: 4,
+
+borderWidth: 2
+
+}]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: true,
+
+plugins: {
+
+legend: {
+
+labels: { color: '#f9fafb', font: { family: "'Inter'" } }
+
+},
+
+tooltip: {
+
+backgroundColor: '#0a0a0a',
+
+titleColor: '#f9fafb',
+
+bodyColor: '#d1d5db',
+
+borderColor: '#dc2626',
+
+borderWidth: 1,
+
+padding: 12
+
+}
+
+},
+
+scales: {
+
+y: {
+
+beginAtZero: true,
+
+max: 100,
+
+grid: { color: 'rgba(220,38,38,0.1)' },
+
+ticks: { color: '#9ca3af', font: { family: "'JetBrains Mono'" } }
+
+},
+
+x: {
+
+grid: { display: false },
+
+ticks: { color: '#9ca3af', font: { family: "'JetBrains Mono'" } }
+
+}
+
+}
+
+}
+
+});

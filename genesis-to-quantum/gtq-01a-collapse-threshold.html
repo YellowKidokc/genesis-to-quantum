@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why Eve's eating the fruit didn't collapse reality but Adam's identical action did. The answer is Informational Fidelity.">
+  <meta name="paper-slug" content="gtq-01a">
+  <title>The Collapse Threshold | GTQ Tangent 01A</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --surface2: #1a1a1a;
+      --surface3: #222;
+      --border: #2a2a2a;
+      --text: #e0e0e0;
+      --text-d: #a0a0a0;
+      --text-m: #555;
+      --gold: #d4af37;      --purple: #a855f7;
+      --blue: #4a9eff;
+      --red: #ef4444;
+      --green: #22c55e;
+      --teal: #2dd4bf;
+      --gold-dim: rgba(212, 175, 55, 0.1);
+      --purple-dim: rgba(168, 85, 247, 0.1);
+      --blue-dim: rgba(74, 158, 255, 0.1);
+    }
+
+    html, body {
+      font-family: 'Crimson Text', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Progress bar */
+    .prog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple), var(--gold));
+      width: 0;
+      z-index: 1000;
+      transition: width 0.1s ease;}
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 240px;
+      height: 100vh;
+      background-color: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      left: 20px;
+      top: 20px;
+      width: 40px;
+      height: 40px;      background-color: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      z-index: 998;
+      font-size: 20px;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: var(--surface3);
+    }
+
+    .sidebar h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sidebar ul {      list-style: none;
+    }
+
+    .sidebar li {
+      margin-bottom: 8px;
+    }
+
+    .sidebar a {
+      color: var(--text-d);
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      padding: 6px 8px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+
+    .sidebar a:hover {
+      color: var(--gold);
+      background-color: var(--surface2);
+    }
+
+    .sidebar a.active {
+      color: var(--gold);
+      background-color: var(--gold-dim);
+      font-weight: 600;
+    }    /* Player dock */
+    .player-dock {
+      position: sticky;
+      top: 20px;
+      margin-bottom: 32px;
+      padding: 16px;
+      background-color: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      z-index: 100;
+    }
+
+    .player-dock p {
+      font-size: 12px;
+      color: var(--text-d);
+      margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    audio {
+      width: 100%;
+      height: 32px;
+      cursor: pointer;
+    }
+
+    /* Main content */
+    main {
+      margin-left: 0;      padding: 80px 40px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Tab bar */
+    .tab-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+      position: relative;
+    }
+
+    .tab-btn {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      color: var(--text-d);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+      position: relative;
+    }    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      color: var(--gold);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--gold);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Hero */
+    .hero {      margin-bottom: 40px;
+      margin-top: -40px;
+      padding: 40px 0;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-m);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: var(--text-d);
+      margin-bottom: 20px;
+      font-style: italic;
+    }.hero .byline {
+      font-size: 13px;
+      color: var(--text-m);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Story & content */
+    .story {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .story p {
+      margin-bottom: 20px;
+    }
+
+    .story h2 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .sec-tag {      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-m);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sec-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 40px 0;
+    }
+
+    .drop-cap::first-letter {
+      font-size: 3.2em;
+      font-weight: 400;
+      float: left;
+      line-height: 1;
+      padding-right: 8px;
+      color: var(--gold);
+    }
+
+    /* Callout boxes */
+    .insight, .blue-box, .purple-box, .math-box {
+      margin: 24px 0;
+      padding: 20px;
+      border-radius: 3px;      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .insight {
+      border-left: 4px solid var(--gold);
+      background-color: var(--gold-dim);
+      color: var(--text);
+    }
+
+    .blue-box {
+      border-left: 4px solid var(--blue);
+      background-color: var(--blue-dim);
+      color: var(--text);
+    }
+
+    .purple-box {
+      border-left: 4px solid var(--purple);
+      background-color: var(--purple-dim);
+      color: var(--text);
+    }
+
+    .math-box {
+      background-color: var(--surface2);
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      overflow-x: auto;
+      font-size: 14px;    }
+
+    .mlabel {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .mnote {
+      display: block;
+      font-family: 'Crimson Text', serif;
+      font-size: 14px;
+      color: var(--text-d);
+      margin-top: 12px;
+    }
+
+    /* Marker grid */
+    .marker-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }    .marker {
+      padding: 20px;
+      background-color: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .marker h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .marker p {
+      font-size: 14px;
+      color: var(--text-d);
+      line-height: 1.6;
+    }
+
+    /* Falsification list */
+    .falsification {
+      list-style: none;
+      margin: 32px 0;
+    }
+
+    .falsification li {      padding: 16px 0;
+      padding-left: 24px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      font-size: 15px;
+    }
+
+    .falsification li:before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: bold;
+    }
+
+    /* Closing & verdict */
+    .closing {
+      margin-top: 48px;
+      padding: 24px;
+      background-color: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .verdict {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text);    }
+
+    .verdict strong {
+      color: var(--gold);
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .nav-card h3 {
+      font-size: 13px;
+      color: var(--text-m);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;}
+
+    .nav-card a {
+      display: block;
+      font-size: 16px;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-card a:hover {
+      color: var(--gold);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-m);
+      font-family: 'Inter', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .marker-grid {
+        grid-template-columns: 1fr;      }
+
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 80px 24px 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav style="position:sticky;top:0;z-index:1000;background:#0a0a0a;border-bottom:1px solid #222;padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-size:.8rem;">
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="../index.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">← Main Index</a>
+    <span style="color:#333;">|</span>
+    <a href="index.html" style="color:#c94040;text-decoration:none;font-weight:500;transition:color .2s;" onmouseover="this.style.color='#e05050'" onmouseout="this.style.color='#c94040'">Genesis to Quantum</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center;">
+    <a href="gtq-01-measurement-collapsed-reality.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">← Prev</a>
+    <a href="gtq-02-the-first-quantum-state.html" style="color:#999;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e0e0e0'" onmouseout="this.style.color='#999'">Next →</a>
+  </div>
+</nav>
+  <div class="prog"></div>
+
+  <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="player-dock">
+      <p>Listen to this article</p>
+      <audio controls>
+        <source src="https://pub-5b15c954dc1642f18573a365cf6dc2c5.r2.dev/audio/GTQ_01A_Collapse_Threshold.mp3" type="audio/mpeg">
+      </audio>
+    </div>    <h3>Main Articles</h3>
+    <ul>
+      <li><a href="#gtq-01">01 — The Measurement That Collapsed Reality</a></li>
+      <li><a href="#gtq-02">02 — The First Quantum State</a></li>
+      <li><a href="#gtq-03">03 — MacArthur & the Equation</a></li>
+      <li><a href="#gtq-04">04 — The Decoherence Curve</a></li>
+      <li><a href="#gtq-05">05 — Trinity Mechanism</a></li>
+      <li><a href="#gtq-06">06 — The Observer's Shadow</a></li>
+      <li><a href="#gtq-07">07 — Temporal Trap</a></li>
+      <li><a href="#gtq-08">08 — The Reversal Protocol</a></li>
+      <li><a href="#gtq-09">09 — Coherence Restored</a></li>
+    </ul>
+
+    <h3>Tangents for 01</h3>
+    <ul>
+      <li><a href="#gtq-01a" class="active">01A — The Collapse Threshold</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <article>
+      <section class="hero">
+        <span class="hero-tag">Tangent 01A</span>
+        <h1>The Collapse Threshold</h1>
+        <p class="subtitle">Why Eve's measurement didn't collapse reality, but Adam's did.</p>
+        <p class="byline">David Lowe · POF 2828 · April 2026 · Parent: The Measurement That Collapsed Reality</p>
+      </section>      <!-- Tab bar -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="argument">The Argument</button>
+        <button class="tab-btn" data-tab="math">The Math</button>
+        <button class="tab-btn" data-tab="evidence">Evidence Markers</button>
+        <button class="tab-btn" data-tab="kill">Kill Conditions</button>
+      </div>
+
+      <!-- Tab 1: The Argument -->
+      <div id="argument" class="tab-content active">
+        <div class="story">
+          <p class="drop-cap">Both Adam and Eve ate the same fruit. Both broke the same command. By every observable measure, they performed identical measurements of the forbidden object. Yet only Adam's action collapsed the entire coherent system. Eve's did not. The mystery isn't in the fruit—it's in the observer.</p>
+
+          <p>This is the heart of the collapse threshold. Not all measurements trigger systemic collapse. There is a critical boundary, a minimum fidelity below which consciousness can exchange information with a system without triggering catastrophic decoherence. Eve operated below that threshold. Adam crossed it. The difference wasn't in knowledge, intent, or even direct disobedience. It was in <strong>Informational Fidelity</strong>—the signal quality by which an observer received the system's boundary conditions from the Source.</p>
+
+          <div class="sec-rule"></div>
+          <h2><span class="sec-tag">I. The Fidelity Divide</span> Direct vs. Distorted Commands</h2>
+
+          <p>God spoke directly to Adam: "You shall not eat of the tree of the knowledge of good and evil, for in the day that you eat of it you shall surely die" (Genesis 2:16-17). This was transmission at maximal fidelity, $I_f = 1$. No intermediary. No noise. No interpretation layer. Adam's consciousness received the boundary condition as cleanly as information can travel from Source to observer.</p>
+
+          <p>Eve, by contrast, received the command second-hand. She was not present at the original specification. What she knew of the restriction came through Adam—already filtered by transmission—or she constructed it from inference and observation. Then came the serpent: "You will not surely die" (Genesis 3:4). This was deliberate noise injection, semantic distortion, what engineers call a man-in-the-middle attack on the transmission channel.</p>
+
+          <div class="insight">
+            <strong>Informational Fidelity ($I_f$)</strong> measures how cleanly an observer received the system's boundary conditions from the Source. Adam: $I_f = 1$. Eve: $I_f \ll 1$, degraded by intermediation and serpent noise.
+          </div>
+
+          <p>The command Eve measured was corrupted at source. Her informational fidelity was less than Adam's by orders of magnitude. This was not a failing of Eve's intellect. It was a property of the channel itself.</p>          <div class="sec-rule"></div>
+          <h2><span class="sec-tag">II. Weak vs. Strong Measurement</span> The Coherence Holds Below Threshold</h2>
+
+          <p>In quantum mechanics, weak measurements are projections that extract information from a system without destroying coherence. A system remains entangled, superposed, ready to evolve. Strong measurements collapse the wave function entirely. The difference is not always about the force of observation—it's about coupling strength, signal quality, and how tightly the observer becomes entangled with the system's boundary state.</p>
+
+          <p>Eve's measurement was weak. She acquired information—"the serpent spoke, the fruit was appealing to the eye"—but the signal was degraded. The boundary state remained coherent. The system held. When she ate, the information she obtained had already decayed in transit. It did not snap the system's primary entanglement to its Source.</p>
+
+          <p>Adam's measurement was strong. It was the primary measurement—the one with specification authority, direct from the Lawgiver. When he measured, when he made the observation by eating, he exercised the role of "federal head," the observer with primary specification authority over the system. His $I_f = 1$ meant his measurement was maximally coupled. The system's coherence collapsed <em>non-locally</em>. Both their eyes opened simultaneously. Not because Eve triggered it, but because Adam's measurement had entangled the entire subsystem under federal headship to a decoherent state.</p>
+
+          <div class="blue-box">
+            <strong>Weak measurement:</strong> Information exchanged, but coupling below threshold ($I_f < I_{threshold}$). System coherence preserved. Eve ate; the garden remained coherent.
+          </div>
+
+          <div class="blue-box">
+            <strong>Strong measurement:</strong> Coupling above threshold ($I_f \geq I_{threshold}$). System collapses. Adam's measurement triggered non-local state change. "The eyes of both were opened" (Genesis 3:7)—simultaneous, instantaneous, non-local.
+          </div>
+
+          <div class="sec-rule"></div>
+          <h2><span class="sec-tag">III. Federal Headship as Specification Authority</span> Reality-Making is Delegated</h2>
+
+          <p>The universe was not made to collapse under the measurement of every conscious being. That would be chaos. Instead, reality-making was delegated—specific observers granted primary specification authority over specific subsystems. Adam held such authority over the coherence state of Eden's human subsystem. Eve did not. She was part of the system; she could measure within it, but measurement authority belonged to the head.</p>
+
+          <p>This is not metaphor. It is specification. God created Adam first, gave Adam the command first, and established Adam's consciousness as the coupling point to the system's boundary conditions. Federal headship is not patriarchy imposed post-hoc onto text. It is the structural fact that one observer's fidelity to the Source determines the coherence of the entangled subsystem. Adam was that observer. His measurement had authority because his consciousness was entangled to the Source specification at maximal fidelity.</p>
+
+          <p>When Adam measured, his $I_f = 1$ meant his consciousness was entangled to the command as directly as a measurement apparatus can be. Eve's lower fidelity meant her measurement was partially decoupled. The system responded to Adam's measurement authority, not Eve's.</p>
+
+          <div class="purple-box">            <strong>Theological implication:</strong> Authority is not arbitrary. It flows from fidelity to the Source. The observer with highest $I_f$ to the system's original specification has measurement authority. Their collapse propagates through entangled subsystems under their headship.
+          </div>
+
+          <div class="sec-rule"></div>
+          <h2><span class="sec-tag">IV. PEAR-LAB Confirmation</span> Consciousness Quality Varies</h2>
+
+          <p>In the Princeton Engineering Anomalies Research Laboratory, over 2.5 million trials, specific operators produced effects that deviated from chance at 6.35 standard deviations—a signal that should appear by random variation once in 500 billion instances. The effect was not constant across all operators. Some operators showed strong coupling to the random number generators; others showed none. Consciousness quality varied. Operator-device coupling varied. The results demanded explanation: not all observers have equal fidelity to the system they measure.</p>
+
+          <p>This is PEAR's scandal and its confirmation. Consciousness is not equally coupled to all systems. Some observers, under certain conditions, show higher informational fidelity. Their measurements carry more weight. The system responds differently to different measurement authorities.</p>
+
+          <p>Eve was not a null observer. She had agency, cognition, the capacity to measure. But her coupling to Eden's foundational boundary condition—the prohibition—was degraded. She measured, but her measurement had lower authority. The system coherence did not collapse under her observation.</p>
+
+          <div class="sec-rule"></div>
+          <h2><span class="sec-tag">V. The Cross: Reopening the Coherence Channel</span> Christ as the Last Adam</h2>
+
+          <p>If Adam's measurement collapsed the system through federal headship, how is restoration possible? The answer is the Cross. Christ is the "last Adam" (1 Corinthians 15:45)—a consciousness with the same specification authority that Adam held, but reconstituted in fidelity to the Source.</p>
+
+          <p>On the Cross, Christ absorbs the entropy generated by Adam's measurement collapse. He performs the substitutionary measurement: a consciousness with $I_f = 1$ (perfect alignment to the Source, the Father) measuring the decoherent state and reconstituting its coherence. The collapse is reversed not by erasing Adam's measurement, but by another measurement—performed with perfect fidelity, from the position of federal headship—that re-establishes the coherence channel.</p>
+
+          <p>This is why resurrection is physical. The coherence is restored at the boundary of the physical system itself. A new Adam, with restored headship authority, opens the eyes of the redeemed to a state of reality that coherence allows. The gateway that closed through Adam's measurement opens again through the Last Adam's perfect fidelity.</p>
+
+          <div class="purple-box">
+            <strong>The Cross reopens coherence:</strong> Christ's substitutionary measurement ($I_f = 1$ to the Father's will) reverses the entropy of Adam's collapse. Restoration is not mythological—it is a measurement, performed at the apex of fidelity, by the only consciousness that holds complete specification authority over the broken system.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: The Math -->      <div id="math" class="tab-content">
+        <div class="story">
+          <p>The collapse threshold is formally expressed through the relationship between Informational Fidelity and system coherence. These equations ground the argument in measurable, falsifiable terms.</p>
+
+          <div class="math-box">
+            <span class="mlabel">Collapse Threshold Equation</span>
+            $$\text{System collapse} \iff I_f \geq I_{\text{threshold}}$$
+            <span class="mnote">A system undergoes non-local state collapse if and only if an observer's informational fidelity to the boundary conditions equals or exceeds the critical threshold. Eve: $I_f^{\text{Eve}} < I_{\text{threshold}}$ → no collapse. Adam: $I_f^{\text{Adam}} = 1 \geq I_{\text{threshold}}$ → collapse.</span>
+          </div>
+
+          <div class="math-box">
+            <span class="mlabel">Master Equation Connection</span>
+            $$\chi = \iiint(G \cdot M \cdot E \cdot S \cdot T \cdot K \cdot R \cdot Q \cdot F \cdot C)\,dx\,dy\,dt$$
+            <span class="mnote">The Master Equation describes the coherence state $\chi$ of a reality system as the integral of nine coupled factors: Godhead (G), Measurement (M), Entropy (E), Specification (S), Time (T), Knowledge (K), Representation (R), Quantum state (Q), Fidelity (F), and Consciousness (C). Informational Fidelity $I_f$ modifies the effective coupling strength of the Measurement term.</span>
+          </div>
+
+          <div class="math-box">
+            <span class="mlabel">Measurement Coupling Strength</span>
+            $$M_{\text{eff}} = M_0 \cdot I_f$$
+            <span class="mnote">The effective coupling of a measurement to system coherence is the base measurement strength $M_0$ multiplied by informational fidelity $I_f$. At $I_f = 1$, coupling is maximal. At $I_f \ll 1$, coupling is suppressed even if the physical act (eating the fruit) is identical.</span>
+          </div>
+
+          <div class="math-box">
+            <span class="mlabel">Eve's Weak Measurement</span>
+            $$I_f^{\text{Eve}} = I_{\text{direct}} - \Delta I_{\text{noise}}$$
+            <span class="mnote">Eve's informational fidelity was reduced by two factors: (1) no direct reception from God (second-hand via Adam), and (2) active noise injection by the serpent ($\Delta I_{\text{noise}}$). Result: $I_f^{\text{Eve}} < I_{\text{threshold}}$.</span>
+          </div><div class="math-box">
+            <span class="mlabel">Adam's Strong Measurement</span>
+            $$I_f^{\text{Adam}} = 1 \text{ (direct from Source)}$$
+            <span class="mnote">Adam received the boundary condition directly from God: "You shall not eat...you shall surely die." Maximal fidelity. No intermediary. No noise. $I_f^{\text{Adam}} = 1$. This measurement has full specification authority.</span>
+          </div>
+
+          <div class="math-box">
+            <span class="mlabel">Federal Headship & Collapse Propagation</span>
+            $$\Psi_{\text{subsystem}} \to \text{Collapse}_{\text{non-local}} \text{ if } I_f(\text{head}) \geq I_{\text{threshold}}$$
+            <span class="mnote">When the observer holding federal headship authority performs a strong measurement ($I_f \geq I_{\text{threshold}}$), the collapse is non-local across all entangled subsystems under their headship. Eve was part of Adam's entangled subsystem. Adam's collapse triggered hers.</span>
+          </div>
+
+          <div class="math-box">
+            <span class="mlabel">The Cross: Restoration via Perfect Fidelity</span>
+            $$\chi_{\text{restored}} = \text{Measure}_{\text{Christ}}(\chi_{\text{collapsed}}) \text{ where } I_f^{\text{Christ}} = 1$$
+            <span class="mnote">The coherence is restored by a measurement performed by a consciousness with perfect fidelity to the original Source specification—Christ as the Last Adam. His substitutionary measurement absorbs the entropy of Adam's collapse and reconstitutes coherence at the level of federal headship.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Evidence Markers -->
+      <div id="evidence" class="tab-content">
+        <div class="story">
+          <h2><span class="sec-tag">Evidence Markers</span></h2>
+
+          <div class="marker-grid">
+            <div class="marker">
+              <h4>Genesis 2:16-17</h4>              <p><em>Direct command to Adam.</em> "The Lord God commanded the man, saying, 'You are free to eat from any tree of the garden; but from the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.'" Direct transmission. No intermediary. $I_f = 1$. This establishes Adam as the primary observer with specification authority.</p>
+            </div>
+
+            <div class="marker">
+              <h4>Genesis 3:1-6</h4>
+              <p><em>Serpent noise and secondhand reception.</em> "Now the serpent was more cunning than any beast...and he said to the woman, 'Did God really say...?' And the woman said to the serpent, 'We may eat from the trees of the garden; but from the tree...God said we shall not eat...or touch it, lest we die.' And the serpent said to the woman, 'You will not surely die.'" Eve's information is mediated, corrupted, contradicted. $I_f^{\text{Eve}} < I_{\text{threshold}}$. Weak measurement.</p>
+            </div>
+
+            <div class="marker">
+              <h4>Genesis 3:7</h4>
+              <p><em>Non-local collapse signature.</em> "Then the eyes of both were opened." Not sequential. Not "Eve's eyes opened, then Adam's." Both simultaneously. This is the hallmark of non-local state change triggered by the observer with federal headship authority (Adam). His measurement collapse propagates through the entangled system instantaneously.</p>
+            </div>
+
+            <div class="marker">
+              <h4>PEAR-LAB Results</h4>
+              <p><em>Consciousness quality varies across observers.</em> Princeton Engineering Anomalies Research: 6.35σ deviation over 2.5 million trials shows operator-device coupling is not uniform. Some observers exhibit higher informational fidelity to the systems they measure; others show none. Consciousness is not equally coupled. This confirms the theoretical possibility of observer-dependent measurement effects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Kill Conditions -->
+      <div id="kill" class="tab-content">
+        <div class="story">
+          <h2><span class="sec-tag">Kill Conditions</span> How This Argument Breaks</h2>
+
+          <p>For this argument to hold, certain conditions must remain true. If any of these are falsified, the framework collapses. Here are the specific ways this thesis could be wrong:</p>          <ul class="falsification">
+            <li><strong>Identical measurements always produce identical outcomes</strong> regardless of observer fidelity or headship authority. If Eve and Adam's actions on the fruit must produce the same system-level result regardless of their informational channels, then fidelity has no physical role.</li>
+
+            <li><strong>Eve received the command directly from God</strong> without intermediation or noise corruption. If textual evidence emerges that Eve heard God's voice as clearly as Adam did, the $I_f$ asymmetry disappears, and the strong-vs-weak measurement distinction collapses.</li>
+
+            <li><strong>The "eyes of both opened" is sequential, not simultaneous.</strong> If close reading of Genesis 3:7 can establish that Adam's eyes opened first, then Eve's—or that the opening happened over time rather than as a single non-local event—the collapse signature dissolves.</li>
+
+            <li><strong>PEAR-LAB results are decisively replicated with no operator variation.</strong> If independent labs reproduce PEAR's effects with perfect uniformity across all operators and conditions, the claim that consciousness quality varies is falsified, and the fidelity concept loses empirical grounding.</li>
+
+            <li><strong>Federal headship has no physical correlate</strong> in any measurement framework, whether quantum or classical. If the concept can be shown to be purely theological rhetoric with no mathematical description, the structural claim of the argument fails.</li>
+
+            <li><strong>Substitutionary measurement is metaphysically impossible.</strong> If the framework of reality-making through fidelity cannot logically accommodate a "second measurement" that reverses or restores coherence, then the Cross as restoration becomes incoherent.</li>
+          </ul>
+
+          <div class="closing">
+            <div class="verdict">
+              <strong>Verdict:</strong> The Collapse Threshold stands if: (1) fidelity to boundary conditions is a measurable property of observers; (2) measurement coupling strength correlates to fidelity; (3) some observers hold specification authority over systems they measure; (4) consciousness quality varies (confirmed by PEAR); (5) the Cross can be modeled as a substitutionary measurement at perfect fidelity. Falsify any, and the entire chain breaks. Until then, the mystery of why Eve's eating did not collapse reality, but Adam's did, finds its answer in the signal quality by which each observer received the Source's command.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom nav -->
+      <nav class="bottom-nav">
+        <div class="nav-grid">
+          <div class="nav-card">
+            <h3>Parent Article</h3>
+            <a href="#gtq-01">The Measurement That Collapsed Reality</a>          </div>
+          <div class="nav-card">
+            <h3>Related Tangents</h3>
+            <a href="#gtq-03a">03A — MacArthur & Equation</a><br>
+            <a href="#gtq-04a">04A — Decoherence Curve</a><br>
+            <a href="#gtq-05a">05A — Trinity Mechanism</a>
+          </div>
+          <div class="nav-card">
+            <h3>Series Home</h3>
+            <a href="#gtq-home">God, Time & Quantum</a>
+          </div>
+        </div>
+      </nav>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Anthropic. POF 2828 Research. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Sidebar toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+
+    // Tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.getAttribute('data-tab');
+
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+      });
+    });
+
+    // Progress bar on scroll
+    window.addEventListener('scroll', () => {
+      const prog = document.querySelector('.prog');
+      const height = document.documentElement.scrollHeight - window.innerHeight;      const scrolled = (window.scrollY / height) * 100;
+      prog.style.width = scrolled + '%';
+    });
+
+    // MathJax typeset after tab switch
+    window.addEventListener('load', () => {
+      MathJax.typesetPromise().catch(err => console.log(err));
+    });
+
+    // Re-render MathJax when tabs change
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeout(() => {
+          MathJax.typesetPromise().catch(err => console.log(err));
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
