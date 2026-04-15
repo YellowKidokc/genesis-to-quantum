@@ -1,0 +1,631 @@
+# Lowe Family Stories — Theophysics Institute
+
+Lowe Family Stories — Theophysics Institute
+
+tailwind.config = {
+
+theme: {
+
+extend: {
+
+colors: {
+
+dark: '#050505',
+
+card: '#0a0a0a',
+
+cardHover: '#111111',
+
+accent: '#dc2626',
+
+accentDim: '#991b1b',
+
+amber: '#f59e0b',
+
+amberDim: '#b45309',
+
+},
+
+fontFamily: {
+
+serif: ['Crimson Text', 'Georgia', 'serif'],
+
+sans: ['Inter', 'system-ui', 'sans-serif'],
+
+display: ['Oswald', 'Impact', 'sans-serif'],
+
+mono: ['JetBrains Mono', 'monospace'],
+
+}
+
+}
+
+}
+
+}
+
+html { scroll-behavior: smooth; }
+
+body { background-color: #050505; }
+
+::-webkit-scrollbar { width: 8px; }
+
+::-webkit-scrollbar-track { background: #050505; }
+
+::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 4px; }
+
+::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+
+.gradient-line { height: 3px; background: linear-gradient(90deg, #991b1b, #dc2626, #f59e0b, #dc2626, #991b1b); }
+
+.hero-gradient { background: radial-gradient(ellipse at 50% 0%, rgba(220,38,38,0.08) 0%, transparent 60%); }
+
+.pullquote { border-left: 3px solid #dc2626; background: linear-gradient(90deg, rgba(220,38,38,0.05), transparent); }
+
+.data-callout { border: 1px solid rgba(245,158,11,0.2); background: linear-gradient(135deg, rgba(245,158,11,0.03), transparent); }
+
+.stat-glow { box-shadow: 0 0 20px rgba(220,38,38,0.1), inset 0 1px 0 rgba(245,158,11,0.1); }
+
+.prose-body p { font-family: 'Crimson Text', Georgia, serif; font-size: 1.2rem; line-height: 1.85; color: #d1d5db; margin-bottom: 1.5rem; }
+
+.prose-body strong { color: #f9fafb; font-weight: 600; }
+
+.prose-body em { color: #e5e7eb; }
+
+.section-divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(220,38,38,0.3), rgba(245,158,11,0.2), rgba(220,38,38,0.3), transparent); margin: 3rem 0; }
+
+.equation-block { background: linear-gradient(135deg, rgba(220,38,38,0.05), rgba(245,158,11,0.03)); border: 1px solid rgba(220,38,38,0.15); border-radius: 0.75rem; padding: 1.5rem 2rem; text-align: center; margin: 2rem 0; }
+
+.series-card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; }
+
+.series-card:hover { background: #111111; border-color: rgba(220,38,38,0.3); transform: translateY(-2px); }
+
+.family-tree-item { position: relative; }
+
+.family-tree-connector { position: absolute; left: 50%; width: 2px; height: 3rem; background: linear-gradient(180deg, rgba(220,38,38,0.2), transparent); transform: translateX(-50%); }
+
+Genesis to Quantum
+
+Lowe Family Stories
+
+Series Index
+
+Theophysics Research • Lowe Family Stories
+
+Six Generations. One Family. One Equation.
+
+The Lowe Family Stories — Companion to the Moral Decline of America Series
+
+"Find a good woman. Work. Stay."
+
+— Amos Lowe, c. 1900
+
+Family Tree
+
+Amos Lowe
+
+c. 1846 — Pre-Story
+
+Foundation
+
+Set the words
+
+Samuel Lowe
+
+1900 — The Anchor
+
+Story 1
+
+Six-mile walk. Six options. One choice.
+
+Henry Lowe
+
+1926 — The Shift
+
+Story 2
+
+Model T. Radio. The first outside voices.
+
+William "Bill" Lowe
+
+1950 — Peak Coherence
+
+Story 3
+
+Everything works. Nobody sees the cracks.
+
+Thomas "Tommy" Lowe
+
+1974 — The Breaking
+
+Story 4
+
+The chain frays. The words lose meaning.
+
+Jacob "Jake" Lowe
+
+1998 — The Aftermath
+
+Story 5
+
+Infinite options. Zero structure.
+
+Jacob "Jake" Lowe
+
+2025 — The Choice
+
+Story 6
+
+The words return. Chosen, not inherited.
+
+The Master Equation
+
+dχ/dt ∝ −S + G
+
+The rate of change in coherence (χ) is proportional to the negative effects of Stochasticity (S) minus gains in Guidance (G). The Lowe family stories trace this equation across six generations, measuring how the family's ability to maintain cultural coherence deteriorates as external systems fragment and inheritance of meaning breaks down.
+
+Key Metrics
+
+Divorce Rate
+
+0.7 → 5.3 → 2.4
+
+Per 1,000 population: 1900 • Peak (1980s) • 2025
+
+Fertility Rate
+
+3.5 → 1.6
+
+Children per woman: 1900 • 2025
+
+Church Attendance
+
+~95% → 30%
+
+Regular attendance: 1900 • 2025
+
+Screen Time
+
+0 → 7+ hrs
+
+Daily average: 1900 • 2025
+
+Non-Marital Births
+
+5% → 40%
+
+Percentage of births: 1960 • 2025
+
+"No Religion"
+
+2% → 28%
+
+Population share: 1900 • 2025
+
+Master Charts
+
+Marriage & Family Metrics
+
+Social Cohesion Decline
+
+Estimated Coherence (χ)
+
+Read the Stories
+
+The Anchor
+
+1900
+
+Samuel Lowe faces a choice that will define his family for generations.
+
+Read Story
+
+The Shift
+
+1926
+
+Henry Lowe inherits his father's words, but the world begins to change.
+
+Read Story
+
+Peak Coherence
+
+1950
+
+Bill Lowe experiences the last moment of unquestioned stability.
+
+Read Story
+
+The Breaking
+
+1974
+
+Tommy Lowe watches the chain fray. The words no longer protect.
+
+Read Story
+
+The Aftermath
+
+1998
+
+Jake Lowe has infinite options and no framework to choose among them.
+
+Read Story
+
+The Choice
+
+2025
+
+Jake Lowe finds the words again—and this time, chooses them freely.
+
+Read Story
+
+Genesis to Quantum • Theophysics Institute
+
+David Lowe • Theophysics Institute
+
+// Chart Color Scheme
+
+const accentRed = '#dc2626';
+
+const accentAmber = '#f59e0b';
+
+const gridColor = 'rgba(255,255,255,0.05)';
+
+const textColor = '#d1d5db';
+
+// Chart 1: Marriage & Family Metrics
+
+const ctx1 = document.getElementById('chart-marriage').getContext('2d');
+
+new Chart(ctx1, {
+
+type: 'line',
+
+data: {
+
+labels: ['1900', '1926', '1950', '1974', '1998', '2025'],
+
+datasets: [
+
+{
+
+label: 'Divorce Rate (per 1,000)',
+
+data: [0.7, 1.2, 2.6, 5.3, 4.7, 2.4],
+
+borderColor: accentRed,
+
+backgroundColor: 'rgba(220,38,38,0.05)',
+
+borderWidth: 2.5,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 5,
+
+pointBackgroundColor: accentRed,
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+},
+
+{
+
+label: 'Fertility Rate (children per woman)',
+
+data: [3.5, 3.2, 3.0, 1.8, 2.1, 1.6],
+
+borderColor: accentAmber,
+
+backgroundColor: 'rgba(245,158,11,0.05)',
+
+borderWidth: 2.5,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 5,
+
+pointBackgroundColor: accentAmber,
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color: textColor,
+
+font: { size: 12, family: "'Inter', sans-serif" }
+
+}
+
+}
+
+},
+
+scales: {
+
+y: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } }
+
+},
+
+x: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } }
+
+}
+
+}
+
+}
+
+});
+
+// Chart 2: Social Cohesion
+
+const ctx2 = document.getElementById('chart-cohesion').getContext('2d');
+
+new Chart(ctx2, {
+
+type: 'line',
+
+data: {
+
+labels: ['1900', '1926', '1950', '1974', '1998', '2025'],
+
+datasets: [
+
+{
+
+label: 'Church Attendance (%)',
+
+data: [95, 88, 85, 42, 38, 30],
+
+borderColor: accentRed,
+
+backgroundColor: 'rgba(220,38,38,0.05)',
+
+borderWidth: 2.5,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 5,
+
+pointBackgroundColor: accentRed,
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+},
+
+{
+
+label: '"No Religion" (%)',
+
+data: [2, 3, 5, 14, 20, 28],
+
+borderColor: accentAmber,
+
+backgroundColor: 'rgba(245,158,11,0.05)',
+
+borderWidth: 2.5,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 5,
+
+pointBackgroundColor: accentAmber,
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+},
+
+{
+
+label: 'Trust in Gov. (%)',
+
+data: [75, 70, 68, 35, 30, 28],
+
+borderColor: '#8b5cf6',
+
+backgroundColor: 'rgba(139,92,246,0.05)',
+
+borderWidth: 2.5,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 5,
+
+pointBackgroundColor: '#8b5cf6',
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color: textColor,
+
+font: { size: 12, family: "'Inter', sans-serif" }
+
+}
+
+}
+
+},
+
+scales: {
+
+y: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } },
+
+min: 0,
+
+max: 100
+
+},
+
+x: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } }
+
+}
+
+}
+
+}
+
+});
+
+// Chart 3: Coherence Chi
+
+const ctx3 = document.getElementById('chart-coherence').getContext('2d');
+
+new Chart(ctx3, {
+
+type: 'line',
+
+data: {
+
+labels: ['1900', '1926', '1950', '1974', '1998', '2025'],
+
+datasets: [
+
+{
+
+label: 'Coherence (χ) — Estimated',
+
+data: [0.85, 0.80, 0.88, 0.45, 0.30, 0.35],
+
+borderColor: accentRed,
+
+backgroundColor: 'rgba(220,38,38,0.1)',
+
+borderWidth: 3,
+
+tension: 0.4,
+
+fill: true,
+
+pointRadius: 6,
+
+pointBackgroundColor: accentRed,
+
+pointBorderColor: '#050505',
+
+pointBorderWidth: 2
+
+}
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+plugins: {
+
+legend: {
+
+labels: {
+
+color: textColor,
+
+font: { size: 12, family: "'Inter', sans-serif" }
+
+}
+
+}
+
+},
+
+scales: {
+
+y: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } },
+
+min: 0,
+
+max: 1
+
+},
+
+x: {
+
+grid: { color: gridColor },
+
+ticks: { color: textColor, font: { family: "'Inter', sans-serif" } }
+
+}
+
+}
+
+}
+
+});
