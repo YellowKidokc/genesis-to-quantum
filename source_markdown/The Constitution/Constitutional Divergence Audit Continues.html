@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL AUDIT: STRUCTURAL DIVERGENCE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Terminal Dark (bg-black, text-white, border-white, accent-red-600) -->
+    <!-- Application Structure Plan: The SPA is a high-fidelity "Dark Terminal" interface. Navigation is positioned in a left-aligned data-grid. The right-hand "Terminal Readout" serves as the primary consumption zone. Inversion of the previous redaction logic: on a black background, redaction blocks are solid white masks. Interaction (click) triggers a 'declassification' transition, making the mask transparent to reveal the axiomatic text. This structure prioritizes contrast and visual comfort for users in low-light environments while maintaining the audit's analytical rigor. -->
+    <!-- Visualization & Content Choices: 
+         1. Goal: System Integrity Mapping -> Viz: Horizontal Bar Chart (Chart.js) with White/Grey accents -> Justification: Visualizes the collapse of Constitutional fidelity against a 0-10 scale.
+         2. Goal: Data Privacy Simulation -> Method: Inverted Redaction (White blocks on Black) -> Justification: Satisfies the user's aesthetic request for "blacked out" data while ensuring readability.
+         3. Goal: Interaction feedback -> Method: CSS animations and scanlines -> Justification: Enhances the "Wow" factor of a secure audit terminal.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'JetBrains Mono', monospace; 
+            overflow: hidden;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            max-height: 300px;
+        }
+
+        /* Inverted Redaction: White block on black bg */
+        .redacted {
+            background-color: #ffffff;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 0 4px;
+            border-radius: 0;
+            transition: all 0.15s ease;
+            user-select: none;
+            display: inline;
+        }
+
+        .redacted.revealed {
+            background-color: transparent;
+            color: #fff;
+            user-select: auto;
+        }
+
+        .redacted:not(.revealed):hover {
+            background-color: #d1d1d1;
+        }
+
+        .node-btn {
+            border: 1px solid #333;
+            transition: all 0.2s ease;
+        }
+
+        .node-btn:hover {
+            border-color: #fff;
+            background-color: #111;
+        }
+
+        .node-btn.active {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* Retro Scanline Effect */
+        .scanline-container {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+            opacity: 0.15;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            animation: move-scan 6s linear infinite;
+        }
+
+        @keyframes move-scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        .flicker {
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #fff; }
+    </style>
+</head>
+<body class="h-screen flex flex-col">
+
+    <div class="scanline-container">
+        <div class="scanline"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="border-b border-white p-4 flex justify-between items-center z-20 bg-black">
+        <div class="flicker">
+            <h1 class="text-lg font-bold tracking-widest text-white">∇ STRUCTURAL_DIVERGENCE_AUDIT_v2.0</h1>
+            <p class="text-[9px] text-red-600 font-bold uppercase tracking-tighter">STATE: UNENCRYPTED_SESSION // SOURCE: ARCHITECT_LOGS</p>
+        </div>
+        <div class="text-right">
+            <div class="text-[9px] opacity-60">AGGREGATE_INTEGRITY</div>
+            <div class="text-2xl font-bold text-red-600">1.0 / 10.0</div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Navigation Matrix -->
+        <aside class="w-1/3 md:w-1/4 border-r border-white flex flex-col overflow-hidden bg-black z-10">
+            <div class="p-4 border-b border-white">
+                <div class="chart-container">
+                    <canvas id="integrityChart"></canvas>
+                </div>
+            </div>
+            <div class="flex-1 overflow-y-auto p-2 space-y-2" id="navIndex">
+                <!-- Navigation entries injected here -->
+            </div>
+        </aside>
+
+        <!-- Readout Console -->
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+            <div class="p-4 border-b border-white flex justify-between items-center bg-[#050505]" id="readoutTitleBar" style="display:none;">
+                <div>
+                    <span id="nodeIdDisplay" class="text-[10px] bg-white text-black px-1 font-bold mr-2">NODE: --</span>
+                    <span id="nodeNameDisplay" class="font-bold text-sm uppercase">SELECT_TARGET</span>
+                </div>
+                <div class="text-right">
+                    <span class="text-[10px] opacity-60 mr-2">SCORE:</span>
+                    <span id="nodeScoreDisplay" class="font-bold">--/10</span>
+                </div>
+            </div>
+
+            <div id="readoutViewport" class="flex-1 overflow-y-auto p-6 md:p-10 space-y-10">
+                <div class="h-full flex flex-col items-center justify-center opacity-40">
+                    <div class="text-5xl mb-4">⬡</div>
+                    <div class="text-xs uppercase tracking-widest">Awaiting Database Index Input...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const auditLog = [
+            { id: "01", name: "1st Amend: Expression", score: 2, axiomatic: "Congress shall make no law... abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble...", friction: "Prior restraint, seditious libel, Crown-mandated religious orthodoxy.", vectors: "Proxy Censorship via corporate jawboning (CISA). Whistleblower prosecution (Espionage Act). Assembly containment (Free Speech Zones).", architect: "We forbade legislative suppression of expression; you have circumvented this barrier by outsourcing censorship to corporate proxies." },
+            { id: "02", name: "2nd Amend: Defense", score: 1, axiomatic: "A well regulated Militia... the right of the people to keep and bear Arms, shall not be infringed.", friction: "British military disarmament of colonial populations (Lexington/Concord).", vectors: "National Firearms Act (Taxation/Registry). ATF Final Rules (Administrative classification). Gun Control Act of 1968.", architect: "The absolute prohibition on infringement has been structurally replaced by a permission-based matrix of registries and taxation." },
+            { id: "04", name: "4th Amend: Privacy", score: 0, axiomatic: "The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures...", friction: "Writs of Assistance; general warrants used for suspicionless physical searches.", vectors: "Bulk Interception (FISA 702). Third-Party Doctrine (Data forfeiture). Border Search Exception (100-mile nullification). Civil Asset Forfeiture.", architect: "You have actualized the general warrant on a planetary scale and authorized the physical seizure of property without conviction." },
+            { id: "05", name: "5th Amend: Due Process", score: 1, axiomatic: "No person shall be... deprived of life, liberty, or property, without due process of law...", friction: "Star Chamber tribunals, arbitrary expropriation, forced self-incrimination.", vectors: "Plea Coercion Matrix (>97% cases). Administrative Law Judges (ALJs). Civil Asset Forfeiture (Equitable Sharing).", architect: "Due process has been optimized out of existence by administrative tribunals and a coercive plea architecture." },
+            { id: "10", name: "Art I, Sec 8: War", score: 0, axiomatic: "The Congress shall have Power... To declare War...", friction: "Sovereign monarchs initiating wars without consent of the representative body.", vectors: "2001 AUMF (Infinite duration). War Powers Resolution (90-day de facto executive war). Zero formal declarations since 1942.", architect: "The sword of the nation was to remain sheathed until the People’s representatives drew it; you have allowed the Executive to keep it bloodied." },
+            { id: "14", name: "14th Amend: Privileges", score: 0, axiomatic: "No State shall make or enforce any law which shall abridge the privileges or immunities of citizens...", friction: "Post-Civil War 'Black Codes' designed to strip citizens of civil rights.", vectors: "Slaughter-House Cases (1873) judicial nullification. Substantive Due Process displacement.", architect: "We gave you a shield to protect fundamental rights from state tyranny, and you threw it in the river five years after we forged it." },
+            { id: "16", name: "16th Amend: Income Tax", score: 3, axiomatic: "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived...", friction: "Original Pollock v. Farmers' Loan ruling; fear of direct resource extraction without apportionment.", vectors: "Complexity of Tax Code as social control mechanism. Expansion of IRS administrative surveillance power.", architect: "The mechanism we allowed for funding has evolved into a tool for the total surveillance of every individual economic movement." }
+        ];
+
+        let chart = null;
+
+        function initIntegrityChart() {
+            const ctx = document.getElementById('integrityChart').getContext('2d');
+            
+            // Sort to show highest divergence first
+            const chartData = [...auditLog].sort((a, b) => a.score - b.score);
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.map(n => n.name.split(':')[0]),
+                    datasets: [{
+                        data: chartData.map(n => n.score),
+                        backgroundColor: chartData.map(n => n.score === 0 ? '#f00' : '#444'),
+                        borderColor: '#fff',
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { 
+                            max: 10, 
+                            grid: { color: '#222' }, 
+                            ticks: { color: '#666', font: { family: 'JetBrains Mono', size: 9 } } 
+                        },
+                        y: { 
+                            grid: { display: false }, 
+                            ticks: { color: '#fff', font: { family: 'JetBrains Mono', size: 9 } } 
+                        }
+                    },
+                    onClick: (e, active) => {
+                        if (active.length > 0) {
+                            const nodeName = chartData[active[0].index].name;
+                            const fullNode = auditLog.find(n => n.name === nodeName);
+                            loadNode(fullNode.id);
+                        }
+                    }
+                }
+            });
+        }
+
+        function buildNavigation() {
+            const container = document.getElementById('navIndex');
+            auditLog.forEach(node => {
+                const btn = document.createElement('button');
+                btn.id = `btn-${node.id}`;
+                btn.className = "node-btn w-full p-3 text-left flex justify-between items-center group";
+                btn.innerHTML = `
+                    <div class="flex flex-col">
+                        <span class="text-[10px] opacity-40 group-hover:opacity-100 transition-opacity">ID_${node.id}</span>
+                        <span class="text-xs font-bold uppercase truncate">${node.name}</span>
+                    </div>
+                    <span class="text-xs font-bold ${node.score === 0 ? 'text-red-600' : 'text-white'}">${node.score}/10</span>
+                `;
+                btn.onclick = () => loadNode(node.id);
+                container.appendChild(btn);
+            });
+        }
+
+        function loadNode(id) {
+            const node = auditLog.find(n => n.id === id);
+            
+            // UI State updates
+            document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${id}`).classList.add('active');
+            
+            document.getElementById('readoutTitleBar').style.display = 'flex';
+            document.getElementById('nodeIdDisplay').innerText = `NODE_${node.id}`;
+            document.getElementById('nodeNameDisplay').innerText = node.name;
+            document.getElementById('nodeScoreDisplay').innerText = `${node.score}/10`;
+
+            const viewport = document.getElementById('readoutViewport');
+            viewport.innerHTML = `
+                <div class="max-w-3xl space-y-12">
+                    <section class="animate-pulse-once">
+                        <h3 class="text-[10px] font-bold text-red-600 tracking-widest mb-4 border-b border-red-900 pb-1">01_AXIOMATIC_TEXT</h3>
+                        <p class="text-lg leading-relaxed italic">
+                            "<span class="redacted" onclick="reveal(this)">${node.axiomatic}</span>"
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-[10px] font-bold text-white tracking-widest mb-4 border-b border-white/20 pb-1">02_HISTORICAL_FRICTION</h3>
+                        <p class="text-sm leading-relaxed opacity-80">
+                            <span class="redacted" onclick="reveal(this)">${node.friction}</span>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3 class="text-[10px] font-bold text-white tracking-widest mb-4 border-b border-white/20 pb-1">03_MODERN_VECTORS</h3>
+                        <div class="space-y-4">
+                            ${node.vectors.split('. ').map(v => `
+                                <div class="flex items-start">
+                                    <span class="text-red-600 mr-3 text-xs mt-1">▶</span>
+                                    <p class="text-sm"><span class="redacted" onclick="reveal(this)">${v}</span></p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <section class="bg-white text-black p-6 border-l-8 border-red-600">
+                        <h3 class="text-[10px] font-bold uppercase tracking-tighter mb-4">ARCHITECT_EVALUATION_ENCRYPTED</h3>
+                        <div class="font-bold text-lg leading-tight">
+                            <span class="redacted" style="background-color:#000; color:#000;" onclick="reveal(this)">
+                                "${node.architect}"
+                            </span>
+                        </div>
+                        <div class="mt-4 text-[9px] opacity-40 uppercase tracking-widest">Double-click or Tap to Reveal Log Substrate</div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function reveal(el) {
+            el.classList.add('revealed');
+        }
+
+        window.onload = () => {
+            initIntegrityChart();
+            buildNavigation();
+        };
+
+    </script>
+</body>
+</html>

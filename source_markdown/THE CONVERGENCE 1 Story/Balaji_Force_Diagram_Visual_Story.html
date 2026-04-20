@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Force Diagram of Disunion — A Visual Story</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: #12121a;
+    --bg-card-alt: #181825;
+    --accent-entropy: #ff4444;
+    --accent-entropy-glow: rgba(255,68,68,0.15);
+    --accent-coherence: #44aaff;
+    --accent-coherence-glow: rgba(68,170,255,0.15);
+    --accent-gold: #d4a843;
+    --accent-gold-glow: rgba(212,168,67,0.12);
+    --text: #e8e6e3;
+    --text-muted: #8a8a9a;
+    --text-dim: #5a5a6a;
+    --border: #2a2a3a;
+    --gradient-entropy: linear-gradient(135deg, #ff4444, #ff6644);
+    --gradient-coherence: linear-gradient(135deg, #44aaff, #44ddff);
+    --gradient-gold: linear-gradient(135deg, #d4a843, #e8c86a);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, var(--accent-entropy-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, var(--accent-coherence-glow) 0%, transparent 50%);
+    animation: heroGlow 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5%, 3%); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--text), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+  }
+
+  .hero .attribution {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  .hero .attribution strong { color: var(--accent-gold); }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--text-dim);
+    border-radius: 12px;
+    z-index: 1;
+  }
+
+  .scroll-indicator::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: var(--accent-gold);
+    border-radius: 2px;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { top: 6px; opacity: 1; }
+    50% { top: 20px; opacity: 0.3; }
+  }
+
+  /* ── SECTIONS ── */
+  .story-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    max-width: 720px;
+  }
+
+  p strong { color: var(--text); font-weight: 600; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .card-entropy {
+    border-left: 3px solid var(--accent-entropy);
+    background: linear-gradient(135deg, var(--bg-card), rgba(255,68,68,0.03));
+  }
+
+  .card-coherence {
+    border-left: 3px solid var(--accent-coherence);
+    background: linear-gradient(135deg, var(--bg-card), rgba(68,170,255,0.03));
+  }
+
+  .card-bridge {
+    border-left: 3px solid var(--accent-gold);
+    background: linear-gradient(135deg, var(--bg-card), var(--accent-gold-glow));
+  }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .card-entropy .card-label { color: var(--accent-entropy); background: var(--accent-entropy-glow); }
+  .card-coherence .card-label { color: var(--accent-coherence); background: var(--accent-coherence-glow); }
+  .card-bridge .card-label { color: var(--accent-gold); background: var(--accent-gold-glow); }
+
+  /* ── CHARTS ── */
+  .chart-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .chart-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .chart-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 380px;
+  }
+
+  /* ── FORCE DIAGRAM ── */
+  .force-diagram {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  .force-left, .force-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .force-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .force-left .force-arrow {
+    background: var(--accent-entropy-glow);
+    color: var(--accent-entropy);
+    justify-content: flex-end;
+    text-align: right;
+    border: 1px solid rgba(255,68,68,0.2);
+  }
+
+  .force-right .force-arrow {
+    background: var(--accent-coherence-glow);
+    color: var(--accent-coherence);
+    border: 1px solid rgba(68,170,255,0.2);
+  }
+
+  .force-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .force-center-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bg-card-alt);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .force-center-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── DISRUPTION SPLIT ── */
+  .disruption-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .disruption-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .disruption-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  .disruption-card.digital::before { background: var(--gradient-coherence); }
+  .disruption-card.physical::before { background: var(--gradient-entropy); }
+
+  .disruption-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .disruption-card.digital h4 { color: var(--accent-coherence); }
+  .disruption-card.physical h4 { color: var(--accent-entropy); }
+
+  .disruption-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .disruption-card li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .disruption-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+  }
+
+  /* ── STAT BLOCKS ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .stat-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-number.entropy { color: var(--accent-entropy); }
+  .stat-number.coherence { color: var(--accent-coherence); }
+  .stat-number.gold { color: var(--accent-gold); }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FLOW ── */
+  .flow-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 2rem 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .flow-step:first-child { border-radius: 10px 10px 0 0; }
+  .flow-step:last-child { border-radius: 0 0 10px 10px; }
+  .flow-step:not(:last-child) { border-bottom: none; }
+
+  .flow-step::before {
+    content: attr(data-step);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    min-width: 20px;
+  }
+
+  .flow-step .arrow {
+    color: var(--accent-entropy);
+    font-size: 0.8rem;
+    min-width: 16px;
+  }
+
+  .flow-step span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* ── EQUATION ── */
+  .equation-block {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    margin: 2.5rem 0;
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .equation-block::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent-entropy), transparent 40%, transparent 60%, var(--accent-coherence));
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  .equation {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .equation .var-s { color: var(--accent-entropy); }
+  .equation .var-g { color: var(--accent-coherence); }
+  .equation .var-chi { color: var(--accent-gold); }
+
+  .equation-caption {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── MAP TABLE ── */
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .map-table th {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .map-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--text-muted);
+  }
+
+  .map-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .map-table .col-balaji { color: var(--accent-coherence); font-weight: 500; }
+  .map-table .col-convergence { color: var(--accent-gold); font-weight: 500; }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-coherence), var(--accent-entropy));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent-gold);
+  }
+
+  .timeline-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* ── FOOTER ── */
+  .story-footer {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .story-footer p {
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  .story-footer a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(212,168,67,0.3);
+  }
+
+  .story-footer a:hover { border-bottom-color: var(--accent-gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .force-diagram { grid-template-columns: 1fr; }
+    .force-left .force-arrow { justify-content: flex-start; text-align: left; }
+    .disruption-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    section { padding: 3rem 0; }
+    .card { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>The Force Diagram of Disunion</h1>
+    <p class="subtitle">
+      Balaji Srinivasan mapped every force tearing America apart — debt, AI, China, political tribalism — and arrived at the same structural conclusion the physics already predicted: fragmentation is the default. Coherence has to be built.
+    </p>
+    <p class="attribution">
+      Based on <strong>Balaji Srinivasan</strong>'s analysis (Impact Theory, 2025). Visual companion to <strong><em>The Convergence</em></strong> series by David Lowe.
+    </p>
+  </div>
+  <div class="scroll-indicator"></div>
+</header>
+
+<div class="story-container">
+
+<!-- ════════════════════════ 1. THE THESIS ════════════════════════ -->
+<section>
+  <div class="section-number">Part 01</div>
+  <h2>Not One Crisis. Five Simultaneous Disruptions.</h2>
+
+  <p>Balaji doesn't describe America's fracture as a single problem with a single cause. He describes it as a <strong>force diagram</strong> — multiple vectors of disruption, each accelerating independently, all converging on the same structure at the same time.</p>
+
+  <div class="force-diagram">
+    <div class="force-left">
+      <div class="force-arrow">National Debt Singularity</div>
+      <div class="force-arrow">Digital AI (LLMs)</div>
+      <div class="force-arrow">China Manufacturing</div>
+    </div>
+    <div class="force-center">
+      <div class="force-center-icon">🇺🇸</div>
+      <div class="force-center-label">America</div>
+    </div>
+    <div class="force-right">
+      <div class="force-arrow">Physical AI (Robots)</div>
+      <div class="force-arrow">Internet Disruption</div>
+      <div class="force-arrow">Institutional Collapse</div>
+    </div>
+  </div>
+
+  <p>Each force hits a different identity group. Each group blames a different enemy. But the structural result is the same every time: <strong>fragmentation accelerates.</strong></p>
+
+  <div class="card card-bridge">
+    <div class="card-label">Convergence Bridge</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      In <em>What Separates Us</em>, we showed six divides running the same architecture — "partial truth captured by identity." Balaji's force diagram explains the <strong>energy sources</strong> feeding those divides. Each force injects entropy into a different fault line. The fracture doesn't multiply randomly. It propagates through every available surface. That's not chaos. That's thermodynamics.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 2. INFORMATION COLLAPSE ════════════════════════ -->
+<section>
+  <div class="section-number">Part 02</div>
+  <h2>The Information Ecosystem Collapsed First</h2>
+
+  <p>Before the political fracture, the <strong>information infrastructure</strong> broke. Newspaper advertising revenue — the economic engine that funded local journalism for a century — didn't decline gradually. It fell off a cliff.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">U.S. Newspaper Advertising Revenue vs. Digital Giants</div>
+    <div class="chart-subtitle">Inflation-adjusted, billions USD — The information ecosystem inversion</div>
+    <div class="chart-wrapper">
+      <canvas id="newspaperChart"></canvas>
+    </div>
+  </div>
+
+  <p>Google and Facebook didn't just compete with newspapers. They <strong>replaced the economic model</strong> that made local truth-telling possible. The revenue that once funded investigative reporting now funds algorithmic engagement — systems optimized not for truth but for attention.</p>
+
+  <div class="stat-row">
+    <div class="stat-block">
+      <div class="stat-number entropy">−70%</div>
+      <div class="stat-label">Newspaper Revenue<br>2000–2020</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number coherence">$200B+</div>
+      <div class="stat-label">Google + Meta<br>Ad Revenue 2023</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number entropy">2,100+</div>
+      <div class="stat-label">U.S. Newspapers<br>Closed Since 2004</div>
+    </div>
+  </div>
+
+  <div class="card card-entropy">
+    <div class="card-label">Entropy Signature</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      Information degradation through noise parallels truth degradation through tribal identity capture. When local newspapers die, the shared signal that held communities together disappears. What replaces it? Algorithmic feeds that maximize engagement by maximizing <strong>outrage</strong> — the emotional expression of fragmentation. Shannon would call it noise overwhelming signal. The second law calls it entropy. Same math.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 3. KEYNESIANISM & DEBT ════════════════════════ -->
+<section>
+  <div class="section-number">Part 03</div>
+  <h2>The Debt Singularity: When Money Loses Meaning</h2>
+
+  <p>Balaji's sharpest economic argument: technology is <strong>deflationary</strong> — it makes things cheaper, better, faster. But government spending is <strong>inflationary</strong> — it pumps money into the system, raising prices. These two forces have been at war for decades, and the government has been winning.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Inflation vs. Deflation: The Hidden War</div>
+    <div class="chart-subtitle">Technology pushes prices down. Government spending pushes prices up. The gap is the tax you don't see.</div>
+    <div class="chart-wrapper">
+      <canvas id="inflationChart"></canvas>
+    </div>
+  </div>
+
+  <p>The result: things that technology touches get cheaper (TVs, computers, software). Things that government touches get more expensive (healthcare, education, housing). The <strong>Cantillon Effect</strong> — those closest to new money benefit first; those farthest away get the inflation without the windfall.</p>
+
+  <div class="flow-chain">
+    <div class="flow-step" data-step="01"><span>Government prints money to fund deficit spending</span></div>
+    <div class="flow-step" data-step="02"><div class="arrow">↓</div><span>New money enters through banks, government contractors, federal employees</span></div>
+    <div class="flow-step" data-step="03"><div class="arrow">↓</div><span>Asset prices rise first (stocks, real estate) — benefiting the already-wealthy</span></div>
+    <div class="flow-step" data-step="04"><div class="arrow">↓</div><span>Consumer prices rise last — hitting wages, groceries, rent</span></div>
+    <div class="flow-step" data-step="05"><div class="arrow">↓</div><span>Working class feels the squeeze: real wages stagnate while cost of living climbs</span></div>
+    <div class="flow-step" data-step="06"><div class="arrow">↓</div><span><strong style="color:var(--accent-entropy)">Rich/poor divide deepens — not from greed, but from monetary mechanics</strong></span></div>
+  </div>
+
+  <div class="card card-bridge">
+    <div class="card-label">Convergence Bridge</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      In the Convergence series, we showed the rich/poor divide isn't really about wealth — it's about <strong>stability</strong>. The Cantillon Effect is the mechanism. It explains <em>why</em> one group plans ten years out while the other plans ten days out. It's not a character difference. It's a <strong>structural entropy gradient</strong> — those closer to the money source experience less monetary noise; those farther away drown in it. The equation <strong>dχ/dt ∝ −S + G</strong> expressed in dollar signs.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 4. CHINA SINGULARITY ════════════════════════ -->
+<section>
+  <div class="section-number">Part 04</div>
+  <h2>The China Singularity: Manufacturing Flipped</h2>
+
+  <p>Balaji identifies a specific moment the American manufacturing base crossed a point of no return. China didn't just compete — it <strong>achieved manufacturing dominance</strong> across almost every physical production category, often producing goods at a fraction of U.S. cost.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Manufacturing Output: U.S. vs. China</div>
+    <div class="chart-subtitle">Share of global manufacturing value-added (%). The crossover happened around 2010.</div>
+    <div class="chart-wrapper">
+      <canvas id="manufacturingChart"></canvas>
+    </div>
+  </div>
+
+  <p>This wasn't just an economic shift. It was an <strong>identity disruption</strong>. Republican America — the heartland, the factory towns, the "we build things" culture — watched its defining economic activity migrate overseas. The political response (tariffs, reshoring rhetoric) is an attempt to reverse entropy that has already propagated through the system.</p>
+
+  <div class="stat-row">
+    <div class="stat-block">
+      <div class="stat-number entropy">5M+</div>
+      <div class="stat-label">U.S. Manufacturing<br>Jobs Lost 2000–2016</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number gold">30%</div>
+      <div class="stat-label">China's Share of<br>Global Manufacturing</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number entropy">6:1</div>
+      <div class="stat-label">China-to-US Ship<br>Building Capacity Ratio</div>
+    </div>
+  </div>
+
+  <div class="card card-entropy">
+    <div class="card-label">Entropy Signature</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      When Balaji says "China already disrupted Republican jobs," he's describing entropy that has <em>already</em> propagated. The political anger in the heartland isn't irrational — it's the system's response to structural degradation. The same pattern from Article 1: a real loss is captured by tribal identity and weaponized. The manufacturing loss is real. The political costume it wears changes nothing about the thermodynamics underneath.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 5. AI DISRUPTION VECTORS ════════════════════════ -->
+<section>
+  <div class="section-number">Part 05</div>
+  <h2>Two AIs, Two Americas</h2>
+
+  <p>Here's where Balaji's analysis gets surgically precise. AI isn't one disruption — it's <strong>two</strong>, and each one targets a different political identity.</p>
+
+  <div class="disruption-grid">
+    <div class="disruption-card digital">
+      <h4>Digital AI → Blue America</h4>
+      <ul>
+        <li>LLMs disrupt journalists, lawyers, doctors, bureaucrats</li>
+        <li>These are the roles Blue America uses to define social stature</li>
+        <li>Response: "legal guild" rulings, restrictive AI legislation</li>
+        <li>Blue states increasingly anti-AI — protecting credential class</li>
+        <li>California, New York leading AI restriction efforts</li>
+      </ul>
+    </div>
+    <div class="disruption-card physical">
+      <h4>Physical AI → Red America</h4>
+      <ul>
+        <li>Robots and automation disrupt manufacturing, trucking, warehousing</li>
+        <li>These are the roles Red America already lost to China</li>
+        <li>Physical AI is the second wave hitting the same communities</li>
+        <li>Response: tariffs, reshoring rhetoric, protectionism</li>
+        <li>Heartland bracing for automation's next pass</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">AI Disruption Impact by Sector</div>
+    <div class="chart-subtitle">Estimated job displacement risk (%) — Digital AI hits blue-collar credentials, Physical AI hits blue-collar labor</div>
+    <div class="chart-wrapper">
+      <canvas id="aiDisruptionChart"></canvas>
+    </div>
+  </div>
+
+  <p>Digital AI is currently hitting Democrat strongholds harder. The "tech-lash" from the Left mirrors the "China-lash" from the Right — <strong>same structural response, different costume.</strong></p>
+
+  <div class="card card-bridge">
+    <div class="card-label">Convergence Bridge</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      This is the Article 1 thesis in real time. Two groups. Each facing a real threat. Each building an identity around the response to that threat. Each convinced the other side doesn't understand. The content is different — credential protection vs. manufacturing protection — but the <strong>architecture is identical.</strong> Partial truth captured by identity. Every time.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 6. POLITICAL POLARIZATION ════════════════════════ -->
+<section>
+  <div class="section-number">Part 06</div>
+  <h2>The Polarization Is Measured, Not Imagined</h2>
+
+  <p>This isn't speculation. The data is stark. Political polarization in America has accelerated dramatically since the mid-1990s, with the sharpest divergence beginning around 2004 — the same period the information ecosystem collapsed.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">Ideological Overlap in Congress: 1950–2024</div>
+    <div class="chart-subtitle">Share of congressional votes where bipartisan overlap exists. The gap between parties is now a chasm.</div>
+    <div class="chart-wrapper">
+      <canvas id="polarizationChart"></canvas>
+    </div>
+  </div>
+
+  <p>But here's the data point that should stop you: the <strong>perception gap</strong> is worse than the reality gap. Each side believes roughly 50% of the other side condones political violence. The real number? <strong>3–4% on both sides.</strong></p>
+
+  <div class="stat-row">
+    <div class="stat-block">
+      <div class="stat-number entropy">~50%</div>
+      <div class="stat-label">Perceived Violence<br>Tolerance (Each Side)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number coherence">3–4%</div>
+      <div class="stat-label">Actual Violence<br>Tolerance (Both Sides)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number gold">67%</div>
+      <div class="stat-label">The "Exhausted<br>Majority"</div>
+    </div>
+  </div>
+
+  <p>The fracture is maintained by a <strong>narrative</strong>, not by actual values. Two-thirds of America is exhausted by the polarization, united by fatigue, and ignored by the media that profits from the extremes.</p>
+
+  <div class="card card-entropy">
+    <div class="card-label">Entropy Signature</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      The perception gap IS information entropy. Real signal (3–4% violence tolerance) has been degraded into noise (~50% perceived tolerance) by algorithmic amplification of the worst examples. Shannon entropy in social form: the message sent ("most people are reasonable") is not the message received ("the other side is dangerous"). The channel has been corrupted. The information is gone.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 7. SOFT SECESSION ════════════════════════ -->
+<section>
+  <div class="section-number">Part 07</div>
+  <h2>Soft Secession: Democracy Between States, Not Within</h2>
+
+  <p>Balaji identifies a structural shift that most political commentary misses entirely. America isn't heading toward civil war. It's heading toward <strong>soft secession</strong> — jurisdictional sorting where citizens vote with their feet.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">California</div>
+      <div class="timeline-text">Democratic Party has achieved permanent one-party rule. Elections held, but the party always wins. AI restrictions protect the credential class.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Florida / Texas</div>
+      <div class="timeline-text">Moving toward Republican one-party equilibrium in response. Tax-friendly, regulation-light, attracting out-migration from blue states.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">The Migration</div>
+      <div class="timeline-text">Citizens self-sort into jurisdictions matching their tribe. Democracy migrates from within-state to between-state. Net migration: CA/NY → TX/FL/TN.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Sub-National Foreign Policy</div>
+      <div class="timeline-text">Newsom visits Beijing directly (2023). "Divorce is not an option" between California and China. Blue states seek manufacturing stability from China as federal support erodes.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">The Result</div>
+      <div class="timeline-text"><strong>Separation without formal secession.</strong> The Union holds legally. The coherence underneath it is already gone.</div>
+    </div>
+  </div>
+
+  <div class="card card-bridge">
+    <div class="card-label">Convergence Bridge</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      Soft secession is entropy's political expression. Not explosion — <strong>dissolution.</strong> The system doesn't shatter. It separates. Quietly. Directionally. Each fragment becomes more internally uniform and more externally isolated. That's not polarization as commonly understood. That's the thermodynamic endpoint: <strong>heat death at the political scale</strong> — maximum entropy, no gradient, no exchange between regions, everything sorted into identical pockets of nothing-changes.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 8. THREE-FACTION SPLIT ════════════════════════ -->
+<section>
+  <div class="section-number">Part 08</div>
+  <h2>The Three-Faction Split</h2>
+
+  <p>Balaji's endgame isn't two Americas. It's <strong>three</strong>. And the third faction is the one nobody in traditional politics is watching.</p>
+
+  <div class="chart-container">
+    <div class="chart-title">The Emerging Three-Faction America</div>
+    <div class="chart-subtitle">Each faction has its own economic base, foreign alignment, and governing philosophy</div>
+    <div class="chart-wrapper">
+      <canvas id="factionChart"></canvas>
+    </div>
+  </div>
+
+  <table class="map-table">
+    <thead>
+      <tr>
+        <th>Faction</th>
+        <th>Economic Base</th>
+        <th>Foreign Alignment</th>
+        <th>Governing Logic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color: var(--accent-coherence); font-weight: 600;">Blue America</td>
+        <td>Credential economy, government, services</td>
+        <td>Global internet + China for physical goods</td>
+        <td>Regulatory, institutional, bureaucratic</td>
+      </tr>
+      <tr>
+        <td style="color: var(--accent-entropy); font-weight: 600;">Red America</td>
+        <td>Energy, agriculture, manufacturing (reshoring)</td>
+        <td>Latin American capitalists (Milei, Bukele)</td>
+        <td>Protectionist, tariff-based, nationalist</td>
+      </tr>
+      <tr>
+        <td style="color: var(--accent-gold); font-weight: 600;">Tech America</td>
+        <td>Cloud, crypto, decentralized infrastructure</td>
+        <td>Global, jurisdiction-agnostic, network states</td>
+        <td>Exit over voice, code as governance</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card card-entropy">
+    <div class="card-label">Entropy Signature</div>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      One nation → three fragments. This IS entropy at the geopolitical scale. The pattern from Article 1 — one fracture propagating through every available fault line — now has its endpoint mapped. The unity never actually went away. It's hidden beneath the break, inaccessible at our current energy level. The question isn't whether the fragmentation continues — entropy guarantees it. The question is whether any coherence force is strong enough to hold the center.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 9. THE MAPPING ════════════════════════ -->
+<section>
+  <div class="section-number">Part 09</div>
+  <h2>The Structural Mapping: Balaji → Convergence</h2>
+
+  <p>Here's where the two analyses converge. Balaji arrives at his conclusions through geopolitics, economics, and tech analysis. The Convergence series arrives at the same structure through physics, theology, and mathematics. <strong>Different methodologies. Same architecture.</strong></p>
+
+  <table class="map-table">
+    <thead>
+      <tr>
+        <th>Balaji's Framework</th>
+        <th>Convergence Framework</th>
+        <th>Structural Identity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-balaji">Multiple disruptions fragmenting America</td>
+        <td class="col-convergence">Six divides running the same architecture</td>
+        <td>Same observation, different resolution</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">Information ecosystem collapse</td>
+        <td class="col-convergence">Signal degradation through noise (Shannon entropy)</td>
+        <td>Identical — information loss = entropy</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">Cantillon Effect widens rich/poor gap</td>
+        <td class="col-convergence">Stability gap changes time horizon (dχ/dt in dollar signs)</td>
+        <td>Same mechanism — monetary entropy gradient</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">Each side builds identity around its disruption</td>
+        <td class="col-convergence">Partial truth captured by identity, weaponized</td>
+        <td>Identical architecture</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">Soft secession — sorting without formal split</td>
+        <td class="col-convergence">Heat death — maximum entropy, no gradient</td>
+        <td>Same thermodynamic endpoint</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">Three-faction America (Blue/Red/Tech)</td>
+        <td class="col-convergence">One fracture propagating through every fault line</td>
+        <td>Entropy producing fragments</td>
+      </tr>
+      <tr>
+        <td class="col-balaji">"Fragmentation is the default"</td>
+        <td class="col-convergence">"Things fall apart unless energy is put in"</td>
+        <td><strong>Second Law of Thermodynamics</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="equation-block">
+    <div class="equation">
+      d<span class="var-chi">χ</span>/dt &nbsp;∝&nbsp; −<span class="var-s">S</span> &nbsp;+&nbsp; <span class="var-g">G</span>
+    </div>
+    <div class="equation-caption">
+      The rate of coherence (χ) = entropy (S) tearing apart + grace (G) holding together.<br>
+      Balaji mapped the S. The Convergence series maps both sides of the equation.
+    </div>
+  </div>
+
+  <div class="card card-bridge">
+    <div class="card-label">The Bridge</div>
+    <p style="margin-bottom: 0.75rem; color: var(--text-muted); font-size: 0.95rem;">
+      Balaji's entire analysis is a <strong>masterful description of the left side of the equation</strong> — the −S term. Every force he identifies (debt, AI, China, institutional collapse) is an entropy source. Every response he documents (tribalism, soft secession, three-faction sorting) is entropy propagating.
+    </p>
+    <p style="margin-bottom:0; color: var(--text-muted); font-size: 0.95rem;">
+      What he doesn't map — and what the Convergence series does — is the <strong>+G term</strong>. The force that pushes in the other direction. The external input that reverses the decay. The physicist calls it negentropy. The theologian calls it grace. The equation says both are describing the same structural intervention from outside the system.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════ 10. CONCLUSION ════════════════════════ -->
+<section>
+  <div class="section-number">Part 10</div>
+  <h2>The Question Both Analyses Leave You With</h2>
+
+  <p>Balaji documents the forces. The Convergence documents the structure. Both arrive at the same conclusion: <strong>you cannot save a system from inside itself when fragmentation is the default.</strong></p>
+
+  <p>The physicist says: a closed system cannot reverse its own entropy. The economist says: the debt spiral cannot be solved by the institutions that created it. The geopolitician says: the three factions cannot negotiate because they no longer share a common frame.</p>
+
+  <p><strong>All three are saying the same thing.</strong></p>
+
+  <p>The rescue — if there is one — has to come from outside the system.</p>
+
+  <div class="equation-block">
+    <div class="equation" style="font-size: clamp(1.2rem, 3vw, 1.6rem);">
+      Closed system &nbsp;→&nbsp; <span class="var-s">guaranteed decay</span><br>
+      Open system &nbsp;→&nbsp; <span class="var-g">coherence is possible</span>
+    </div>
+    <div class="equation-caption">
+      The second law of thermodynamics. Also the Gospel. Same claim. Same math.
+    </div>
+  </div>
+
+  <p style="color: var(--text); font-weight: 500; font-size: 1.1rem; margin-top: 2rem;">
+    That's what the next article in the Convergence series is about. Not just what's falling apart — but the only thing the math says can put it back together.
+  </p>
+</section>
+
+</div><!-- end story-container -->
+
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<footer class="story-footer">
+  <p>
+    Analysis based on Balaji Srinivasan's public commentary (Impact Theory, 2025).<br>
+    Visual companion to <a href="https://faiththruphysics.substack.com">The Convergence</a> series by David Lowe.
+  </p>
+  <p style="font-size: 0.8rem;">
+    Data sources: Bureau of Labor Statistics, Pew Research Center, World Bank, ANES, WVS, More in Common Project, Newspaper Association of America, eMarketer.
+    Charts represent documented trends; exact figures are approximations for visual clarity where noted.
+  </p>
+</footer>
+
+<!-- ════════════════════════ CHARTS ════════════════════════ -->
+<script>
+// Global Chart.js defaults
+Chart.defaults.color = '#8a8a9a';
+Chart.defaults.borderColor = 'rgba(42,42,58,0.5)';
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.font.size = 12;
+
+// ── 1. Newspaper Revenue Chart ──
+new Chart(document.getElementById('newspaperChart'), {
+  type: 'line',
+  data: {
+    labels: ['2000','2002','2004','2006','2008','2010','2012','2014','2016','2018','2020','2022'],
+    datasets: [
+      {
+        label: 'Newspaper Ad Revenue ($B)',
+        data: [48.7, 44.1, 46.7, 46.6, 37.8, 25.8, 22.3, 19.9, 18.3, 14.3, 9.6, 8.8],
+        borderColor: '#ff4444',
+        backgroundColor: 'rgba(255,68,68,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '#ff4444',
+        borderWidth: 2
+      },
+      {
+        label: 'Google + Facebook Ad Revenue ($B)',
+        data: [0.07, 0.4, 3.2, 9.4, 24.6, 33.3, 55.8, 74.0, 101.5, 136.2, 169.0, 205.0],
+        borderColor: '#44aaff',
+        backgroundColor: 'rgba(68,170,255,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '#44aaff',
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.2,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#2a2a3a',
+        borderWidth: 1,
+        padding: 12,
+        callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y}B` }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: true, text: 'Billions USD', font: { size: 11 } },
+        grid: { color: 'rgba(42,42,58,0.3)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ── 2. Inflation vs Deflation Chart ──
+new Chart(document.getElementById('inflationChart'), {
+  type: 'bar',
+  data: {
+    labels: ['TVs & Electronics', 'Software', 'Clothing', 'Toys', 'Healthcare', 'Education', 'Housing', 'Childcare'],
+    datasets: [
+      {
+        label: 'Price Change Since 2000 (%)',
+        data: [-97, -70, -5, -40, +120, +145, +85, +110],
+        backgroundColor: ctx => ctx.parsed.y < 0 ?
+          'rgba(68,170,255,0.7)' : 'rgba(255,68,68,0.7)',
+        borderColor: ctx => ctx.parsed.y < 0 ?
+          '#44aaff' : '#ff4444',
+        borderWidth: 1,
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.2,
+    indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#2a2a3a',
+        borderWidth: 1,
+        padding: 12,
+        callbacks: {
+          label: ctx => {
+            const v = ctx.parsed.x;
+            return v < 0 ? `${v}% (Tech deflation)` : `+${v}% (Government inflation)`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Price Change Since 2000 (%)', font: { size: 11 } },
+        grid: { color: 'rgba(42,42,58,0.3)' }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── 3. Manufacturing Chart ──
+new Chart(document.getElementById('manufacturingChart'), {
+  type: 'line',
+  data: {
+    labels: ['1990','1995','2000','2005','2010','2015','2020','2023'],
+    datasets: [
+      {
+        label: 'United States (%)',
+        data: [22, 21, 24, 20, 16, 16, 16, 15],
+        borderColor: '#44aaff',
+        backgroundColor: 'rgba(68,170,255,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#44aaff',
+        borderWidth: 2
+      },
+      {
+        label: 'China (%)',
+        data: [3, 5, 7, 12, 19, 27, 29, 30],
+        borderColor: '#ff4444',
+        backgroundColor: 'rgba(255,68,68,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#ff4444',
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.2,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#2a2a3a',
+        borderWidth: 1,
+        padding: 12,
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}% of global manufacturing` }
+      },
+      annotation: {
+        annotations: {
+          crossover: {
+            type: 'line',
+            xMin: 3.5,
+            xMax: 3.5,
+            borderColor: 'rgba(212,168,67,0.5)',
+            borderWidth: 1,
+            borderDash: [6,4],
+            label: {
+              display: true,
+              content: 'Crossover ~2010',
+              position: 'start',
+              backgroundColor: 'rgba(212,168,67,0.2)',
+              color: '#d4a843',
+              font: { size: 10 }
+            }
+          }
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 35,
+        title: { display: true, text: '% of Global Manufacturing', font: { size: 11 } },
+        grid: { color: 'rgba(42,42,58,0.3)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ── 4. AI Disruption Chart ──
+new Chart(document.getElementById('aiDisruptionChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Journalism', 'Legal Services', 'Medical Admin', 'Accounting', 'Creative/Design', 'Manufacturing', 'Trucking/Logistics', 'Warehousing', 'Agriculture', 'Construction'],
+    datasets: [
+      {
+        label: 'Digital AI Risk',
+        data: [82, 75, 70, 68, 65, 10, 8, 12, 5, 5],
+        backgroundColor: 'rgba(68,170,255,0.7)',
+        borderColor: '#44aaff',
+        borderWidth: 1,
+        borderRadius: 3
+      },
+      {
+        label: 'Physical AI Risk',
+        data: [5, 5, 8, 5, 5, 72, 65, 78, 55, 42],
+        backgroundColor: 'rgba(255,68,68,0.7)',
+        borderColor: '#ff4444',
+        borderWidth: 1,
+        borderRadius: 3
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#2a2a3a',
+        borderWidth: 1,
+        padding: 12,
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%` }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        title: { display: true, text: 'Displacement Risk (%)', font: { size: 11 } },
+        grid: { color: 'rgba(42,42,58,0.3)' }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { font: { size: 10 }, maxRotation: 45, minRotation: 45 }
+      }
+    }
+  }
+});
+
+// ── 5. Polarization Chart ──
+new Chart(document.getElementById('polarizationChart'), {
+  type: 'line',
+  data: {
+    labels: ['1950','1960','1970','1980','1990','2000','2004','2008','2012','2016','2020','2024'],
+    datasets: [
+      {
+        label: 'Bipartisan Overlap (%)',
+        data: [55, 48, 42, 38, 32, 25, 18, 14, 8, 4, 2, 1],
+        borderColor: '#d4a843',
+        backgroundColor: 'rgba(212,168,67,0.08)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#d4a843',
+        borderWidth: 2
+      },
+      {
+        label: 'Partisan Hostility Index',
+        data: [12, 15, 18, 22, 28, 38, 48, 55, 65, 75, 82, 88],
+        borderColor: '#ff4444',
+        backgroundColor: 'rgba(255,68,68,0.05)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#ff4444',
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2.2,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#2a2a3a',
+        borderWidth: 1,
+        padding: 12
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        title: { display: true, text: 'Index Value', font: { size: 11 } },
+        grid: { color: 'rgba(42,42,58,0.3)' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ── 6. Three-Faction Radar Chart ──
+new Chart(document.getElementById('factionChart'), {
+  type: 'radar',
+  data: {
+    labels: ['Economic Output', 'Military/Defense', 'Tech Innovation', 'Cultural Influence', 'Institutional Control', 'Global Connectivity'],
+    datasets: [
+      {
+        label: 'Blue America',
+        data: [65, 30, 50, 85, 90, 70],
+        borderColor: '#44aaff',
+        backgroundColor: 'rgba(68,170,255,0.12)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: '#44aaff'
+      },
+      {
+        label: 'Red America',
+        data: [55, 85, 30, 40, 35, 30],
+        borderColor: '#ff4444',
+        backgroundColor: 'rgba(255,68,68,0.12)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: '#ff4444'
+      },
+      {
+        label: 'Tech America',
+        data: [80, 15, 95, 60, 10, 95],
+        borderColor: '#d4a843',
+        backgroundColor: 'rgba(212,168,67,0.12)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: '#d4a843'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1.4,
+    plugins: {
+      legend: { position: 'top', labels: { usePointStyle: true, padding: 16, font: { size: 11 } } }
+    },
+    scales: {
+      r: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { display: false },
+        grid: { color: 'rgba(42,42,58,0.4)' },
+        angleLines: { color: 'rgba(42,42,58,0.4)' },
+        pointLabels: { color: '#8a8a9a', font: { size: 10 } }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
