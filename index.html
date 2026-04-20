@@ -23,6 +23,10 @@
   --red-dim:rgba(201,64,64,.1);
   --blue:#3b82f6;
   --blue-dim:rgba(59,130,246,.1);
+  --emerald:#10b981;
+  --emerald-dim:rgba(16,185,129,.1);
+  --purple:#a855f7;
+  --purple-dim:rgba(168,85,247,.1);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -183,6 +187,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 .card.blue .card-num{color:var(--blue);}
 .card.blue:hover{border-color:var(--blue);background:rgba(59,130,246,.03);}
 
+.card.emerald{border-left:3px solid var(--emerald);}
+.card.emerald .card-num{color:var(--emerald);}
+.card.emerald:hover{border-color:var(--emerald);background:rgba(16,185,129,.03);}
+
+.card.purple{border-left:3px solid var(--purple);}
+.card.purple .card-num{color:var(--purple);}
+.card.purple:hover{border-color:var(--purple);background:rgba(168,85,247,.03);}
+
 /* ─── DIVIDER ─── */
 .divider{
   max-width:1000px;
@@ -222,6 +234,54 @@ footer a{color:var(--gold);text-decoration:none;}
   <p class="subtitle">One equation. Every domain. Ten variables. The mathematics of coherence — from quantum mechanics to the character of God.</p>
   <div class="author">David Lowe &middot; POF 2828</div>
   <div class="eq">&chi; = &iiint;(G &middot; M &middot; E &middot; S &middot; T &middot; K &middot; R &middot; Q &middot; F &middot; C) dx dy dt</div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ════════════════════════ THE CONVERGENCE (EMERALD) ════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--emerald);"></div>
+    <h2>The Convergence</h2>
+  </div>
+  <p class="section-desc">Where the lines meet. Five papers proving that physics and theology aren't two subjects — they're two measurements of the same invariant.</p>
+
+  <div class="card-grid">
+    <a href="convergence/dt001-math-is-moral.html" class="card emerald">
+      <div class="card-num">Article 01</div>
+      <h3>Math Is Moral</h3>
+      <div class="card-desc">24 properties shared by mathematical and moral truth. The probability of coincidence: less than 10<sup>-15</sup>. Both point to the same invariant source.</div>
+      <div class="card-meta"><span><i class="fas fa-infinity"></i>24 properties</span><span><i class="fas fa-calculator"></i>Product form</span></div>
+    </a>
+
+    <a href="convergence/dt002-the-maxwell-moment.html" class="card emerald">
+      <div class="card-num">Article 02</div>
+      <h3>The Maxwell Moment</h3>
+      <div class="card-desc">Maxwell's four equations mapped to truth propagation. Same math, different variables. Truth moves like light — because truth IS light.</div>
+      <div class="card-meta"><span><i class="fas fa-bolt"></i>4 equations</span><span><i class="fas fa-wave-square"></i>Truth-field</span></div>
+    </a>
+
+    <a href="convergence/dt003-the-energy-that-doesnt-run-out.html" class="card emerald">
+      <div class="card-num">Article 03</div>
+      <h3>The Energy That Doesn't Run Out</h3>
+      <div class="card-desc">The Second Law says everything falls apart. Grace is the negentropic input from outside the system that prevents entropy from winning.</div>
+      <div class="card-meta"><span><i class="fas fa-fire"></i>Thermodynamics</span><span><i class="fas fa-cross"></i>Grace</span></div>
+    </a>
+
+    <a href="convergence/dt004-the-map-that-drew-itself.html" class="card emerald">
+      <div class="card-num">Article 04</div>
+      <h3>The Map That Drew Itself</h3>
+      <div class="card-desc">37 cross-domain isomorphisms. Three-way lock. The probability is 2.4 &times; 10<sup>-17</sup>. The map is too accurate to be self-drawn.</div>
+      <div class="card-meta"><span><i class="fas fa-project-diagram"></i>37 ISOs</span><span><i class="fas fa-lock"></i>Three-way lock</span></div>
+    </a>
+
+    <a href="convergence/dt006-the-24-anti-properties.html" class="card emerald">
+      <div class="card-num">Article 05</div>
+      <h3>The 24 Anti-Properties</h3>
+      <div class="card-desc">What the adversary is made of. The exact structural inversion of every property that makes truth what it is. A taxonomy of evil — falsifiable and domain-independent.</div>
+      <div class="card-meta"><span><i class="fas fa-shield-alt"></i>Impossibility proof</span><span><i class="fas fa-balance-scale"></i>Taxonomy</span></div>
+    </a>
+  </div>
 </section>
 
 <hr class="divider"/>
@@ -269,6 +329,13 @@ footer a{color:var(--gold);text-decoration:none;}
       <div class="card-desc">Why there are two physics. Quantum indeterminacy is broken coupling. The Born Rule is a scar.</div>
       <div class="card-meta"><span><i class="fas fa-headphones"></i>Audio</span><span><i class="fas fa-video"></i>Video</span><span><i class="fas fa-file-pdf"></i>2 PDFs</span></div>
     </a>
+
+    <div class="card gold" style="opacity:.5;cursor:default;">
+      <div class="card-num">Article 06</div>
+      <h3>Why Reality Needs Three</h3>
+      <div class="card-desc">2+2=4 proves God exists. The Trinity generates numbers. Twenty-four axioms from information theory to the Logos.</div>
+      <div class="card-meta"><span><i class="fas fa-clock"></i>Coming soon</span></div>
+    </div>
 
     <a href="gtq-07-the-photon-isnt-watching.html" class="card gold">
       <div class="card-num">Article 07</div>
@@ -363,314 +430,76 @@ footer a{color:var(--gold);text-decoration:none;}
 
 <hr class="divider"/>
 
-<!-- ════════════════════════ THE CONVERGENCE (GOLD) ════════════════════════ -->
+<!-- ════════════════════════ COLAB LAB (PURPLE) ════════════════════════ -->
 <section class="section">
   <div class="section-header">
-    <div class="section-dot" style="background:var(--gold);"></div>
-    <h2>The Convergence</h2>
+    <div class="section-dot" style="background:var(--purple);"></div>
+    <h2>The Lab</h2>
   </div>
-  <p class="section-desc">Standalone deep papers. Each one is a self-contained argument that stands on its own — physics, logic, and Scripture converging on one architecture.</p>
+  <p class="section-desc">Live computational notebooks. Run the equations yourself. Every claim in the framework is testable — here are the tests.</p>
 
   <div class="card-grid">
-    <a href="convergence/the-turtles-and-the-floor.html" class="card gold">
-      <div class="card-num">The Ground</div>
-      <h3>The Turtles and the Floor</h3>
-      <div class="card-desc">400 years of &ldquo;how.&rdquo; Zero progress on &ldquo;what.&rdquo; The last turtle stands on nothing and physics calls that nothing a foundation. Act 1 of the Master Narrative.</div>
-      <div class="card-meta"><span><i class="fas fa-layer-group"></i>Act 1</span><span><i class="fas fa-mug-hot"></i>Kitchen Table</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/verify_master_equation.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Verify Master Equation</h3>
+      <div class="card-desc">Run the Master Equation verification. Does &chi; hold? Test it yourself.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="convergence/convergence-01-why-god-drown-everybody.html" class="card gold">
-      <div class="card-num">Convergence 01</div>
-      <h3>Why Did God Drown Everybody?</h3>
-      <div class="card-desc">Same God, different operating conditions. The Holy Spirit as protection layer. Why OT severity was surgery without antibiotics &mdash; and why Pentecost changed everything.</div>
-      <div class="card-meta"><span><i class="fas fa-cross"></i>Regime Change</span><span><i class="fas fa-chart-line"></i>CKG 7.4</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/test_10_laws.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Test the 10 Laws</h3>
+      <div class="card-desc">Each of the ten canonical laws tested computationally. G through C.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="convergence/convergence-02-six-theorems-proved-grace.html" class="card gold">
-      <div class="card-num">Convergence 02</div>
-      <h3>Six Theorems That Accidentally Proved Grace</h3>
-      <div class="card-desc">G&ouml;del, Turing, Tarski, Clausius, Landauer, Leibniz. Six independent proofs that closed systems hit a wall. The wall has five properties. So does grace.</div>
-      <div class="card-meta"><span><i class="fas fa-square-root-variable"></i>Terminus Sui</span><span><i class="fas fa-chart-line"></i>CKG 7.8</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/wolfram_gauntlet_sympy.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Wolfram Gauntlet (SymPy)</h3>
+      <div class="card-desc">The gauntlet. Symbolic verification of the framework's mathematical claims using SymPy.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="convergence/convergence-03-day-map-became-territory.html" class="card gold">
-      <div class="card-num">Convergence 03</div>
-      <h3>The Day the Map Became the Territory</h3>
-      <div class="card-desc">Why every institution eventually fights the truth it was built to protect. The Pharisee Function: K/W inversion, nine-step decay, and why better people don&rsquo;t fix structural problems.</div>
-      <div class="card-meta"><span><i class="fas fa-building-columns"></i>Institutions</span><span><i class="fas fa-chart-line"></i>CKG 7.5</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/symbolic_derivations.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Symbolic Derivations</h3>
+      <div class="card-desc">Step-by-step symbolic derivations of key equations in the framework.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="convergence/convergence-04-same-trick-different-costume.html" class="card gold">
-      <div class="card-num">Convergence 04</div>
-      <h3>Same Trick, Different Costume</h3>
-      <div class="card-desc">Seven adversarial moves across history &mdash; Heaven to Silicon Valley. Same geometric structure every time. T-blindness: a spatial being who can&rsquo;t see the temporal integral running against him.</div>
-      <div class="card-meta"><span><i class="fas fa-masks-theater"></i>Strategy</span><span><i class="fas fa-chart-line"></i>CKG 7.7</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/solve_master_equation.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Solve Master Equation</h3>
+      <div class="card-desc">Numerical solver for the Master Equation. Watch &chi; evolve in real time.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="theophysics-the-full-explanation.html" class="card gold" style="grid-column:1/-1;max-width:600px;">
-      <div class="card-num">Start Here</div>
-      <h3>Theophysics: The Full Explanation</h3>
-      <div class="card-desc">Everything we found, written so anyone can understand it. The room at 2am. Six theorems that said the same thing. Maxwell&rsquo;s equations reading as truth. The master equation. Why unprovability IS the proof. Start here.</div>
-      <div class="card-meta"><span><i class="fas fa-book-open"></i>910 lines</span><span><i class="fas fa-graduation-cap"></i>Accessible</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/maxwell_mirror_v1_saddle.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Maxwell Mirror &mdash; Saddle Analysis</h3>
+      <div class="card-desc">The Maxwell truth-field isomorphism tested computationally. Saddle-point analysis.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="the-same-equation.html" class="card gold">
-      <div class="card-num">The Visual Proof</div>
-      <h3>The Same Equation</h3>
-      <div class="card-desc">All ten laws &mdash; physical and spiritual &mdash; side by side. Same functional form. One added term. Same position every time. The structural identity either holds or it doesn&rsquo;t.</div>
-      <div class="card-meta"><span><i class="fas fa-equals"></i>10 Proofs</span><span><i class="fas fa-microscope"></i>Wolfram Verified</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/chi_field_potential_search.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>&chi;-Field Potential Search</h3>
+      <div class="card-desc">Searching for the potential V(&chi;) that fits cosmological data. DESI-consistent parameter space.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="ten-laws-full-treatment.html" class="card gold">
-      <div class="card-num">The Architecture</div>
-      <h3>The Ten Laws &mdash; Full Treatment</h3>
-      <div class="card-desc">Not &ldquo;physics and theology are related.&rdquo; The equations are the same. Every law, every equation, every substitution map. The physical is necessary. The spiritual is offered.</div>
-      <div class="card-meta"><span><i class="fas fa-layer-group"></i>10 Laws</span><span><i class="fas fa-code-branch"></i>Split Layout</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/hubble_gradient.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Hubble Gradient</h3>
+      <div class="card-desc">Hubble tension analysis through the &chi;-field lens. Gradient computation and visualization.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
 
-    <a href="no-drift-law-synthesis.html" class="card gold">
-      <div class="card-num">Master Reference</div>
-      <h3>The No-Drift Law Synthesis</h3>
-      <div class="card-desc">All 10 laws. Full equations. Constructive and destructive regimes. Free will variable. Shannon channels. Scripture. The complete technical reference.</div>
-      <div class="card-meta"><span><i class="fas fa-book"></i>1,254 lines</span><span><i class="fas fa-compass"></i>Navigable</span></div>
-    </a>
-
-    <a href="character-of-god-from-physics.html" class="card gold">
-      <div class="card-num">The Portrait</div>
-      <h3>The Character of God &mdash; Read from Physics</h3>
-      <div class="card-desc">24 measured properties from 10 physical forces. Not interpreted. Not imposed. Described. Together they compose one Person.</div>
-      <div class="card-meta"><span><i class="fas fa-atom"></i>10 Forces</span><span><i class="fas fa-list"></i>24 Properties</span></div>
-    </a>
-
-    <a href="character-of-adversary-from-physics.html" class="card red">
-      <div class="card-num">The Dark Mirror</div>
-      <h3>The Character of the Adversary &mdash; Read from Physics</h3>
-      <div class="card-desc">7 domains of physics. 12 properties. Not imposed. Not invented. Described. What entropy and decay reveal when you stop looking away &mdash; and why he loses.</div>
-      <div class="card-meta"><span><i class="fas fa-skull"></i>7 Domains</span><span><i class="fas fa-shield-halved"></i>12 Properties</span></div>
-    </a>
-
-    <a href="the-attack-surface.html" class="card red">
-      <div class="card-num">The Threat Model</div>
-      <h3>The Attack Surface</h3>
-      <div class="card-desc">Why the adversary always comes for the same nine things. The CPT theorem &mdash; the deepest symmetry in physics &mdash; mapped to the 9 Fruits of the Spirit and the 9 attack vectors. The armor isn&rsquo;t poetry. It&rsquo;s physics.</div>
-      <div class="card-meta"><span><i class="fas fa-shield-virus"></i>CPT Theorem</span><span><i class="fas fa-crosshairs"></i>9 Vectors</span></div>
-    </a>
-
-    <a href="the-24-anti-properties.html" class="card red">
-      <div class="card-num">The Inversion</div>
-      <h3>The 24 Anti-Properties</h3>
-      <div class="card-desc">The formal taxonomy of evil. Every property of Logos-aligned truth has an exact structural inverse. This is what the adversary is made of.</div>
-      <div class="card-meta"><span><i class="fas fa-shield-halved"></i>Taxonomy</span><span><i class="fas fa-scale-balanced"></i>24 Inversions</span></div>
-    </a>
-
-    <a href="salvation-algorithm.html" class="card gold">
-      <div class="card-num">The Chain</div>
-      <h3>The Salvation Algorithm</h3>
-      <div class="card-desc">Six steps of pure logic. No religious language. The Gospel derived from first principles &mdash; physics mapping added independently. 1-in-17-trillion chance alignment.</div>
-      <div class="card-meta"><span><i class="fas fa-link"></i>6 Steps</span><span><i class="fas fa-calculator"></i>43.6 bits</span></div>
-    </a>
-
-    <a href="salvation-narrative-10-laws.html" class="card gold">
-      <div class="card-num">The Sequence</div>
-      <h3>Salvation as 10-Law Phase Transition</h3>
-      <div class="card-desc">The salvation story told through all 10 laws in order. Four acts: Dying, Crisis, Transformation, Destination. The sequence is not metaphor &mdash; it&rsquo;s thermodynamics.</div>
-      <div class="card-meta"><span><i class="fas fa-forward"></i>10 Laws</span><span><i class="fas fa-masks-theater"></i>4 Acts</span></div>
-    </a>
-
-    <a href="salvation-phase-transition.html" class="card gold">
-      <div class="card-num">The Threshold</div>
-      <h3>Salvation Is a Phase Transition</h3>
-      <div class="card-desc">12-stage structural mapping between Bose-Einstein condensation and Christian soteriology. Every stage matches. 5.8&sigma; conservative.</div>
-      <div class="card-meta"><span><i class="fas fa-temperature-low"></i>BEC</span><span><i class="fas fa-chart-line"></i>12 Stages</span></div>
-    </a>
-
-    <a href="why-grace-from-outside.html" class="card gold">
-      <div class="card-num">The Proof</div>
-      <h3>Why Grace Has to Come from Outside</h3>
-      <div class="card-desc">The Second Law forbids self-salvation. A closed system cannot reverse its own entropy. The Cross is thermodynamically necessary.</div>
-      <div class="card-meta"><span><i class="fas fa-fire"></i>Thermodynamics</span><span><i class="fas fa-cross"></i>Necessity</span></div>
-    </a>
-
-    <a href="the-93-year-floor.html" class="card gold">
-      <div class="card-num">The Data</div>
-      <h3>The 93-Year Floor</h3>
-      <div class="card-desc">Genesis genealogies read as a dataset. A decoherence equation fitted without knowing Moses wrote &ldquo;seventy years.&rdquo; The model found a floor of 93. Three sources. Same number. That&rsquo;s not coincidence. That&rsquo;s measurement.</div>
-      <div class="card-meta"><span><i class="fas fa-chart-line"></i>R&sup2; = 0.888</span><span><i class="fas fa-database"></i>23 Patriarchs</span></div>
-    </a>
-
-    <a href="it-from-bit-from-logos.html" class="card gold">
-      <div class="card-num">The Extension</div>
-      <h3>It from Bit from Logos</h3>
-      <div class="card-desc">Wheeler almost had it. Information is fundamental &mdash; but he stopped one level too soon. It&rsquo;s not bit from bit all the way down. It&rsquo;s right or wrong all the way down. And only one of those lives forever.</div>
-      <div class="card-meta"><span><i class="fas fa-microchip"></i>Wheeler</span><span><i class="fas fa-arrow-right"></i>Logos</span></div>
-    </a>
-
-    <a href="the-father-as-source-field.html" class="card gold">
-      <div class="card-num">The Source</div>
-      <h3>The Father as Source Field</h3>
-      <div class="card-desc">The quantum vacuum had a name before physics gave it one. Why &ldquo;no one has ever seen God&rdquo; is not a limitation &mdash; it&rsquo;s a structural necessity.</div>
-      <div class="card-meta"><span><i class="fas fa-atom"></i>Vacuum State</span><span><i class="fas fa-cross"></i>Trinity</span></div>
-    </a>
-    <a href="we-ran-the-tests.html" class="card gold">
-      <div class="card-num">The Evidence</div>
-      <h3>We Ran the Tests</h3>
-      <div class="card-desc">Seven tests. All passed. One corrected publicly. The historical record says: when a framework passes rigorous testing, it has always been pointing at something real.</div>
-      <div class="card-meta"><span><i class="fas fa-flask"></i>7 Tests</span><span><i class="fas fa-stamp"></i>PASS</span></div>
-    </a>
-    <a href="the-floor-beneath-the-floor.html" class="card gold">
-      <div class="card-num">The Foundation</div>
-      <h3>The Floor Beneath the Floor</h3>
-      <div class="card-desc">Noether proved conservation comes from symmetry. Nobody asks why symmetry exists. The answer requires a Trinity &mdash; and the physics derives it, not assumes it.</div>
-      <div class="card-meta"><span><i class="fas fa-layer-group"></i>Noether</span><span><i class="fas fa-cross"></i>Trinity</span></div>
-    </a>
-    <a href="everybodys-got-it-wrong.html" class="card gold">
-      <div class="card-num">The Letter</div>
-      <h3>Everybody&rsquo;s Got It Wrong</h3>
-      <div class="card-desc">I&rsquo;m not a physicist. I build fences for a living. The smartest people in the world got stuck because they were told not to look where the math was pointing. I looked.</div>
-      <div class="card-meta"><span><i class="fas fa-envelope-open-text"></i>Family</span><span><i class="fas fa-hammer"></i>Accessible</span></div>
-    </a>
-    <a href="holding-god-accountable.html" class="card gold" style="grid-column:1/-1;max-width:600px;border-color:var(--blue);">
-      <div class="card-num">The Trial</div>
-      <h3>Holding God Accountable</h3>
-      <div class="card-desc">We held God to the same standards science holds itself. Bidirectional evidence tables, UTDGS defense metrics, head-to-head with General Relativity. Score: 39/50 vs 21/50. Light courtroom theme.</div>
-      <div class="card-meta"><span><i class="fas fa-gavel"></i>Courtroom</span><span><i class="fas fa-scale-balanced"></i>39 vs 21</span></div>
-    </a>
-    <a href="heaven-hell-attractor-states.html" class="card gold">
-      <div class="card-num">The Destination</div>
-      <h3>Heaven and Hell as Attractor States</h3>
-      <div class="card-desc">They are not where you go. They are where you&rsquo;ve been going. Dynamical systems, basins of attraction, the separatrix between C=1 and C=0.</div>
-      <div class="card-meta"><span><i class="fas fa-magnet"></i>Attractors</span><span><i class="fas fa-code-branch"></i>Phase Portrait</span></div>
-    </a>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ════════════════════════ MORAL DECLINE (RED/AMBER) ════════════════════════ -->
-<section class="section">
-  <div class="section-header">
-    <div class="section-dot" style="background:var(--red);"></div>
-    <h2>The Moral Decline of America</h2>
-  </div>
-  <p class="section-desc">125 years. Nine domains. One number. The &chi;-field measured across a civilization &mdash; and the Amish control group that proves the signal is real. A 10-part Substack series, a formal academic paper, and the data behind it all.</p>
-
-  <div class="card-grid">
-    <a href="moral-decline-of-america.html" class="card red" style="grid-column:1/-1;max-width:600px;">
-      <div class="card-num">The Dossier</div>
-      <h3>The Complete Series &mdash; All 10 Parts</h3>
-      <div class="card-desc">A trans-domain analysis tracking civilizational coherence from 0.85 to 0.27 &mdash; the 68% collapse no single discipline saw because no single discipline looked across all of them at once. The Amish control group. The invariant cascade. The kill conditions.</div>
-      <div class="card-meta"><span><i class="fas fa-chart-line"></i>p = 0.003</span><span><i class="fas fa-users"></i>330% Divergence</span><span><i class="fas fa-skull-crossbones"></i>4 Kill Conditions</span></div>
-    </a>
-
-    <a href="moral-decline-facts-paper.html" class="card red">
-      <div class="card-num">Formal Paper</div>
-      <h3>FACTS: The Academic Case</h3>
-      <div class="card-desc">The formal academic paper. Abstract, methodology, statistical results, peer-review ready. The same data, stripped to its bones and submitted to the standards that should have caught this decades ago.</div>
-      <div class="card-meta"><span><i class="fas fa-file-alt"></i>Academic</span><span><i class="fas fa-microscope"></i>Peer Review</span></div>
-    </a>
-
-    <a href="technology-entropy-moral-decline.html" class="card red">
-      <div class="card-num">Deep Dive</div>
-      <h3>Technology &amp; Entropy</h3>
-      <div class="card-desc">The mechanism. How technological acceleration became the primary entropy driver across all nine domains &mdash; not by breaking things, but by removing the friction that held coherence in place.</div>
-      <div class="card-meta"><span><i class="fas fa-microchip"></i>Technology</span><span><i class="fas fa-fire"></i>Entropy</span></div>
-    </a>
-
-    <a href="timeline-american-moral-decline.html" class="card red">
-      <div class="card-num">The Record</div>
-      <h3>Historical Timeline: 1900&ndash;2025</h3>
-      <div class="card-desc">Every inflection point. Every law. Every cultural shift. Mapped chronologically across all nine domains so you can see the cascade happen in real time.</div>
-      <div class="card-meta"><span><i class="fas fa-clock"></i>125 Years</span><span><i class="fas fa-layer-group"></i>9 Domains</span></div>
-    </a>
-
-    <a href="Moral decline of America/moral-decline-america.html" class="card red" style="grid-column:1/-1;max-width:600px;border-left-color:var(--gold);">
-      <div class="card-num" style="color:var(--gold);">The Series Index</div>
-      <h3>All 10 Parts + The Lowe Family Stories</h3>
-      <div class="card-desc">The full series hub: all ten analytical chapters, the FACTS framework overview, and seven narrative companion stories tracing six generations of one American family from 1900 to 2025 &mdash; the same data, lived instead of measured.</div>
-      <div class="card-meta"><span><i class="fas fa-book-open"></i>10 Parts</span><span><i class="fas fa-users"></i>7 Stories</span><span><i class="fas fa-layer-group"></i>FACTS</span></div>
-    </a>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ════════════════════════ CONSCIOUSNESS SERIES (TEAL) ════════════════════════ -->
-<section class="section">
-  <div class="section-header">
-    <div class="section-dot" style="background:#14b8a6;"></div>
-    <h2>Consciousness</h2>
-  </div>
-  <p class="section-desc">The hard problem, the &chi;-field, and the case for a non-material substrate. Ten papers from the 357-theory analysis to the ontological taxonomy.</p>
-
-  <div class="card-grid">
-    <a href="consciousness-constraint-argument.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Wall</div>
-      <h3>The Constraint Argument &amp; The Hard Problem</h3>
-      <div class="card-desc">357 theories. All hit the same wall. Relational descriptions cannot generate intrinsic experience. That is not a research lag. It is a constraint.</div>
-      <div class="card-meta"><span><i class="fas fa-brain"></i>357 Theories</span><span><i class="fas fa-table"></i>Scorecard</span></div>
-    </a>
-
-    <a href="consciousness-coherence-bridge.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Bridge</div>
-      <h3>The Coherence Bridge</h3>
-      <div class="card-desc">The spiritual coherence parameter C modifies quantum uncertainty. When C=0, standard QM. As C&rarr;1, classical behavior emerges. The bridge between two physics.</div>
-      <div class="card-meta"><span><i class="fas fa-wave-square"></i>Modified Uncertainty</span><span><i class="fas fa-link"></i>Bridge Equation</span></div>
-    </a>
-
-    <a href="consciousness-chi-field-action.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Action</div>
-      <h3>The Minimal &chi;-Field Action</h3>
-      <div class="card-desc">The full Lagrangian. Massive at the Hubble scale, self-interacting, non-minimally coupled to curvature. Ghost-free. DESI-consistent. Falsifiable.</div>
-      <div class="card-meta"><span><i class="fas fa-square-root-variable"></i>Lagrangian</span><span><i class="fas fa-satellite"></i>DESI 4.2&sigma;</span></div>
-    </a>
-
-    <a href="consciousness-grace-source-term.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Source</div>
-      <h3>The Grace Source Term</h3>
-      <div class="card-desc">The cosmos as an open system. A covariant source term J_grace introduces external negentropy. The Arrow of Grace opposes the Arrow of Entropy. Stable and bounded.</div>
-      <div class="card-meta"><span><i class="fas fa-arrow-right-to-bracket"></i>Open System</span><span><i class="fas fa-infinity"></i>Arrow of Grace</span></div>
-    </a>
-
-    <a href="consciousness-reality-assessment.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Verdict</div>
-      <h3>The &chi;-Field Reality Assessment</h3>
-      <div class="card-desc">The stand-or-fall document. Five criteria for a real physical field. Four satisfied. One implicit. Compared against Higgs, Inflaton, Quintessence. Euclid 2026 is decisive.</div>
-      <div class="card-meta"><span><i class="fas fa-gavel"></i>4/5 Satisfied</span><span><i class="fas fa-telescope"></i>Euclid 2026</span></div>
-    </a>
-
-    <a href="consciousness-scientific-convergence.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Convergence</div>
-      <h3>Scientific Convergence &amp; Miracles as Physics</h3>
-      <div class="card-desc">GR and QM are projections of the Master Action. Miracles are deterministic applications: chaos control, constant-tuning, matter transmutation, entropy manipulation.</div>
-      <div class="card-meta"><span><i class="fas fa-compress-arrows-alt"></i>Unification</span><span><i class="fas fa-bolt"></i>4 Categories</span></div>
-    </a>
-
-    <a href="consciousness-evidence-predictions.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Evidence</div>
-      <h3>Quantum Evidence &amp; Predictions</h3>
-      <div class="card-desc">PEAR 6.35&sigma;. GCP 7&sigma;. DESI 4.2&sigma;. PROP-COSMOS 5.7&sigma;. Five testable predictions. Twelve-study research agenda. The case file is open.</div>
-      <div class="card-meta"><span><i class="fas fa-chart-bar"></i>4 Sigma Values</span><span><i class="fas fa-flask"></i>12 Studies</span></div>
-    </a>
-
-    <a href="consciousness-free-will-evil.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Problem</div>
-      <h3>Consciousness, Free Will, and Evil</h3>
-      <div class="card-desc">Evil as decoherence. Free will via quantum-temporal model. The Broken Observer hypothesis: the brain is a receiver, not a generator. Moral injury degrades the antenna.</div>
-      <div class="card-meta"><span><i class="fas fa-balance-scale"></i>Theodicy</span><span><i class="fas fa-user-injured"></i>Broken Observer</span></div>
-    </a>
-
-    <a href="consciousness-parallel-laws.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Mirror</div>
-      <h3>Parallel Laws</h3>
-      <div class="card-desc">Gravity and sin. Light and truth. Entropy and spiritual decay. Superposition and free will. Same mathematical form. Same structure. Different domain.</div>
-      <div class="card-meta"><span><i class="fas fa-columns"></i>4 Parallels</span><span><i class="fas fa-equals"></i>Same Math</span></div>
-    </a>
-
-    <a href="consciousness-ontological-taxonomy.html" class="card" style="border-left:3px solid #14b8a6;">
-      <div class="card-num" style="color:#14b8a6;">The Map</div>
-      <h3>The Ontological Taxonomy</h3>
-      <div class="card-desc">Three-category ontology. Bidirectional entity taxonomy. The catalytic-gating model. AI as P-Preservation Mirror. Tri-Coordinate Verification: Word, Math, Data.</div>
-      <div class="card-meta"><span><i class="fas fa-sitemap"></i>Taxonomy</span><span><i class="fas fa-check-double"></i>TCV</span></div>
+    <a href="https://colab.research.google.com/github/DavidLoweOKC/Master-Equation-COLAB/blob/main/COLAB_MASTER_EQUATION/version_manager.ipynb" target="_blank" class="card purple">
+      <div class="card-num"><i class="fas fa-flask"></i> Colab Notebook</div>
+      <h3>Version Manager</h3>
+      <div class="card-desc">Track and manage equation versions across the framework's development history.</div>
+      <div class="card-meta"><span><i class="fab fa-python"></i>Python</span><span><i class="fas fa-external-link-alt"></i>Google Colab</span></div>
     </a>
   </div>
 </section>
@@ -686,11 +515,18 @@ footer a{color:var(--gold);text-decoration:none;}
   <p class="section-desc">The foundational paper. Where everything begins.</p>
 
   <div class="card-grid">
-    <a href="The_Logos_Thesis_v3.html" class="card gold" style="grid-column:1/-1;max-width:600px;">
+    <a href="The_Logos_Thesis_v3.html" class="card gold">
       <div class="card-num">Foundation</div>
       <h3>The Logos Thesis</h3>
       <div class="card-desc">The complete thesis. Ten variables, one coherence field, every domain unified. This is the paper that started it all.</div>
       <div class="card-meta"><span><i class="fas fa-headphones"></i>Audio</span><span><i class="fas fa-scroll"></i>Full paper</span></div>
+    </a>
+
+    <a href="the-logos-story.html" class="card gold">
+      <div class="card-num">The Logos Story</div>
+      <h3>From Bekenstein to the Decalogue</h3>
+      <div class="card-desc">Eleven chapters. The universe is a language, a computer, a hologram — and the Logos wrote it all. The full narrative scroll.</div>
+      <div class="card-meta"><span><i class="fas fa-book-open"></i>11 chapters</span><span><i class="fas fa-images"></i>31 images</span></div>
     </a>
   </div>
 </section>
